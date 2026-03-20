@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"gggjjjzzz123.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.27.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="配置Ubuntu 打开“VMware Workstation”软件，选择创建虚拟机，随后进入新建虚拟机向导 选择第一个“典型”，点击“下一步”     选择“稍后安装操作系统”，点击下一步     选择客户机操作系统为“Linux”，版本为“Ubuntu 64位”，点击下一步     虚拟机名称默认即可，选择虚拟机文件存储位置（注意：一定要单独新建一个文件夹来存）     设置最大磁盘大小20G（">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GJZ&#39;s Blog">
+<meta property="og:url" content="https://gggjjjzzz123.github.io/2026/03/%E5%9C%A8VMware%E4%B8%AD%E5%AE%89%E8%A3%85Ubuntu/index.html">
+<meta property="og:site_name" content="GJZ&#39;s Blog">
+<meta property="og:description" content="配置Ubuntu 打开“VMware Workstation”软件，选择创建虚拟机，随后进入新建虚拟机向导 选择第一个“典型”，点击“下一步”     选择“稍后安装操作系统”，点击下一步     选择客户机操作系统为“Linux”，版本为“Ubuntu 64位”，点击下一步     虚拟机名称默认即可，选择虚拟机文件存储位置（注意：一定要单独新建一个文件夹来存）     设置最大磁盘大小20G（">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2025/png/50965833/1748605416332-bae73e42-00b3-4dd0-8d3b-abcd315976d3.png">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2025/png/50965833/1748605525354-99e28adf-4fdd-4e74-9e26-eb85e926accd.png">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2025/png/50965833/1748607297930-89fde686-1b69-43c8-acbc-c033f14f3746.png">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2025/png/50965833/1748607283503-a9f5f6c1-4070-4dd4-8f5b-d71e5de327b2.png">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2025/png/50965833/1748607579897-b085dc47-7454-47c7-ba9a-cc9ec4605521.png">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2025/png/50965833/1748607608217-038062ef-f04c-42e1-9007-99a16a4810bc.png">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2025/png/50965833/1748607721896-1794f1d5-5a68-4cf1-aaff-2477fc4bf4e4.png">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2025/png/50965833/1748607780468-92195de4-61d8-4bba-8f84-045ce2551670.png">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2025/png/50965833/1748607846673-0cd0a5e3-88c6-4eb7-96e6-38be0768b98f.png">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2025/png/50965833/1748607936163-bf8539f1-2284-45c9-92a3-1d9e4cdf572d.png">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2025/png/50965833/1748608000677-2626f792-4512-42d4-a956-28f229239e4c.png">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2025/png/50965833/1748609716441-c276047f-e0cd-40e5-9aa1-711fe3462338.png">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2025/png/50965833/1748609773193-9541ee58-e38d-4a11-bd2e-3aec96ac3585.png">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2025/png/50965833/1748609904923-d3bbd18f-83a0-49db-a3a8-29c29248d313.png">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2025/png/50965833/1748609968267-45542283-9077-42e7-9de1-f1b0e29a422e.png">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2025/png/50965833/1748610013167-c67ac2c9-1266-4729-a3ac-0fe7aab2f5fa.png">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2025/png/50965833/1748610076458-02b93f23-6fb5-444b-8f79-503fff6173b3.png">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2025/png/50965833/1748610100399-8cd95150-f12b-49ec-bec1-8d8f2b0d297a.png">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2025/png/50965833/1748611186899-d9e719ea-ec3b-423c-8a4f-5b2b167a06a2.png">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2025/png/50965833/1761305476128-7a06ac15-f8a9-4de8-bb7a-8ca6ebb676d2.png">
+<meta property="article:published_time" content="2026-03-20T12:40:25.084Z">
+<meta property="article:modified_time" content="2026-03-20T12:40:28.252Z">
+<meta property="article:author" content="GGGjjjzzz123">
+<meta property="article:tag" content="分享, 技术, 博客, 开发, 学习">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.nlark.com/yuque/0/2025/png/50965833/1748605416332-bae73e42-00b3-4dd0-8d3b-abcd315976d3.png">
+
+
+<link rel="canonical" href="https://gggjjjzzz123.github.io/2026/03/%E5%9C%A8VMware%E4%B8%AD%E5%AE%89%E8%A3%85Ubuntu/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://gggjjjzzz123.github.io/2026/03/%E5%9C%A8VMware%E4%B8%AD%E5%AE%89%E8%A3%85Ubuntu/","path":"2026/03/在VMware中安装Ubuntu/","title":""}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title> | GJZ's Blog</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">GJZ's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">博主是一名努力进步、热爱生活、充满生命力的人</p>
+      <img class="custom-logo-image" src="/images/android-chrome-512x512.png" alt="GJZ's Blog">
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-技术文章"><a href="/tech/" rel="section"><i class="fa fa-code fa-fw"></i>技术文章</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%85%8D%E7%BD%AEUbuntu"><span class="nav-number">1.</span> <span class="nav-text">配置Ubuntu</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85Ubuntu"><span class="nav-number">2.</span> <span class="nav-text">安装Ubuntu</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">GGGjjjzzz123</p>
+  <div class="site-description" itemprop="description">GJZ的博客，用于存放各种技术文章，分享技术经验。主要内容包括项目开发、技术分享、学习笔记等。希望通过这个博客与大家交流，共同进步！</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">6</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/yourname" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;yourname" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://gggjjjzzz123.github.io/2026/03/%E5%9C%A8VMware%E4%B8%AD%E5%AE%89%E8%A3%85Ubuntu/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="GGGjjjzzz123">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="GJZ's Blog">
+      <meta itemprop="description" content="GJZ的博客，用于存放各种技术文章，分享技术经验。主要内容包括项目开发、技术分享、学习笔记等。希望通过这个博客与大家交流，共同进步！">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | GJZ's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2026-03-20 20:40:28" itemprop="dateModified" datetime="2026-03-20T20:40:28+08:00">2026-03-20</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="配置Ubuntu"><a href="#配置Ubuntu" class="headerlink" title="配置Ubuntu"></a>配置Ubuntu</h2><ol>
+<li>打开“VMware Workstation”软件，选择创建虚拟机，随后进入新建虚拟机向导</li>
+<li>选择第一个“典型”，点击“下一步”</li>
+</ol>
+<!-- 这是一张图片，ocr 内容为：VMWARE WORKSTATION 园回回名包口 查看(V) 虚拟机(M)选项卡(T)帮助(H) 文件(F)编辑(E) 库 X 主页 我的计算机 在此处键入内容进行搜索 我的计算机 其他LINUX5.X内核64位 WORKSTATIONPRO17 CENTOS764位 卫 连接远程服务器 打开虚拟机 创建新的虚拟机 VMWARE -->
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/50965833/1748605416332-bae73e42-00b3-4dd0-8d3b-abcd315976d3.png"></p>
+<ol start="3">
+<li>选择“稍后安装操作系统”，点击下一步</li>
+</ol>
+<!-- 这是一张图片，ocr 内容为：新建虚拟机向导 安装客户机操作系统 虚拟机如同物理机,需要操作系统.您将如何安装客户机操作系统? INSTALL FROM: INSTALLER DISC: 无可用驱动器 INSTALLER DISC IMAGE FILE(ISO): D:\LINUXLCENTOS-7-X86_64-DVD-2003.ISO BROWSE... I WILL INSTALL THE OPERATING SYSTEM LATER. THE VIRTUAL MACHINE WILL BE CREATED WITH A BLANK HARD DISK. 下一步(N) 取消 帮助 <上一步(B) -->
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/50965833/1748605525354-99e28adf-4fdd-4e74-9e26-eb85e926accd.png"></p>
+<ol start="4">
+<li>选择客户机操作系统为“Linux”，版本为“Ubuntu 64位”，点击下一步</li>
+</ol>
+<!-- 这是一张图片，ocr 内容为：新建虚拟机向导 选择客户机操作系统 此虚拟机中将安装哪种操作系统? GUEST OPERATING SYSTEM MICROSOFT WINDOWS LINUX VMWARE ESX OTHER VERSION UBUNTU64位 下一步(N) <上一步(B) 帮助 取消 -->
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/50965833/1748607297930-89fde686-1b69-43c8-acbc-c033f14f3746.png"></p>
+<ol start="5">
+<li>虚拟机名称默认即可，选择虚拟机文件存储位置（注意：一定要单独新建一个文件夹来存）</li>
+</ol>
+<!-- 这是一张图片，ocr 内容为：新建虚拟机向导 命名虚拟机 您希望该虚拟机使用什么名称? VIRTUAL MACHINE NAME: UBUNTU64位 LOCATION: D://LINUX\UBUNTU BROWSE... THE DEFAULT LOCATION CAN BE CHANGED AT EDIT > PREFERENCES. 下一步(N) <上一步(B) 取消 -->
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/50965833/1748607283503-a9f5f6c1-4070-4dd4-8f5b-d71e5de327b2.png"></p>
+<ol start="6">
+<li>设置最大磁盘大小20G（默认），选择“将虚拟磁盘存储为单个文件”</li>
+</ol>
+<!-- 这是一张图片，ocr 内容为：新建虚拟机向导 指定磁盘容量 磁盘大小为多少? 虚拟机的硬盘作为一个或多个文件存储在主机的物理磁盘中.这些文件最初很小,随着 您向虚拟机中添加应用程序,文件和数据而逐渐变大. 20.0 最大磁盘大小(GB)(S): 针对UBUNTU 64位的建议大小:20 GB 将虚拟磁盘存储为单个文件(O) 将虚拟磁盘拆分成多个文件(M) 拆分磁盘后,可以更轻松地在计算机之间移动虚拟机,但可能会降低大容量磁盘的 性能. 上一步(B) 下一步(N)> 取消 帮助 -->
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/50965833/1748607579897-b085dc47-7454-47c7-ba9a-cc9ec4605521.png"></p>
+<ol start="7">
+<li>点击“自定义硬件”</li>
+</ol>
+<!-- 这是一张图片，ocr 内容为：新建虚拟机向导 已准备好创建虚拟机 单击'完成创建虚拟机.然后可以安装UE 安装UBUNTU64位. THE VIRTUAL MACHINE WILL BE CREATED WITH THE FOLLOWING SETTINGS: 名称: UBUNTU64位 位置: D:\LINUX|UBUNTU 版本: WORKSTATION 17.5.X 操作系统: UBUNTU64位 硬盘: 20 GB 内存: 4096 MB 网络适配器: NAT 2个CPU内核,CD/DVD,USB控制器,声卡 其他设备: SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS CUSTOMIZE HARDWARE... <上一步(B) 完成 取消 -->
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/50965833/1748607608217-038062ef-f04c-42e1-9007-99a16a4810bc.png"></p>
+<ol start="8">
+<li>选中“新CD&#x2F;DVD”，在连接中选择“使用ISO映像文件”，在浏览中选择存放Ubuntu映像文件的地址，点击关闭，再点击完成</li>
+</ol>
+<!-- 这是一张图片，ocr 内容为：硬件 设备状态 摘要 设备 已连接(C) 4 GB 处理器 2 启动时连接(O) 自动检测 新CD/DVD(SATA) 网络适配器 连接 NAT USB控制器 存在 使用物理驱动器(P): 自动检测 声卡 自动检测 显示器 自动检测 使用ISO映像文件(M): D:\LINUX/UBUNTU-22.04.5-DES 浏览(B)... 高级(V)... 移除(R) 添加(A)... 帮助 关闭 -->
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/50965833/1748607721896-1794f1d5-5a68-4cf1-aaff-2477fc4bf4e4.png"></p>
+<ol start="9">
+<li>Ubuntu已经配置好了</li>
+</ol>
+<!-- 这是一张图片，ocr 内容为：向 UBUNTU 64 - VMWARE WORKSTATION 编辑(E) 查看(V) 虚拟机(M)选项卡(T) 帮助(H) 文件(F) 库 UBUNTU 64位 主页 我的计算机 在此处键入内容进行搜索 UBUNTU64位 我的计算机 向句句 其他LINUX5.X内核64位 开启此虚拟机 CENTOS764位 编辑虚拟机设置 UBUNTU64位 设备 内存 4 GB 2 处理器 硬盘(SCSI) 20 GB 正在使用文件D:... CD/DVD(SATA) NAT 网络适配器 存在 USB控制器 自动检测 声卡 显示器 自动检测 虚拟机详细信息 状态:已关机 描述 配置文件:D://LINUX\UBUNTU/UBUNT 在此处键入对该虚拟机的描述. 64位.VMX 硬件兼容性:WORKSTATION 17.5.X虚拟 机 主IP地址:网络信息不可用 -->
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/50965833/1748607780468-92195de4-61d8-4bba-8f84-045ce2551670.png"></p>
+<h2 id="安装Ubuntu"><a href="#安装Ubuntu" class="headerlink" title="安装Ubuntu"></a>安装Ubuntu</h2><ol>
+<li>选中刚刚配置的CentOS7，然后点击右边控制台中的“开启次虚拟机”。（开机失败可能是因为权限不够，关闭VMware，重新以管理员的身份运行）</li>
+</ol>
+<!-- 这是一张图片，ocr 内容为：UBUNTU 64 - VMWARE WORKSTATION 文件(F)编辑(E) 查看(V) 虚拟机(M)选项卡(T) 帮助(H) 库 UBUNTU 64位 主页 我的计算机 在此处键入内容进行搜索 UBUNTU64位 我的计算机 包包包 其他LINUX5.X内核64位 开启此虚拟机 CENTOS764位 编辑虚拟机设置 UBUNTU64位 设备 4 GB 圈内存 处理器 2 硬盘(SCSI) 20 GB 正在使用文件D:... CD/DVD(SATA) 网络适配器 NAT 存在 USB控制器 自动检测 声卡 自动检测 显示器 虚拟机详细信息 状态:已关机 描述 配置文件:D:\LINUX\UBUNTU/UBUNT 在此处键入对该虚拟机的描述. 64位.VMX 硬件兼容性:WORKSTATION 17.5.X虚拟 机 主IP地址:网络信息不可用 -->
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/50965833/1748607846673-0cd0a5e3-88c6-4eb7-96e6-38be0768b98f.png"></p>
+<ol start="2">
+<li>选择第一个选项</li>
+</ol>
+<!-- 这是一张图片，ocr 内容为：我的计算机 介主页 UBUNTU 64位 GNUGRUB VERSION 2.06 TRY OR INSTALL UBUNTU UBUNTU (SAFE GRAPHICS) OEM INSTALL (FOR MANUFACTURERS) TEST MEMORY USE THE T AND - KEYS TO SELECT WHICH ENTRY IS HIGHLIGHTED. 'E' TO EDIT THE COMMANDS THE SELECTED OS, PRESS ENTER TO BOOT TH BEFORE BOOTING OR 'C' -LINE. FOR A COMMAND-LI THE HIGHLIGHTED ENTRY WILL BE A AUTOMATICALLY IN 21S. EXECUTED -->
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/50965833/1748607936163-bf8539f1-2284-45c9-92a3-1d9e4cdf572d.png"></p>
+<ol start="3">
+<li>启动之后出现安装界面</li>
+</ol>
+<!-- 这是一张图片，ocr 内容为：我的计算机 主页 UBUNTU 64位 MAY 30 20:26 SAJAIDUHTE BURES BOAHTIN HRVATSKI ISLENSKA LTALIANO KURDI LATVISKI LIETUVISKAI MAGYAR NEDERLANDS NO LOCALIZATION(UTF-8) SAJAIDUHTTIT UBUNTU GEAHCCALUBUNTU NORSK BOKMAL NORSK NYNORSK OCCITAN YOU CAN TRY UBUNTU WITHOUT MAKING ANY CHANGES TO YOUR COMPUTER, DIRECTLY FROM THIS CD. POLSKI OR IF YOU'READY.YOU CANINSTALL UBUNTU ALONGSIDE (OR INSTEAD OF YOUR CURRENT OPERATING PORTUGUES SYSTEM. THIS SHOULDN'T TAKE TOO LONG. PORTUGUES DO BRASIL ROMANA SAMEGILLII 机内部单击或按CTRL+G. -->
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/50965833/1748608000677-2626f792-4512-42d4-a956-28f229239e4c.png"></p>
+<ol start="4">
+<li>语言选择“简体中文”，选择“安装Ubuntu”</li>
+</ol>
+<!-- 这是一张图片，ocr 内容为：我的计算机 UBUNTU64位X 主页 MAY 30 20:29 U 安装 欢迎 SLLY BEUK GGGOLOM BOUC BWILALU CLC 试用UBUNTU 安装UBUNTU 的只 COCAGRI 您可以直接从此CD尝试UBUNTU,而不用对您的电脑作任何更改. 10号原 中文(简体) 如果您已经准备完毕,您可以与现有系统并存(或者替代)方式将UBUNTU安装到您的电脑上. 此过程无需耗时太久. 中文(繁体) 日本语 标移动性,视频和性能.请答灵客户机操作系统,单击'安 单击虚拟屏暮 VMWARE -->
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/50965833/1748609716441-c276047f-e0cd-40e5-9aa1-711fe3462338.png"></p>
+<ol start="5">
+<li>键盘布局默认选择“Chinese”，点击继续</li>
+</ol>
+<!-- 这是一张图片，ocr 内容为：UBUNTU64位 我的计算机 主页 U MAY 30 20:32 安装 键盘布局 选择您的键盘布局: BELARUSIAN CHINESE CHINESE-HANYU PINYIN(WITH ALTGR DEAD KEYS) BELGIAN CHINESE-MONGOLIAN(BICHIG) BERBER(ALGERIA,LATIN) CHINESE-MONGOLIAN(GALIK) BOSNIAN CHINESE-MONGOLIAN(MANCHU GALIK) BRAILLE CHINESE-MONGOLIAN(MANCHU) BULGARIAN CHINESE-MONGOLIAN(TODO GALIK) BURMESE CHINESE CHINESE-MONGOLIAN(TODO) CHINESE-MONGOLIAN(XIBE) CROATIAN CHINESE-TIBETAN CZECH CHINESE-TIBETAN(WITH ASCIL NUMERALS) DANISH CHINESE-UYGHUR DHIVEHI DUTCH DZONGKHA ENGLISH(AUSTRALIAN) 在这里输入以测试您的键盘 探测键盘布局 后退(B) 继续 退出(Q) VMWARETOOLS具有很多功能,能改善鼠标移动性,视须和性能.请登录客户机操作系统,单击"安装 单击虚拟屏幕 不要提醒我 安装TOOLS 以后提醒我 可发送按键 TOOLS" -->
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/50965833/1748609773193-9541ee58-e38d-4a11-bd2e-3aec96ac3585.png"></p>
+<ol start="6">
+<li>选择“正常安装”，其他选项选择“为图形或…”，点击继续</li>
+</ol>
+<!-- 这是一张图片，ocr 内容为：我的计算机 介主页 UBUNTU 64位 X MAY 30 20:34 安装 更新和其他软件 您希望先安装哪些应用? 正常安装 网络浏览器,工具,办公软件,游戏和媒体播放器. 最小安装 网络浏览器和基本工具 其他选项 安装UBUNTU时下载更新 这能节约安装后的时间. 为图形或无线硬件,以及其它媒体格式安装第三方软件 此软件及其文档遵循许可条款.其中一些是专有的. 退出(O) 后退(B) 继续 -->
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/50965833/1748609904923-d3bbd18f-83a0-49db-a3a8-29c29248d313.png"></p>
+<ol start="7">
+<li>安装类型，记得勾选“清除…”，点击现在安装，再点击继续</li>
+</ol>
+<!-- 这是一张图片，ocr 内容为：安装 安装类型 这台计算机似乎没有安装操作系统.您准备怎么做? 清除整个磁盘并安装UBUNTU 注意:这会删除所有系统里面的全部程序,文档,照片,音乐和其他文件. 高级特性... 尚未选择任何项目 其他选项 您可以自己创建,调整分区,或者为UBUNTU选择多个分区. 后退(B) 退出(Q) 现在安装(1) -->
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/50965833/1748609968267-45542283-9077-42e7-9de1-f1b0e29a422e.png"></p>
+<ol start="8">
+<li>地区选择上海，点击继续</li>
+</ol>
+<!-- 这是一张图片，ocr 内容为：安装 您在什么地方? SHANGHAI 后退(B) 继续 -->
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/50965833/1748610013167-c67ac2c9-1266-4729-a3ac-0fe7aab2f5fa.png"></p>
+<ol start="9">
+<li>输入相关信息，点击继续（密码：gjz）</li>
+</ol>
+<!-- 这是一张图片，ocr 内容为：安装 您是谁? 您的姓名: GJZ GJZ-VIRTUAL-MACHINE 您的计算机名: 与其他计算机联络时使用的名称. 选择一个用户名: GJZ 选择一个密码: 密码强度:合理 确认您的密码: 自动登录 登录时需要密码 使用ACTIVEDIRECTORY 您将在下一步中输入域和其他详细信息. 继续 后退(B) -->
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/50965833/1748610076458-02b93f23-6fb5-444b-8f79-503fff6173b3.png"></p>
+<ol start="10">
+<li>进行安装（过程巨慢）</li>
+</ol>
+<!-- 这是一张图片，ocr 内容为：安装 SKIP 正在完成文件复制... -->
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/50965833/1748610100399-8cd95150-f12b-49ec-bec1-8d8f2b0d297a.png"></p>
+<ol start="11">
+<li>完成！</li>
+</ol>
+<!-- 这是一张图片，ocr 内容为：我的计算机 UBUNTU64位 主页 X X 活动 5月31日04:55 ZH 主目录 .内部单击或按CTRL+G. -->
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/50965833/1748611186899-d9e719ea-ec3b-423c-8a4f-5b2b167a06a2.png"></p>
+<p>换源</p>
+<!-- 这是一张图片，ocr 内容为：软件和更新 活动 10月25日03:07 软件和更新 X 身份验证 开发者选项 其它软件 附加驱动 更新 UBUNTU软件 UBUNTUPRO 可从互联网下载 CANONICAL支持的自由和开源软件(MAIN) 选择下载服务器 社区 设备 MIRRORS.HUST.EDU.CN 选择最佳服务器(S) O 因版 MIRRORS.JCUT.EDU.CN MIRRORS.JLU.EDU.CN 源代 MIRRORS.JXUST.EDU.CN 下载自: MIRRORS.SDU.EDU.CN MIRRORS.SOHU.COM MIRRORS.TUNA.TSINGHUA.EDU.CN 可从光驱车 MIRRORS.XITU.EDU.CN INST MIRRORS.YUN-IDC.COM 官方 版权 协议: HTTPS 选择服务器(S) 取消(C) 六 还原(V) 关闭(C) -->
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/50965833/1761305476128-7a06ac15-f8a9-4de8-bb7a-8ca6ebb676d2.png"></p>
+<p>Ubuntu粘贴复制</p>
+<p>1、更换国内源（阿里）</p>
+<p>2、sudo apt-get update</p>
+<p>3、sudo apt-get upgrade</p>
+<p>4、sudo apt-get  install open-vm-tools</p>
+<p>5、sudo apt-get install open-vm-tools-desktop</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2026/03/%E5%9C%A8VMware%E4%B8%AD%E5%AE%89%E8%A3%85Win7/" rel="prev" title="">
+                  <i class="fa fa-angle-left"></i> 
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2026/03/%E5%9C%A8VMware%E4%B8%AD%E5%AE%89%E8%A3%85CentOS7/" rel="next" title="">
+                   <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2023 – 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">未经授权不得转载</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>
