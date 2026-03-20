@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>杂项随笔 - GJZ's Blog</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Microsoft YaHei', sans-serif;
+            background-image: url('/images/web_background.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: #333;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .breadcrumb {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 40px;
+        }
+
+        .breadcrumb a {
+            color: #E2852E;
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        .section-header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 60px 40px;
+            border-radius: 20px;
+            margin-bottom: 60px;
+            border: 1px solid rgba(226, 133, 46, 0.15);
+            box-shadow: 0 8px 32px rgba(226, 133, 46, 0.1);
+        }
+
+        .section-title {
+            font-size: 48px;
+            font-weight: 800;
+            color: #E2852E;
+            margin-bottom: 16px;
+        }
+
+        .section-desc {
+            font-size: 18px;
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 24px;
+        }
+
+        .misc-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 24px;
+            margin-bottom: 60px;
+        }
+
+        .misc-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 30px;
+            border: 1px solid rgba(226, 133, 46, 0.15);
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 32px rgba(226, 133, 46, 0.08);
+        }
+
+        .misc-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(226, 133, 46, 0.4);
+            box-shadow: 0 16px 48px rgba(226, 133, 46, 0.2);
+        }
+
+        .misc-icon {
+            font-size: 32px;
+            margin-bottom: 12px;
+        }
+
+        .misc-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 12px;
+        }
+
+        .misc-desc {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+
+        .misc-tag {
+            display: inline-block;
+            background: linear-gradient(135deg, #E2852E, #F5C857);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            margin-bottom: 16px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 24px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-size: 14px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #E2852E, #F5C857);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateX(4px);
+            box-shadow: 0 6px 16px rgba(226, 133, 46, 0.4);
+        }
+
+        .btn-back {
+            background: transparent;
+            color: #E2852E;
+            border: 2px solid #E2852E;
+            margin-top: 30px;
+        }
+
+        .btn-back:hover {
+            background: rgba(226, 133, 46, 0.1);
+        }
+
+        @media (max-width: 768px) {
+            .section-title {
+                font-size: 32px;
+            }
+
+            .misc-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-header {
+                padding: 40px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="breadcrumb">
+            <a href="/">首页</a> → 杂项随笔
+        </div>
+
+        <div class="section-header">
+            <h1 class="section-title">🌈 杂项随笔</h1>
+            <p class="section-desc">这是一个包罗万象的创意空间，分享我对生活、技术和创意的思考。从代码之外的世界到灵光闪现的创意，这里记录着我的多元探索。</p>
+        </div>
+
+        <div class="misc-grid">
+            <div class="misc-card">
+                <div class="misc-icon">💭</div>
+                <div class="misc-title">思考随笔</div>
+                <p class="misc-desc">对技术、人生、工作的各种思考和感悟</p>
+                <span class="misc-tag">思想碎片</span>
+                <a href="/" class="btn btn-primary">阅读思考</a>
+            </div>
+
+            <div class="misc-card">
+                <div class="misc-icon">✍️</div>
+                <div class="misc-title">个人博客</div>
+                <p class="misc-desc">日常生活观察、有趣发现和个人故事</p>
+                <span class="misc-tag">生活记录</span>
+                <a href="/" class="btn btn-primary">查看文章</a>
+            </div>
+
+            <div class="misc-card">
+                <div class="misc-icon">🌍</div>
+                <div class="misc-title">旅行与生活</div>
+                <p class="misc-desc">旅行见闻、生活感悟和经历分享</p>
+                <span class="misc-tag">经历分享</span>
+                <a href="/" class="btn btn-primary">了解故事</a>
+            </div>
+
+            <div class="misc-card">
+                <div class="misc-icon">🎨</div>
+                <div class="misc-title">创意灵感</div>
+                <p class="misc-desc">设计灵感、创意项目和艺术探索</p>
+                <span class="misc-tag">创意空间</span>
+                <a href="/" class="btn btn-primary">探索创意</a>
+            </div>
+        </div>
+
+        <a href="/" class="btn btn-back">← 返回首页</a>
+    </div>
+</body>
+</html>
