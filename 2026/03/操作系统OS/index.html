@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"gggjjjzzz123.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.27.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="配置Ubuntu 打开“VMware Workstation”软件，选择创建虚拟机，随后进入新建虚拟机向导 选择第一个“典型”，点击“下一步”     选择“稍后安装操作系统”，点击下一步     选择客户机操作系统为“Linux”，版本为“Ubuntu 64位”，点击下一步     虚拟机名称默认即可，选择虚拟机文件存储位置（注意：一定要单独新建一个文件夹来存）     设置最大磁盘大小20G（">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GJZ&#39;s Blog">
+<meta property="og:url" content="https://gggjjjzzz123.github.io/2026/03/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FOS/index.html">
+<meta property="og:site_name" content="GJZ&#39;s Blog">
+<meta property="og:description" content="配置Ubuntu 打开“VMware Workstation”软件，选择创建虚拟机，随后进入新建虚拟机向导 选择第一个“典型”，点击“下一步”     选择“稍后安装操作系统”，点击下一步     选择客户机操作系统为“Linux”，版本为“Ubuntu 64位”，点击下一步     虚拟机名称默认即可，选择虚拟机文件存储位置（注意：一定要单独新建一个文件夹来存）     设置最大磁盘大小20G（">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-os/image_001_1748605416332-bae73e42-00b3-4dd0-8d3b-abcd315976d3.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-os/image_002_1748605525354-99e28adf-4fdd-4e74-9e26-eb85e926accd.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-os/image_003_1748607297930-89fde686-1b69-43c8-acbc-c033f14f3746.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-os/image_004_1748607283503-a9f5f6c1-4070-4dd4-8f5b-d71e5de327b2.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-os/image_005_1748607579897-b085dc47-7454-47c7-ba9a-cc9ec4605521.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-os/image_006_1748607608217-038062ef-f04c-42e1-9007-99a16a4810bc.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-os/image_007_1748607721896-1794f1d5-5a68-4cf1-aaff-2477fc4bf4e4.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-os/image_008_1748607780468-92195de4-61d8-4bba-8f84-045ce2551670.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-os/image_009_1748607846673-0cd0a5e3-88c6-4eb7-96e6-38be0768b98f.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-os/image_010_1748607936163-bf8539f1-2284-45c9-92a3-1d9e4cdf572d.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-os/image_011_1748608000677-2626f792-4512-42d4-a956-28f229239e4c.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-os/image_012_1748609716441-c276047f-e0cd-40e5-9aa1-711fe3462338.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-os/image_013_1748609773193-9541ee58-e38d-4a11-bd2e-3aec96ac3585.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-os/image_014_1748609904923-d3bbd18f-83a0-49db-a3a8-29c29248d313.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-os/image_015_1748609968267-45542283-9077-42e7-9de1-f1b0e29a422e.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-os/image_016_1748610013167-c67ac2c9-1266-4729-a3ac-0fe7aab2f5fa.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-os/image_017_1748610076458-02b93f23-6fb5-444b-8f79-503fff6173b3.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-os/image_018_1748610100399-8cd95150-f12b-49ec-bec1-8d8f2b0d297a.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-os/image_019_1748611186899-d9e719ea-ec3b-423c-8a4f-5b2b167a06a2.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-os/image_020_1761305476128-7a06ac15-f8a9-4de8-bb7a-8ca6ebb676d2.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-os/image_021_1761699465359-0dcea163-eab1-4aa1-8223-7b3071a5be52.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-os/image_022_1761699565985-173188d6-8f15-4b69-aea8-2af03528dac5.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-os/image_023_1761700299536-3976e721-3392-477b-a3ca-6fdb4b375475.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-os/image_024_1761700758790-a5973ce0-3c0f-4020-b609-c08ff08a436d.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-os/image_025_1761700954819-09ea6710-7e64-432a-822d-fd49cc5aa13a.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-os/image_026_1761700975868-13820d3b-5579-4914-9818-3a7610e62cc2.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-os/image_027_1761701006199-e1c1c2ef-d802-4ad9-8510-e044f7bb58aa.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-os/image_028_1761701224272-1ea9ff8a-72e3-4528-aedb-04c772b61265.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-os/image_029_1761701719212-0697f54e-d94f-4426-849c-7b37740425c3.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-os/image_030_1761701955967-6044e839-bbd3-45e1-931a-5985e12f8999.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-os/image_031_1761702524942-0dff535b-8e56-4b55-9f63-cc4a6b3e5630.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-os/image_032_1761702665451-a71297dd-09fc-4826-9e33-3e10dab919ef.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-os/image_033_1761702959403-d336bc3b-4bfe-4a76-a302-c13c227b2a04.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-os/image_034_1761703236724-25ed3c46-3721-46f9-a17a-54fa776c3dca.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-os/image_035_1761703345829-e7b9ef0c-8b1b-4568-9ffd-c0b7cec57c58.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-os/image_036_1762306522589-cab5d920-8f01-4977-991a-745b5175b4f0.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-os/image_037_1762304535101-c78b7add-0d61-4c01-b750-32e54466f89d.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-os/image_038_1762304799086-54dc285c-94fb-4e09-8fc9-4b15c9f36525.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-os/image_039_1762304893017-555d6408-8a4f-48f9-8ba1-600a3de843ab.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-os/image_040_1762304935604-b8cc5d29-cacc-4730-bbaa-e3e8d09d416a.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-os/image_041_1762305054003-835fc3d3-df67-41a2-8e3f-cc96c26177ba.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-os/image_042_1762305174966-a3bd2027-48df-4379-bd53-f27d4f5ff8dc.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-os/image_043_1762305227896-21a852f1-44d3-46b4-a5d7-8a2632dd9d8b.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-os/image_044_1762306591087-5d4ee0e3-7df3-4420-9c5f-43c9c0bf2859.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-os/image_045_1762306628453-d941c72b-4045-4b63-a9c9-3716487f8c28.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-os/image_046_1762306723348-b4f8a4b1-89e3-4583-921a-83773fd8ad00.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-os/image_047_1762908347336-693f5ef2-9719-4678-bf59-8fcb2639f4ac.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-os/image_048_1762908536493-78d89fc0-64ac-4078-8871-8dca19f6f2a2.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-os/image_049_1762908652510-47c8de37-a9e8-40b2-ac04-fef0e5b31d03.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-os/image_050_1762909127059-5a6f03d9-5fd9-4b56-83fc-ac3f9f6c9754.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-os/image_051_1762909200579-d8b99a13-1db8-4a7c-924a-cfd7b2e09256.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-os/image_052_1762909345129-8ada6160-1256-4383-ba13-2456847ffcd7.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-os/image_053_1762909382526-1fcfa0e5-59a3-4389-8116-60232317ab58.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-os/image_054_1762909442649-307029f1-dfd3-4925-b6f2-dd75193d7b65.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-os/image_055_1762909556274-1a427ff3-7e35-49fe-b020-b9867848e169.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-os/image_056_1762911413475-276051b0-dd4c-4b6f-ab92-8a7c115d1e4c.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-os/image_057_1762911839389-e3825905-3236-4929-9824-befd26f1de76.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-os/image_058_1762912016537-0f8f0077-d456-464b-8d7f-e177cf71f927.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-os/image_059_1762912042394-4236b7ac-87b1-4ebd-9806-2e9966935bff.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-os/image_060_1762912063910-d945e4e7-2f78-4c21-b1ee-2a97f306a99e.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-os/image_061_1762912103274-f162e122-6e02-4821-af6a-d4fa25514ad0.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-os/image_062_1762912162632-169d2c81-46c3-4245-9bc3-d29a14f85643.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-os/image_063_1762912264229-f215d4a9-4f84-47a3-9542-49644898f2b1.png">
+<meta property="article:published_time" content="2026-03-21T10:57:01.252Z">
+<meta property="article:modified_time" content="2026-03-21T13:24:12.234Z">
+<meta property="article:author" content="GGGjjjzzz123">
+<meta property="article:tag" content="分享, 技术, 博客, 开发, 学习">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gggjjjzzz123.github.io/images/courses-os/image_001_1748605416332-bae73e42-00b3-4dd0-8d3b-abcd315976d3.png">
+
+
+<link rel="canonical" href="https://gggjjjzzz123.github.io/2026/03/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FOS/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://gggjjjzzz123.github.io/2026/03/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FOS/","path":"2026/03/操作系统OS/","title":""}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title> | GJZ's Blog</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">GJZ's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">博主是一名努力进步、热爱生活、充满生命力的人</p>
+      <img class="custom-logo-image" src="/images/android-chrome-512x512.png" alt="GJZ's Blog">
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-技术文章"><a href="/tech/" rel="section"><i class="fa fa-code fa-fw"></i>技术文章</a></li><li class="menu-item menu-item-项目文档"><a href="/projects/" rel="section"><i class="fa fa-rocket fa-fw"></i>项目文档</a></li><li class="menu-item menu-item-课程笔记"><a href="/notes/" rel="section"><i class="fa fa-book fa-fw"></i>课程笔记</a></li><li class="menu-item menu-item-杂项随笔"><a href="/misc/" rel="section"><i class="fa fa-pencil fa-fw"></i>杂项随笔</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%85%8D%E7%BD%AEUbuntu"><span class="nav-number">1.</span> <span class="nav-text">配置Ubuntu</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85Ubuntu"><span class="nav-number">2.</span> <span class="nav-text">安装Ubuntu</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E9%AA%8C%E4%B8%89"><span class="nav-number">3.</span> <span class="nav-text">实验三</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E9%AA%8C3-1%EF%BC%9A%E8%BF%9B%E7%A8%8B%E7%9A%84%E5%88%9B%E5%BB%BA"><span class="nav-number">3.1.</span> <span class="nav-text">实验3.1：进程的创建</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E9%AA%8C3-2%EF%BC%9A%E8%BF%9B%E7%A8%8B%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95%E6%A8%A1%E6%8B%9F"><span class="nav-number">3.2.</span> <span class="nav-text">实验3.2：进程调度算法模拟</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">GGGjjjzzz123</p>
+  <div class="site-description" itemprop="description">GJZ的博客，用于存放各种技术文章，分享技术经验。主要内容包括项目开发、技术分享、学习笔记等。希望通过这个博客与大家交流，共同进步！</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">28</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">31</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/yourname" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;yourname" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://gggjjjzzz123.github.io/2026/03/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FOS/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="GGGjjjzzz123">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="GJZ's Blog">
+      <meta itemprop="description" content="GJZ的博客，用于存放各种技术文章，分享技术经验。主要内容包括项目开发、技术分享、学习笔记等。希望通过这个博客与大家交流，共同进步！">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | GJZ's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2026-03-21 21:24:12" itemprop="dateModified" datetime="2026-03-21T21:24:12+08:00">2026-03-21</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="配置Ubuntu"><a href="#配置Ubuntu" class="headerlink" title="配置Ubuntu"></a>配置Ubuntu</h2><ol>
+<li>打开“VMware Workstation”软件，选择创建虚拟机，随后进入新建虚拟机向导</li>
+<li>选择第一个“典型”，点击“下一步”</li>
+</ol>
+<!-- 这是一张图片，ocr 内容为：VMWARE WORKSTATION 园回回名包口 查看(V) 虚拟机(M)选项卡(T)帮助(H) 文件(F)编辑(E) 库 X 主页 我的计算机 在此处键入内容进行搜索 我的计算机 其他LINUX5.X内核64位 WORKSTATIONPRO17 CENTOS764位 卫 连接远程服务器 打开虚拟机 创建新的虚拟机 VMWARE -->
+<p><img src="/images/courses-os/image_001_1748605416332-bae73e42-00b3-4dd0-8d3b-abcd315976d3.png"></p>
+<ol start="3">
+<li>选择“稍后安装操作系统”，点击下一步</li>
+</ol>
+<!-- 这是一张图片，ocr 内容为：新建虚拟机向导 安装客户机操作系统 虚拟机如同物理机,需要操作系统.您将如何安装客户机操作系统? INSTALL FROM: INSTALLER DISC: 无可用驱动器 INSTALLER DISC IMAGE FILE(ISO): D:\LINUXLCENTOS-7-X86_64-DVD-2003.ISO BROWSE... I WILL INSTALL THE OPERATING SYSTEM LATER. THE VIRTUAL MACHINE WILL BE CREATED WITH A BLANK HARD DISK. 下一步(N) 取消 帮助 <上一步(B) -->
+<p><img src="/images/courses-os/image_002_1748605525354-99e28adf-4fdd-4e74-9e26-eb85e926accd.png"></p>
+<ol start="4">
+<li>选择客户机操作系统为“Linux”，版本为“Ubuntu 64位”，点击下一步</li>
+</ol>
+<!-- 这是一张图片，ocr 内容为：新建虚拟机向导 选择客户机操作系统 此虚拟机中将安装哪种操作系统? GUEST OPERATING SYSTEM MICROSOFT WINDOWS LINUX VMWARE ESX OTHER VERSION UBUNTU64位 下一步(N) <上一步(B) 帮助 取消 -->
+<p><img src="/images/courses-os/image_003_1748607297930-89fde686-1b69-43c8-acbc-c033f14f3746.png"></p>
+<ol start="5">
+<li>虚拟机名称默认即可，选择虚拟机文件存储位置（注意：一定要单独新建一个文件夹来存）</li>
+</ol>
+<!-- 这是一张图片，ocr 内容为：新建虚拟机向导 命名虚拟机 您希望该虚拟机使用什么名称? VIRTUAL MACHINE NAME: UBUNTU64位 LOCATION: D://LINUX\UBUNTU BROWSE... THE DEFAULT LOCATION CAN BE CHANGED AT EDIT > PREFERENCES. 下一步(N) <上一步(B) 取消 -->
+<p><img src="/images/courses-os/image_004_1748607283503-a9f5f6c1-4070-4dd4-8f5b-d71e5de327b2.png"></p>
+<ol start="6">
+<li>设置最大磁盘大小20G（默认），选择“将虚拟磁盘存储为单个文件”</li>
+</ol>
+<!-- 这是一张图片，ocr 内容为：新建虚拟机向导 指定磁盘容量 磁盘大小为多少? 虚拟机的硬盘作为一个或多个文件存储在主机的物理磁盘中.这些文件最初很小,随着 您向虚拟机中添加应用程序,文件和数据而逐渐变大. 20.0 最大磁盘大小(GB)(S): 针对UBUNTU 64位的建议大小:20 GB 将虚拟磁盘存储为单个文件(O) 将虚拟磁盘拆分成多个文件(M) 拆分磁盘后,可以更轻松地在计算机之间移动虚拟机,但可能会降低大容量磁盘的 性能. 上一步(B) 下一步(N)> 取消 帮助 -->
+<p><img src="/images/courses-os/image_005_1748607579897-b085dc47-7454-47c7-ba9a-cc9ec4605521.png"></p>
+<ol start="7">
+<li>点击“自定义硬件”</li>
+</ol>
+<!-- 这是一张图片，ocr 内容为：新建虚拟机向导 已准备好创建虚拟机 单击'完成创建虚拟机.然后可以安装UE 安装UBUNTU64位. THE VIRTUAL MACHINE WILL BE CREATED WITH THE FOLLOWING SETTINGS: 名称: UBUNTU64位 位置: D:\LINUX|UBUNTU 版本: WORKSTATION 17.5.X 操作系统: UBUNTU64位 硬盘: 20 GB 内存: 4096 MB 网络适配器: NAT 2个CPU内核,CD/DVD,USB控制器,声卡 其他设备: SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS CUSTOMIZE HARDWARE... <上一步(B) 完成 取消 -->
+<p><img src="/images/courses-os/image_006_1748607608217-038062ef-f04c-42e1-9007-99a16a4810bc.png"></p>
+<ol start="8">
+<li>选中“新CD&#x2F;DVD”，在连接中选择“使用ISO映像文件”，在浏览中选择存放Ubuntu映像文件的地址，点击关闭，再点击完成</li>
+</ol>
+<!-- 这是一张图片，ocr 内容为：硬件 设备状态 摘要 设备 已连接(C) 4 GB 处理器 2 启动时连接(O) 自动检测 新CD/DVD(SATA) 网络适配器 连接 NAT USB控制器 存在 使用物理驱动器(P): 自动检测 声卡 自动检测 显示器 自动检测 使用ISO映像文件(M): D:\LINUX/UBUNTU-22.04.5-DES 浏览(B)... 高级(V)... 移除(R) 添加(A)... 帮助 关闭 -->
+<p><img src="/images/courses-os/image_007_1748607721896-1794f1d5-5a68-4cf1-aaff-2477fc4bf4e4.png"></p>
+<ol start="9">
+<li>Ubuntu已经配置好了</li>
+</ol>
+<!-- 这是一张图片，ocr 内容为：向 UBUNTU 64 - VMWARE WORKSTATION 编辑(E) 查看(V) 虚拟机(M)选项卡(T) 帮助(H) 文件(F) 库 UBUNTU 64位 主页 我的计算机 在此处键入内容进行搜索 UBUNTU64位 我的计算机 向句句 其他LINUX5.X内核64位 开启此虚拟机 CENTOS764位 编辑虚拟机设置 UBUNTU64位 设备 内存 4 GB 2 处理器 硬盘(SCSI) 20 GB 正在使用文件D:... CD/DVD(SATA) NAT 网络适配器 存在 USB控制器 自动检测 声卡 显示器 自动检测 虚拟机详细信息 状态:已关机 描述 配置文件:D://LINUX\UBUNTU/UBUNT 在此处键入对该虚拟机的描述. 64位.VMX 硬件兼容性:WORKSTATION 17.5.X虚拟 机 主IP地址:网络信息不可用 -->
+<p><img src="/images/courses-os/image_008_1748607780468-92195de4-61d8-4bba-8f84-045ce2551670.png"></p>
+<h2 id="安装Ubuntu"><a href="#安装Ubuntu" class="headerlink" title="安装Ubuntu"></a>安装Ubuntu</h2><ol>
+<li>选中刚刚配置的CentOS7，然后点击右边控制台中的“开启次虚拟机”。（开机失败可能是因为权限不够，关闭VMware，重新以管理员的身份运行）</li>
+</ol>
+<!-- 这是一张图片，ocr 内容为：UBUNTU 64 - VMWARE WORKSTATION 文件(F)编辑(E) 查看(V) 虚拟机(M)选项卡(T) 帮助(H) 库 UBUNTU 64位 主页 我的计算机 在此处键入内容进行搜索 UBUNTU64位 我的计算机 包包包 其他LINUX5.X内核64位 开启此虚拟机 CENTOS764位 编辑虚拟机设置 UBUNTU64位 设备 4 GB 圈内存 处理器 2 硬盘(SCSI) 20 GB 正在使用文件D:... CD/DVD(SATA) 网络适配器 NAT 存在 USB控制器 自动检测 声卡 自动检测 显示器 虚拟机详细信息 状态:已关机 描述 配置文件:D:\LINUX\UBUNTU/UBUNT 在此处键入对该虚拟机的描述. 64位.VMX 硬件兼容性:WORKSTATION 17.5.X虚拟 机 主IP地址:网络信息不可用 -->
+<p><img src="/images/courses-os/image_009_1748607846673-0cd0a5e3-88c6-4eb7-96e6-38be0768b98f.png"></p>
+<ol start="2">
+<li>选择第一个选项</li>
+</ol>
+<!-- 这是一张图片，ocr 内容为：我的计算机 介主页 UBUNTU 64位 GNUGRUB VERSION 2.06 TRY OR INSTALL UBUNTU UBUNTU (SAFE GRAPHICS) OEM INSTALL (FOR MANUFACTURERS) TEST MEMORY USE THE T AND - KEYS TO SELECT WHICH ENTRY IS HIGHLIGHTED. 'E' TO EDIT THE COMMANDS THE SELECTED OS, PRESS ENTER TO BOOT TH BEFORE BOOTING OR 'C' -LINE. FOR A COMMAND-LI THE HIGHLIGHTED ENTRY WILL BE A AUTOMATICALLY IN 21S. EXECUTED -->
+<p><img src="/images/courses-os/image_010_1748607936163-bf8539f1-2284-45c9-92a3-1d9e4cdf572d.png"></p>
+<ol start="3">
+<li>启动之后出现安装界面</li>
+</ol>
+<!-- 这是一张图片，ocr 内容为：我的计算机 主页 UBUNTU 64位 MAY 30 20:26 SAJAIDUHTE BURES BOAHTIN HRVATSKI ISLENSKA LTALIANO KURDI LATVISKI LIETUVISKAI MAGYAR NEDERLANDS NO LOCALIZATION(UTF-8) SAJAIDUHTTIT UBUNTU GEAHCCALUBUNTU NORSK BOKMAL NORSK NYNORSK OCCITAN YOU CAN TRY UBUNTU WITHOUT MAKING ANY CHANGES TO YOUR COMPUTER, DIRECTLY FROM THIS CD. POLSKI OR IF YOU'READY.YOU CANINSTALL UBUNTU ALONGSIDE (OR INSTEAD OF YOUR CURRENT OPERATING PORTUGUES SYSTEM. THIS SHOULDN'T TAKE TOO LONG. PORTUGUES DO BRASIL ROMANA SAMEGILLII 机内部单击或按CTRL+G. -->
+<p><img src="/images/courses-os/image_011_1748608000677-2626f792-4512-42d4-a956-28f229239e4c.png"></p>
+<ol start="4">
+<li>语言选择“简体中文”，选择“安装Ubuntu”</li>
+</ol>
+<!-- 这是一张图片，ocr 内容为：我的计算机 UBUNTU64位X 主页 MAY 30 20:29 U 安装 欢迎 SLLY BEUK GGGOLOM BOUC BWILALU CLC 试用UBUNTU 安装UBUNTU 的只 COCAGRI 您可以直接从此CD尝试UBUNTU,而不用对您的电脑作任何更改. 10号原 中文(简体) 如果您已经准备完毕,您可以与现有系统并存(或者替代)方式将UBUNTU安装到您的电脑上. 此过程无需耗时太久. 中文(繁体) 日本语 标移动性,视频和性能.请答灵客户机操作系统,单击'安 单击虚拟屏暮 VMWARE -->
+<p><img src="/images/courses-os/image_012_1748609716441-c276047f-e0cd-40e5-9aa1-711fe3462338.png"></p>
+<ol start="5">
+<li>键盘布局默认选择“Chinese”，点击继续</li>
+</ol>
+<!-- 这是一张图片，ocr 内容为：UBUNTU64位 我的计算机 主页 U MAY 30 20:32 安装 键盘布局 选择您的键盘布局: BELARUSIAN CHINESE CHINESE-HANYU PINYIN(WITH ALTGR DEAD KEYS) BELGIAN CHINESE-MONGOLIAN(BICHIG) BERBER(ALGERIA,LATIN) CHINESE-MONGOLIAN(GALIK) BOSNIAN CHINESE-MONGOLIAN(MANCHU GALIK) BRAILLE CHINESE-MONGOLIAN(MANCHU) BULGARIAN CHINESE-MONGOLIAN(TODO GALIK) BURMESE CHINESE CHINESE-MONGOLIAN(TODO) CHINESE-MONGOLIAN(XIBE) CROATIAN CHINESE-TIBETAN CZECH CHINESE-TIBETAN(WITH ASCIL NUMERALS) DANISH CHINESE-UYGHUR DHIVEHI DUTCH DZONGKHA ENGLISH(AUSTRALIAN) 在这里输入以测试您的键盘 探测键盘布局 后退(B) 继续 退出(Q) VMWARETOOLS具有很多功能,能改善鼠标移动性,视须和性能.请登录客户机操作系统,单击"安装 单击虚拟屏幕 不要提醒我 安装TOOLS 以后提醒我 可发送按键 TOOLS" -->
+<p><img src="/images/courses-os/image_013_1748609773193-9541ee58-e38d-4a11-bd2e-3aec96ac3585.png"></p>
+<ol start="6">
+<li>选择“正常安装”，其他选项选择“为图形或…”，点击继续</li>
+</ol>
+<!-- 这是一张图片，ocr 内容为：我的计算机 介主页 UBUNTU 64位 X MAY 30 20:34 安装 更新和其他软件 您希望先安装哪些应用? 正常安装 网络浏览器,工具,办公软件,游戏和媒体播放器. 最小安装 网络浏览器和基本工具 其他选项 安装UBUNTU时下载更新 这能节约安装后的时间. 为图形或无线硬件,以及其它媒体格式安装第三方软件 此软件及其文档遵循许可条款.其中一些是专有的. 退出(O) 后退(B) 继续 -->
+<p><img src="/images/courses-os/image_014_1748609904923-d3bbd18f-83a0-49db-a3a8-29c29248d313.png"></p>
+<ol start="7">
+<li>安装类型，记得勾选“清除…”，点击现在安装，再点击继续</li>
+</ol>
+<!-- 这是一张图片，ocr 内容为：安装 安装类型 这台计算机似乎没有安装操作系统.您准备怎么做? 清除整个磁盘并安装UBUNTU 注意:这会删除所有系统里面的全部程序,文档,照片,音乐和其他文件. 高级特性... 尚未选择任何项目 其他选项 您可以自己创建,调整分区,或者为UBUNTU选择多个分区. 后退(B) 退出(Q) 现在安装(1) -->
+<p><img src="/images/courses-os/image_015_1748609968267-45542283-9077-42e7-9de1-f1b0e29a422e.png"></p>
+<ol start="8">
+<li>地区选择上海，点击继续</li>
+</ol>
+<!-- 这是一张图片，ocr 内容为：安装 您在什么地方? SHANGHAI 后退(B) 继续 -->
+<p><img src="/images/courses-os/image_016_1748610013167-c67ac2c9-1266-4729-a3ac-0fe7aab2f5fa.png"></p>
+<ol start="9">
+<li>输入相关信息，点击继续（密码：gjz）</li>
+</ol>
+<!-- 这是一张图片，ocr 内容为：安装 您是谁? 您的姓名: GJZ GJZ-VIRTUAL-MACHINE 您的计算机名: 与其他计算机联络时使用的名称. 选择一个用户名: GJZ 选择一个密码: 密码强度:合理 确认您的密码: 自动登录 登录时需要密码 使用ACTIVEDIRECTORY 您将在下一步中输入域和其他详细信息. 继续 后退(B) -->
+<p><img src="/images/courses-os/image_017_1748610076458-02b93f23-6fb5-444b-8f79-503fff6173b3.png"></p>
+<ol start="10">
+<li>进行安装（过程巨慢）</li>
+</ol>
+<!-- 这是一张图片，ocr 内容为：安装 SKIP 正在完成文件复制... -->
+<p><img src="/images/courses-os/image_018_1748610100399-8cd95150-f12b-49ec-bec1-8d8f2b0d297a.png"></p>
+<ol start="11">
+<li>完成！</li>
+</ol>
+<!-- 这是一张图片，ocr 内容为：我的计算机 UBUNTU64位 主页 X X 活动 5月31日04:55 ZH 主目录 .内部单击或按CTRL+G. -->
+<p><img src="/images/courses-os/image_019_1748611186899-d9e719ea-ec3b-423c-8a4f-5b2b167a06a2.png"></p>
+<p>换源</p>
+<!-- 这是一张图片，ocr 内容为：软件和更新 活动 10月25日03:07 软件和更新 X 身份验证 开发者选项 其它软件 附加驱动 更新 UBUNTU软件 UBUNTUPRO 可从互联网下载 CANONICAL支持的自由和开源软件(MAIN) 选择下载服务器 社区 设备 MIRRORS.HUST.EDU.CN 选择最佳服务器(S) O 因版 MIRRORS.JCUT.EDU.CN MIRRORS.JLU.EDU.CN 源代 MIRRORS.JXUST.EDU.CN 下载自: MIRRORS.SDU.EDU.CN MIRRORS.SOHU.COM MIRRORS.TUNA.TSINGHUA.EDU.CN 可从光驱车 MIRRORS.XITU.EDU.CN INST MIRRORS.YUN-IDC.COM 官方 版权 协议: HTTPS 选择服务器(S) 取消(C) 六 还原(V) 关闭(C) -->
+<p><img src="/images/courses-os/image_020_1761305476128-7a06ac15-f8a9-4de8-bb7a-8ca6ebb676d2.png"></p>
+<p>Ubuntu粘贴复制</p>
+<p>1、更换国内源（阿里）</p>
+<p>2、sudo apt-get update</p>
+<p>3、sudo apt-get upgrade</p>
+<p>4、sudo apt-get  install open-vm-tools</p>
+<p>5、sudo apt-get install open-vm-tools-desktop</p>
+<p>验证Vmware Tools是否安装成功</p>
+<!-- 这是一张图片，ocr 内容为：GJZ@GJZ-VIRTUAL-MACHINE: + GJZQGJZ-VIRTUAL-MACHINE:-$ SUDO SYSTEMCTL STATUS VMTOOLSD GJZ 的密码: ROPEN-VH-TOOLS.SERVICE - SERVICE TOR VIRTUAL NACHINES HOSTED ON VMWARE D (/LIB/SYSTEND/SYSTEN/OPEN-VM-TOOLS.SERVICE; ENABLED; VENDOR PRESET: ENAL LOADED:LOADED( DROP-IN://USR/LIB/SYSTEMD/SYSTEM/OPEN-VM-TOOLS.SERVICE.D DESKTOP.CONF SINCE WED 2025-10-29 08:54:04 CST; 3MIN 11S AGO  ACTIVE: ACTIVE (RUNNING) DOCS:HTTP://OPEN-VM-TOOLS.SOURCEFORGE.NET/ABOUT.PHP PROCESS: 732 EXECSTARTPRE/S /SBIN/MODPROBE VMWGFX (CODE-EXITED, STATUS-O/SUCCESS) MAIN PID: 733 (VMTOOLSD) TASKS: 4 (LIMIT: 4534) MEMORY: 10.OM CGROUP:/SYSTEM.SLICE/OPEN-VM-TOOLS.SERVICE 733 /USR/BIN/VMTOOLSD 10月 29 08:54:03GJ  9JZ-VIRTUAL-NACHINE SYSTEND[1]: STARTING SERVICE FOR VIRTUAL MACHINES HOSH 10月 29 08:54:04 GIZ-VIRTUAL-NACHINE SYSTAND[1]: STARTED SERVICE FOR VIRTUAL NACHINES HOSTE (END) LINES 1-15/15 -->
+<p><img src="/images/courses-os/image_021_1761699465359-0dcea163-eab1-4aa1-8223-7b3071a5be52.png"></p>
+<p>查看Vmware Tools的版本信息</p>
+<!-- 这是一张图片，ocr 内容为：GJZ@GJZ-VIRTUAL-MACHINE:~$ VMWARE-TOOLBOX-CMD 11.3.0.29534 (BUILD-18090558) GJZ@GJZ-VIRTUAL-MACHINE:~$ -->
+<p><img src="/images/courses-os/image_022_1761699565985-173188d6-8f15-4b69-aea8-2af03528dac5.png"></p>
+<p>安装编程相关工具</p>
+<p>gcc此时并未安装</p>
+<!-- 这是一张图片，ocr 内容为：VERSION GJZ@GJZ-VIRTUAL-MACHINE: GCC COMMAND 'GCC' NOT FOUND, BUT CAN BE INSTALLED WITH: SUDO APT INSTALL GCC -->
+<p><img src="/images/courses-os/image_023_1761700299536-3976e721-3392-477b-a3ca-6fdb4b375475.png"></p>
+<p>安装gcc、make、vim</p>
+<!-- 这是一张图片，ocr 内容为：APT INSTALL GCC MAKE GJZ@GJZ-VIRTUAL-MACHINE:~$ SUDO VIM 正在读取软件包列表...完成 正在分析软件包的依赖关系树 正在读取状态信息. 完成 下列软件包是自动安装的并且现在不需要了: CHRONIUN-CODECS-FFMPEG-EXTRA GSTREANER1.0-VAAPI LIBGSTREANER-PLUGINS-BAD1.0-O LIBVA-WAYLAND2 使用'SUDO APT AUTOREMOVE'来卸载它(它们). 将会同时安装下列软件: BINUTILS BINUTILS-CONNON BINUTILS-X86-64-LINUX-GNU GCC-9 LIBASANS LIBBINUTILS LIBC-DEV-BIN LIBCG-DEV LIBCRYPT-DEV LIBCTF-NOBFDO LIBCTFO LIBGC-9-DEV LIBITMI LIBITMI LIBISANO LINUX-LIBC-DEV MANPAGES-DEV VIM-RUNTIME LIBQUADMATHO LIBTSANO LIBUBSAN1 建议安装 F AUTOMAKE LIBTOOL FLEX BISON GCC-DOC GCC-9-MULTILIB BINUTILS-DOC GCC-MULTILIB A AUTOCONF AUTOM GCC-9-DOC GCC-9-LOCALES GLIBC-DOC MAKE-DOC CTAGS VIN-DOC VIN-SCRIPTS 下列[新]软件包将被安装: BINUTILS BINUTILS-COMMON BINUTILS-X86-64-LINUX-GNU GNU GCC-9 LIBASANS LIBBINUTILS LIBC-DEV-BIN LIBCG-DEV LIBCRYPT-DEV LIBCTF-NOBFDO LIBCTFO LIBGC-9-DEV LIBITNI BITM1 LIBLSANO LIBQUADNATHO LIBTSANG LIBUBSANL LINUX-LIBC-DEV NAKE NANPAGES-DEV VIN VIN VIN-RUNTINE -->
+<p><img src="/images/courses-os/image_024_1761700758790-a5973ce0-3c0f-4020-b609-c08ff08a436d.png"></p>
+<p>查看安装好的版本</p>
+<!-- 这是一张图片，ocr 内容为：GJZ@GJZ-VIRTUAL-MACHINE:~$ G VERSION GCC (UBUNTU 9.4.0-1UBUNTU1~20.04.2) 9.4.0 GCC(UB COPYRIGHT (C) 2019 FREE SOFTWARE FOUNDATION, INC. THIS IS FREE SOFTWARE; SEE THE SOURCE FOR COPYING CONDITIONS. THERE IS NO WARRANTY; NOT EVEN TOR MERCHANTABILITY OF FITNESS FOR A PARTICULAR PURPOSE. -->
+<p><img src="/images/courses-os/image_025_1761700954819-09ea6710-7e64-432a-822d-fd49cc5aa13a.png"></p>
+<!-- 这是一张图片，ocr 内容为：GJZ@GJZ-VIRTUAL-MACHINE: MAKE --VERSION GNU MAKE4.2.1 为X86_64-PC-LINUX-GNU 编译 , INC. COPYRIGHT (C) 1988-2016 FREE SOFTWARE FOUNDATION, 许可证:QPLY3:CNU.ORG/LICENSES/9PL,HTTP://GNU.ORG/LICENSES/9PL,HTNL>. 本软件是自由软件:您可以自由修改和重新发布它. 在法律允许的范围内没有其他保证. -->
+<p><img src="/images/courses-os/image_026_1761700975868-13820d3b-5579-4914-9818-3a7610e62cc2.png"><!-- 这是一张图片，ocr 内容为：LAL-MACHINE:~$ VIM --VERSION GJZ@GJZ-VIRTUAL-M VI APR 02 2025 16:39:51) 8.1(2018 MAY 18,编译于 IMPROVED VIM 包含补丁: , 647, 17-213, 1840, 214-579, 1969, 580-647, 678, 648-1848, 4975, 2110, 1-16, 7, 1855-1857, 1331, 1858, 1858-1859, 1873, 1860-1969, 1970-1970-1992, 2010, 1849-1854, 1857, 2106, 2069-2106, 2108, 2107-2109, 2109-2111, 211-2112, 2112-2269, 3612, 3625, 1993-2068, 3669,3741, 1847 修改者 TEAM+VIM@TRACKER.DEBIAN.ORG 编译者 TEAM+VIM@TRACKER.DEBIAN.ORG 可使用(+)与不可使用(-)的功能: 巨型版本无图形界面. -FARSI -TAG_ANY_WHITE MOUSE SYSMOUSE +ACL +FILE_IN_PATH - TCL +ARABIC URXVT +MOUSE +TERMGUICOLORS +FIND +MOUSE XTERM PATH +AUTOCMD +AUTOCHDIR BYTE +TERMINAL +FLOAT +MULTI +FOLDING .LANG +MULT +TERMINFO AUTOSERVERNAME -BALLOON EVAL - FOOTER -MZSCHEME +TERMRESPONSE +BALLOON_EVAL_TERM +FORK() +NETBEANS_INTG +TEXTOBJECTS -BROWSE +TEXTPROP +NUM64 +GETTEXT ++BUILTIN TERMS +TIMERS HANGULINPUT +PACKAGES +BYTE_OFFSET +TITLE +ICONV +PATH_EXTRA +CHANNEL -TOOLBAR +INSERT EXPAND -PERL +USER COMMANDS +JOB +CINDENT +PERSISTENT_UNDO +JUMPLIST CLIENTSERVER +POSTSCRIPT +VARTABS -CLIPBOARD +PRINTER +VERTSPLIT +KEYMAP +CMDLINE COMPL +LAMBDA +VIRTUALEDIT +PROFILE +CMDLINE HIST +VISUAL +LANGMAP -PYTHON +LIBCALL +CMDLINE_INFO +PYTHON3 +VISUALEXTRA +VIMINFO +LINEBREAK +COMMENTS +GUICKFIX +LISPINDENT +CONCEAL +RELTIME REPLACE +WILDIGNORE +LISTCMDS +RIGHTLEFT +CRYPTV ILDMENU +WI +LOCALMAP +CSCOPE -RUBY +SCROLLBIND +CURSORBIND LUA SMOPUIM+ +WRITEBACKUP +SIGNS +CURSORSHAPE +MENU --><br><img src="/images/courses-os/image_027_1761701006199-e1c1c2ef-d802-4ad9-8510-e044f7bb58aa.png"></p>
+<p>准备C程序开发环境：创建实验目录</p>
+<!-- 这是一张图片，ocr 内容为：GJZ@GJZ-VIRTUAL-MACHINE:~S MKDIR ~/LAB_ CD~/LAB_C GJZ@GJZ-VIRTUAL-MACHINE:~ GJZ@GJZ-VIRTUAL-MACHINE:~/LAB_C$ -->
+<p><img src="/images/courses-os/image_028_1761701224272-1ea9ff8a-72e3-4528-aedb-04c772b61265.png"></p>
+<p>实验二：linux下编写与运行C程序</p>
+<ol>
+<li>使用gedit创建C源文件</li>
+</ol>
+<!-- 这是一张图片，ocr 内容为：STATIC +EXTRA SEARCH TAG_OLD +MOUSE SGR RC 文件:"SVIM/VIMRC" 系统VIMRC 用户VIMRC 文件:"$HOME/.VIMRC" HELLO.C 第二用户,VIMRC 文件:"~/.VIM/VIMRC" 保存(S) 打开(O) ~/LAB_C 用户 EXRC 文件:"SHOME/.EXRC" DEFAULTS 文件:"$VIMRUNTIME/DEFAULTS.VIM" 预设值:"/USR/SHARE/VIM" $VIM 编译方式:GCC -C -I.-IPROTO -DHAVE_CONFIG_H  -WO D/VIM-ZT37SS/VIM-8.1.2269-. -FSTACK-PROTECTOR-STRO ENTRANT -U FORTIFY SOURCE -D FORTIFY SOURCE-1 GCC   -WL,-BSYMBOLIC-FUNCTIONS -WL,-Z,RE 链接方式:GCC -LM -LTINFO -LNSL -LSELINUX -LCANBERRA -LACL .8/CONFIG-3.8-X86_64-LINUX-GNU -LPYTHON3.8 -LCRYPT GJZQGJZ-VIRTUAL-MACHINE:~$ MKDIR ~/LAB_C GJZ@GJZ-VIRTUAL-MACHINE:~$ CD ~/LAB C GJZ@GJZ-VIRTUAL-MACHINE:~/LAB_C$ GEDIT HELLO.C -->
+<p><img src="/images/courses-os/image_029_1761701719212-0697f54e-d94f-4426-849c-7b37740425c3.png"></p>
+<p>编写代码</p>
+<!-- 这是一张图片，ocr 内容为：HELLO.C 保存(S) 三 打开(O) ~/LAB_C 1 #INCLUDE<STDIO.H> 2 3 INT MAIN()) 4 PRINTF("HELLO,LINUX C WORLD!\N"); 5 RETURN O; -->
+<p><img src="/images/courses-os/image_030_1761701955967-6044e839-bbd3-45e1-931a-5985e12f8999.png"></p>
+<ol start="2">
+<li>编译源程序</li>
+</ol>
+<!-- 这是一张图片，ocr 内容为：GJZ@GJZ-VIRTUAL-MACHINE:~/LAB_O GEDIT HELLO.C GJZ@GJZ-VIRTUAL-MACHINE:~/LAB_ S GC HELLO.C -O HELLO D_C$ GJZ@GJZ-VIRTUAL-MACHINE:~/LAB_C$ -->
+<p><img src="/images/courses-os/image_031_1761702524942-0dff535b-8e56-4b55-9f63-cc4a6b3e5630.png"></p>
+<p>无错误信息，即编译成功</p>
+<ol start="3">
+<li>运行程序</li>
+</ol>
+<!-- 这是一张图片，ocr 内容为：GJZ@GJZ-VIRTUAL-MACHINE:~/LAB_C$ GEDI GEDIT HELLO.C GJZ@GJZ-VIRTUAL-MACHINE:~/LAB_C$ GCC HELLO.C -O HELLO GJZ@GJZ-VIRTUAL-MACHINE:~/LAB_C$ ./HELLO HELLO,LINUX C WORLD! -->
+<p><img src="/images/courses-os/image_032_1761702665451-a71297dd-09fc-4826-9e33-3e10dab919ef.png"></p>
+<ol start="4">
+<li>Makefile的编写与使用</li>
+</ol>
+<!-- 这是一张图片，ocr 内容为：GJZQGJZ-VIRTUAL-MACHINE:~/LAB_C$ GEDIT MAKEFILE MAKEFILE 保存(S) 打开(O) ~/LAB_C 户白玄古圳加 -->
+<p><img src="/images/courses-os/image_033_1761702959403-d336bc3b-4bfe-4a76-a302-c13c227b2a04.png"></p>
+<!-- 这是一张图片，ocr 内容为：*MAKEFILE 保存(S) 打开(O) ~/LAB.C 1 CC - GCC 2 CFLAGS - WALL HELLO 3 TARGET HELLO.O 4 OBJS 5 6 $(TARGET): $(OBJS) $(CC) $(CFLAGS) -O $(CFLAGS) $(OBJS) 7 8 9HELLO.O: HELLO.C $(CC) $(CFLAGS) -C HELLO.C 10 11 12 CLEAN: CM - $(TARGET) $ OBJS) 13 -->
+<p><img src="/images/courses-os/image_034_1761703236724-25ed3c46-3721-46f9-a17a-54fa776c3dca.png"></p>
+<!-- 这是一张图片，ocr 内容为：GJZ@GJZ-VIRTUAL-MACHINE:~/LAB_C$ M MAKE GCC -WALL -C HELLO.C  -0 -WALL HELLO.O GCC -WALL GJZQGJZ-VIRTUAL-MACHINE:~/LAB_C$ ./HELLO HELLO,LINUX C WORLD! GJZQGJZ-VIRTUAL-MACHINE:~/LAB_C$ MAKE CLEAN RM-FHELLOHELLO.O B-C$ GJZ@GJZ-VIRTUAL-MACHINE:~/LAB_ -->
+<p><img src="/images/courses-os/image_035_1761703345829-e7b9ef0c-8b1b-4568-9ffd-c0b7cec57c58.png"></p>
+<!-- 这是一张图片，ocr 内容为：主文件夹 最近使用 收藏 MAKEFILE HELLO.C -WALL 主目录 桌面 视频 图片 园文档 业下载 门音乐 命回收站 -->
+<p><img src="/images/courses-os/image_036_1762306522589-cab5d920-8f01-4977-991a-745b5175b4f0.png"></p>
+<table>
+<thead>
+<tr>
+<th>截图项目</th>
+<th>命令&#x2F;界面</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>VMware Tools 安装完成</td>
+<td><code>systemctl status vmtoolsd</code><br/> 输出 active</td>
+<td>验证工具已运行</td>
+</tr>
+<tr>
+<td>gcc 安装成功</td>
+<td><code>gcc --version</code></td>
+<td>显示版本号</td>
+</tr>
+<tr>
+<td>创建文件目录</td>
+<td><code>mkdir ~/lab_c</code><br/> 及 <code>ls</code></td>
+<td>展示文件结构</td>
+</tr>
+<tr>
+<td>运行 C 程序结果</td>
+<td><code>./hello</code><br/> 输出 Hello Linux C World</td>
+<td>核心实验结果</td>
+</tr>
+<tr>
+<td>make 自动编译过程</td>
+<td>执行 <code>make</code><br/> 的终端输出</td>
+<td>展示自动构建</td>
+</tr>
+</tbody></table>
+<p>创建workspace&#x2F;ch02文件夹，并将源代码复制粘贴进ubuntu中</p>
+<!-- 这是一张图片，ocr 内容为：WORKSPACE CHO2 最近使用 C H 收藏 HELLOGCC.C GREETING.C MAKEFILE GREETING.H MYAPP.C 主目录 口桌面 日视频 图片 文档 卫下载 门音乐 此回收站 -->
+<p><img src="/images/courses-os/image_037_1762304535101-c78b7add-0d61-4c01-b750-32e54466f89d.png"></p>
+<p>使用cd workspace&#x2F;ch02进入存放源代码的文件夹，用gedit打开并查看源代码（图形方式）</p>
+<!-- 这是一张图片，ocr 内容为：WORKSPACE/CH02 GJZ@GJZ-VIRTUAL-MACHINE:~$ CD HELLOGCC.C MYAPP.C & 9JZQ9JZ-VIRTUAL-MACHINE:-/WORKSPACE/CHO2S GEDIT GREETING.C GREETING.H [1] 2377 L.MSHING'~LUASKENSCALCHA2( GREETING.C 保存(S) 打开(O) ~WORKSPACE CHO2 HELLOGCC.C GREETING.H GREETING.C MYAPP.C 1 #INCLUDE <STDIO.H> 2 #INCLUDE "GREETING.H" 3 VOID GREETING(CHAR *NAME) 4[ PRINTF("HELLO %S", NAME); 5 6} -->
+<p><img src="/images/courses-os/image_038_1762304799086-54dc285c-94fb-4e09-8fc9-4b15c9f36525.png"></p>
+<p>用vim greeting.c查看代码</p>
+<!-- 这是一张图片，ocr 内容为：GJZ@GJZ-VIRTUAL-MACHINE:~/WORKSPACE/CHO2 #INCLUDE <STDIO.H> #INCLUDE "GREETING.H" VOID GREETING(CHAR *NAME)  PRINTF("HELLO %S", NAME); -->
+<p><img src="/images/courses-os/image_039_1762304893017-555d6408-8a4f-48f9-8ba1-600a3de843ab.png"></p>
+<p>输入:q退出  </p>
+<!-- 这是一张图片，ocr 内容为：GJZ@GJZ-VIRTUAL-MACHINE://WORKSPACE/C... #INCLUDE <STDIO.H  "GREETING.H" #INCLUDE"O VOID GREETING(CHAR *NAME) PRINTF("HELLO %S", NAME); -->
+<p><img src="/images/courses-os/image_040_1762304935604-b8cc5d29-cacc-4730-bbaa-e3e8d09d416a.png"></p>
+<p>用gcc编译运行</p>
+<p>生成hellogcc，运行</p>
+<!-- 这是一张图片，ocr 内容为：9JZ09JZ-YIRTUAL-MACHINE:-/MORKSPACE/CHOZS GCC HELLOGEC.C GREEFING.C -O HELLOGC GJZQGJZ-VIRTUAL-MACHINE:~/WORKSPACE/CHO2$ ./HELLOGCC HELLO GCC! -->
+<p><img src="/images/courses-os/image_041_1762305054003-835fc3d3-df67-41a2-8e3f-cc96c26177ba.png"></p>
+<p>生成myapp，运行</p>
+<!-- 这是一张图片，ocr 内容为：GJZQGJZ-VIRTUAL-MACHINE:~/WORKSPACE/CHO2S GCC MYAPP.C GR GREETING.C MYAPP O /MYAPP GJZ@GJZ-VIRTUAL-MACHINE:~/WORKSPACE/CH02$ YOUR NAME, PLEASE:123 HELLO 123GJZ@GJZ-VIRTUAL-MACHINE:~/WORKSPACE/CH02$ -->
+<p><img src="/images/courses-os/image_042_1762305174966-a3bd2027-48df-4379-bd53-f27d4f5ff8dc.png"></p>
+<p>若输入为gcc myapp.c -o myapp</p>
+<!-- 这是一张图片，ocr 内容为：HELLO 123GJZQGJZ-VIRTUAL-MACHINE:-/WORKSPACE/CHO2S GCC MYAPP.C -O MYAPP /USR/BIN/LD: /TMP/CCYJT45H.O: IN FU FUNCTION ,MAIN : UNDEFINED REFERENCE TO 'GREETING' MYAPP.C:(.TEXT+0X4C): UND COLLECT2: ERROR: LD RE D RETURNED 1 EXIT STATUS GJZ@GJZ-VIRTUAL-MACHINE:~/WORKSPACE/CH02$ -->
+<p><img src="/images/courses-os/image_043_1762305227896-21a852f1-44d3-46b4-a5d7-8a2632dd9d8b.png"></p>
+<blockquote>
+<p> 若链接顺序相关（比如某些场景必须把实现文件放在后面），上面的写法 <code>gcc (主文件).c greeting.c -o 可执行文件</code> 就是“主文件在前，库&#x2F;实现文件在后”的常见顺序，能避免部分“undefined reference”问题。  </p>
+</blockquote>
+<p>使用Makefile</p>
+<!-- 这是一张图片，ocr 内容为：19JZQGJZ-VIRTUAL-MACHINE:~/WORKSPACE/CHO2$ GEDIT MAKEFILE *MAKEFILE 保存(S) 打开(O) 川 ~/WORKSPACE/CH02 1 CC 三GCC TALL 2 CFLAGS -02 3 4 TARGETS - MYAPP HELLOGCC 5 6 .PHONY: ALL 7 ALL: $(TARGETS) 8 MYAPP:MYAPP.O GREETING.O $(CC) $(CFLAGS) -O $A 10 11 12 HELLOGCC: HELLOGC.O GREETING.O $(CC) $(CFLAGS) 13 LV$ -0 14 15GREE 15 GREETING.O: GREETING.C GREETING.H $(CC) $(CFLAGS) -C $< 16 17 18MYAPP.O: MYAPP.C GREETING.H $(CC) $(CFLAGS) -C $< 19 20 21 HELLOGCC.O: HELLOGCC.C GREETING.H $(CC) $(CFLAGS) -C $ 22 23 24PHONY:CLEAN 25 CLEAN: RM -F $(TARGETS) *.O 26 27 -->
+<p><img src="/images/courses-os/image_044_1762306591087-5d4ee0e3-7df3-4420-9c5f-43c9c0bf2859.png"></p>
+<!-- 这是一张图片，ocr 内容为：GJZ@GJZ-VIRTUAL-MACHINE:~/WORKSPACE/CHO2S MAKE CLEAN RM -F MYAPP HELLOGCC *.O -MACHINE:~/WORKSPACE/CHO2$ MAKE GJZ@GJZ-VIRTUAL-MACH MYAPP.C GCC-WALL-02 -C MAIN': FUNCTION MYAPP.C:IN IGNORING RETURN VALUE OF 'SCANF', DECLARED WITH ATTRIBUTE WARN MYAPP.C:8:3: WARNING WUNUSED-RESULT] UNUSED_RESULT  SCANF("%S",NAME); 8  ANNNNNNNNNNNNNN GCC -WALL -02 -C GREETING.C O MYAPP MYAPP.O GREETING.O GCC-WALL-02 GCC -WALL -02 -C HELLOGC.C -O HELLOGCC HELLOGCC.O GREETING.O GCC-WALL-02 GJZ@GJZ-VIRTUAL-MACHINE:~/WORKSPACE/CH02$ -->
+<p><img src="/images/courses-os/image_045_1762306628453-d941c72b-4045-4b63-a9c9-3716487f8c28.png"></p>
+<p>运行结果</p>
+<!-- 这是一张图片，ocr 内容为：GJZQGJZ-VIRTUAL-MACHINE:~/WORKSPACE/CH02$ ./MYAPP YOUR NAME, PLEASE:123 HELLO 123GJZ@GJZ-VIRTUAL-MACHINE:~/WORKSPACE/CH02$ ./HELLOGCC HELLO GCC! -->
+<p><img src="/images/courses-os/image_046_1762306723348-b4f8a4b1-89e3-4583-921a-83773fd8ad00.png"></p>
+<h2 id="实验三"><a href="#实验三" class="headerlink" title="实验三"></a>实验三</h2><h3 id="实验3-1：进程的创建"><a href="#实验3-1：进程的创建" class="headerlink" title="实验3.1：进程的创建"></a>实验3.1：进程的创建</h3><p>创建实验环境，将给定的源代码放入</p>
+<!-- 这是一张图片，ocr 内容为：WORKSPACE CH03 最近使用 收藏 FORK2.C FORK1.C 主目录 桌面 旧 视频 图片 文档 业下载 门音乐 禽回收站 选中了2项(2.1KB) -->
+<p><img src="/images/courses-os/image_047_1762908347336-693f5ef2-9719-4678-bf59-8fcb2639f4ac.png"></p>
+<p>编译源代码</p>
+<p>第一次编译，有报错</p>
+<!-- 这是一张图片，ocr 内容为：GJZQGJZ-VIRTUAL-MACHINE:~/WORKSPACE/CHO3S GCC FORK1.C -O FORK1 FORK1.C: IN FUNCTION 'MAIN': 9: WARNING: INPLICIT DECLARATION OF FUNCTION 'PRINTF" [-WINPLICIT-F FORK1.C:18:9: NCTION-DECLARATION] 18 PRINTF("CHILD: I AM THE CHILD PROCESS! \N"); FORK1.C:18:9: WARNING: INCOMPATIBLE IMP BLE IMPLICIT DECLARATION OF BUILT-IN FUNCTION PRINTF' 'PRINTF' <STDIO.H>' FORK1.C:6:1:NOTE:INCLUDE OR PROVIDE A DECLARATION OF 5 | #INCLUDE <STDLIB.H> |+#INCLUDE <STDIO.H> : MAIN() 6 INT [-WIMPLICIT-FU WARNING:IMPLICIT DECLARATION OF FUNCTION SCANF' FORK1.C:25:9: CTION-DECLARATION]  SCANF("%D",&RETVAL); 25 FORKI.C:25:9: WARNING: INCOMPATIBLE INPLICIT DECLARATION OF BUILT-IN FUNCTION SCANF FORK1.C:25:9:NOTE: INCLUDE '<STDIO.HS' OR PROVIDE A DECLARATION OF 'SCANF FORK1.C:31:9: WARNING:IN INCOMPATIBLE IMPLICIT DECLARATION OF BUILT-IN FUNCTION PRINTF PRINTF("PARENT: I AM THE PARENT PROCESS! IN"); 31 INCLUDE '<STDIO H>' OR PROVIDE A DECLARATION OF 'PRINTF' FORK1.C:31:9:NOTE: -WIMPLICIT-F IMPLICIT DECLARATION OF FUNCTION 'PERROR' FORK1.C:43:6: WARNING: NCTION-DECLARATION] 43 PERROR("FORK ERROR!"); /*DISPLAY ERROR MESSAGE*/ -->
+<p><img src="/images/courses-os/image_048_1762908536493-78d89fc0-64ac-4078-8871-8dca19f6f2a2.png"></p>
+<p>用vim打开进行改写，输入i进行插入模式，添加#include&lt;stdio.h&gt;头文件，输入:wq保存并退出</p>
+<!-- 这是一张图片，ocr 内容为：X GJZ@GJZ-VIRTUAL-MACHINE:~/WORKSPACE/CH03 #INCLUDE <UNISTD.H> FINCLUDE <SYS/TYPES.H> FINCLUDE <ERRNO.H> INCLUDE <SYS/WAIT.H> FINCLUDE <STDLIB.H> FINCLUDE<STDIO.H> INT MAIN() TO STORE THE CHILD'S PID*/ PID_T CHILDPID; /* VARIABLE  FOR CHILD PROCESS*/ INT RETVAL; CODE /* USER-PROVIDED RETURN  FOR PARENT PROCESS*/ CHILD'S EXIT INT STATUS; STATUS  /*CREATE NEW PROCESS*/ CHILDPIDFORK(); IF(CHILDPID>-0) /*FORK SUCCEEDED*/ 0 TO THE CHILD PROCESS*/ IF (CHILDPID--0) /*FORK() RETURN J PRINTF("CHILD: I AM THE CHILD PROCESS! \N"); PRINTF("CHILD: HERE'S MY PID: %D\N", GETPID()); PRINTF("CHILD: MY PARENT'S PID IS: % D\N", GETPPID()); -->
+<p><img src="/images/courses-os/image_049_1762908652510-47c8de37-a9e8-40b2-ac04-fef0e5b31d03.png"></p>
+<p>重新编译</p>
+<!-- 这是一张图片，ocr 内容为：GJZ@GJZ-VIRTUAL-MACHINE:~/WORKSPACE/CH03$ VIM FORK1.C GJZQGJZ-VIRTUAL-MACHINE:~/WORKSPACE/CHO3S GCC FORK1.C -O FORK1 GJZ@GJZ-VIRTUAL-MACHINE:~/WORKSPACE/CH03$ LS FORK1  FORK1.C  FORK2.C -->
+<p><img src="/images/courses-os/image_050_1762909127059-5a6f03d9-5fd9-4b56-83fc-ac3f9f6c9754.png"></p>
+<p>直接编译fork2有报错，按照上述方法接着改</p>
+<!-- 这是一张图片，ocr 内容为：GJZQGJZ-VIRTUAL-MACHINE:~/WORKSPACE/CHO3S GCC FORK2.C -O FORK2 FORK2.C:IN FUNCTION 'MAIN' WARNING: INPLICIT DECLARATION OF FUNCTION 'WAIT' [-WIMPLICIT-FUNCT FORK2.C:18:3:WAR ION-DECLARATION] 18 WAIT (NULL); - GJZ@GJZ-VIRTUAL-MACHINE:~/WORKSPACE/CH03$ -->
+<p><img src="/images/courses-os/image_051_1762909200579-d8b99a13-1db8-4a7c-924a-cfd7b2e09256.png"></p>
+<p>添加头文件</p>
+<!-- 这是一张图片，ocr 内容为：GJZ@GJZ-VIRTUAL-MACHINE:~/WORKSPACE/CH03 L+J #INCLUDE<STDIO.H> #INCLUDE<UNISTD.H> #INCLUDE<SYS/TYPES.H> #INCLUDE<SYS/WAIT.H> INT MAIN() PID_T PID; FORK ANOTHER PROCESS PID - FORK(); IF (PID < 0){/ ERROR OCCURRED "FORK FAILED"); FPRINTF(STDERR, RETURN 1; */ ELSE IF (PID -: O) { /* CHILD PROCESS */ EXECLP("/BIN/LS","LS",NULL); ELSE J  PARENT PROCESS */ * PARENT WILL WAIT FOR THE CHILD TO COMPLETE */ WAIT (NULL);  PRINTF ("CHILD COMPLETE"); L RETURN O; 顶端 插入 4,20 -->
+<p><img src="/images/courses-os/image_052_1762909345129-8ada6160-1256-4383-ba13-2456847ffcd7.png"></p>
+<p>重新编译</p>
+<!-- 这是一张图片，ocr 内容为：GJZ@GJZ-VIRTUAL-MACHINE:~/WORKSPACE/CHO3S VIM FORK2.C GJZ@GJZ-VIRTUAL-MACHINE:-/WORKSPACE/CHO3S GCC FORK2.C -O FORK2 GJZ@GJZ-VIRTUAL-MACHINE:~/WORKSPACE/CH03$ LS FORK1  FORK1.C  FORK2  FORK2.C GJZ@GJZ-VIRTUAL-MACHINE:~/WORKSPACE/CH03$ -->
+<p><img src="/images/courses-os/image_053_1762909382526-1fcfa0e5-59a3-4389-8116-60232317ab58.png"></p>
+<p>运行fork1</p>
+<!-- 这是一张图片，ocr 内容为：GJZ@GJZ-VIRTUAL-MACHINE:~/WORKSPACE/CH03$ ./FORK1 PARENT:I AM THE PARENT PROCESS! PID:3095 PARENT: HERE'S MY PARENT: THE VALUE OF MY CHILD'S PID IN IDIS:3096 PARENT:I WILL L NOW WAIT FOR MY CHILD TO EXIT. CHILD:I AM THE CHILD PROCESS! CHILD: HERE'S MY PID: 3096 CHILD: MY PARENT'S PID IS: 3095 : THE VALUE OF FORK RETURN IS: O CHILD: T CHILD: SLEEP FOR 1 SECOND. CHILD: ENTER AN EXIT VALUE (0~255): 100 CHILD:GOODBYE! PARENT: CHILD'S EXIT CODE IS: 100 PARENT:GOODBYE! GJZ@GJZ-VIRTUAL-MACHINE:~/WORKSPACE/CH03$ -->
+<p><img src="/images/courses-os/image_054_1762909442649-307029f1-dfd3-4925-b6f2-dd75193d7b65.png"></p>
+<p>运行fork2</p>
+<!-- 这是一张图片，ocr 内容为：GJZ@GJZ-VIRTUAL-MACHINE:~/WORKSPACE/CH03$ ./FORK2 FORK1 FORK1.C FORK2 FORK2.C CHILD COMPLETEGJZ@GJZ-VIRTUAL-MACHINE:~/WORKSPACE/CH03$ -->
+<p><img src="/images/courses-os/image_055_1762909556274-1a427ff3-7e35-49fe-b020-b9867848e169.png"></p>
+<h3 id="实验3-2：进程调度算法模拟"><a href="#实验3-2：进程调度算法模拟" class="headerlink" title="实验3.2：进程调度算法模拟"></a>实验3.2：进程调度算法模拟</h3><p>将所用到的代码放进虚拟机的工作目录</p>
+<!-- 这是一张图片，ocr 内容为：WORKSPACE CH03 最近使用 C 收藏 FORK2 FORK2.C FORK1.C FORK1 SCHEDULE.C C 主目录 桌面 SCHEDULE_F. C 日视频 图片 园文档 业下载 门音乐 命回收站 -->
+<p><img src="/images/courses-os/image_056_1762911413475-276051b0-dd4c-4b6f-ab92-8a7c115d1e4c.png"></p>
+<p>编译schedule.c，有错误，用gedit进行修改，点击保存</p>
+<!-- 这是一张图片，ocr 内容为：127 128INTMAIN()/*主函数*/ 129[ INT LEN,H-O; 130 131 CHAR CH 132 INPUT(); 133 LEN-SPACE(); WHILE((LEN!-0)&&(READY!NULL)) 134 135 J CH-GETCHAR(); 136 137 H++ N THE EXECUTE NUMBER:%D \N",H); PRINTF("\N TH 138 139 PREADY; 140 READYP>LINK; 141 P-LINKNULL; 142 P->STATE:'R'; 143 CHECK(); 144 RUNNING(); 145 PRINTF("\N按任一键继续......."); CH-GETCHAR(); 146 -->
+<p><img src="/images/courses-os/image_057_1762911839389-e3825905-3236-4929-9824-befd26f1de76.png"></p>
+<!-- 这是一张图片，ocr 内容为：CC SCHEDULE GJZQGJZ-VIRTUAL-MACHINE:~/WORKSPACE/CH03$ GCC S SCHEDULE CE/CHO3$./SCHEDULE GJZ@GJZ-VIRTUAL-MACHINE:~/WORKSPACE/CHO3 -->
+<p><img src="/images/courses-os/image_058_1762912016537-0f8f0077-d456-464b-8d7f-e177cf71f927.png"></p>
+<!-- 这是一张图片，ocr 内容为：请输入被调度的进程数目: 进程号NO.0: 输入进程名:P1 输入进程优先数:5 输入进程运行时间:3 进程号NO.1: 输入进程名:P2 输入进程优先数: 输入进程运行时间:4 进程号NO.2: 输入进程名:P3 输入进程优先数:7 输入进程运行时间:2 -->
+<p><img src="/images/courses-os/image_059_1762912042394-4236b7ac-87b1-4ebd-9806-2e9966935bff.png"></p>
+<!-- 这是一张图片，ocr 内容为：THE EXECUTE NUMBER:1 当前正在运行的进程是: 是:P3 茶茶茶茶 NICE STATE NDTIME RUNTIME GNAME 7 R 2 D3 O 当前就绪队列状态为: 爷爷爷爷 NDTIME RUNTIME STATE NICE QNAME 3 M 5 P1 NDTIME RUNTIME NICE STATE QNAME 4 P2 O 3 按任一键继续. THE EXECUTE NUMBER:2 当前正在运行的进程是:P3 RUNTIME STATE NDTIME NICE QNAME R 9 2 D3 当前就绪队列状态为: STATE NDTIME NICE RUNTIME GNAME 3 5 M O P1 NDTIME RUNTIME NICE STATE GNAME P2 进程[P3]已完成. 按任一键继续...... THE EXECUTE NUMBER:3 当前正在运行的进程是:P1 NDTIME RUNTIME STATE NICE GNAME 3 5 R P1 *当前就绪队列状态为: NDTIME NICE RUNTIME STATE QNAME 3 4 M O P2 按任一键继续...... THE EXECUTE NUMBER:4 当前正在运行的进程是:P1 E RUNTIME NICE NDTIME STATE GNAME 3 R 4 1 P1 当前就绪队列状态为: NDTIME RUNTIME STATE NICE GNAME 3 M P2 按任一键继续. -->
+<p><img src="/images/courses-os/image_060_1762912063910-d945e4e7-2f78-4c21-b1ee-2a97f306a99e.png"></p>
+<!-- 这是一张图片，ocr 内容为：THE EXECUTE NUMBER:5 当前正在运行的进程是:P2 STATE RUNTIME NICE NDTIME GNAME 3 R O OZ *当前就绪队列状态为: NDTIME RUNTIME QNAME STATE NICE 3 M 3 P1 按任一键继续, THE EXECUTE NUMBER:6 当前正在运行的进程是:P1 **** NDTIME RUNTIME NICE GNAME STATE 3 R 3 2 P1 当前就绪队列状态为: NDTIME RUNTIME STATE NICE GNAME M 1 4 P2 进程[P1]已完成. 按任一键继续...... THE EXECUTE NUMBER:7 当前正在运行的进程是:P2 *平平爷 NDTIME RUNTIME STATE NICE GNAME R P2 4 ***当前就绪队列状态为:空 按任一键继续.....  THE EXECUTE NUMBER:8 当前正在运行的进程是:P2 RUNTIME STATE GNAME NICE NDTIME R 2 P2 ****当前就绪队列状态为:空 按任一键继续... THE EXECUTE NUMBER:9 当前正在运行的进程是:P2 NICE RUNTIME STATE NDTIME GNAME O R 3 4 P2 ***当前就绪队列状态为:空 进程[P2]已完成. 按任一键继续...... 所有进程已经运行完成! -->
+<p><img src="/images/courses-os/image_061_1762912103274-f162e122-6e02-4821-af6a-d4fa25514ad0.png"></p>
+<p>编译改错运行，点击保存</p>
+<!-- 这是一张图片，ocr 内容为：253 254 INT MAIN() 255 CHAR ALGO; 256 //CLRSCR(); 257 /F(优先数算法/时间片轮转算法/先来先服务算法); PRINTF("选择算法:P/R/F(优 258 SCANF("%C",&ALGO); 259 PRINTF("输入进程数:\N"); 260 SCANF("%D",&N); 261 IF(ALGO 三 'P'LLALGO -三 'P') 262 263 CREAT1(ALGO); 264 265 PRIORITY(ALGO); T 266 - 'R'LLALGO - 'R') IF(ALGO 267 ELSE 268 -->
+<p><img src="/images/courses-os/image_062_1762912162632-169d2c81-46c3-4245-9bc3-d29a14f85643.png"></p>
+<!-- 这是一张图片，ocr 内容为：选择算法:P/R/F(优先数算法/时间片轮转算法/先来先服务算法) 输入进程数: 输入进程号和运行时间: P1 3 优先数算法输出信息: 进程号 所需时间优先数 状态 CPU时间 P3 48 23 M 000 P1 W 47 5 W 45 P2 进程号 所需时间 状态 优先数 CPU时间 MD 47 R 45 M P3 W 45 状态 进程号 所需时间 优先数 CPU时间 RW 45 P2 51 P3 45 工工 44 P1 进程号 所需时间 优先数 状态 CPU时间 1 P3 45 R 24 1 44 P1 1 42 P2 状态 进程号 优先数 所需时间 CPU时间 44 R P1 12 4 M 42 P2 F O 42 P3 进程号 所需时间 优先数 状态 CPU时间 1 4 42 R 1 W 41 22 F 42 进程号 所需时间 优先数 状态 CPU时间 41 WF 39 42 状态 进程号 所需时间 优先数 CPU时间 RF 232 39 30 P2 38 P1 F 0 42 ED 所需时间 优先数 进程号 状态 CPU时间 2 3 36 P2 R 0 3 F P1 38 2 0 F P3 42 进程号 状态 优先数 所需时间 CPU时间 33 R P2 3 38 P1 2 F O 42 P3 进程号 所需时间 优先数 状态 CPU时间 P2 F 30 P1 0 38 0 P3 F 42 按任意键退出 SH:1:READ:ILLEGAL OPTION -N QIZ@AIZ-VIRTUAL-MACHINE:~/WORKSPACE -->
+<p><img src="/images/courses-os/image_063_1762912264229-f215d4a9-4f84-47a3-9542-49644898f2b1.png"></p>
+<p>fork1.c:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/types.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;errno.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/wait.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">   <span class="type">pid_t</span> childpid; <span class="comment">/* variable to store the child&#x27;s pid*/</span></span><br><span class="line">   <span class="type">int</span> retval;     <span class="comment">/* user-provided return code for child process*/</span></span><br><span class="line">   <span class="type">int</span> status;     <span class="comment">/* child&#x27;s exit status for parent process*/</span></span><br><span class="line"></span><br><span class="line">   <span class="comment">/*create new process*/</span></span><br><span class="line">   childpid=fork();</span><br><span class="line">   <span class="keyword">if</span>(childpid&gt;=<span class="number">0</span>) <span class="comment">/*fork succeeded*/</span></span><br><span class="line">   &#123;</span><br><span class="line">      <span class="keyword">if</span> (childpid==<span class="number">0</span>) <span class="comment">/*fork() return 0 to the child process*/</span></span><br><span class="line">      &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;CHILD: I am the child process! \n&quot;</span>);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;CHILD: Here&#x27;s my PID: %d\n&quot;</span>, <span class="built_in">getpid</span>());</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;CHILD: My parent&#x27;s PID is: % d\n&quot;</span>, <span class="built_in">getppid</span>());</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;CHILD: The value of fork return is: % d\n&quot;</span>, childpid);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;CHILD: Sleep for 1 second...\n&quot;</span>);</span><br><span class="line">        <span class="built_in">sleep</span>(<span class="number">1</span>);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;CHILD: Enter an exit value (0~255): &quot;</span>);</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;retval);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;CHILD: Goodbye! \n&quot;</span>); </span><br><span class="line">        <span class="built_in">exit</span>(retval); <span class="comment">/*child exits with user-provided return code.*/</span></span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">else</span>  <span class="comment">/*fork() returns new pid to the parent process */</span></span><br><span class="line">      &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;PARENT: I am the parent process! \n&quot;</span>);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;PARENT: Here&#x27;s my PID: %d\n&quot;</span>, <span class="built_in">getpid</span>());</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;PARENT: The value of my child&#x27;s PID is: %d\n&quot;</span>, childpid);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;PARENT: I will now wait for my child to exit.\n&quot;</span>);</span><br><span class="line">        <span class="built_in">wait</span>(&amp;status); <span class="comment">/* wait for child to exit,and store its status*/</span></span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;PARENT: Child&#x27;s exit code is: %d\n&quot;</span>, <span class="built_in">WEXITSTATUS</span>(status));</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;PARENT: Goodbye! \n&quot;</span>); </span><br><span class="line">        <span class="built_in">exit</span>(<span class="number">0</span>); <span class="comment">/* parent exits */</span> </span><br><span class="line">      &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">else</span> <span class="comment">/* fork returns -1 on failure */</span></span><br><span class="line">  &#123;</span><br><span class="line">     <span class="built_in">perror</span>(<span class="string">&quot;fork error!&quot;</span>); <span class="comment">/*display error messsage*/</span></span><br><span class="line">     <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line">       </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>fork2.c</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;sys/types.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;sys/wait.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="type">pid_t</span>  pid;</span><br><span class="line">	<span class="comment">/* fork another process */</span></span><br><span class="line">	pid = fork();</span><br><span class="line">	<span class="keyword">if</span> (pid &lt; <span class="number">0</span>) &#123; <span class="comment">/* error occurred */</span></span><br><span class="line">		<span class="built_in">fprintf</span>(stderr, <span class="string">&quot;Fork Failed&quot;</span>);</span><br><span class="line">		<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">if</span> (pid == <span class="number">0</span>) &#123; <span class="comment">/* child process */</span></span><br><span class="line">                <span class="built_in">execlp</span>(<span class="string">&quot;/bin/ls&quot;</span>,<span class="string">&quot;ls&quot;</span>,<span class="literal">NULL</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span> &#123; <span class="comment">/* parent process */</span></span><br><span class="line">		<span class="comment">/* parent will wait for the child to complete */</span></span><br><span class="line">		<span class="built_in">wait</span> (<span class="literal">NULL</span>);</span><br><span class="line">		<span class="built_in">printf</span> (<span class="string">&quot;Child Complete&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>schedule.c</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;stdio.h&quot;</span> </span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span> </span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> getpch(type) (type*)malloc(sizeof(type)) </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">pcb</span> &#123; <span class="comment">/* 定义进程控制块PCB */</span> </span><br><span class="line">  <span class="type">char</span> name[<span class="number">10</span>]; <span class="comment">//进程名</span></span><br><span class="line">  <span class="type">char</span> state;    <span class="comment">//进程状态：&quot;W&quot;-就绪态，&quot;R&quot;-运行态</span></span><br><span class="line">  <span class="type">int</span> nice;      <span class="comment">//进程优先级</span></span><br><span class="line">  <span class="type">int</span> ntime;     <span class="comment">//需要运行时间</span></span><br><span class="line">  <span class="type">int</span> rtime;     <span class="comment">//已经运行的时间</span></span><br><span class="line">  <span class="keyword">struct</span> <span class="title class_">pcb</span>* link; </span><br><span class="line">&#125;*ready=<span class="literal">NULL</span>,*p; </span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> <span class="title class_">pcb</span> PCB; </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">char</span> <span class="title">sort</span><span class="params">()</span> <span class="comment">/* 建立对进程进行优先级排列函数，优先数大者优先*/</span> </span></span><br><span class="line"><span class="function"></span>&#123; </span><br><span class="line">  PCB *first, *second; </span><br><span class="line">  <span class="type">int</span> insert=<span class="number">0</span>; </span><br><span class="line">  <span class="keyword">if</span>((ready==<span class="literal">NULL</span>)||((p-&gt;nice)&gt;(ready-&gt;nice)))<span class="comment">/*优先级最大者,插入队首*/</span> </span><br><span class="line">  &#123; </span><br><span class="line">    p-&gt;link=ready; </span><br><span class="line">    ready=p; </span><br><span class="line">  &#125; </span><br><span class="line">  <span class="keyword">else</span> <span class="comment">/* 进程比较优先级,插入适当的位置中*/</span> </span><br><span class="line">  &#123; </span><br><span class="line">    first=ready; </span><br><span class="line">    second=first-&gt;link; </span><br><span class="line">    <span class="keyword">while</span>(second!=<span class="literal">NULL</span>) </span><br><span class="line">    &#123; </span><br><span class="line">      <span class="keyword">if</span>((p-&gt;nice)&gt;(second-&gt;nice)) <span class="comment">/*若插入进程比当前进程优先数大,*/</span> </span><br><span class="line">      &#123; <span class="comment">/*插入到当前进程前面*/</span> </span><br><span class="line">        p-&gt;link=second; </span><br><span class="line">        first-&gt;link=p; </span><br><span class="line">        second=<span class="literal">NULL</span>; </span><br><span class="line">        insert=<span class="number">1</span>; </span><br><span class="line">      &#125; </span><br><span class="line">      <span class="keyword">else</span> <span class="comment">/* 插入进程优先数最低,则插入到队尾*/</span> </span><br><span class="line">      &#123; </span><br><span class="line">        first=first-&gt;link; </span><br><span class="line">        second=second-&gt;link; </span><br><span class="line">      &#125; </span><br><span class="line">    &#125; </span><br><span class="line">    <span class="keyword">if</span>(insert==<span class="number">0</span>) first-&gt;link=p; </span><br><span class="line">  &#125; </span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">char</span> <span class="title">input</span><span class="params">()</span> <span class="comment">/* 建立进程控制块函数*/</span> </span></span><br><span class="line"><span class="function"></span>&#123; </span><br><span class="line">  <span class="type">int</span> i,num; </span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">&quot;\n 请输入被调度的进程数目：&quot;</span>); </span><br><span class="line">  <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;num); </span><br><span class="line">  <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;num;i++) </span><br><span class="line">  &#123; </span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\n 进程号No.%d:&quot;</span>,i); </span><br><span class="line">    p=<span class="built_in">getpch</span>(PCB); </span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\n 输入进程名:&quot;</span>); </span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>,p-&gt;name); </span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot; 输入进程优先数:&quot;</span>); </span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;p-&gt;nice); </span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot; 输入进程运行时间:&quot;</span>); </span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;p-&gt;ntime); </span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>); </span><br><span class="line">    p-&gt;rtime=<span class="number">0</span>;</span><br><span class="line">    p-&gt;state=<span class="string">&#x27;W&#x27;</span>; </span><br><span class="line">    p-&gt;link=<span class="literal">NULL</span>; </span><br><span class="line">    <span class="built_in">sort</span>(); <span class="comment">/* 调用sort函数*/</span> </span><br><span class="line">  &#125; </span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">space</span><span class="params">()</span> </span></span><br><span class="line"><span class="function"></span>&#123; </span><br><span class="line">  <span class="type">int</span> l=<span class="number">0</span>; PCB* pr=ready; </span><br><span class="line">  <span class="keyword">while</span>(pr!=<span class="literal">NULL</span>) </span><br><span class="line">  &#123; </span><br><span class="line">    l++; </span><br><span class="line">    pr=pr-&gt;link; </span><br><span class="line">  &#125; </span><br><span class="line">  <span class="keyword">return</span>(l); </span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">char</span> <span class="title">disp</span><span class="params">(PCB * pr)</span> <span class="comment">/*建立进程显示函数,用于显示当前进程*/</span> </span></span><br><span class="line"><span class="function"></span>&#123; </span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">&quot;\n qname \t state \t nice \tndtime\truntime \n&quot;</span>); </span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">&quot;%s\t&quot;</span>,pr-&gt;name); </span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">&quot;%c\t&quot;</span>,pr-&gt;state); </span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">&quot;%d\t&quot;</span>,pr-&gt;nice); </span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">&quot;%d\t&quot;</span>,pr-&gt;ntime); </span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">&quot;%d\t&quot;</span>,pr-&gt;rtime); </span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>); </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">char</span> <span class="title">check</span><span class="params">()</span> <span class="comment">/* 建立进程查看函数 */</span> </span></span><br><span class="line"><span class="function"></span>&#123; </span><br><span class="line">  PCB* pr; </span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">&quot;\n **** 当前正在运行的进程是:%s&quot;</span>,p-&gt;name); <span class="comment">/*显示当前运行进程*/</span> </span><br><span class="line">  <span class="built_in">disp</span>(p); </span><br><span class="line">  pr=ready; </span><br><span class="line">  <span class="keyword">if</span> (pr!=<span class="literal">NULL</span>) </span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\n ****当前就绪队列状态为:&quot;</span>); <span class="comment">/*显示就绪队列状态*/</span></span><br><span class="line">  <span class="keyword">else</span> </span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\n ****当前就绪队列状态为: 空\n&quot;</span>); <span class="comment">/*显示就绪队列状态为空*/</span></span><br><span class="line">  <span class="keyword">while</span>(pr!=<span class="literal">NULL</span>) </span><br><span class="line">  &#123; </span><br><span class="line">    <span class="built_in">disp</span>(pr); </span><br><span class="line">    pr=pr-&gt;link; </span><br><span class="line">  &#125; </span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">char</span> <span class="title">destroy</span><span class="params">()</span> <span class="comment">/*建立进程撤消函数(进程运行结束,撤消进程)*/</span> </span></span><br><span class="line"><span class="function"></span>&#123; </span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">&quot; 进程 [%s] 已完成.\n&quot;</span>,p-&gt;name); </span><br><span class="line">  <span class="built_in">free</span>(p); </span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="type">char</span> <span class="title">running</span><span class="params">()</span> <span class="comment">/* 建立进程就绪函数(进程运行时间到,置就绪状态*/</span> </span></span><br><span class="line"><span class="function"></span>&#123; </span><br><span class="line">  (p-&gt;rtime)++; </span><br><span class="line">  <span class="keyword">if</span>(p-&gt;rtime==p-&gt;ntime) </span><br><span class="line">  <span class="built_in">destroy</span>(); <span class="comment">/* 调用destroy函数*/</span> </span><br><span class="line">  <span class="keyword">else</span> </span><br><span class="line">  &#123; </span><br><span class="line">    (p-&gt;nice)--; </span><br><span class="line">    p-&gt;state=<span class="string">&#x27;W&#x27;</span>; </span><br><span class="line">    <span class="built_in">sort</span>(); <span class="comment">/*调用sort函数*/</span> </span><br><span class="line">  &#125; </span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> <span class="comment">/*主函数*/</span> </span></span><br><span class="line"><span class="function"></span>&#123; </span><br><span class="line">  <span class="type">int</span> len,h=<span class="number">0</span>; </span><br><span class="line">  <span class="type">char</span> ch; </span><br><span class="line">  <span class="built_in">input</span>(); </span><br><span class="line">  len=<span class="built_in">space</span>(); </span><br><span class="line">  <span class="keyword">while</span>((len!=<span class="number">0</span>)&amp;&amp;(ready!=<span class="literal">NULL</span>)) </span><br><span class="line">  &#123; </span><br><span class="line">    ch=<span class="built_in">getchar</span>(); </span><br><span class="line">    h++; </span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\n The execute number:%d \n&quot;</span>,h); </span><br><span class="line">    p=ready; </span><br><span class="line">    ready=p-&gt;link; </span><br><span class="line">    p-&gt;link=<span class="literal">NULL</span>; </span><br><span class="line">    p-&gt;state=<span class="string">&#x27;R&#x27;</span>; </span><br><span class="line">    <span class="built_in">check</span>(); </span><br><span class="line">    <span class="built_in">running</span>(); </span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\n按任一键继续......&quot;</span>); </span><br><span class="line">    ch=<span class="built_in">getchar</span>(); </span><br><span class="line">  &#125; </span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">&quot;\n\n 所有进程已经运行完成！\n&quot;</span>); </span><br><span class="line">  ch=<span class="built_in">getchar</span>(); </span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>schedule_f.c</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdbool.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> <span class="title class_">node</span>&#123;</span><br><span class="line">  <span class="type">char</span> name[<span class="number">10</span>];</span><br><span class="line">  <span class="type">int</span> prio;</span><br><span class="line">  <span class="type">int</span> round;</span><br><span class="line">  <span class="type">int</span> cputime;</span><br><span class="line">  <span class="type">int</span> needtime;</span><br><span class="line">  <span class="type">int</span> count;</span><br><span class="line">  <span class="type">char</span> state;</span><br><span class="line">  <span class="keyword">struct</span> <span class="title class_">node</span> *next;</span><br><span class="line">&#125;PCB;</span><br><span class="line"></span><br><span class="line">PCB *finish,*ready,*run,*r;</span><br><span class="line"><span class="type">int</span> N;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">firstin</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  run = ready;</span><br><span class="line">  run-&gt;state = <span class="string">&#x27;R&#x27;</span>;</span><br><span class="line">  ready = ready-&gt;next;</span><br><span class="line">&#125;</span><br><span class="line">   </span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">prt1</span><span class="params">(<span class="type">char</span> a)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(a==<span class="string">&#x27;P&#x27;</span>||a == <span class="string">&#x27;p&#x27;</span>) </span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;进程号  cpu时间   所需时间  优先数   状态\n&quot;</span>);</span><br><span class="line">  <span class="keyword">else</span> <span class="keyword">if</span>(a ==<span class="string">&#x27;r&#x27;</span>||a ==<span class="string">&#x27;R&#x27;</span>)</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;进程号  cpu时间   所需时间   记数   时间片   状态\n&quot;</span>);</span><br><span class="line">  <span class="keyword">else</span> <span class="keyword">if</span>(a==<span class="string">&#x27;f&#x27;</span>||a==<span class="string">&#x27;F&#x27;</span>)</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;进程号   所需时间   状态\n&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">prt2</span><span class="params">(<span class="type">char</span> a ,PCB *q)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">     <span class="keyword">if</span>(a==<span class="string">&#x27;P&#x27;</span>||a == <span class="string">&#x27;p&#x27;</span>)</span><br><span class="line">     <span class="built_in">printf</span>(<span class="string">&quot;%-10s%-10d%-10d%-10d%c\n&quot;</span>,q-&gt;name,q-&gt;cputime,q-&gt;needtime,q-&gt;prio,q-&gt;state);</span><br><span class="line">     <span class="keyword">else</span> <span class="keyword">if</span>(a == <span class="string">&#x27;r&#x27;</span>|| a == <span class="string">&#x27;R&#x27;</span>)</span><br><span class="line">     <span class="built_in">printf</span>(<span class="string">&quot;%-10s%-10d%-10d%-10d%-10d%c\n&quot;</span>,q-&gt;name,q-&gt;cputime,q-&gt;needtime,q-&gt;count,q-&gt;round,q-&gt;state);</span><br><span class="line">     <span class="keyword">else</span> <span class="keyword">if</span>(a==<span class="string">&#x27;f&#x27;</span>||a==<span class="string">&#x27;F&#x27;</span>)</span><br><span class="line">     <span class="built_in">printf</span>(<span class="string">&quot;%-10s%-10d%c\n&quot;</span>,q-&gt;name,q-&gt;needtime,q-&gt;state);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">prt</span><span class="params">(<span class="type">char</span> algo)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">     PCB *p;</span><br><span class="line">     <span class="built_in">prt1</span>(algo);</span><br><span class="line">     <span class="keyword">if</span>(run != <span class="literal">NULL</span>&amp;&amp; !(algo == <span class="string">&#x27;r&#x27;</span>||algo  ==<span class="string">&#x27;R&#x27;</span>))<span class="comment">//这个对RR不适应！！ </span></span><br><span class="line">         <span class="built_in">prt2</span>(algo,run);</span><br><span class="line">     p = ready;</span><br><span class="line">     <span class="keyword">while</span>(p != <span class="literal">NULL</span>)</span><br><span class="line">     &#123;</span><br><span class="line">         <span class="built_in">prt2</span>(algo,p);</span><br><span class="line">         p = p-&gt;next;</span><br><span class="line">     &#125;</span><br><span class="line">     p = finish;</span><br><span class="line">     <span class="keyword">while</span>(p != <span class="literal">NULL</span>)</span><br><span class="line">     &#123;</span><br><span class="line">         <span class="built_in">prt2</span>(algo,p);</span><br><span class="line">         p = p-&gt;next;</span><br><span class="line">     &#125;</span><br><span class="line">     <span class="built_in">getchar</span>();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">insert1</span><span class="params">(PCB *q)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">   PCB *p1,*s,*r;</span><br><span class="line">   <span class="type">int</span> b;</span><br><span class="line">   s = q;</span><br><span class="line">   p1 = ready;</span><br><span class="line">   r = p1;</span><br><span class="line">   b = <span class="number">1</span>;</span><br><span class="line">   <span class="keyword">while</span>((p1 != <span class="literal">NULL</span>)&amp;&amp;b)</span><br><span class="line">    &#123;</span><br><span class="line">       <span class="keyword">if</span>(p1-&gt;prio &gt;= s-&gt;prio)</span><br><span class="line">       &#123;</span><br><span class="line">         r = p1;</span><br><span class="line">         p1 = p1-&gt;next;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">else</span> b = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(r!= p1)</span><br><span class="line">    &#123;</span><br><span class="line">      r-&gt;next = s;</span><br><span class="line">      s-&gt;next = p1;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">      s-&gt;next = p1;</span><br><span class="line">      ready = s;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">creat1</span><span class="params">(<span class="type">char</span> alg)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">     PCB *p;</span><br><span class="line">     <span class="type">int</span> i,time;</span><br><span class="line">     <span class="type">char</span> na[<span class="number">10</span>];</span><br><span class="line">     ready = <span class="literal">NULL</span>;</span><br><span class="line">     finish = <span class="literal">NULL</span>;</span><br><span class="line">     run = <span class="literal">NULL</span>;</span><br><span class="line">     <span class="built_in">printf</span>(<span class="string">&quot;输入进程号和运行时间:\n&quot;</span>);</span><br><span class="line">     <span class="keyword">for</span>(i = <span class="number">1</span>; i &lt;= N; i++)</span><br><span class="line">     &#123;</span><br><span class="line">       p = (PCB *)<span class="built_in">malloc</span>(<span class="built_in">sizeof</span>(PCB));</span><br><span class="line">       <span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>,na);</span><br><span class="line">       <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;time);</span><br><span class="line">       <span class="built_in">strcpy</span>(p-&gt;name,na);</span><br><span class="line">       p-&gt;cputime = <span class="number">0</span>;</span><br><span class="line">       p-&gt;needtime = time;</span><br><span class="line">       p-&gt;state = <span class="string">&#x27;W&#x27;</span>;</span><br><span class="line">       p-&gt;prio = <span class="number">50</span>-time;</span><br><span class="line">       <span class="keyword">if</span>(ready != <span class="literal">NULL</span>)</span><br><span class="line">       <span class="built_in">insert1</span>(p);</span><br><span class="line">       <span class="keyword">else</span>&#123;</span><br><span class="line">         p-&gt;next = ready;</span><br><span class="line">         ready = p;</span><br><span class="line">         &#125;</span><br><span class="line">     &#125;</span><br><span class="line">     <span class="comment">//clrscr();</span></span><br><span class="line">     <span class="keyword">if</span>(alg ==<span class="string">&#x27;p&#x27;</span>||alg ==<span class="string">&#x27;P&#x27;</span>)</span><br><span class="line">       <span class="built_in">printf</span>(<span class="string">&quot;   优先数算法输出信息:\n&quot;</span>);</span><br><span class="line">     <span class="keyword">else</span></span><br><span class="line">       <span class="built_in">printf</span>(<span class="string">&quot;   先来先服务算法输出信息:\n&quot;</span>);</span><br><span class="line">     <span class="built_in">printf</span>(<span class="string">&quot;*****************************************\n&quot;</span>);</span><br><span class="line">     <span class="built_in">prt</span>(alg);</span><br><span class="line">     run = ready;</span><br><span class="line">     ready = ready-&gt;next;</span><br><span class="line">     run-&gt;state = <span class="string">&#x27;R&#x27;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">creat2</span><span class="params">(<span class="type">char</span> alg)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">     PCB *p;</span><br><span class="line">     <span class="type">int</span> i,time,round;</span><br><span class="line">     <span class="type">char</span> na[<span class="number">10</span>];</span><br><span class="line">     ready = <span class="literal">NULL</span>;</span><br><span class="line">     finish = <span class="literal">NULL</span>;</span><br><span class="line">     run = <span class="literal">NULL</span>;</span><br><span class="line">     <span class="built_in">printf</span>(<span class="string">&quot;请输入时间片：&quot;</span>);</span><br><span class="line">     <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;round);</span><br><span class="line">     <span class="built_in">printf</span>(<span class="string">&quot;输入进程号和运行时间:\n&quot;</span>);</span><br><span class="line">     <span class="keyword">for</span>(i = <span class="number">1</span>; i &lt;= N; i++)</span><br><span class="line">     &#123;</span><br><span class="line">       p = (PCB *)<span class="built_in">malloc</span>(<span class="built_in">sizeof</span>(PCB));</span><br><span class="line">       <span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>,na);</span><br><span class="line">       <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;time);</span><br><span class="line">       <span class="built_in">strcpy</span>(p-&gt;name,na);</span><br><span class="line">       p-&gt;cputime = <span class="number">0</span>;</span><br><span class="line">       p-&gt;needtime = time;</span><br><span class="line">       p-&gt;state = <span class="string">&#x27;W&#x27;</span>;</span><br><span class="line">       p-&gt;count  = <span class="number">0</span>;</span><br><span class="line">       p-&gt;round  = round;</span><br><span class="line">       p-&gt;next = <span class="literal">NULL</span>;</span><br><span class="line">        <span class="keyword">if</span>(i == <span class="number">1</span>)<span class="comment">/*按顺序插入到ready链表中*/</span></span><br><span class="line">       r = ready = p;</span><br><span class="line">       <span class="keyword">else</span></span><br><span class="line">       r-&gt;next = p;</span><br><span class="line">       r = p;  </span><br><span class="line">     &#125;</span><br><span class="line">     <span class="comment">//clrscr();</span></span><br><span class="line">     <span class="built_in">printf</span>(<span class="string">&quot;     时间片轮转算法输出信息:\n&quot;</span>);</span><br><span class="line">     <span class="built_in">printf</span>(<span class="string">&quot;*****************************************\n&quot;</span>);</span><br><span class="line">     <span class="built_in">prt</span>(alg);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">priority</span><span class="params">(<span class="type">char</span> alg)</span>  <span class="comment">//优先数调度算法</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">     <span class="keyword">while</span>(run != <span class="literal">NULL</span>)</span><br><span class="line">     &#123;</span><br><span class="line">       run-&gt;cputime += <span class="number">1</span>;</span><br><span class="line">       run-&gt;needtime -= <span class="number">1</span>;</span><br><span class="line">       run-&gt;prio -= <span class="number">3</span>;</span><br><span class="line">       <span class="keyword">if</span>(run-&gt;needtime == <span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">          run-&gt;next = finish;</span><br><span class="line">          finish = run;</span><br><span class="line">          run-&gt;state = <span class="string">&#x27;F&#x27;</span>;</span><br><span class="line">          run = <span class="literal">NULL</span>;</span><br><span class="line">          <span class="keyword">if</span>(ready != <span class="literal">NULL</span>)</span><br><span class="line">          <span class="built_in">firstin</span>();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> </span><br><span class="line">         <span class="keyword">if</span>((ready != <span class="literal">NULL</span>) &amp;&amp; (run-&gt;prio &lt; ready-&gt;prio))</span><br><span class="line">         &#123;</span><br><span class="line">            run-&gt;state = <span class="string">&#x27;W&#x27;</span>;</span><br><span class="line">            <span class="built_in">insert1</span>(run);</span><br><span class="line">            <span class="built_in">firstin</span>();</span><br><span class="line">         &#125;</span><br><span class="line">         <span class="built_in">prt</span>(alg);</span><br><span class="line">     &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">roundrun</span><span class="params">(<span class="type">char</span> alg)</span>  <span class="comment">//时间片轮转调度算法</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="type">bool</span> flag;<span class="comment">//当ready列里只有一个时做标记 </span></span><br><span class="line">  <span class="keyword">while</span>(N)&#123;</span><br><span class="line">    flag = <span class="number">1</span>;<span class="comment">//初始化为1 </span></span><br><span class="line">    run = ready;<span class="comment">//run每次运行ready的队头 </span></span><br><span class="line">    run-&gt;count++;<span class="comment">//每运行一次计数器加1 </span></span><br><span class="line">    <span class="keyword">if</span>(run-&gt;needtime &lt; run-&gt;round)<span class="comment">//当剩余时间小于时间片轮转时间时的情况 </span></span><br><span class="line">            &#123;</span><br><span class="line">              run-&gt;cputime += run-&gt;needtime;</span><br><span class="line">              run-&gt;needtime = <span class="number">0</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span>&#123;</span><br><span class="line">              run-&gt;cputime += run-&gt;round;</span><br><span class="line">              run-&gt;needtime -= run-&gt;round;  </span><br><span class="line">                &#125;</span><br><span class="line">         run-&gt;state = <span class="string">&#x27;W&#x27;</span>;<span class="comment">//变为等待 </span></span><br><span class="line">        <span class="keyword">if</span>(ready-&gt;next != <span class="literal">NULL</span>)</span><br><span class="line">        ready = ready-&gt;next;</span><br><span class="line">        <span class="keyword">else</span>  flag = <span class="number">0</span>;<span class="comment">//当ready剩一个时做标记 </span></span><br><span class="line">        <span class="keyword">if</span>(run-&gt;needtime == <span class="number">0</span>)&#123;<span class="comment">//当run结束时放入finish队列里 </span></span><br><span class="line">          run-&gt;next = finish;</span><br><span class="line">          finish = run;</span><br><span class="line">          run-&gt;state = <span class="string">&#x27;F&#x27;</span>;</span><br><span class="line">          N--;<span class="comment">//进程数少1 </span></span><br><span class="line">          &#125;</span><br><span class="line">          <span class="keyword">else</span>&#123;</span><br><span class="line">          <span class="keyword">if</span>(flag)&#123;<span class="comment">//执行完如果不是剩一个的话，就把run放到队尾 </span></span><br><span class="line">           r-&gt;next = run;</span><br><span class="line">           r = run;</span><br><span class="line">           r-&gt;next = <span class="literal">NULL</span>; </span><br><span class="line">                 &#125;</span><br><span class="line">              &#125;</span><br><span class="line">           <span class="keyword">if</span>(N)ready-&gt;state = <span class="string">&#x27;R&#x27;</span>;<span class="comment">//结束时不应该有&#x27;R&quot; </span></span><br><span class="line">           <span class="keyword">else</span></span><br><span class="line">           ready = <span class="literal">NULL</span>;<span class="comment">//结束时应该为空 </span></span><br><span class="line">           <span class="built_in">prt</span>(alg);<span class="comment">//输出 </span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">FCFSrun</span><span class="params">(<span class="type">char</span> alg)</span>  <span class="comment">//先来先服务调度算法</span></span></span><br><span class="line"><span class="function"></span>&#123;  </span><br><span class="line">  PCB *p;</span><br><span class="line">  <span class="keyword">while</span>(run!=<span class="literal">NULL</span>)</span><br><span class="line">  &#123;</span><br><span class="line">    run-&gt;cputime += run-&gt;needtime;</span><br><span class="line">    run-&gt;needtime =<span class="number">0</span>;               </span><br><span class="line">    run-&gt;next = finish;</span><br><span class="line">    finish = run;</span><br><span class="line">    run-&gt;state = <span class="string">&#x27;F&#x27;</span>;</span><br><span class="line">    run = <span class="literal">NULL</span>;</span><br><span class="line">    <span class="keyword">if</span>(ready!=<span class="literal">NULL</span>)</span><br><span class="line">      <span class="built_in">firstin</span>();</span><br><span class="line">      <span class="built_in">prt</span>(alg);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">      <span class="type">char</span> algo;</span><br><span class="line">      <span class="comment">//clrscr();</span></span><br><span class="line">      <span class="built_in">printf</span>(<span class="string">&quot;选择算法:P/R/F(优先数算法/时间片轮转算法/先来先服务算法)\n&quot;</span>);</span><br><span class="line">      <span class="built_in">scanf</span>(<span class="string">&quot;%c&quot;</span>,&amp;algo);</span><br><span class="line">      <span class="built_in">printf</span>(<span class="string">&quot;输入进程数:\n&quot;</span>);</span><br><span class="line">      <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;N);</span><br><span class="line">      <span class="keyword">if</span>(algo == <span class="string">&#x27;P&#x27;</span>||algo == <span class="string">&#x27;p&#x27;</span>)</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="built_in">creat1</span>(algo);</span><br><span class="line">        <span class="built_in">priority</span>(algo);</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">else</span> <span class="keyword">if</span>(algo == <span class="string">&#x27;R&#x27;</span>||algo == <span class="string">&#x27;r&#x27;</span>)</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="built_in">creat2</span>(algo);</span><br><span class="line">        <span class="built_in">roundrun</span>(algo);</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">else</span> <span class="keyword">if</span>(algo==<span class="string">&#x27;f&#x27;</span>||algo==<span class="string">&#x27;F&#x27;</span>)</span><br><span class="line">      &#123;</span><br><span class="line">         <span class="built_in">creat1</span>(algo);</span><br><span class="line">         <span class="built_in">FCFSrun</span>(algo);     </span><br><span class="line">      &#125;</span><br><span class="line">     <span class="built_in">system</span>(<span class="string">&quot;echo 按任意键退出&quot;</span>);</span><br><span class="line">     <span class="built_in">system</span>(<span class="string">&quot;read -n 1&quot;</span>);</span><br><span class="line">     <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125; </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2026/03/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="prev" title="">
+                  <i class="fa fa-angle-left"></i> 
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2026/03/%E8%AF%AD%E8%A8%80%E6%96%87%E5%AD%97%E4%B8%8E%E4%BF%A1%E6%81%AF%E5%A4%84%E7%90%86/" rel="next" title="">
+                   <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2023 – 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">未经授权不得转载</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

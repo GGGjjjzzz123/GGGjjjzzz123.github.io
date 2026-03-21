@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"gggjjjzzz123.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.27.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="优化算法优化算法的理解（数学角度）优化算法是用来解决优化问题的方法，优化问题是优化算法研究的对象和应用领域、 不同的优化问题用不同的优化算法来解决 什么是优化问题：对于某一问题，有求出最优解的需要，为优化问题 优化问题的类型：线性、非线性、约束、不约束、凸优化、非凸优化等 :::success理解 优化问题定义了目标函数、决策变量、约束条件等要素，而优化算法的任务就是在给定的这些条件下，寻找最优解">
+<meta property="og:type" content="article">
+<meta property="og:title" content="优化算法与人工智能学科学习">
+<meta property="og:url" content="https://gggjjjzzz123.github.io/2026/03/%E4%BC%98%E5%8C%96%E7%AE%97%E6%B3%95%E4%B8%8E%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%AD%A6%E7%A7%91%E5%AD%A6%E4%B9%A0/index.html">
+<meta property="og:site_name" content="GJZ&#39;s Blog">
+<meta property="og:description" content="优化算法优化算法的理解（数学角度）优化算法是用来解决优化问题的方法，优化问题是优化算法研究的对象和应用领域、 不同的优化问题用不同的优化算法来解决 什么是优化问题：对于某一问题，有求出最优解的需要，为优化问题 优化问题的类型：线性、非线性、约束、不约束、凸优化、非凸优化等 :::success理解 优化问题定义了目标函数、决策变量、约束条件等要素，而优化算法的任务就是在给定的这些条件下，寻找最优解">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/misc-optimization/image_001_1743822707749-7299a3f3-e6a7-43e4-9cb0-af60fe181fd5.jpeg">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/misc-optimization/image_002_1743832379958-5d61442d-835d-4fbc-87e0-9363d36670e7.jpeg">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/misc-optimization/image_003_1743832496588-f8a342f8-319e-4be0-985f-f40bed6ea0bb.jpeg">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/misc-optimization/image_004_1744894375442-4b7a2079-cd51-453c-943d-37287c405ea9.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/misc-optimization/image_005_1743843432408-095cc07b-5d33-4eda-b091-cf4eb1707dff.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/misc-optimization/image_006_1743843459685-54e1b75f-352f-42d0-abf1-560607ab373c.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/misc-optimization/image_007_1743843478725-1a5cfb26-1f22-4a2f-ab58-4e2483fe8c34.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/misc-optimization/image_008_1743864577980-0e14ee08-5f54-46a6-8cac-830cc7f58663.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/misc-optimization/image_009_1743844222261-89698afd-9b8c-4517-818c-d157a44137f1.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/misc-optimization/image_010_1745049157920-19e53e6e-239f-407b-9740-7eee6a99b777.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/misc-optimization/image_011_1745048981833-fbc6c9d3-3d7a-4327-ac93-e67d86904368.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/misc-optimization/image_012_1743867315623-a41858a0-8cdc-4816-afc1-968447f3ce7f.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/misc-optimization/image_013_1743867330356-25b7a313-5282-4a1b-aab2-b22221f839e9.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/misc-optimization/image_014_1743840243769-269f0fa1-eac6-4b1c-ad97-bec4f233bf5a.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/misc-optimization/image_015_1743840266891-c16b54cb-9175-4ab3-8646-a8ea98803a99.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/misc-optimization/image_016_1743840278798-7b293d48-3831-4171-a716-5e6cfe6d1ecf.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/misc-optimization/image_017_1743840353379-96d4c4a2-6f4a-4169-87f4-d5a18d2fd3dc.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/misc-optimization/image_018_1745053773447-f6d9f4f7-fe70-447d-99ed-b8c456cdf4d7.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/misc-optimization/image_019_1745053961739-cb76af87-1143-4af3-83a2-ac9e18b49e66.jpeg">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/misc-optimization/image_020_1745064067199-af1840d7-e9e5-4897-81d3-a435d41e3b2b.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/misc-optimization/image_021_1744957415789-40f53a23-875f-47ab-bd5a-32832e6675f8.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/misc-optimization/image_022_1745067099929-d133f9e4-ab94-4770-b079-4472a28fdf19.png">
+<meta property="article:published_time" content="2026-03-20T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-03-21T13:43:01.553Z">
+<meta property="article:author" content="GGGjjjzzz123">
+<meta property="article:tag" content="优化算法">
+<meta property="article:tag" content="人工智能">
+<meta property="article:tag" content="学习笔记">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gggjjjzzz123.github.io/images/misc-optimization/image_001_1743822707749-7299a3f3-e6a7-43e4-9cb0-af60fe181fd5.jpeg">
+
+
+<link rel="canonical" href="https://gggjjjzzz123.github.io/2026/03/%E4%BC%98%E5%8C%96%E7%AE%97%E6%B3%95%E4%B8%8E%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%AD%A6%E7%A7%91%E5%AD%A6%E4%B9%A0/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://gggjjjzzz123.github.io/2026/03/%E4%BC%98%E5%8C%96%E7%AE%97%E6%B3%95%E4%B8%8E%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%AD%A6%E7%A7%91%E5%AD%A6%E4%B9%A0/","path":"2026/03/优化算法与人工智能学科学习/","title":"优化算法与人工智能学科学习"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>优化算法与人工智能学科学习 | GJZ's Blog</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">GJZ's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">博主是一名努力进步、热爱生活、充满生命力的人</p>
+      <img class="custom-logo-image" src="/images/android-chrome-512x512.png" alt="GJZ's Blog">
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-技术文章"><a href="/tech/" rel="section"><i class="fa fa-code fa-fw"></i>技术文章</a></li><li class="menu-item menu-item-项目文档"><a href="/projects/" rel="section"><i class="fa fa-rocket fa-fw"></i>项目文档</a></li><li class="menu-item menu-item-课程笔记"><a href="/notes/" rel="section"><i class="fa fa-book fa-fw"></i>课程笔记</a></li><li class="menu-item menu-item-杂项随笔"><a href="/misc/" rel="section"><i class="fa fa-pencil fa-fw"></i>杂项随笔</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BC%98%E5%8C%96%E7%AE%97%E6%B3%95"><span class="nav-number">1.</span> <span class="nav-text">优化算法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BC%98%E5%8C%96%E7%AE%97%E6%B3%95%E7%9A%84%E7%90%86%E8%A7%A3%EF%BC%88%E6%95%B0%E5%AD%A6%E8%A7%92%E5%BA%A6%EF%BC%89"><span class="nav-number">1.1.</span> <span class="nav-text">优化算法的理解（数学角度）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BC%98%E5%8C%96%E7%AE%97%E6%B3%95%E7%9A%84%E5%8F%91%E5%B1%95%E8%84%89%E7%BB%9C"><span class="nav-number">1.2.</span> <span class="nav-text">优化算法的发展脉络</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E6%97%A9%E6%9C%9F%E5%8F%91%E5%B1%95-19%E4%B8%96%E7%BA%AA%E6%9C%AB-20%E4%B8%96%E7%BA%AA%E5%88%9D-%EF%BC%9A%E6%95%B0%E5%AD%A6%E5%AE%B6%E6%97%B6%E4%BB%A3"><span class="nav-number">1.2.1.</span> <span class="nav-text">1. 早期发展 (19世纪末-20世纪初) ：数学家时代</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E7%BA%BF%E6%80%A7%E8%A7%84%E5%88%92%E5%92%8C%E5%9F%BA%E6%9C%AC%E6%96%B9%E6%B3%95%EF%BC%881940s-1950s%EF%BC%89%EF%BC%9A%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%88%9D%E7%99%BB%E5%9C%BA"><span class="nav-number">1.2.2.</span> <span class="nav-text">2. 线性规划和基本方法（1940s-1950s）：计算机初登场</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E5%BC%95%E5%85%A5%E9%9D%9E%E7%BA%BF%E6%80%A7%E5%92%8C%E7%BA%A6%E6%9D%9F%E4%BC%98%E5%8C%96%EF%BC%881960s-1970s%EF%BC%89%EF%BC%9A-%E6%95%B0%E5%80%BC%E4%BC%98%E5%8C%96%E7%9A%84%E5%B4%9B%E8%B5%B7"><span class="nav-number">1.2.3.</span> <span class="nav-text">3. 引入非线性和约束优化（1960s-1970s）： 数值优化的崛起</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E5%90%AF%E5%8F%91%E5%BC%8F%E7%AE%97%E6%B3%95%E7%9A%84%E5%85%B4%E8%B5%B7%EF%BC%881980s-1990s%EF%BC%89%EF%BC%9A%E5%90%91%E8%87%AA%E7%84%B6%E7%95%8C%E5%AD%A6%E4%B9%A0%E2%80%94%E2%80%94%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%9A%84%E5%90%AF%E5%8F%91"><span class="nav-number">1.2.4.</span> <span class="nav-text">4. 启发式算法的兴起（1980s-1990s）：向自然界学习——人工智能的启发</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E7%8E%B0%E4%BB%A3%E9%98%B6%E6%AE%B5%EF%BC%882000s%E8%87%B3%E4%BB%8A%EF%BC%89%EF%BC%9AAI%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%9A%84%E4%BC%98%E5%8C%96%E6%8C%91%E6%88%98"><span class="nav-number">1.2.5.</span> <span class="nav-text">5. 现代阶段（2000s至今）：AI与深度学习的优化挑战</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">1.2.6.</span> <span class="nav-text"></span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">1.2.7.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BC%98%E5%8C%96%E7%AE%97%E6%B3%95%E5%A6%82%E4%BB%8A%E7%9A%84%E5%BA%94%E7%94%A8"><span class="nav-number">1.3.</span> <span class="nav-text">优化算法如今的应用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E7%BA%BF%E6%80%A7%E8%A7%84%E5%88%92%EF%BC%88%E5%8D%95%E7%BA%AF%E5%BD%A2%E6%B3%95%E3%80%81%E5%86%85%E7%82%B9%E6%B3%95%EF%BC%89"><span class="nav-number">1.3.1.</span> <span class="nav-text">1. 线性规划（单纯形法、内点法）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E9%9D%9E%E7%BA%BF%E6%80%A7%E4%BC%98%E5%8C%96%EF%BC%88%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E3%80%81%E7%89%9B%E9%A1%BF%E6%B3%95%EF%BC%89"><span class="nav-number">1.3.2.</span> <span class="nav-text">2. 非线性优化（梯度下降、牛顿法）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E7%BA%A6%E6%9D%9F%E4%BC%98%E5%8C%96%EF%BC%88KKT%E6%9D%A1%E4%BB%B6%E3%80%81%E6%8B%89%E6%A0%BC%E6%9C%97%E6%97%A5%E4%B9%98%E6%95%B0%E6%B3%95%EF%BC%89"><span class="nav-number">1.3.3.</span> <span class="nav-text">3. 约束优化（KKT条件、拉格朗日乘数法）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E5%90%AF%E5%8F%91%E5%BC%8F%E4%BC%98%E5%8C%96"><span class="nav-number">1.3.4.</span> <span class="nav-text">4. 启发式优化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E4%BC%98%E5%8C%96%EF%BC%88SGD%E3%80%81Adam%EF%BC%89"><span class="nav-number">1.3.5.</span> <span class="nav-text">5. 深度学习优化（SGD、Adam）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97"><span class="nav-number">1.3.6.</span> <span class="nav-text">6. 量子计算</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C"><span class="nav-number">2.</span> <span class="nav-text">神经网络</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%9A%84%E7%90%86%E8%A7%A3"><span class="nav-number">2.1.</span> <span class="nav-text">神经网络的理解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%9A%84%E5%8F%91%E5%B1%95%E8%84%89%E7%BB%9C"><span class="nav-number">2.2.</span> <span class="nav-text">神经网络的发展脉络</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1943%E5%B9%B4-%E7%A5%9E%E7%BB%8F%E5%85%83%E6%A8%A1%E5%9E%8BMP"><span class="nav-number">2.2.1.</span> <span class="nav-text">1.1943年 神经元模型MP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1949%E5%B9%B4-Hebb%E5%AD%A6%E4%B9%A0%E8%A7%84%E5%88%99"><span class="nav-number">2.2.2.</span> <span class="nav-text">2.1949年 Hebb学习规则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1957%E5%B9%B4-%E4%B8%A4%E5%B1%82%E7%A5%9E%E7%BB%8F%E5%85%83%E7%BB%84%E6%88%90%E7%9A%84%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E2%80%94%E2%80%94%E6%84%9F%E7%9F%A5%E5%99%A8"><span class="nav-number">2.2.3.</span> <span class="nav-text">3.1957年 两层神经元组成的神经网络——感知器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E4%BC%8A%E8%BE%9B%E6%A8%A1%E5%9E%8B%EF%BC%88Ising-Model%EF%BC%891920%E5%B9%B4"><span class="nav-number">2.2.4.</span> <span class="nav-text">4.伊辛模型（Ising Model）1920年</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1982%E5%B9%B4-Hopfield%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%9E%8B"><span class="nav-number">2.2.5.</span> <span class="nav-text">5.1982年 Hopfield神经网络模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-1983%E5%B9%B4-%E2%80%9C%E9%9A%90%E5%8D%95%E5%85%83%E2%80%9D%E7%9A%84%E6%A6%82%E5%BF%B5%E8%A2%AB%E9%A6%96%E6%AC%A1%E6%8F%90%E5%87%BA-%E2%80%94-%E5%9F%BA%E4%BA%8E%E6%AD%A4%E8%AE%BE%E8%AE%A1%E5%87%BA%E4%BA%86%E7%8E%BB%E5%B0%94%E5%85%B9%E6%9B%BC%E6%9C%BA"><span class="nav-number">2.2.6.</span> <span class="nav-text">6.1983年 “隐单元”的概念被首次提出 —&gt; 基于此设计出了玻尔兹曼机</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-1986%E5%B9%B4-%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD%EF%BC%88BP%EF%BC%89%E7%AE%97%E6%B3%95"><span class="nav-number">2.2.7.</span> <span class="nav-text">7.1986年 反向传播（BP）算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-1989%E5%B9%B4-%E5%B0%86%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD%E7%AE%97%E6%B3%95%E5%BA%94%E7%94%A8%E4%BA%8E%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C"><span class="nav-number">2.2.8.</span> <span class="nav-text">8.1989年 将反向传播算法应用于卷积神经网络</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-1997%E5%B9%B4-%E9%95%BF%E7%9F%AD%E6%9C%9F%E8%AE%B0%E5%BF%86%E7%BD%91%E7%BB%9C%EF%BC%88LSTM%EF%BC%89"><span class="nav-number">2.2.9.</span> <span class="nav-text">9.1997年 长短期记忆网络（LSTM）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-2006%E5%B9%B4-%E6%B7%B1%E5%BA%A6%E4%BF%A1%E5%BF%B5%E7%BD%91%E7%BB%9C"><span class="nav-number">2.2.10.</span> <span class="nav-text">10.2006年 深度信念网络</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%8F%91%E5%B1%95%E5%8E%86%E5%8F%B2%E6%97%B6%E9%97%B4%E8%BD%B4"><span class="nav-number">2.3.</span> <span class="nav-text">神经网络发展历史时间轴</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A5%9E%E7%BB%8F%E7%BD%91%E8%B7%AF%E7%9A%84%E5%88%86%E7%B1%BB"><span class="nav-number">2.4.</span> <span class="nav-text">神经网路的分类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%9A%84%E4%B8%BB%E8%A6%81%E5%BA%94%E7%94%A8%E8%BF%9B%E5%B1%95%EF%BC%9A"><span class="nav-number">2.5.</span> <span class="nav-text">神经网络的主要应用进展：</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%92%8C%E4%BC%98%E5%8C%96%E7%AE%97%E6%B3%95%E7%9A%84%E5%85%B3%E7%B3%BB%EF%BC%9A"><span class="nav-number">3.</span> <span class="nav-text">神经网络和优化算法的关系：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%9C%AC%E8%BA%AB%E6%98%AF%E4%B8%80%E4%B8%AA%E7%AE%97%E6%B3%95%EF%BC%9A"><span class="nav-number">3.0.0.1.</span> <span class="nav-text">1. 神经网络本身是一个算法：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E8%AE%AD%E7%BB%83%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%98%AF%E4%B8%80%E4%B8%AA%E4%BC%98%E5%8C%96%E9%97%AE%E9%A2%98%EF%BC%9A"><span class="nav-number">3.0.0.2.</span> <span class="nav-text">2. 训练神经网络是一个优化问题：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E8%AE%AD%E7%BB%83%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%BE%9D%E8%B5%96%E4%BC%98%E5%8C%96%E7%AE%97%E6%B3%95%EF%BC%9A"><span class="nav-number">3.0.0.3.</span> <span class="nav-text">3. 训练神经网络依赖优化算法：</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Metropolis%E5%87%86%E5%88%99"><span class="nav-number">4.</span> <span class="nav-text">Metropolis准则</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%92%99%E7%89%B9%E5%8D%A1%E6%B4%9B%E6%96%B9%E6%B3%95"><span class="nav-number">4.1.</span> <span class="nav-text">蒙特卡洛方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A9%AC%E5%B0%94%E7%A7%91%E5%A4%AB%E9%93%BE"><span class="nav-number">4.2.</span> <span class="nav-text">马尔科夫链</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A9%AC%E5%B0%94%E7%A7%91%E5%A4%AB%E8%92%99%E7%89%B9%E5%8D%A1%E6%B4%9B%EF%BC%88MCMC%EF%BC%89%E6%96%B9%E6%B3%95"><span class="nav-number">4.3.</span> <span class="nav-text">马尔科夫蒙特卡洛（MCMC）方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Metropolis-%E7%AE%97%E6%B3%95"><span class="nav-number">4.4.</span> <span class="nav-text">Metropolis 算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Metropolis-Hastings-%E7%AE%97%E6%B3%95"><span class="nav-number">4.5.</span> <span class="nav-text">Metropolis-Hastings 算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Metropolis%E6%8A%BD%E6%A0%B7"><span class="nav-number">4.6.</span> <span class="nav-text">Metropolis抽样</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Metropolis-%E5%87%86%E5%88%99"><span class="nav-number">4.7.</span> <span class="nav-text">Metropolis 准则</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%8E%BB%E5%B0%94%E5%85%B9%E6%9B%BC%E5%88%86%E5%B8%83"><span class="nav-number">4.7.1.</span> <span class="nav-text">玻尔兹曼分布</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#-1"><span class="nav-number">4.7.1.1.</span> <span class="nav-text"></span></a></li></ol></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">GGGjjjzzz123</p>
+  <div class="site-description" itemprop="description">GJZ的博客，用于存放各种技术文章，分享技术经验。主要内容包括项目开发、技术分享、学习笔记等。希望通过这个博客与大家交流，共同进步！</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">28</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">31</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/yourname" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;yourname" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://gggjjjzzz123.github.io/2026/03/%E4%BC%98%E5%8C%96%E7%AE%97%E6%B3%95%E4%B8%8E%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%AD%A6%E7%A7%91%E5%AD%A6%E4%B9%A0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="GGGjjjzzz123">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="GJZ's Blog">
+      <meta itemprop="description" content="GJZ的博客，用于存放各种技术文章，分享技术经验。主要内容包括项目开发、技术分享、学习笔记等。希望通过这个博客与大家交流，共同进步！">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="优化算法与人工智能学科学习 | GJZ's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          优化算法与人工智能学科学习
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2026-03-21 21:43:01" itemprop="dateModified" datetime="2026-03-21T21:43:01+08:00">2026-03-21</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%9D%82%E9%A1%B9%E9%9A%8F%E7%AC%94/" itemprop="url" rel="index"><span itemprop="name">杂项随笔</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="优化算法"><a href="#优化算法" class="headerlink" title="优化算法"></a>优化算法</h1><h2 id="优化算法的理解（数学角度）"><a href="#优化算法的理解（数学角度）" class="headerlink" title="优化算法的理解（数学角度）"></a>优化算法的理解（数学角度）</h2><p><font style="background-color:#FBDE28;">优化算法是用来解决优化问题的方法，优化问题是优化算法研究的对象和应用领域、</font></p>
+<p><u><font style="color:#DF2A3F;">不同的优化问题用不同的优化算法来解决</font></u></p>
+<p><u><font style="color:#DF2A3F;">什么是优化问题：对于某一问题，有求出最优解的需要，为优化问题</font></u></p>
+<p><u><font style="color:#DF2A3F;">优化问题的类型：线性、非线性、约束、不约束、凸优化、非凸优化等</font></u></p>
+<p>:::success<br>理解</p>
+<p>优化问题定义了<strong>目标函数</strong>、<strong>决策变量</strong>、<strong>约束条件</strong>等要素，而优化算法的任务就是在给定的这些条件下，寻找<strong>最优解</strong>。优化算法通过对决策变量进行调整，探索可行解空间，最终找到能够使目标函数达到最优（最大或最小）的解。</p>
+<ul>
+<li><strong>优化问题的例子</strong>：例如，最大化一个工厂的生产利润，或最小化一个交通网络的运输成本。</li>
+<li><strong>优化算法的例子</strong>：为了解决这个问题，可能使用<strong>梯度下降法</strong>、<strong>遗传算法</strong>、<strong>模拟退火算法</strong>等。</li>
+</ul>
+<p>:::</p>
+<h2 id="优化算法的发展脉络"><a href="#优化算法的发展脉络" class="headerlink" title="优化算法的发展脉络"></a>优化算法的发展脉络</h2><p>:::success<br>理解</p>
+<p>在很久很久以前，人们想解决一些最优化的问题，比如：</p>
+<pre><code>- 旅行商问题（TSP）：商人如何规划路线，让自己走的路最短，但还能到达所有城市？
+- 资源分配问题：如何分配有限的资源，让收益最大化？
+</code></pre>
+<p>当时，还没有计算机，一切都靠数学家手动推导公式，找出最优解。</p>
+<p>:::</p>
+<h3 id="1-早期发展-19世纪末-20世纪初-：数学家时代"><a href="#1-早期发展-19世纪末-20世纪初-：数学家时代" class="headerlink" title="1. 早期发展 (19世纪末-20世纪初) ：数学家时代"></a>1. <strong>早期发展 (19世纪末-20世纪初) ：数学家时代</strong></h3><p><strong>特点</strong>：在人类尚未拥有计算机的年代，数学家们通过手工计算和理论推导来解决优化问题。<font style="color:#DF2A3F;">“解析方法”</font></p>
+<ul>
+<li><strong>变分法（Calculus of Variations）</strong>：这是一种在18世纪末到19世纪初提出的方法，用于处理最优化问题，尤其是求解最小化问题。变分法是最早的一类优化方法之一，主要用于求解物理学中的最短路径、最小作用量等问题。</li>
+<li><strong>最小二乘法（Least Squares）</strong>：由高斯（Carl Friedrich Gauss）和勒让德（Adrien-Marie Legendre）在19世纪初独立提出，最小二乘法成为了数据拟合和回归分析中的基本方法，广泛应用于统计学和工程领域。</li>
+</ul>
+<h3 id="2-线性规划和基本方法（1940s-1950s）：计算机初登场"><a href="#2-线性规划和基本方法（1940s-1950s）：计算机初登场" class="headerlink" title="2. 线性规划和基本方法（1940s-1950s）：计算机初登场"></a>2. <strong>线性规划和基本方法（1940s-1950s）：计算机初登场</strong></h3><p>20世纪中期，工业革命与计算时代，计算机的出现使得优化问题的求解进入了一个新时代，人们开始用<font style="color:#DF2A3F;">数值方法</font>求解大规模优化问题。 </p>
+<ul>
+<li><strong>线性规划的起点</strong>：优化算法的历史可以追溯到<strong>1947年</strong>，美国数学家<strong>乔治·丹茨格</strong>提出了**<font style="background-color:#FBDE28;">线性规划</font>**<font style="background-color:#FBDE28;">问题</font>，即在一组线性约束下，找到使目标函数最大或最小的变量值。<u>这是最早期的优化问题之一</u>。</li>
+</ul>
+<p>:::success<br>理解：</p>
+<p>假设你是一个工厂的经理，想最大化生产利润，而生产过程有材料和时间的限制。你可以使用线性规划来计算最佳的生产策略。</p>
+<p><font style="color:#DF2A3F;">线性规划的目标函数为线性（一次函数），变量的约束条件也是线性</font></p>
+<p>:::</p>
+<ul>
+<li><strong>线性规划的求解方法：</strong><ul>
+<li><strong>单纯形法（Simplex Method）（沿着边界搜索）1947</strong>：丹茨格提出了单纯形法。这是一种迭代算法，通过不断在可行解的边界上移动来寻找最优解。尽管在理论上可能有些问题，但在实际应用中单纯形法非常高效，广泛用于实际问题中。</li>
+</ul>
+</li>
+</ul>
+<p>:::success<br>理解</p>
+<p><strong><font style="color:#DF2A3F;">单纯形法不是遍历方法</font></strong><font style="color:#DF2A3F;">，它是一种基于目标函数改善的迭代算法，每次迭代都会优化目标函数，而不需要检查所有解,只会迭代更优的解。  </font></p>
+<p>:::</p>
+<pre><code>- **内点法（Interior-Point Method）（在可行域内部搜索）**：** **&lt;u&gt;最早的理论可追溯到 1950年代，但真正广泛应用于计算的是 1984年，由 纳伦德拉·卡马尔卡（Narendra Karmarkar） 提出的 Karmarkar算法，极大地推动了线性规划求解的发展。&lt;/u&gt;**  **通过从可行域的内部出发，沿着曲线逼近最优解。内点法在大规模线性规划问题中表现更为高效。
+</code></pre>
+<ul>
+<li><strong>约束优化问题</strong><ul>
+<li>很多实际问题不仅仅需要优化目标函数，还涉及到约束条件，例如资源限制、物理限制等。<strong>拉格朗日乘数法</strong>（Lagrange Multiplier）和<strong>KKT条件</strong>（Karush-Kuhn-Tucker）被提出，用来解决带约束的优化问题，成为了优化领域的重要工具。</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-引入非线性和约束优化（1960s-1970s）：-数值优化的崛起"><a href="#3-引入非线性和约束优化（1960s-1970s）：-数值优化的崛起" class="headerlink" title="3. 引入非线性和约束优化（1960s-1970s）： 数值优化的崛起"></a>3. <strong>引入非线性和约束优化（1960s-1970s）： 数值优化的崛起</strong></h3><p>计算机的兴起，随着优化问题越来越复杂，研究者们开始研究非线性优化方法。</p>
+<ul>
+<li><strong>非线性优化（Nonlinear Optimization）</strong>：进入<strong>1960年代</strong>，很多实际问题的目标函数不再是简单的线性函数，开始出现**<font style="background-color:#FBDE28;">非线性优化问题</font>**。随着对更复杂优化问题的需求，非线性优化逐渐成为研究的热点。各种非线性优化方法，如<u>牛顿法、梯度下降法、拟牛顿法</u>等相继引入。</li>
+</ul>
+<p>:::success<br>理解</p>
+<p><font style="color:#DF2A3F;">非线性优化指的是</font><strong><font style="color:#DF2A3F;">目标函数或约束条件中至少有一个是非线性的优化问题</font></strong><font style="color:#DF2A3F;">。</font></p>
+<p>:::</p>
+<pre><code>- **非线性优化方法主要分为两大类**
+</code></pre>
+<p><strong>解析方法</strong>（基于数学推导）</p>
+<pre><code>        + 适用于某些特定的非线性优化问题，如凸优化问题（无局部最优）。
+        + 包括梯度法、牛顿法等。
+</code></pre>
+<p><strong>数值优化方法</strong>（基于数值计算）</p>
+<pre><code>        + 适用于大多数复杂的非线性优化问题。
+        + 包括一阶方法（梯度下降）、二阶方法（牛顿法）、启发式算法（遗传算法、粒子群优化等）。
+</code></pre>
+<p>:::success<br><strong>梯度法（Gradient Methods）</strong></p>
+<p>梯度法是一类<strong>利用梯度信息进行优化的算法</strong>的统称，既包括<strong>梯度下降法</strong>，也包括<strong>梯度上升法</strong>。</p>
+<p>梯度法的核心思想：</p>
+<pre><code>- **梯度下降（Gradient Descent, GD）**：沿着负梯度方向移动，以最小化目标函数。
+- **梯度上升（Gradient Ascent）**：沿着正梯度方向移动，以最大化目标函数。
+</code></pre>
+<p><strong>牛顿法的理解</strong></p>
+<p>假设你站在一座山的某个位置，目标是找到山的最高点（或最低点）。牛顿法就像是你根据山的坡度（导数）和曲率（二阶导数）来选择下一步的方向和步伐——不仅看坡度的大小（即一阶导数），还考虑坡度变化的快慢（即二阶导数），从而更准确地选择如何走到最顶点或最底点。  </p>
+<p>:::</p>
+<ul>
+<li><strong>启发式优化方法</strong>：随着计算能力的提升，启发式方法在求解复杂的组合优化问题中得到了应用。<ul>
+<li><strong>遗传算法（Genetic Algorithm）</strong>：模拟生物进化的自然选择过程，通过选择、交叉、变异等操作优化解。</li>
+</ul>
+</li>
+</ul>
+<h3 id="4-启发式算法的兴起（1980s-1990s）：向自然界学习——人工智能的启发"><a href="#4-启发式算法的兴起（1980s-1990s）：向自然界学习——人工智能的启发" class="headerlink" title="4. 启发式算法的兴起（1980s-1990s）：向自然界学习——人工智能的启发"></a>4. <strong>启发式算法的兴起（1980s-1990s）：向自然界学习——人工智能的启发</strong></h3><p> 计算机越来越强，研究者们开始观察自然界是如何优化问题的，于是他们模仿生物的进化、蚂蚁的觅食、金属的退火过程，发明了各种启发式优化算法。  </p>
+<ul>
+<li><strong>启发式算法</strong>：随着计算机科学的发展，许多复杂的优化问题（尤其是组合优化问题）变得难以用精确的数学方法解决。这时，<strong>启发式算法</strong>的出现为我们提供了新的思路。这些算法通过模拟自然界的现象来寻找“好”的解决方案，虽然它们不能保证找到最优解，但通常能够找到一个足够好的解。 <ul>
+<li><strong>模拟退火算法（Simulated Annealing）</strong>：受到金属退火过程的启发，这种算法通过模拟“降温”过程，逐步寻找最优解。</li>
+<li><strong>粒子群算法（Particle Swarm Optimization）：</strong>模拟鸟群觅食行为，每个解（粒子）在搜索空间中移动，受自身经验和群体最优经验的影响。</li>
+</ul>
+</li>
+</ul>
+<p>:::success<br>此时，1984年，印度数学家卡迈克尔提出了内点法，这是一种全新的线性规划求解方法，突破了单纯形法的限制。内点法被认为是大规模线性规划的一个重要进展。</p>
+<p>:::</p>
+<h3 id="5-现代阶段（2000s至今）：AI与深度学习的优化挑战"><a href="#5-现代阶段（2000s至今）：AI与深度学习的优化挑战" class="headerlink" title="5. 现代阶段（2000s至今）：AI与深度学习的优化挑战"></a>5. <strong>现代阶段（2000s至今）：AI与深度学习的优化挑战</strong></h3><p>随着人工智能的发展，深度神经网络的训练成为一个重要的优化问题。优化算法也迎来了新的变革，特别是在深度学习和强化学习领域。  </p>
+<ul>
+<li><strong>深度学习中的优化</strong>：随着人工智能（AI）和深度学习的迅猛发展，优化问题的研究逐渐集中在如何高效训练深度神经网络。为了解决训练中的问题（如收敛速度慢、容易陷入局部最优解等），研究者提出了更先进的优化算法，如随机梯度下降（SGD）和Adam算法，这些算法大大加速了训练过程并提高了性能。</li>
+</ul>
+<p>:::success<br>    - <strong>随机梯度下降（SGD）</strong>：主要用于机器学习和深度学习中<u>最小化损失函数</u><strong>，</strong>通过每次使用一个小批量数据（mini-batch）来计算梯度，避免了全数据训练带来的计算开销，加快训练速度。<br>    - <strong>Adam算法</strong>： 用来训练神经网络。可以把它看作是 <u>SGD的加强版</u>，引入了动量和自适应学习率，使得优化过程更加稳定和高效。</p>
+<p>:::</p>
+<p>:::success<br>深度学习优化</p>
+<p>就是指如何调整神经网络的参数（权重和偏置）来尽可能降低损失函数的过程。也就是说，通过某种“优化算法”让模型的预测尽可能准确。</p>
+<p>:::</p>
+<p><img src="/images/misc-optimization/image_001_1743822707749-7299a3f3-e6a7-43e4-9cb0-af60fe181fd5.jpeg" alt="画板"></p>
+<ul>
+<li><strong>分布式优化与大数据</strong>：随着大数据和云计算的兴起，越来越多的优化问题需要在大规模数据集上进行求解。为了应对这种需求，<strong>分布式优化</strong>应运而生。通过将计算任务分布到多个计算节点，可以更快地处理海量数据，如分布式梯度下降（Distributed SGD）。</li>
+</ul>
+<h3 id=""><a href="#" class="headerlink" title=""></a></h3><h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>优化算法从最早的线性规划到今天应用于深度学习、量子计算等前沿领域（优化算法的发展从数学家手工推导，到计算机辅助求解，再到人工智能和量子计算的结合），经历了从简单的数学模型到复杂的启发式方法，再到现代智能算法的演变。每个阶段的进步都离不开对实际问题的需求，以及计算能力的提升。从最早的求解数学问题到现在处理复杂大规模数据和智能系统的优化，优化算法一直在推动科学和技术的进步。</p>
+<hr>
+<!-- 这是一张图片，ocr 内容为：1681 1755 教学提出线和经奖优化理论 数学时期 1788 日采小二麻麻辣肉 1826 1847194019件 优化霸浓质授性规划问题 8个响 博卉炖 线性规划和 凸化化 计算机出现 约老化开动 掌绝移动 1947 1951 1955 星地星瑞 优化和博邦绝 纳什均衡 非绩性解行核心理吧 中领项用平 景化化问题 二周优和商质展码 爱定了 19961961 0961 提出内豆糕 非线性优化和启发式算法 ,努新为法(特定) 非线性优化 人数值优化方情制 计算机头起 遍传界质 1975 1917 无总发式霸法的头起 人工智能的启发 H网络 19361909992 GOOT BAOT AI与深度学日的优化 深度学习优化和量子计算 优化囊液 一直直 曼牙优化剪店 成为劳开完购 -->
+<p><img src="/images/misc-optimization/image_002_1743832379958-5d61442d-835d-4fbc-87e0-9363d36670e7.jpeg"></p>
+<!-- 这是一张图片，ocr 内容为：缘熙耀优化 猫群算法 鸡群优化 鲸鱼优化 帝国主义竞争 果蝇优化 混合姓跳 (CSO) (FOA) (ICA) (CSO) (WOA) 算法 (SFLA) 群居蜘蛛 自私羊群 飞蛾扑火 辐锁烫食 优化 优化 优化 优化 生物地理学优化 教与学优化 (OSS) (MFO) (OHS) (MRFO) (B8O) (TLBO) 差分进化 粒子群算法 (DE) (PSO) 协方差自适应 进化 骨架差分 人工蜂群 骨架烟花 (CMA-ES) 烟花算法 模拟退火算法 人工免疫 进化 算法 进化策略 算法 (FWA] (BBDE) (BBFWA) (SA) (ABC) (ES) 分布估计算法 骨架粒 (EDA) 子群 蚁群算法 遗传算法 (BBPSO) (ACO) (GA) 2009 1995 1992 2008 1997 1998 1996 2016201720182019 1975 2006 2005 2003 2015 1983 2011 2014 2010 2013 2010 量子退火 量子粒子 量子进化 量子遗传 连续量子蚁 量子动力学 多尺度量子 算法 群算法 算法 算法 谐振子优化 (QD) 群优化 (QEA) (OSP) (QQA) (QGA) (CQACO) (MQHOA) -->
+<p><img src="/images/misc-optimization/image_003_1743832496588-f8a342f8-319e-4be0-985f-f40bed6ea0bb.jpeg"></p>
+<h2 id="优化算法如今的应用"><a href="#优化算法如今的应用" class="headerlink" title="优化算法如今的应用"></a>优化算法如今的应用</h2><h3 id="1-线性规划（单纯形法、内点法）"><a href="#1-线性规划（单纯形法、内点法）" class="headerlink" title="1. 线性规划（单纯形法、内点法）"></a><strong>1. 线性规划（单纯形法、内点法）</strong></h3><p><strong>当前应用：</strong></p>
+<ul>
+<li><strong>物流与供应链管理</strong>：优化配送路径、仓库存储，降低成本。</li>
+<li><strong>金融优化</strong>：投资组合优化，最大化收益，控制风险。</li>
+<li><strong>生产调度</strong>：优化工厂资源分配，提高生产效率。</li>
+<li><strong>能源调度</strong>：电网负载优化，提高能源利用率。</li>
+</ul>
+<h3 id="2-非线性优化（梯度下降、牛顿法）"><a href="#2-非线性优化（梯度下降、牛顿法）" class="headerlink" title="2. 非线性优化（梯度下降、牛顿法）"></a><strong>2. 非线性优化（梯度下降、牛顿法）</strong></h3><p><strong>当前应用：</strong></p>
+<ul>
+<li><strong>深度学习训练</strong>：优化神经网络的权重，如 SGD、Adam 算法。</li>
+<li><strong>自动驾驶</strong>：优化路径规划，使车辆决策更安全。</li>
+<li><strong>机器人运动控制</strong>：优化机械臂、无人机的控制策略。</li>
+</ul>
+<h3 id="3-约束优化（KKT条件、拉格朗日乘数法）"><a href="#3-约束优化（KKT条件、拉格朗日乘数法）" class="headerlink" title="3. 约束优化（KKT条件、拉格朗日乘数法）"></a><strong>3. 约束优化（KKT条件、拉格朗日乘数法）</strong></h3><p><strong>当前应用：</strong></p>
+<ul>
+<li><strong>芯片设计</strong>：优化电路布局，减少功耗和散热问题。</li>
+<li><strong>医学影像优化</strong>：如 MRI、CT 图像重建，提高精度。</li>
+<li><strong>金融风控</strong>：在投资组合优化时，引入约束条件以控制风险。</li>
+</ul>
+<h3 id="4-启发式优化"><a href="#4-启发式优化" class="headerlink" title="4. 启发式优化"></a><strong>4. 启发式优化</strong></h3><p>目前比较主流的启发式算法包括<a target="_blank" rel="noopener" href="https://zhida.zhihu.com/search?content_id=634416621&content_type=Answer&match_order=1&q=%E6%A8%A1%E6%8B%9F%E9%80%80%E7%81%AB%E7%AE%97%E6%B3%95&zhida_source=entity">模拟退火算法</a>（Simulated Annealing，SA）、<a target="_blank" rel="noopener" href="https://zhida.zhihu.com/search?content_id=634416621&content_type=Answer&match_order=1&q=%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95&zhida_source=entity">遗传算法</a>（Genetic Algorithm，GA）、蚁群算法（Ant Colony Optimization，ACO）</p>
+<p><strong>当前应用：</strong></p>
+<p><font style="background-color:#FBDE28;">模拟退火算法：</font></p>
+<ul>
+<li><strong>电子产品</strong></li>
+</ul>
+<p><font style="color:rgb(55, 58, 64);">模拟退火算法在VLSI设计中的应用主要集中在</font><u><font style="color:rgb(55, 58, 64);">优化布局布线</font></u><font style="color:rgb(55, 58, 64);">（floorplanning and routing）和</font><u><font style="color:rgb(55, 58, 64);">逻辑优化</font></u><font style="color:rgb(55, 58, 64);">等方面。通过模拟退火算法，可以提高芯片的性能、降低功耗，并实现更高效的布局和布线方案。</font></p>
+<ul>
+<li><strong><font style="color:rgb(55, 58, 64);">神经网络</font></strong></li>
+</ul>
+<p><font style="color:rgb(25, 27, 31);">模拟退火算法具有跳出局部最优陷阱的能力，</font><font style="color:rgb(55, 58, 64);">可以用来训练神经网络，通过调整网络权重使预测结果尽量准确</font></p>
+<ul>
+<li><strong><font style="color:rgb(25, 27, 31);">物流领域</font></strong></li>
+</ul>
+<p><font style="color:rgb(25, 27, 31);">模拟退火算法被用于解决货车路径规划、仓库布局优化、配送路径优化等问题</font></p>
+<p><a target="_blank" rel="noopener" href="https://html.rhhz.net/WHDXXBGXB/html/eb38e466-53ec-444b-b83a-db82a7c1af67.htm">基于模拟退火算法的AVS&#x2F;RS多批货箱入库货位优化</a></p>
+<ul>
+<li><strong><font style="color:rgb(79, 79, 79);">生物信息学</font></strong></li>
+</ul>
+<p><font style="color:rgb(79, 79, 79);">基因序列比对</font><font style="color:rgb(77, 77, 77);">是生物信息学中的重要研究内容之一。模拟退火算法可以应用于基因序列比对中，通过寻找最优的序列排列方式来提高比对的准确性和效率。具体来说，算法可以将基因序列的比对问题转化为一个优化问题，并利用模拟退火算法的全局搜索能力来寻找最优解。</font></p>
+<p><font style="color:rgb(79, 79, 79);">蛋白质结构预测</font><font style="color:rgb(77, 77, 77);">是生物信息学的另一个重要研究方向。模拟退生算法可以应用于蛋白质结构预测中，通过寻找能量最低的蛋白质构象来预测其三维结构。</font></p>
+<p>:::success<br>例如：<br>    DeepMind开发的<font style="color:rgb(25, 27, 31);">AlphaFold模型的结构生成方法有点像类似进化&#x2F;退火算法和梯度下降法的结合，</font>能够准确预测蛋白质结构，已被广泛用于药物研发中，显著提高了新药发现的效率。</p>
+<p>:::</p>
+<!-- 这是一张图片，ocr 内容为：护士接班问题,围在不进区任何复杂机则的情况下将一组活动分配合护士前任务,在过去40年中得到了厂返的研究,然而,在许多医院中,转到了热量通过专 方案,包括用于计算通过实例的员汗边界的是合能数观划(MD)提取,以及他可模拟退入解法的局发现方法,以用于交后过用,这两种方法都在可用的蓬 实例和现实世界数据上进行了和法.教学楼型和解决方案方法已被革成到最先进的自进行政教件中,该软件主要用于德国和奥地和 -->
+<p><img src="/images/misc-optimization/image_004_1744894375442-4b7a2079-cd51-453c-943d-37287c405ea9.png"></p>
+<p><font style="background-color:#FBDE28;">遗传算法：</font></p>
+<ul>
+<li><strong>结构预测</strong></li>
+</ul>
+<p><font style="color:rgb(36, 41, 46);">USPEX是Oganov实验室从2004年以来开发的一种基于遗传算法开发的晶体结构预测方法和程序。</font></p>
+<ul>
+<li><strong>金融行业</strong></li>
+</ul>
+<p>First Quadrant公司使用遗传算法来优化股票交易策略，通过模拟自然选择过程，选择最优的交易规则和参数，以提高投资组合的表现。 First Quadrant 在 1992 年开始使用这些算法时，莱因韦伯说，他们只使用它们来分析股票的表现。现在，这家管理着 22 亿美元长期策略的公司，在所有金融服务中使用遗传算法进行研究目的。</p>
+<ul>
+<li><strong>航天航空</strong></li>
+</ul>
+<p>NASA Ames研究中心的研究人员Terry L. Hoist和Thomas H. Pulliam开发了一种基于遗传算法的方法，用于跨音速机翼的气动形状优化。该方法结合了遗传算法与跨音速全势流求解器，能够优化机翼的气动性能，并生成帕累托前沿，以实现多目标优化。</p>
+<ul>
+<li><strong>物流优化</strong></li>
+</ul>
+<p>福特公司使用遗传算法优化配送路线，考虑交通模式、物品尺寸和交货时间等因素，以减少配送时间和成本，提高物流效率。</p>
+<ul>
+<li><strong>制造业</strong></li>
+</ul>
+<p>Opcenter APS是西门子推出的一套先进的生产计划和调度软件，旨在帮助制造企业优化其生产流程。该软件利用先进的算法，包括遗传算法，来处理复杂的生产调度问题。</p>
+<p><font style="color:rgb(36, 41, 46);background-color:#FBDE28;">粒子群优化算法：</font></p>
+<ul>
+<li><strong>结构预测</strong></li>
+</ul>
+<p><font style="color:rgb(36, 41, 46);">CALYPSO是基于粒子群优化算法的晶体结构预测程序，只根据材料的化学配比和给定的外 界条件（如压力和温度），就可以寻找体系的基态及亚稳态结构，进而可以开展 材料的结构确定，并进行有效的功能材料（如超导，超硬及热电材料等）设计研究。 </font></p>
+<ul>
+<li><strong>航天航空领域</strong></li>
+</ul>
+<p><font style="color:rgb(51, 51, 51);">在卫星轨道优化中，PSO 算法可以帮助找到卫星从一点到另一点的能量消耗最小的路径。</font></p>
+<ul>
+<li><strong>图像处理和计算机视觉领域</strong></li>
+</ul>
+<p><font style="color:rgb(51, 51, 51);">在图像处理和计算机视觉领域，粒子群优化算法被用于图像分割、特征提取和目标跟踪等任务。PSO 算法能够帮助找到最优的参数设置，以提高图像分析和识别的准确性。</font></p>
+<ul>
+<li><strong>医疗领域</strong></li>
+</ul>
+<p><font style="color:rgb(51, 51, 51);">运用改进的粒子群优化算法(IGPSO)来优化支持向量机的参数，从而提高支持向量机的搜索性能，并应用于肿瘤表达谱数据的识别，以提高肿瘤识别准确性。</font></p>
+<p><a target="_blank" rel="noopener" href="https://patents.google.com/patent/CN106971091B/zh">https://patents.google.com/patent/CN106971091B/zh</a></p>
+<p>UPS的ORION（On-Road Integrated Optimization and Navigation）系统使用了复杂的元启发式算法和约束优化技术，以解决其庞大且复杂的配送路线优化问题。</p>
+<h3 id="5-深度学习优化（SGD、Adam）"><a href="#5-深度学习优化（SGD、Adam）" class="headerlink" title="5. 深度学习优化（SGD、Adam）"></a><strong>5. 深度学习优化（SGD、Adam）</strong></h3><p><strong>当前应用：</strong></p>
+<ul>
+<li><strong>计算机视觉</strong>：如自动驾驶、医学影像分析。</li>
+<li><strong>自然语言处理</strong>：GPT、BERT 等大模型训练。</li>
+<li><strong>金融预测</strong>：优化量化交易模型，提高收益。</li>
+</ul>
+<h3 id="6-量子计算"><a href="#6-量子计算" class="headerlink" title="6. 量子计算"></a><strong>6. 量子计算</strong></h3><p><font style="color:rgb(51, 51, 51);background-color:rgb(248, 249, 249);">2017年5月，大众汽车也曾利用量子退火计算，为北京的一万辆出租车模拟出每辆车从市中心到达机场的最佳路线，以期以最快的速度行驶32公里路到达目的地，且不会造成交通堵塞。实验证明，大众团队开发的量子退火计算的算法，在不到一秒内就可以给出每辆车的最优行驶路线，而普通计算机完成同样的任务，则需要约45分钟。</font></p>
+<p><font style="color:rgb(51, 51, 51);background-color:rgb(248, 249, 249);"></font></p>
+<p><font style="color:rgb(51, 51, 51);background-color:rgb(248, 249, 249);">美国福特汽车公司与美国国家航空航天局（NASA）的量子人工智能实验室（QuAIL）签署了一份价值10万美元的合同。福特公司将使用NASA的量子计算机进行自动驾驶汽车的研究。</font></p>
+<p><strong>当前应用：</strong>（目前仍在研究阶段）</p>
+<ul>
+<li><strong>组合优化问题</strong>（如旅行商问题 TSP）。</li>
+<li><strong>金融建模</strong>（如期权定价、风险分析）。</li>
+<li><strong>新材料发现</strong>（量子模拟化学反应）。</li>
+</ul>
+<hr>
+<h1 id="神经网络"><a href="#神经网络" class="headerlink" title="神经网络"></a>神经网络</h1><h2 id="神经网络的理解"><a href="#神经网络的理解" class="headerlink" title="神经网络的理解"></a>神经网络的理解</h2><p>:::success<br>理解</p>
+<p>人工智能&gt;机器学习&gt;神经网络 —拓展+深化—&gt; 深度学习</p>
+<p>:::</p>
+<p><font style="color:#DF2A3F;">概念</font>：神经网络是一种模拟人脑的神经网络以期实现类人工智能的机器学习技术</p>
+<h2 id="神经网络的发展脉络"><a href="#神经网络的发展脉络" class="headerlink" title="神经网络的发展脉络"></a>神经网络的发展脉络</h2><h3 id="1-1943年-神经元模型MP"><a href="#1-1943年-神经元模型MP" class="headerlink" title="1.1943年 神经元模型MP"></a>1.1943年 神经元模型MP</h3><ul>
+<li><font style="color:rgb(77, 77, 77);">心理学家McCulloch和数学家Pitts参考了生物神经元的结构，发表了抽象的神经元模型MP，</font><font style="color:rgba(0, 0, 0, 0.75);">也称为神经网络的一个处理单元( PE, Processing Element )。</font><u><font style="color:rgba(0, 0, 0, 0.75);">此时并没有引入激活函数。</font></u></li>
+<li>经典的神经元模型：</li>
+</ul>
+<!-- 这是一张图片，ocr 内容为： -->
+<p><img src="/images/misc-optimization/image_005_1743843432408-095cc07b-5d33-4eda-b091-cf4eb1707dff.png"></p>
+<ul>
+<li>将中间部分简化成一个圈，如下：</li>
+</ul>
+<!-- 这是一张图片，ocr 内容为： -->
+<p><img src="/images/misc-optimization/image_006_1743843459685-54e1b75f-352f-42d0-abf1-560607ab373c.png"></p>
+<ul>
+<li>连接：是神经元中最重要的东西，每个连接上都有一个权重（连接的位置相当于神经元之间连接的突触）</li>
+</ul>
+<p>:::success<br><font style="color:rgb(77, 77, 77);">一个神经网络的训练算法就是让权重的值调整到最佳，以使得整个网络的预测效果最好。</font></p>
+<p>:::</p>
+<!-- 这是一张图片，ocr 内容为： -->
+<p><img src="/images/misc-optimization/image_007_1743843478725-1a5cfb26-1f22-4a2f-ab58-4e2483fe8c34.png"></p>
+<ul>
+<li><font style="color:#DF2A3F;">意义：</font>建立了神经网络大厦的地基， 标志着神经网络研究的开始  。</li>
+<li><font style="color:#DF2A3F;">不足：</font>权值是预先设定的，因此不能学习</li>
+</ul>
+<h3 id="2-1949年-Hebb学习规则"><a href="#2-1949年-Hebb学习规则" class="headerlink" title="2.1949年 Hebb学习规则"></a>2.1949年 Hebb学习规则</h3><ul>
+<li><strong><font style="color:rgba(0, 0, 0, 0.75);">Hebb规则（无监督学习规则）：</font></strong><font style="color:rgba(0, 0, 0, 0.75);">心理学家赫布（Hebb）出版了《The Organization of Behavior》（行为组织学），他在书中提出了突触连接强度可变的假设。可变性是学习和记忆的基础。</font></li>
+</ul>
+<p>:::success<br>此时，认为人脑神经细胞的突触（也就是连接）上的强度是可以变化的，科学家们开始考虑用调整权值的方法来让机器学习</p>
+<p>:::</p>
+<ul>
+<li><strong><font style="color:rgba(0, 0, 0, 0.75);">Delta学习规则（有监督学习规则）1960年：</font></strong><font style="color:rgba(0, 0, 0, 0.75);">Delta学习规则（Delta Rule）由伯纳德·维德罗（Bernard Widrow）和马塞尔·霍夫（Marcian Hoff）于1960年在开发自适应线性元件（ADALINE）时提出。该规则是一种梯度下降学习算法，旨在通过最小化输出与期望值之间的均方误差来更新单层神经网络中输入权重。</font></li>
+</ul>
+<h3 id="3-1957年-两层神经元组成的神经网络——感知器"><a href="#3-1957年-两层神经元组成的神经网络——感知器" class="headerlink" title="3.1957年 两层神经元组成的神经网络——感知器"></a>3.1957年 两层神经元组成的神经网络——感知器</h3><ul>
+<li><font style="color:rgba(0, 0, 0, 0.75);">感知器模型：1957 年，罗森勃拉特（Rosenblatt）以M-P 模型为基础，提出了感知器（Perceptron）模型，</font><font style="color:rgb(77, 77, 77);">由两层神经元组成的神经网络，</font><font style="color:rgba(0, 0, 0, 0.75);">即为单层的人工神经网络，以区别于较复杂的多层感知机（Multilayer Perceptron）。一个一个样本进行调节。激活函数实际为阶跃函数。</font></li>
+</ul>
+<p>:::success<br>感知机为首个可以学习的人工神经网络， 最早的可训练神经网络之一。 感知机类似一个逻辑回归模型，可以做线性分类任务。</p>
+<p>分类效果：决策分界（用n-1维的超平面划分n维的数据）</p>
+<!-- 这是一张图片，ocr 内容为： -->
+<p><img src="/images/misc-optimization/image_008_1743864577980-0e14ee08-5f54-46a6-8cac-830cc7f58663.png"></p>
+<p>:::</p>
+<ul>
+<li>感知器模型（在MP基础上在输入的位置添加神经元节点—&gt;输入单元）：</li>
+</ul>
+<!-- 这是一张图片，ocr 内容为： -->
+<p><img src="/images/misc-optimization/image_009_1743844222261-89698afd-9b8c-4517-818c-d157a44137f1.png"></p>
+<ul>
+<li><font style="color:#DF2A3F;">改进：</font>感知器中的权值是通过训练得到的</li>
+<li><font style="color:#DF2A3F;">不足：</font>感知器只能做简单的线性分类任务，连<font style="color:rgb(77, 77, 77);">XOR（异或）这样的简单分类任务都无法解决，如果增加一个计算层，不仅能解决异或问题，还能有非常好的非线性分类效果，但是计算量过大，而且没有有效的学习算法</font></li>
+</ul>
+<p><font style="color:rgb(77, 77, 77);"></font></p>
+<h3 id="4-伊辛模型（Ising-Model）1920年"><a href="#4-伊辛模型（Ising-Model）1920年" class="headerlink" title="4.伊辛模型（Ising Model）1920年"></a><font style="color:rgb(77, 77, 77);">4.伊辛模型（Ising Model）1920年</font></h3><ul>
+<li><strong>伊辛模型（Ising Model）</strong>是<u>统计物理学</u>中用于描述铁磁性物质相变行为的数学模型。该模型由物理学家威廉·楞次（Wilhelm Lenz）于1920年提出，并由其学生恩斯特·伊辛（Ernst Ising）在1924年的博士论文中研究。</li>
+<li><strong>模型概述：</strong><font style="color:rgb(77, 77, 77);">伊辛模型将物质视为由规则排列的自旋组成的晶格系统。每个自旋（磁矩）具有两个可能的取向，通常表示为+1（向上）或−1（向下），对应于自旋的两种状态。这些自旋位于晶格的节点上，</font><u><font style="color:rgb(77, 77, 77);">并且仅与其相邻的自旋发生相互作用</font></u><font style="color:rgb(77, 77, 77);">。</font><u><font style="color:#DF2A3F;">相邻的自旋如果一致，则具有比不一致的自旋更低的能量</font></u><font style="color:rgb(32, 33, 34);">；系统趋向于最低能量，</font><u><font style="color:rgb(32, 33, 34);">但热量会干扰这种趋势</font></u><font style="color:rgb(32, 33, 34);">，从而产生不同结构相的可能性。该模型允许识别相变，作为现实简化的模型。二维正方形晶格伊辛模型是显示相变的简单统计模型之一。</font></li>
+<li><strong>相变行为：</strong><ul>
+<li><font style="color:rgb(77, 77, 77);">伊辛模型成功地解释了铁磁物质在临界温度（居里温度）下的相变现象：</font><ul>
+<li>**低温阶段（T &lt; T_c）：**<font style="color:rgb(77, 77, 77);">自旋倾向于自发地对齐，导致系统表现出宏观磁化，即铁磁性。</font></li>
+<li><strong>高温阶段（T &gt; T_c）：</strong><font style="color:rgb(77, 77, 77);">热扰动使自旋随机取向，系统呈现</font><u><font style="color:rgb(77, 77, 77);">无序状态</font></u><font style="color:rgb(77, 77, 77);">，宏观上无磁化，即顺磁性。</font></li>
+</ul>
+</li>
+<li><font style="color:rgb(77, 77, 77);">在临界温度T_c附近，系统经历从有序到无序的相变，表现出临界现象，如自发磁化的消失和磁化率的发散。</font></li>
+</ul>
+</li>
+<li>哈密顿量（能量函数）的公式：<ol>
+<li>一般形式的哈密顿量</li>
+</ol>
+</li>
+</ul>
+<!-- 这是一张图片，ocr 内容为：对于由自旋8;土1组成的系统,伊辛模型的哈密顿量为: I H三-J SISJ-H SI 其中: J:交换耦合常数,描述近邻自旋的相互作用. .J>0:铁磁相互作用(自旋倾向于同向排列). J<0:反铁磁相互作用(自旋倾向于反向排列). (I,J):表示对最近邻的自旋对求和(通常为一维链,二维方格或三维晶格). H:外磁场强度,驱动自旋沿磁场方向排列. SI,SJ:第I和第J个格点的自旋变量(取值为+1). -->
+<p><img src="/images/misc-optimization/image_010_1745049157920-19e53e6e-239f-407b-9740-7eee6a99b777.png"></p>
+<pre><code>2. 无外场
+</code></pre>
+<!-- 这是一张图片，ocr 内容为：对于由N个自旋S;E{-1,+1}组成的系统,其哈密顿量为: H-J-SISIS; 后,J) J:耦合常数(J>0为铁磁性,J<0为反铁磁性). (I):仅对最近邻自旋对求和(如晶格中的相邻格点). -->
+<p><img src="/images/misc-optimization/image_011_1745048981833-fbc6c9d3-3d7a-4327-ac93-e67d86904368.png"></p>
+<p>:::success<br><font style="color:rgb(77, 77, 77);">理解</font></p>
+<p><font style="color:rgb(77, 77, 77);">伊辛模型是一种全连接结构型（错误</font><font style="color:rgb(77, 77, 77);">❌</font><font style="color:rgb(77, 77, 77);">）</font></p>
+<p><font style="color:rgb(77, 77, 77);">当一个磁铁物质的总能量被剥离基态后，它会有回到基态的趋势。<br></font><font style="color:rgb(77, 77, 77);"> 	人群的从众趋势，事物趋于基态的趋势。</font></p>
+<p>:::</p>
+<h3 id="5-1982年-Hopfield神经网络模型"><a href="#5-1982年-Hopfield神经网络模型" class="headerlink" title="5.1982年 Hopfield神经网络模型"></a>5.1982年 Hopfield神经网络模型</h3><ul>
+<li><strong><font style="color:rgba(0, 0, 0, 0.75);">Hopfield模型：1982年</font></strong><font style="color:rgba(0, 0, 0, 0.75);">，受到伊辛模型的启发，神经网络是否可以全连接。美国物理学家霍普菲尔德（Hopfield）提出了一种</font><strong><font style="color:rgba(0, 0, 0, 0.75);">离散神经网络</font></strong><font style="color:rgba(0, 0, 0, 0.75);">，即离散Hopfield网络，从而有力地推动了神经网络的研究。在网络中，Hopfield把最优化问题的目标函数转换成 Hopfield 神经网络的能量函数，通过网络能量函数最小化来寻找对应问题的最优解,证明了网络的稳定性。</font></li>
+</ul>
+<p>（Hopfield神经网络是一种递归神经网络，从输出到输入有反馈连接—&gt;全连接）</p>
+<ul>
+<li><strong><font style="color:rgba(0, 0, 0, 0.75);">1984年</font></strong><font style="color:rgba(0, 0, 0, 0.75);">，Hopfield 又提出了一种</font><strong><font style="color:rgba(0, 0, 0, 0.75);">连续神经网络</font></strong><font style="color:rgba(0, 0, 0, 0.75);">，将网络中神经元的激活函数由离散型改为连续型。</font></li>
+<li><strong><font style="color:rgba(0, 0, 0, 0.75);">1985 年</font></strong><font style="color:rgba(0, 0, 0, 0.75);">，Hopfield和Tank利用Hopfield神经网络解决了著名的旅行推销商问题（TSP）</font></li>
+<li><strong><font style="color:rgba(0, 0, 0, 0.75);">功能：</font></strong><font style="color:#DF2A3F;">有联想记忆的功能，输入图片的一部分，可以自动补全</font></li>
+</ul>
+<p>:::success<br><font style="color:rgba(0, 0, 0, 0.75);">理解</font></p>
+<p><font style="color:rgba(0, 0, 0, 0.75);">对于Hopfield网络，把网络的基态训练好，随便输入图形就会回到网络基态（对应的网络能量函数的最小值）。原理是：该网络的工作原理基于能量函数，系统通过状态更新逐步减少能量，最终收敛到一个稳定状态，对应于存储的模式。  </font></p>
+<p>:::</p>
+<p>:::color1<br>提出的原因</p>
+<ul>
+<li><font style="color:rgb(64, 64, 64);">霍普菲尔德原本是物理学家，研究</font><strong><font style="color:rgb(64, 64, 64);">磁性材料中的自旋系统</font></strong><font style="color:rgb(64, 64, 64);">（伊辛模型）。他发现，</font><strong><font style="color:rgb(64, 64, 64);">磁性材料中的原子自旋会自发排列以降低系统能量</font></strong><font style="color:rgb(64, 64, 64);">，这与</font><strong><font style="color:rgb(64, 64, 64);">神经网络的状态演化</font></strong><font style="color:rgb(64, 64, 64);">有相似之处</font><font style="color:rgb(64, 64, 64);background-color:rgb(229, 229, 229);"></font></li>
+<li><font style="color:rgb(64, 64, 64);">他意识到，</font><strong><font style="color:rgb(64, 64, 64);">神经网络的动力学行为可以用“能量函数”来描述</font></strong><font style="color:rgb(64, 64, 64);">，类似于物理系统的自由能。通过引入</font><strong><font style="color:rgb(64, 64, 64);">能量最小化</font></strong><font style="color:rgb(64, 64, 64);">的概念，他构建了一个能够</font><strong><font style="color:rgb(64, 64, 64);">自动收敛到稳定状态</font></strong><font style="color:rgb(64, 64, 64);">的网络模型</font><font style="color:rgb(64, 64, 64);background-color:rgb(229, 229, 229);"></font></li>
+<li><font style="color:rgb(64, 64, 64);">这一思想使得霍普菲尔德网络能够像物理系统一样，</font><strong><font style="color:rgb(64, 64, 64);">从初始状态演化到能量最低的稳定状态</font></strong><font style="color:rgb(64, 64, 64);">，从而实现</font><strong><font style="color:rgb(64, 64, 64);">模式存储与联想记忆</font></strong><font style="color:rgb(64, 64, 64);">的功能</font><font style="color:rgb(64, 64, 64);background-color:rgb(229, 229, 229);"></font></li>
+</ul>
+<p>:::</p>
+<h3 id="6-1983年-“隐单元”的概念被首次提出-—-基于此设计出了玻尔兹曼机"><a href="#6-1983年-“隐单元”的概念被首次提出-—-基于此设计出了玻尔兹曼机" class="headerlink" title="6.1983年 “隐单元”的概念被首次提出 —&gt; 基于此设计出了玻尔兹曼机"></a>6.1983年 “隐单元”的概念被首次提出 —&gt; 基于此设计出了玻尔兹曼机</h3><ul>
+<li>1985年，杰弗里·辛顿（Geoffrey Hinton）和泰伦斯·塞诺夫斯基（Terry Sejnowski）提出了玻尔兹曼机，这是一种<u>随机递归神经网络</u>，<strong>能够学习数据的概率分布</strong>。玻尔兹曼机通过引入<strong>随机性和模拟退火过程</strong>，使网络能够跳出局部最小值，找到<strong>全局最优解</strong>。该模型的理论基础源于统计力学中的<strong>玻尔兹曼分布</strong>，体现了物理学与人工智能的交叉融合。</li>
+</ul>
+<p>:::success<br>理解</p>
+<p>玻尔兹曼机，在Hopfield网络上增加一些隐藏单元，是一种由随机神经元全连接组成的反馈神经网路，其中只包含一个可见层和一个隐藏层。</p>
+<p>:::</p>
+<ul>
+<li>玻尔兹曼机和Hopfield网络的区别：<ul>
+<li>H网络的神经元要么是1，要么是0，玻尔兹曼机的神经元是在两个状态之间来回横跳，是一种概率状态，满足玻尔兹曼分布。同时，也受温度的影响，可以在温度的帮助下找到全局最优解（模拟退火过程）</li>
+</ul>
+</li>
+<li>受限玻尔兹曼机：全连接的玻尔兹曼机参数过多 ，训练起来太麻烦，故将可见层的连接断开，只与隐藏层相连。</li>
+</ul>
+<p>:::color1<br>提出的原因 </p>
+<p>受<u>霍普菲尔德网络（Hopfield Network）的启发</u>，研究者希望构建一种能够<u>模拟人脑联想记忆功能</u>的网络模型。然而，霍普菲尔德网络在处理复杂模式时存在<u>容量限制</u>和易陷入<u>局部最优的问题</u>。玻尔兹曼机采用<u>模拟退火算法</u>，通过逐步降低系统的“温度”，使网络状态逐渐趋于稳定，从而找到<u>全局最优解</u>。  </p>
+<p><font style="color:rgb(64, 64, 64);">在1980年代，传统的神经网络（如感知机）主要依赖监督学习，需要大量标注数据，且难以处理复杂的概率分布问题。玻尔兹曼机的提出是为了探索一种无监督学习机制，能够从数据中自动学习概率分布，而无需依赖人工标注</font><font style="color:rgb(64, 64, 64);background-color:rgb(229, 229, 229);"></font><font style="color:rgb(64, 64, 64);">。</font></p>
+<p><font style="color:rgb(64, 64, 64);">玻尔兹曼机借鉴了统计物理学中的</font><strong><font style="color:rgb(64, 64, 64);">玻尔兹曼分布</font></strong><font style="color:rgb(64, 64, 64);">（Boltzmann Distribution），将神经网络的状态建模为</font><u><font style="color:rgb(64, 64, 64);">能量函数的最小化问题</font></u><font style="color:rgb(64, 64, 64);">。其核心思想是：</font></p>
+<ul>
+<li><font style="color:rgb(64, 64, 64);">每个神经元的状态（激活&#x2F;未激活）由能量函数决定。（随机性）</font></li>
+<li><font style="color:rgb(64, 64, 64);">网络的稳定状态对应于能量最低的配置，即最可能的概率分布</font><font style="color:rgb(64, 64, 64);background-color:rgb(229, 229, 229);"></font><font style="color:rgb(64, 64, 64);">。</font></li>
+</ul>
+<p>:::</p>
+<h3 id="7-1986年-反向传播（BP）算法"><a href="#7-1986年-反向传播（BP）算法" class="headerlink" title="7.1986年 反向传播（BP）算法"></a><font style="color:rgba(0, 0, 0, 0.75);">7.1986年 反向传播（BP）算法</font></h3><ul>
+<li><font style="color:rgba(0, 0, 0, 0.75);">反向传播（BP）算法大卫·鲁梅尔哈特（David Rumelhart）、杰弗里·辛顿和罗纳德·威廉姆斯（Ronald Williams）发表了关于反向传播算法的论文，推动了多层感知机的研究。</font></li>
+<li><font style="color:rgba(0, 0, 0, 0.75);">两层神经网络的能够分类非线性分类任务的原因：</font></li>
+</ul>
+<!-- 这是一张图片，ocr 内容为： -->
+<p><img src="/images/misc-optimization/image_012_1743867315623-a41858a0-8cdc-4816-afc1-968447f3ce7f.png"></p>
+<p>中间层（隐藏层）的作用：使数据原始坐标空间从线性不可分转换成了线性可分</p>
+<!-- 这是一张图片，ocr 内容为： -->
+<p><img src="/images/misc-optimization/image_013_1743867330356-25b7a313-5282-4a1b-aab2-b22221f839e9.png"></p>
+<p>:::success</p>
+<ul>
+<li>将神经网络的过程用矩阵运算来描述（原因：矩阵X向量本质上是对向量的坐标空间进行变换）</li>
+<li>程序中用线性代数库实现神经网络</li>
+</ul>
+<p>（理解上面两点的原因：神经网络的原理可以用矩阵表示，而且神经网络中结点的增加不会影响矩阵运算的复杂度）</p>
+<p>:::</p>
+<ul>
+<li><font style="color:#DF2A3F;">意义：</font><ul>
+<li>两层的神经网络可以无限逼近任意连续函数</li>
+<li>使多层感知器在实际应用中得到广泛采用</li>
+</ul>
+</li>
+</ul>
+<p>:::success<br>训练：使用机器学习相关技术进行神经网络的训练，优化参数使损失函数的值最小（成为一个优化问题）&lt;— 用梯度下降法+反向传播算法</p>
+<p>:::</p>
+<ul>
+<li><font style="color:#DF2A3F;">不足：</font>一次神经网络的仍然耗时太久，存在局部最优解的问题</li>
+</ul>
+<h3 id="8-1989年-将反向传播算法应用于卷积神经网络"><a href="#8-1989年-将反向传播算法应用于卷积神经网络" class="headerlink" title="8.1989年 将反向传播算法应用于卷积神经网络"></a><font style="color:rgba(0, 0, 0, 0.75);">8.1989年 将反向传播算法应用于卷积神经网络</font></h3><ul>
+<li>扬·勒昆（Yann LeCun）等人将反向传播算法应用于卷积神经网络，成功用于手写数字识别，开发了LeNet模型。</li>
+</ul>
+<h3 id="9-1997年-长短期记忆网络（LSTM）"><a href="#9-1997年-长短期记忆网络（LSTM）" class="headerlink" title="9.1997年 长短期记忆网络（LSTM）"></a><font style="color:rgba(0, 0, 0, 0.75);">9.1997年 长短期记忆网络（LSTM）</font></h3><ul>
+<li><font style="color:rgba(0, 0, 0, 0.75);">塞普·霍赫赖特（Sepp Hochreiter）和于尔根·施密德胡贝尔（Jürgen Schmidhuber）提出了长短期记忆网络（LSTM），解决了递归神经网络中的长期依赖问题。</font></li>
+</ul>
+<h3 id="10-2006年-深度信念网络"><a href="#10-2006年-深度信念网络" class="headerlink" title="10.2006年 深度信念网络"></a>10.2006年 深度信念网络</h3><ul>
+<li><font style="color:rgba(0, 0, 0, 0.75);">杰弗里·辛顿等人提出了深度信念网络（Deep Belief Network），引发了深度学习的研究热潮。</font><strong><font style="color:rgba(0, 0, 0, 0.75);">深度信念网络（Deep Belief Network，简称DBN）</font></strong><font style="color:rgba(0, 0, 0, 0.75);">是一种深度生成式模型，由Geoffrey Hinton于2006年提出。它通过堆叠多个受限玻尔兹曼机（Restricted Boltzmann Machines，RBM）构成，每个RBM的隐藏层作为下一层的可见层，从而形成多层结构。</font></li>
+<li><strong>结构与训练过程（预训练+微调）：</strong><ol>
+<li><strong>逐层预训练</strong><font style="color:rgba(0, 0, 0, 0.75);">：</font><font style="color:rgba(0, 0, 0, 0.75);">首先，对最底层的RBM进行无监督训练，使其学习输入数据的特征表示。训练完成后，固定该层的参数，将其隐藏层的激活值作为下一层RBM的输入。</font></li>
+<li><strong>重复上述过程</strong><font style="color:rgba(0, 0, 0, 0.75);">：</font><font style="color:rgba(0, 0, 0, 0.75);">对每一层RBM重复上述训练步骤，直至所有层都经过预训练。</font></li>
+<li><strong>微调</strong><font style="color:rgba(0, 0, 0, 0.75);">：在完成所有层的预训练后，可以采用有监督的方式（如反向传播算法）对整个网络进行微调，以适应特定的任务需求。</font></li>
+</ol>
+</li>
+</ul>
+<p>:::success</p>
+<ul>
+<li>预训练：<font style="color:rgb(77, 77, 77);">可以方便的让神经网络中的权值找到一个接近最优解的值</font></li>
+<li><font style="color:rgb(77, 77, 77);">微调：对整个网络进行优化训练</font></li>
+</ul>
+<p>:::</p>
+<ul>
+<li>意义：<ul>
+<li>大幅度减少训练多层神经网络的时间</li>
+<li>更深入的表示特征，更强的函数模拟能力</li>
+<li>将多层神经网络相关的学习方法命名为深度学习，</li>
+</ul>
+</li>
+<li>不足：会出现过拟合现象</li>
+</ul>
+<p> 需要注意的是，随着深度学习技术的不断发展，新的模型架构（如卷积神经网络和循环神经网络）在许多应用中表现出更优异的性能，因此DBN的使用逐渐减少。  </p>
+<h2 id="神经网络发展历史时间轴"><a href="#神经网络发展历史时间轴" class="headerlink" title="神经网络发展历史时间轴"></a>神经网络发展历史时间轴</h2><!-- 这是一张图片，ocr 内容为： -->
+<p><img src="/images/misc-optimization/image_014_1743840243769-269f0fa1-eac6-4b1c-ad97-bec4f233bf5a.png"></p>
+<!-- 这是一张图片，ocr 内容为： -->
+<p><img src="/images/misc-optimization/image_015_1743840266891-c16b54cb-9175-4ab3-8646-a8ea98803a99.png"></p>
+<!-- 这是一张图片，ocr 内容为： -->
+<p><img src="/images/misc-optimization/image_016_1743840278798-7b293d48-3831-4171-a716-5e6cfe6d1ecf.png"></p>
+<h2 id="神经网路的分类"><a href="#神经网路的分类" class="headerlink" title="神经网路的分类"></a>神经网路的分类</h2><!-- 这是一张图片，ocr 内容为： -->
+<p><img src="/images/misc-optimization/image_017_1743840353379-96d4c4a2-6f4a-4169-87f4-d5a18d2fd3dc.png"></p>
+<h2 id="神经网络的主要应用进展："><a href="#神经网络的主要应用进展：" class="headerlink" title="神经网络的主要应用进展："></a>神经网络的主要应用进展：</h2><ul>
+<li><strong>1989年</strong>：<strong>LeNet的应用</strong>：由Yann LeCun等人开发的LeNet-5模型成功应用于手写数字识别，特别是在邮政编码的自动识别中，<u>标志着卷积神经网络（CNN）在计算机视觉领域的首次实用化</u>。</li>
+<li><strong>2012年</strong>：<strong>AlexNet在ImageNet竞赛中的突破</strong>：Alex Krizhevsky等人设计的AlexNet在ImageNet大规模视觉识别挑战赛中取得了显著成绩，展示了<u>深度卷积神经网络</u>在图像分类任务中的强大性能，推动了<u>深度学习</u>在计算机视觉领域的广泛应用。</li>
+<li><strong>2014年</strong>：<strong>生成对抗网络（GAN）的提出</strong>：Ian Goodfellow等人提出了<u>生成对抗网络（GAN）</u>，为图像生成、风格迁移等任务提供了新的方法，广泛应用于图像处理和内容创作领域。</li>
+<li><strong>2015年</strong>：<strong>ResNet的推出</strong>：何恺明等人提出了<u>残差网络（ResNet）</u>，解决了深层网络训练中的退化问题，在图像识别等任务中取得了卓越表现，进一步推动了<u>深度学习</u>模型的深化应用。</li>
+<li><strong>2016年</strong>：<strong>AlphaGo战胜人类围棋冠军</strong>：DeepMind开发的AlphaGo程序击败了围棋世界冠军李世石，展示了<u>深度强化学习</u>在复杂策略游戏中的应用潜力，标志着人工智能在决策和策略制定领域的重大突破。 </li>
+<li><strong>2017年</strong>：<strong>Transformer架构的提出</strong>：Google的研究人员提出了<u>Transformer模型</u>，采用自注意力机制，成为自然语言处理领域的基础架构，广泛应用于机器翻译、文本生成等任务。</li>
+<li><strong>2018年</strong>：<strong>BERT模型的发布</strong>：Google发布了BERT（Bidirectional Encoder Representations from Transformers），在多项自然语言处理任务中取得了显著提升，推动了预训练语言模型的应用。</li>
+<li><strong>2020年</strong>：<strong>GPT-3的发布</strong>：OpenAI发布了GPT-3，一个拥有1750亿参数的语言模型，其在文本生成、问答等任务中表现出色，成为自然语言处理领域的重要里程碑。</li>
+<li><strong>2021年</strong>：<strong>DALL·E的推出</strong>：OpenAI发布了DALL·E模型，能够根据文本描述生成图像，展示了<u>多模态神经网络</u>在内容创作领域的应用潜力。</li>
+<li><strong>2022年</strong>：<strong>ChatGPT的发布</strong>：OpenAI推出了ChatGPT，一个基于GPT-3.5的对话模型，能够与用户进行自然语言交互，广泛应用于客服、教育等领域。</li>
+</ul>
+<h1 id="神经网络和优化算法的关系："><a href="#神经网络和优化算法的关系：" class="headerlink" title="神经网络和优化算法的关系："></a><strong>神经网络和优化算法的关系</strong>：</h1><h4 id="1-神经网络本身是一个算法："><a href="#1-神经网络本身是一个算法：" class="headerlink" title="1. 神经网络本身是一个算法："></a>1. <strong>神经网络本身是一个算法</strong>：</h4><p><strong>神经网络</strong>（如<strong>人工神经网络</strong>）本身是一种解决机器学习任务的算法。它由多个神经元组成，层与层之间通过连接进行信息传递和处理。这种网络需要<strong>训练</strong>来学习从输入到输出的映射关系。</p>
+<h4 id="2-训练神经网络是一个优化问题："><a href="#2-训练神经网络是一个优化问题：" class="headerlink" title="2. 训练神经网络是一个优化问题："></a>2. <strong>训练神经网络是一个优化问题</strong>：</h4><p>在训练神经网络时，我们面临一个优化问题：即如何调整网络中的<strong>权重</strong>和<strong>偏置</strong>，使得网络的预测结果尽可能接近真实值，通常通过<strong>最小化损失函数</strong>（如均方误差或交叉熵）来进行优化。</p>
+<p>这个优化过程就是一个典型的<strong>优化问题</strong>，其中我们试图<strong>最小化损失函数</strong>，所以训练神经网络可以看作是在<strong>优化</strong>一个目标函数（损失函数）。</p>
+<h4 id="3-训练神经网络依赖优化算法："><a href="#3-训练神经网络依赖优化算法：" class="headerlink" title="3. 训练神经网络依赖优化算法："></a>3. <strong>训练神经网络依赖优化算法</strong>：</h4><p>训练神经网络时，使用的<strong>优化算法</strong>（如<strong>梯度下降法</strong>）用来找到最优的网络参数（权重和偏置）。这些优化算法通过反向传播和梯度计算来调整权重，以减少训练误差。</p>
+<ul>
+<li><strong>梯度下降（Gradient Descent）</strong>：最常用的优化算法，它通过计算损失函数的梯度，并根据梯度方向更新网络权重，目的是最小化损失函数。</li>
+<li><strong>Adam</strong>、<strong>RMSProp</strong> 等优化算法则是对梯度下降法的改进，能在训练时更有效地调整学习率。</li>
+</ul>
+<h1 id="Metropolis准则"><a href="#Metropolis准则" class="headerlink" title="Metropolis准则"></a><font style="color:rgb(79, 79, 79);">Metropolis准则</font></h1><p><font style="color:rgb(77, 77, 77);">模拟退火算法包含两个部分即Metropolis算法和退火过程。</font></p>
+<p>:::success<br><font style="color:rgb(77, 77, 77);">理解</font></p>
+<p><font style="color:rgb(77, 77, 77);">metropolis准则是模拟退火算法中的差解接受机制</font></p>
+<p>:::</p>
+<h2 id="蒙特卡洛方法"><a href="#蒙特卡洛方法" class="headerlink" title="蒙特卡洛方法"></a><font style="color:rgb(77, 77, 77);">蒙特卡洛方法</font></h2><p><font style="background-color:#FBDE28;">只要加入了随机性，就可以说它是蒙特卡洛方法</font></p>
+<ul>
+<li><strong><font style="color:rgb(51, 51, 51);">概念：</font></strong><font style="color:rgb(51, 51, 51);">蒙特卡罗法也称统计</font><a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E6%A8%A1%E6%8B%9F%E6%B3%95/9794774?fromModule=lemma_inlink"><font style="color:rgb(19, 110, 194);">模拟法</font></a><font style="color:rgb(51, 51, 51);">、统计试验法。是1940年代中期提出的一种把</font><u><font style="color:rgb(51, 51, 51);">概率现象</font></u><font style="color:rgb(51, 51, 51);">作为研究对象的</font><u><font style="color:rgb(51, 51, 51);">数值模拟</font></u><font style="color:rgb(51, 51, 51);">方法。是按</font><a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E6%8A%BD%E6%A0%B7%E8%B0%83%E6%9F%A5%E6%B3%95/1337766?fromModule=lemma_inlink"><font style="color:rgb(19, 110, 194);">抽样调查法</font></a><font style="color:rgb(51, 51, 51);">求取统计值来推定未知特性量的计算方法。蒙特卡罗是</font><a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E6%91%A9%E7%BA%B3%E5%93%A5/127488?fromModule=lemma_inlink"><font style="color:rgb(19, 110, 194);">摩纳哥</font></a><font style="color:rgb(51, 51, 51);">的著名赌城，该法为表明其随机抽样的本质而命名。故适用于对离散系统进行计算仿真试验。在计算仿真中，通过构造一个和系统性能相近似的</font><u><font style="color:rgb(51, 51, 51);">概率模型</font></u><font style="color:rgb(51, 51, 51);">，并在</font><a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E6%95%B0%E5%AD%97%E8%AE%A1%E7%AE%97%E6%9C%BA/1531105?fromModule=lemma_inlink"><font style="color:rgb(19, 110, 194);">数字计算机</font></a><font style="color:rgb(51, 51, 51);">上进行随机试验，可以模拟系统的随机特性。</font><sup><font style="color:rgb(51, 102, 204);"> </font></sup></li>
+</ul>
+<p><font style="color:#DF2A3F;">注意：</font><font style="color:#DF2A3F;">这个方法是一类基于概率的方法的</font><strong><font style="color:#DF2A3F;">统称</font></strong><font style="color:#DF2A3F;">，不是特指一种方法。</font></p>
+<ul>
+<li><strong><font style="color:#000000;">蒙特卡罗解决的两类问题：</font></strong><ol>
+<li><strong>模拟预测问题：</strong>通过将含有随机性无法直接按数值进行求解的问题进行<u>建模</u>，然后进行<strong>多次模拟</strong>，最后的输出就是对实际发生结果的<u>预测</u>。<ul>
+<li><font style="color:rgb(25, 27, 31);">例如在</font><a target="_blank" rel="noopener" href="https://zhida.zhihu.com/search?content_id=170151628&content_type=Article&match_order=1&q=%E6%A0%B8%E7%89%A9%E7%90%86%E7%A0%94%E7%A9%B6&zhida_source=entity"><font style="color:rgb(9, 64, 142);">核物理研究</font></a><font style="color:rgb(25, 27, 31);">中，分析中子在反应堆中的传输过程。中子与原子核作用受到量子力学规律的制约，人们只能知道它们相互作用发生的概率，却无法准确获得中子与原子核作用时的位置以及裂变产生的新中子的行进速率和方向。科学家依据其概率进行随机抽样得到裂变位置、速度和方向，这样模拟大量中子的行为后，经过统计就能获得中子传输的范围，作为反应堆设计的依据。</font></li>
+</ul>
+</li>
+<li><strong><font style="color:rgb(25, 27, 31);">复杂多维积分问题：</font></strong><font style="color:rgb(25, 27, 31);">所求解问题可以转化为某种随机分布的特征数，比如随机事件出现的概率，或者随机变量的期望值。</font><strong><font style="color:#DF2A3F;">通过随机抽样的方法，以随机事件出现的频率估计其概率</font></strong><font style="color:rgb(25, 27, 31);">，或者以抽样的数字特征估算随机变量的数字特征，并将其作为问题的解。这种方法多用于求解复杂的多维积分问题。</font></li>
+</ol>
+</li>
+<li><strong>经典例子：</strong><ul>
+<li>计算不规则图形的面积</li>
+<li>求复杂函数的定积分</li>
+<li>圆周率<font style="color:rgb(25, 27, 31);">π</font><font style="color:rgb(25, 27, 31);"> 值求解</font></li>
+</ul>
+</li>
+<li>常见的蒙特卡洛法：<ul>
+<li>直接抽样（可以对目标分布直接进行采样）：<ul>
+<li>适用于可以直接从目标分布中采样的情况。例如，从标准正态分布中生成随机数。</li>
+</ul>
+</li>
+<li>接受-拒绝抽样法（目标分布复杂，无法直接进行采样）：<ul>
+<li>适用于目标分布复杂，无法直接采样的情况。该方法通过从一个易于采样的建议分布中生成样本，并根据一定的接受概率决定是否接受该样本。</li>
+</ul>
+</li>
+<li>重要性抽样法（目标分布复杂，无法直接进行采样）：<ul>
+<li>适用于目标分布复杂，但可以从另一个易于采样的分布中生成样本，并通过对样本赋予权重来估计目标分布的特征。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>:::success<br>理解</p>
+<p>核心就是通过大量随机试验（随机抽样）来逼近问题的真实解。  </p>
+<p><font style="color:rgba(0, 0, 0, 0.75);">蒙特卡罗法要解决的问题是，假设概率分布的定义己知，通过抽样获得概率分布的随机样本，并通过得到的随机样本对概率分布的特征进行分析。所以</font><strong><font style="color:rgba(0, 0, 0, 0.75);">蒙特卡罗法的核心是随机抽样</font></strong></p>
+<pre><code>- &lt;font style=&quot;color:rgba(0, 0, 0, 0.75);&quot;&gt;e.g. 从样本计算出样本均值，从而估计总体期望&lt;/font&gt;
+</code></pre>
+<p>:::</p>
+<h2 id="马尔科夫链"><a href="#马尔科夫链" class="headerlink" title="马尔科夫链"></a><font style="color:rgb(77, 77, 77);">马尔科夫链</font></h2><ul>
+<li><strong><font style="color:rgb(25, 27, 31);">概念：</font></strong><font style="color:rgb(25, 27, 31);">俄国数学家 Andrey Andreyevich Markov 研究并提出一个用数学方法就能解释自然变化的一般规律模型，被命名为马尔科夫链（Markov Chain）。马尔科夫链为状态空间中经过从一个状态到另一个状态的转换的随机过程，该过程要求具备“</font><strong><font style="color:rgb(25, 27, 31);">无记忆性</font></strong><font style="color:rgb(25, 27, 31);"> ”，即下一状态的概率分布只能由当前状态决定，在时间序列中它前面的事件均与之无关。这种特定类型的“</font><strong><font style="color:rgb(25, 27, 31);">无记忆性</font></strong><font style="color:rgb(25, 27, 31);"> ”称作</font><u><font style="color:rgb(25, 27, 31);">马尔可夫性质</font></u><font style="color:rgb(25, 27, 31);">。</font></li>
+</ul>
+<p>:::success<br><font style="color:rgb(25, 27, 31);">马尔科夫链的思想：过去所有的信息都已经被保存到了现在的状态，基于现在就可以预测未来。</font></p>
+<p>:::</p>
+<ul>
+<li><strong>马尔科夫链在机器学习中的应用：</strong><font style="color:rgb(25, 27, 31);">语言模型N-Gram是一种简单有效的语言模型，基于独立输入假设：第 n 个词的出现只与前面 N-1 个词相关，而与其它任何词都不相关 。整句出现的概率就是各个词出现概率的乘积。这些概率可以通过直接从语料中统计 N 个词同时出现的次数得到。</font></li>
+</ul>
+<!-- 这是一张图片，ocr 内容为：THE FOX LAZY THE BROWN JUMPED OVER QUICK DOG 1AZY THE ALE BROWN TOX OVER DOG QUICK LUMPED THE 122Y DOG FOX QUICK OVER BROWN 'UMPED THO LEZY DOG THE FOX BROWN JUMPED QUICK OVGT OVER THE JUMPED GUIEK FOX THE 132Y DOG BROWN THG 知平 BROWN 162Y THE GUICK JUMP6D FOX OVG1 -->
+<p><img src="/images/misc-optimization/image_018_1745053773447-f6d9f4f7-fe70-447d-99ed-b8c456cdf4d7.png"></p>
+<p>稳态：</p>
+<p>稳态不受初始状态影响，但并不是所有的马尔科夫链都具有唯一的稳态分布</p>
+<!-- 这是一张图片，ocr 内容为：4月19日周六 17:11 48% Y 数据库系统概论第6版... 数据库系统概论 自学笔记 山口山 马尔可夫链 一本质一种国机过程 关键在或情会和性质邻接矩阵 10 利用 7.0 用来预测吗? 0 一通希用一子列有向图来描述 马尔可夫链 0 5.0 05 矩阵中的毛寺里 条件概率 数学公式表式 (UH-NX 是表示连播两个对 应节点的边的权鱼 随视爱量的可能职值 出/少:老规佳 构成的可数集5为 发生次数 (行向堂) Z-LO 1 0 ] 多:达到稳态 该链的"状态空间" 元艺来不状态的概率 06 [02007] 九A二LO10 推出:门 士 未来概率 取决于 ON :  34 0.25 35 多贝 稳志 0 降的缓郁 O 0.5 存在一个稳态 两个行向量电全胡同 龙A二元由上达得) 解得稳态无工 线性代数中的 特征向量的等式 概平的性质 AV-70 马尔克夫维的具体应用 图像分类与识别 包诱省识别 自然语动理 全南安全项域 国生物作息学 性质,无记忆性,下一状态的概率分布只能由当前状态决定. 18/58 -->
+<p><img src="/images/misc-optimization/image_019_1745053961739-cb76af87-1143-4af3-83a2-ac9e18b49e66.jpeg"></p>
+<h2 id="马尔科夫蒙特卡洛（MCMC）方法"><a href="#马尔科夫蒙特卡洛（MCMC）方法" class="headerlink" title="马尔科夫蒙特卡洛（MCMC）方法"></a><font style="color:rgb(77, 77, 77);">马尔科夫蒙特卡洛（MCMC）方法</font></h2><ul>
+<li><strong>概念：</strong><ul>
+<li>马尔可夫链蒙特卡罗法也是一种<strong>随机采样方法，</strong><font style="color:rgb(77, 77, 77);">被应用于概率分布的估计、定积分的近似计算、最优化问题的近似求解等问题，特别是被应用于统计学习中概率模型的学习与推理，是重要的统计学习计算方法</font>。</li>
+<li>适合于<u>概率密度函数复杂</u>，不能直接抽样的情况，相比传统的蒙特卡罗法，如接受-拒绝法、重要性抽样法，马尔可夫链蒙特卡罗法更适合于<u>随机变量是多元的、密度函数是非标准形式的、随机变量各分量不独立等情况</u>，且抽样效率更高。</li>
+</ul>
+</li>
+<li><strong><font style="color:rgb(77, 77, 77);">基本思想：</font></strong></li>
+</ul>
+<!-- 这是一张图片，ocr 内容为：,马尔可夫链蒙特卡罗法的基本想法是:在随机变量X的状态空间S上定义一个满足遍历定理的马 尔可夫链X三{X,...........使其平稳分布就是抽样的目标分布(X).然后在这个马尔可 夫链上进行随机游走,每个时刻得到一个样本.根据遍历定理,当时间趋于无穷时,样本的分布 趋近平稳分布,样本的函数均值趋近函数的数学期望.所以,当时间足够长时(时刻大于某个正 整数M),在之后的时间(时刻小于等于某个正整数N,1>M)里随机游走得到的样本集合 {以+1,XM+2,....X.}就是目标概率分布的抽样结果,得到的函数均值(遍历均值)就是要计算 的数学期望值: F(2C3) N-M I三M+1 -->
+<p><img src="/images/misc-optimization/image_020_1745064067199-af1840d7-e9e5-4897-81d3-a435d41e3b2b.png"></p>
+<blockquote>
+<p>可见，若随机变量 x 是离散的，则应定义相应的离散状态马尔可夫链；若随机变量 x 是连续的，则应定义相应的连续状态马尔可夫链</p>
+</blockquote>
+<p>:::success<br><font style="color:rgb(77, 77, 77);">理解</font></p>
+<p><strong><font style="color:rgb(77, 77, 77);">蒙特卡罗法</font></strong><font style="color:rgb(77, 77, 77);">是通过从概率模型的随机抽样进行近似数值计算的方法。</font></p>
+<p><strong><font style="color:rgb(77, 77, 77);">马尔科夫链蒙特卡洛法</font></strong><font style="color:rgb(77, 77, 77);">是构建马尔科夫链为概率模型，然后再基于马尔科夫链进行蒙特卡洛法进行随机采样，由于马尔可夫链的稳态，可进行近似数值的计算。</font></p>
+<p>:::</p>
+<blockquote>
+<p>如何构建具体的马尔科夫链成为马尔科夫链蒙特卡洛法的关键。因此，马尔科夫链蒙特卡洛法中的具体方法（Metropolis 算法 、Metropolis-Hastings 算法）的核心为构建一个的马尔科夫链使其平稳分布为目标分布</p>
+</blockquote>
+<h2 id="Metropolis-算法"><a href="#Metropolis-算法" class="headerlink" title="Metropolis 算法"></a>Metropolis 算法</h2><ul>
+<li><strong>概念：Metropolis 算法</strong>是 1953 年由 Nicholas Metropolis 等人提出的 MCMC 方法，旨在从复杂的概率分布中采样。其核心思想是构建一个马尔可夫链，使其平稳分布为目标分布。该算法使用对称的建议分布（即从状态 A 到 B 的概率等于从 B 到 A 的概率），并通过接受-拒绝机制决定是否接受新状态。</li>
+<li>这个算法的<strong>核心接受规则</strong>就是<strong>Metropolis 准则</strong>。</li>
+</ul>
+<h2 id="Metropolis-Hastings-算法"><a href="#Metropolis-Hastings-算法" class="headerlink" title="Metropolis-Hastings 算法"></a><strong>Metropolis-Hastings 算法</strong></h2><ul>
+<li><strong>概念：</strong><strong><font style="color:rgba(0, 0, 0, 0.75);">Metropolis-Hastings 算法</font></strong><font style="color:rgba(0, 0, 0, 0.75);">是最基本的马尔可夫链蒙特卡罗法， Metropolis 等人在 1953 年提出原始的算法，Hastings 在1970 年对之加以推广，形成了现在的形式。</font><strong>Metropolis-Hastings 算法</strong>是对 Metropolis 算法的推广，由 W.K. Hastings 于 1970 年提出。它放宽了对称建议分布的限制，允许使用非对称的建议分布。为此，引入了一个更一般的接受概率公式，以确保马尔可夫链的平稳分布仍为目标分布。</li>
+</ul>
+<h2 id="Metropolis抽样"><a href="#Metropolis抽样" class="headerlink" title="Metropolis抽样"></a><font style="color:rgb(77, 77, 77);">Metropolis抽样</font></h2><ul>
+<li><strong>概念：Metropolis 抽样</strong><font style="color:rgb(77, 77, 77);">通常是指使用 Metropolis 或 Metropolis-Hastings 算法从目标分布中生成样本的过程。这个术语强调了通过这些算法进行的实际采样操作。</font></li>
+</ul>
+<h2 id="Metropolis-准则"><a href="#Metropolis-准则" class="headerlink" title="Metropolis 准则"></a><font style="color:rgb(77, 77, 77);">Metropolis 准则</font></h2><ul>
+<li><strong>概念及由来：</strong><ul>
+<li><strong>Metropolis 准则</strong>最初是为了解决物理系统中粒子的热平衡模拟问题。在模拟过程中，需要从玻尔兹曼分布中采样粒子的状态，但直接采样困难（<u>概率密度函数复杂</u>）。Metropolis 等人提出了通过构建马尔可夫链，并使用上述接受准则，从而实现对目标分布的有效采样 。  </li>
+<li><strong><font style="color:rgb(77, 77, 77);"></font></strong><font style="color:rgb(77, 77, 77);">1953 年，Metropolis 提出重要性采样，即以</font><strong><font style="color:rgb(77, 77, 77);">概率来接受新状态</font></strong><font style="color:rgb(77, 77, 77);">，而不是使用</font><strong><font style="color:rgb(77, 77, 77);">完全确定的规则</font></strong><font style="color:rgb(77, 77, 77);">，称为 Metropolis 准则，可以</font><strong><font style="color:rgb(77, 77, 77);">显著减小计算量</font></strong><font style="color:rgb(77, 77, 77);">。</font></li>
+<li><font style="color:rgb(77, 77, 77);">Metropolis 准则是 Metropolis 算法中的核心机制，用于决定是否接受一个新的候选样本。该准则的提出源于 1953 年 Nicholas Metropolis 等人发表的论文《Equation of State Calculations by Fast Computing Machines》，旨在通过构建马尔可夫链，从复杂的概率分布中采样，以模拟物理系统的热力学性质 。  </font></li>
+</ul>
+</li>
+<li><strong>Metropolis 准则在模拟退火算法中的应用</strong></li>
+</ul>
+<!-- 这是一张图片，ocr 内容为：E(N+1 )<E(M ) P EXP(-B(-B(NT1)-B(N) , E(N+1)E(N) T -->
+<p><img src="/images/misc-optimization/image_021_1744957415789-40f53a23-875f-47ab-bd5a-32832e6675f8.png"></p>
+<p><font style="color:rgb(77, 77, 77);"></font></p>
+<p>:::success<br><strong><font style="color:rgb(77, 77, 77);"> 接受-拒绝抽样法和 Metropolis准则的区别</font></strong></p>
+<p><font style="color:rgb(77, 77, 77);">接受-拒绝抽样法适用于低维、简单分布的直接采样，采样的样本之间是独立的。</font></p>
+<p><font style="color:rgb(77, 77, 77);">Metropolis 准则是 MCMC 方法中的核心，用于从高维复杂分布中采样，采样样本之间不是相互独立的 （样本构成马尔可夫链）  </font></p>
+<p>:::</p>
+<p>:::success<br><strong>蒙特卡洛法和马尔科夫链蒙特卡洛法的区别</strong></p>
+<p><font style="color:rgb(77, 77, 77);">蒙特卡罗法中的抽样样本是独立的，而马尔科夫链蒙特卡罗法中的抽样样本不是独立的，样本序列形成马尔科夫链</font></p>
+<p><font style="color:rgba(0, 0, 0, 0.75);">马尔可夫链蒙特卡罗法中得到的样本序列，相邻的样本点是相关的，而不是独立的。因此，</font><strong><font style="color:rgba(0, 0, 0, 0.75);">在需要独立样本时，可以在该样本序列中再次进行随机抽样，比如每隔一段时间取一次样本</font></strong><font style="color:rgba(0, 0, 0, 0.75);">，将这样得到的子样本集合作为独立样本集合</font></p>
+<p>:::</p>
+<p>:::success<br><strong>模拟退火算法和Metropolis算法之间的关系</strong></p>
+<p> 两者都使用 Metropolis 接受准则来决定是否接受新状态。  </p>
+<p>模拟退火算法可以看作是在 Metropolis 算法的基础上，引入温度参数并设计冷却策略，以实现从探索到收敛的过程。  </p>
+<p>:::</p>
+<h3 id="玻尔兹曼分布"><a href="#玻尔兹曼分布" class="headerlink" title="玻尔兹曼分布"></a><font style="color:rgb(77, 77, 77);">玻尔兹曼分布</font></h3><p><font style="color:rgb(77, 77, 77);">玻尔兹曼分布（Boltzmann distribution）是统计力学中的一个重要概率分布，用于描述在热力学平衡状态下，粒子在不同能量状态上的分布概率。该分布指出，系统中粒子处于某一能量状态的概率与该状态的能量和系统的温度有关。</font></p>
+<!-- 这是一张图片，ocr 内容为：73K 10 173 K 273K 373K 473K 573K 673K 773K 973K 1073K 1173K 1273K 4500 1500 2500 4000 3500 3000 500 2000 1000 PARTICLE SPEED(N -->
+<p><img src="/images/misc-optimization/image_022_1745067099929-d133f9e4-ab94-4770-b079-4472a28fdf19.png"></p>
+<hr>
+<p><font style="color:rgb(77, 77, 77);"></font></p>
+<p><font style="color:rgb(77, 77, 77);"></font></p>
+<p><font style="color:rgb(77, 77, 77);">看论文：</font></p>
+<p><font style="color:rgb(77, 77, 77);">玻尔兹曼机的思想</font></p>
+<p><font style="color:rgb(77, 77, 77);">霍普菲尔德网络</font></p>
+<p><font style="color:rgb(77, 77, 77);">dropout的三篇论文</font></p>
+<p><font style="color:rgb(77, 77, 77);">伊辛模型</font></p>
+<p><font style="color:rgb(77, 77, 77);">第一性原理</font></p>
+<p><font style="color:rgb(77, 77, 77);">存逻辑的信息</font></p>
+<h4 id="-1"><a href="#-1" class="headerlink" title=""></a></h4>
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E4%BC%98%E5%8C%96%E7%AE%97%E6%B3%95/" rel="tag"># 优化算法</a>
+              <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" rel="tag"># 人工智能</a>
+              <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag"># 学习笔记</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2026/03/%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB/" rel="prev" title="文献阅读">
+                  <i class="fa fa-angle-left"></i> 文献阅读
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2026/03/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" rel="next" title="人工智能">
+                  人工智能 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2023 – 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">未经授权不得转载</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

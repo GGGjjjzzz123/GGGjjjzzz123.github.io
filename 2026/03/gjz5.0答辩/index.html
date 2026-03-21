@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"gggjjjzzz123.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.27.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="前言在先不考虑效率的情况下，设计算法的过程中需要解决的问题：  粒子怎么向最优值处收敛 收敛过程中怎么跳出局部最优 停止迭代的条件是什么  想法：粒子群向下贪心收敛，全部落入谷底，只要粒子足够多就可以描绘出景观整体的形状，直接选出最优值。 算法思路 Sphere 12345678910111213141516171819202122232425262728293031323334353637383">
+<meta property="og:type" content="article">
+<meta property="og:title" content="gjz5.0答辩">
+<meta property="og:url" content="https://gggjjjzzz123.github.io/2026/03/gjz5.0%E7%AD%94%E8%BE%A9/index.html">
+<meta property="og:site_name" content="GJZ&#39;s Blog">
+<meta property="og:description" content="前言在先不考虑效率的情况下，设计算法的过程中需要解决的问题：  粒子怎么向最优值处收敛 收敛过程中怎么跳出局部最优 停止迭代的条件是什么  想法：粒子群向下贪心收敛，全部落入谷底，只要粒子足够多就可以描绘出景观整体的形状，直接选出最优值。 算法思路 Sphere 12345678910111213141516171819202122232425262728293031323334353637383">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/misc-defense/image_001_1756145122217-c116a97e-059e-42f5-a854-34739673a130.jpeg">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/misc-defense/image_002_1756145762173-9723c90a-0a77-4d1d-9c65-4a3ad6aec821.jpeg">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/misc-defense/image_003_1755968644092-0bd7c920-567b-4455-a104-dcbd1d7cec8e.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/misc-defense/image_004_1755968702540-f2e0fe7b-5f9f-437e-83bc-ad22bb928079.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/misc-defense/image_005_1755968730864-479b73b0-94ef-456a-bf7a-fde1c961c423.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/misc-defense/image_006_1755968796072-19d23464-9440-4e15-968b-3daeb6bc7d79.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/misc-defense/image_007_1755968768959-8ac1a4d2-bf43-452f-8da4-b84a29a4324d.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/misc-defense/image_008_1755968839375-935fc47b-5263-463f-b4f1-2f1791581e7f.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/misc-defense/image_009_1755968856343-d491878b-0280-4138-b651-e2125f834ea1.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/misc-defense/image_010_1755968875406-69b02325-f3d2-4dc0-ad0a-c575d5f23718.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/misc-defense/image_011_1755968889641-165d9bce-2178-4e64-871c-365f6cdf67c9.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/misc-defense/image_012_1755968922485-2d01a2dc-7406-4c0c-be89-c8068f36ccd0.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/misc-defense/image_013_1755968937456-859b0990-2cb2-435e-994b-f0246eb167b3.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/misc-defense/image_014_1755968951044-a69bf619-edbd-4bbd-9c99-63c86faa613a.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/misc-defense/image_015_1755969064813-bc02749b-019b-4920-94e7-d0b3063fdd4b.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/misc-defense/image_016_1755969110173-93ae2d2c-827a-4249-afed-fac4444bf464.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/misc-defense/image_017_1755969125665-aa798eb6-7a88-4108-90b5-3257298d71c4.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/misc-defense/image_018_1755969142170-8c715a74-181f-46bb-b073-3f077b552bda.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/misc-defense/image_019_1755969227977-fb3c1280-0b33-4964-ba1b-d1b26c131a04.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/misc-defense/image_020_1755969241000-4cabbee2-5f4e-4d21-a9f3-e2a361adc2b3.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/misc-defense/image_021_1755969255454-61a009b3-2a40-4762-bede-e4a4dc951a76.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/misc-defense/image_022_1755969268326-e3597476-d75b-4fbf-a8b3-2105c71b2f5a.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/misc-defense/image_023_1755969281818-25843fdb-568e-44c9-9cca-cf8a29d0c631.png">
+<meta property="article:published_time" content="2026-03-20T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-03-21T13:43:07.811Z">
+<meta property="article:author" content="GGGjjjzzz123">
+<meta property="article:tag" content="算法">
+<meta property="article:tag" content="答辩">
+<meta property="article:tag" content="优化">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gggjjjzzz123.github.io/images/misc-defense/image_001_1756145122217-c116a97e-059e-42f5-a854-34739673a130.jpeg">
+
+
+<link rel="canonical" href="https://gggjjjzzz123.github.io/2026/03/gjz5.0%E7%AD%94%E8%BE%A9/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://gggjjjzzz123.github.io/2026/03/gjz5.0%E7%AD%94%E8%BE%A9/","path":"2026/03/gjz5.0答辩/","title":"gjz5.0答辩"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>gjz5.0答辩 | GJZ's Blog</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">GJZ's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">博主是一名努力进步、热爱生活、充满生命力的人</p>
+      <img class="custom-logo-image" src="/images/android-chrome-512x512.png" alt="GJZ's Blog">
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-技术文章"><a href="/tech/" rel="section"><i class="fa fa-code fa-fw"></i>技术文章</a></li><li class="menu-item menu-item-项目文档"><a href="/projects/" rel="section"><i class="fa fa-rocket fa-fw"></i>项目文档</a></li><li class="menu-item menu-item-课程笔记"><a href="/notes/" rel="section"><i class="fa fa-book fa-fw"></i>课程笔记</a></li><li class="menu-item menu-item-杂项随笔"><a href="/misc/" rel="section"><i class="fa fa-pencil fa-fw"></i>杂项随笔</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E6%80%9D%E8%B7%AF"><span class="nav-number">2.</span> <span class="nav-text">算法思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E6%A0%B8%E5%BF%83"><span class="nav-number">3.</span> <span class="nav-text">算法核心</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BC%AA%E4%BB%A3%E7%A0%81%E5%B1%95%E7%A4%BA"><span class="nav-number">4.</span> <span class="nav-text">伪代码展示</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%B1%95%E7%A4%BA"><span class="nav-number">5.</span> <span class="nav-text">数据展示</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E7%89%B9%E7%82%B9"><span class="nav-number">6.</span> <span class="nav-text">算法特点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E5%B1%95%E7%A4%BA"><span class="nav-number">7.</span> <span class="nav-text">代码展示</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">GGGjjjzzz123</p>
+  <div class="site-description" itemprop="description">GJZ的博客，用于存放各种技术文章，分享技术经验。主要内容包括项目开发、技术分享、学习笔记等。希望通过这个博客与大家交流，共同进步！</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">28</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">31</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/yourname" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;yourname" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://gggjjjzzz123.github.io/2026/03/gjz5.0%E7%AD%94%E8%BE%A9/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="GGGjjjzzz123">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="GJZ's Blog">
+      <meta itemprop="description" content="GJZ的博客，用于存放各种技术文章，分享技术经验。主要内容包括项目开发、技术分享、学习笔记等。希望通过这个博客与大家交流，共同进步！">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="gjz5.0答辩 | GJZ's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          gjz5.0答辩
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2026-03-21 21:43:07" itemprop="dateModified" datetime="2026-03-21T21:43:07+08:00">2026-03-21</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%9D%82%E9%A1%B9%E9%9A%8F%E7%AC%94/" itemprop="url" rel="index"><span itemprop="name">杂项随笔</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在先不考虑效率的情况下，设计算法的过程中需要解决的问题：</p>
+<ol>
+<li>粒子怎么向最优值处收敛</li>
+<li>收敛过程中怎么跳出局部最优</li>
+<li>停止迭代的条件是什么</li>
+</ol>
+<p>想法：<br>粒子群向下贪心收敛，全部落入谷底，只要粒子足够多就可以描绘出景观整体的形状，直接选出最优值。</p>
+<h2 id="算法思路"><a href="#算法思路" class="headerlink" title="算法思路"></a>算法思路</h2><p><img src="/images/misc-defense/image_001_1756145122217-c116a97e-059e-42f5-a854-34739673a130.jpeg" alt="画板"></p>
+<p>Sphere</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义平方和函数</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">func1</span>(<span class="params">matrix_y</span>):  <span class="comment"># y = x*x</span></span><br><span class="line">    y = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> matrix_y:</span><br><span class="line">        y += i * i</span><br><span class="line">    <span class="keyword">return</span> y</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建x值范围</span></span><br><span class="line">x = np.linspace(-<span class="number">5</span>, <span class="number">5</span>, <span class="number">400</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 计算对应的y值</span></span><br><span class="line">y = [func1([xi]) <span class="keyword">for</span> xi <span class="keyword">in</span> x]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建图形</span></span><br><span class="line">plt.figure(figsize=(<span class="number">10</span>, <span class="number">6</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 绘制函数图像</span></span><br><span class="line">plt.plot(x, y, <span class="string">&#x27;b-&#x27;</span>, linewidth=<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 生成20个随机采样点</span></span><br><span class="line">random_x = [random.uniform(-<span class="number">5</span>, <span class="number">5</span>) <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">20</span>)]</span><br><span class="line">random_y = [func1([xi]) <span class="keyword">for</span> xi <span class="keyword">in</span> random_x]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 绘制采样点</span></span><br><span class="line">plt.scatter(random_x, random_y, color=<span class="string">&#x27;red&#x27;</span>, s=<span class="number">50</span>, zorder=<span class="number">5</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 去除坐标轴</span></span><br><span class="line">plt.axis(<span class="string">&#x27;off&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 显示图像</span></span><br><span class="line">plt.tight_layout()</span><br><span class="line">plt.show()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 第一次集中</span></span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义平方和函数</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">func1</span>(<span class="params">matrix_y</span>):  <span class="comment"># y = x*x</span></span><br><span class="line">    y = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> matrix_y:</span><br><span class="line">        y += i * i</span><br><span class="line">    <span class="keyword">return</span> y</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建x值范围</span></span><br><span class="line">x = np.linspace(-<span class="number">5</span>, <span class="number">5</span>, <span class="number">400</span>)</span><br><span class="line">y = [func1([xi]) <span class="keyword">for</span> xi <span class="keyword">in</span> x]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建图形</span></span><br><span class="line">plt.figure(figsize=(<span class="number">10</span>, <span class="number">6</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 绘制函数图像</span></span><br><span class="line">plt.plot(x, y, <span class="string">&#x27;b-&#x27;</span>, linewidth=<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 在原点附近生成20个随机点（适当分散的粒子位置）</span></span><br><span class="line">converged_particles = [random.gauss(<span class="number">0</span>, <span class="number">0.8</span>) <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">20</span>)]  <span class="comment"># 增加标准差，使粒子适当分散</span></span><br><span class="line">converged_y = [func1([p]) <span class="keyword">for</span> p <span class="keyword">in</span> converged_particles]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 绘制收敛后的粒子位置（红色）</span></span><br><span class="line">plt.scatter(converged_particles, converged_y, color=<span class="string">&#x27;red&#x27;</span>, s=<span class="number">50</span>, zorder=<span class="number">5</span>, label=<span class="string">&#x27;粒子位置&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 标记最小值点（原点）</span></span><br><span class="line">plt.scatter(<span class="number">0</span>, <span class="number">0</span>, color=<span class="string">&#x27;purple&#x27;</span>, s=<span class="number">100</span>, marker=<span class="string">&#x27;*&#x27;</span>, zorder=<span class="number">10</span>, label=<span class="string">&#x27;最小值点&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 去除坐标轴</span></span><br><span class="line">plt.axis(<span class="string">&#x27;off&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># # 添加图例</span></span><br><span class="line"><span class="comment"># plt.legend()</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 显示图像</span></span><br><span class="line">plt.tight_layout()</span><br><span class="line">plt.show()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 第二次集中</span></span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义平方和函数</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">func1</span>(<span class="params">matrix_y</span>):  <span class="comment"># y = x*x</span></span><br><span class="line">    y = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> matrix_y:</span><br><span class="line">        y += i * i</span><br><span class="line">    <span class="keyword">return</span> y</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建x值范围</span></span><br><span class="line">x = np.linspace(-<span class="number">5</span>, <span class="number">5</span>, <span class="number">400</span>)</span><br><span class="line">y = [func1([xi]) <span class="keyword">for</span> xi <span class="keyword">in</span> x]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建图形</span></span><br><span class="line">plt.figure(figsize=(<span class="number">10</span>, <span class="number">6</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 绘制函数图像</span></span><br><span class="line">plt.plot(x, y, <span class="string">&#x27;b-&#x27;</span>, linewidth=<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 在原点附近生成20个随机点（更收敛的粒子位置）</span></span><br><span class="line">converged_particles = [random.gauss(<span class="number">0</span>, <span class="number">0.3</span>) <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">20</span>)]  <span class="comment"># 减小标准差，使粒子更收敛</span></span><br><span class="line">converged_y = [func1([p]) <span class="keyword">for</span> p <span class="keyword">in</span> converged_particles]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 绘制收敛后的粒子位置（红色）</span></span><br><span class="line">plt.scatter(converged_particles, converged_y, color=<span class="string">&#x27;red&#x27;</span>, s=<span class="number">50</span>, zorder=<span class="number">5</span>, label=<span class="string">&#x27;粒子位置&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 标记最小值点（原点）</span></span><br><span class="line">plt.scatter(<span class="number">0</span>, <span class="number">0</span>, color=<span class="string">&#x27;purple&#x27;</span>, s=<span class="number">100</span>, marker=<span class="string">&#x27;*&#x27;</span>, zorder=<span class="number">10</span>, label=<span class="string">&#x27;最优值位置&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 去除坐标轴</span></span><br><span class="line">plt.axis(<span class="string">&#x27;off&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># # 添加图例</span></span><br><span class="line"><span class="comment"># plt.legend()</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 显示图像</span></span><br><span class="line">plt.tight_layout()</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+<h2 id="算法核心"><a href="#算法核心" class="headerlink" title="算法核心"></a>算法核心</h2><p>核心—&gt;判断粒子是否已经收敛稳定—&gt;迭代过程中，粒子群总体方差的标准差是否稳定</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 计算本次迭代后的样本点总体方差</span></span><br><span class="line">mean_a = np.mean(a, axis=<span class="number">1</span>, keepdims=<span class="literal">True</span>)  <span class="comment"># 均值向量：每个维度的均值</span></span><br><span class="line">squared_distances = np.<span class="built_in">sum</span>((a - mean_a) ** <span class="number">2</span>, axis=<span class="number">0</span>)    <span class="comment"># 计算每个粒子与均值向量的欧氏距离平方</span></span><br><span class="line">total_var = np.mean(squared_distances)     <span class="comment"># 计算平均平方距离 (总体方差)</span></span><br><span class="line">var_history.append(total_var)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 判断最近5次的迭代，样本点的总体方差是否稳定</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">is_var_stable</span>(<span class="params">var_history, window_size = <span class="number">5</span>, threshold = <span class="number">0.01</span></span>):</span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">len</span>(var_history) &lt; window_size:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">    <span class="comment"># 提取最近window_size个方差值</span></span><br><span class="line">    recent_var = var_history[-window_size:]</span><br><span class="line">    scale_recent_var = np.std(recent_var)</span><br><span class="line">    <span class="keyword">if</span> scale_recent_var &lt; acc1:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="伪代码展示"><a href="#伪代码展示" class="headerlink" title="伪代码展示"></a>伪代码展示</h2><p><img src="/images/misc-defense/image_002_1756145762173-9723c90a-0a77-4d1d-9c65-4a3ad6aec821.jpeg" alt="画板"></p>
+<h2 id="数据展示"><a href="#数据展示" class="headerlink" title="数据展示"></a>数据展示</h2><p>Sphere</p>
+<!-- 这是一张图片，ocr 内容为：AVG_ITERATIONS DIM WALKER_N AVG_MIN_VALUE ACCURACY SUCCESS_N 50 2 100.00% 20442023011 50 0.000000 0.000000 20814.9246.87 50 5 0.0000000+0.0000 50 100.00% 10 201316146229 50 50 0.0000000土0.0000 100.00% 202249.2895.53 50 20 100.00% 50 0.0000000.000000 203190.3483.78 50 30 50 0.0000000.000000 100.00% 204071.56123.62 0.0000000.000000 50 50 40 100.00% 2048740213131.76 50 50 50 0.0000000.0000000 100.00% 205743.0416070 50 0.0000000土0000000 60 50 100.00% 206604.96179.20 70 50 50 0.0000000.000000 100.00% 20738026190.52 50 80 100.00% 50 0.0000000.000000 208241.74236.85 50 90 50 0.0000000+0.0000 100.00% 0.0000000.000000 209091.9023410 50 50 100 100.00% 20129429630417 50 150 50 0.0000000.000000 100.00% 2016882004.63 50 0.0000000+0.00000 50 200 100.00% 50 2024291.1489.88 50 300 100.00% 0.00000000000001 -->
+<p><img src="/images/misc-defense/image_003_1755968644092-0bd7c920-567b-4455-a104-dcbd1d7cec8e.png"></p>
+<!-- 这是一张图片，ocr 内容为：DIM2 TRUE_VALUE AVG_ITERATIONS:442.02 20 JEX'G 200 100 1.0 500 400 0.0 420 480 0.4 0.6 440 0.2 LE-11 MIN_VALUE TERATIONS -->
+<p><img src="/images/misc-defense/image_004_1755968702540-f2e0fe7b-5f9f-437e-83bc-ad22bb928079.png"></p>
+<!-- 这是一张图片，ocr 内容为：DIM5 AVG ITERATIONS:814.92 20 200 700 800 300 3.0 750 800 1E-10 MIN_VALUE -->
+<p><img src="/images/misc-defense/image_005_1755968730864-479b73b0-94ef-456a-bf7a-fde1c961c423.png"></p>
+<!-- 这是一张图片，ocr 内容为：DIM10 TRUE VALUE 1316.14 80 60 40 600 1.25 0.25 0.75 1250 1.501.75 0.00 1350 1200 1300 1E-9 TERATIONS -->
+<p><img src="/images/misc-defense/image_006_1755968796072-19d23464-9440-4e15-968b-3daeb6bc7d79.png"></p>
+<!-- 这是一张图片，ocr 内容为：DIM20 TRUE_VALUE 5 175 6 125 100 500 1000 2000 1500 2.5.03.5 0.0.5.015 2050 2.0 2150 4.0 2400 2250 2450 2200 2100 1E-9 MIN.VALUE -->
+<p><img src="/images/misc-defense/image_007_1755968768959-8ac1a4d2-bf43-452f-8da4-b84a29a4324d.png"></p>
+<p>double well</p>
+<!-- 这是一张图片，ocr 内容为：WALKER_N AVG_ITERATIONS DIM TRUE VALUE SUCCESS N AVG_MIN_VALUE ACCURACY 20 50 50 100.00% 30542848611444470.01 3.0542850.000000 50 50 20 100.00% -4.581427794.90144.91 4.581427 50 50 20 610857931.346248 6.108570000000000 100.00% 50 20 50 100.00% 7.6357121055.246533 7.6357120.0000000 46 50 20 -9.1628545 1188.2455.86 92.00% 8.9230250.813303 41 7 20 -10.150379士1.151746 -10.6899971281.10.71.74 50 82.00% 20 26 52.00% 50 -12.217141413.58 76.01 8 10.658244411721104 -11.585812 1.802718 20 18 50 13.744282 1526.58 36.00% 68.84 50 -15.271424 1625.72士94.29 10 20 13 12.27354922161798 26.00% 92-15.652279士2.329100 -22.60735 2238.48133.92 -1 20 50 15 O 0.00% -->
+<p><img src="/images/misc-defense/image_008_1755968839375-935fc47b-5263-463f-b4f1-2f1791581e7f.png"></p>
+<!-- 这是一张图片，ocr 内容为：DIM2 AVG ITERATIONS: 611.44 VALUE 30 20 89 -4.0 750 700 650 -2.5 009 TERATIONS -->
+<p><img src="/images/misc-defense/image_009_1755968856343-d491878b-0280-4138-b651-e2125f834ea1.png"></p>
+<!-- 这是一张图片，ocr 内容为：DIMM5 AVG_ITERATIONS:1055.24 00G TRUE_VALUE -0.8 -0.6 1150 1200 950 1E-7-7.635712 MIN_VALUE -->
+<p><img src="/images/misc-defense/image_010_1755968875406-69b02325-f3d2-4dc0-ad0a-c575d5f23718.png"></p>
+<!-- 这是一张图片，ocr 内容为：DIM10 AVG_ITERATIONS:1625.72 TRUE_VALUE 12 10 8 1250 1500 1000 1750 1700 -->
+<p><img src="/images/misc-defense/image_011_1755968889641-165d9bce-2178-4e64-871c-365f6cdf67c9.png"></p>
+<p>Rastrigin</p>
+<!-- 这是一张图片，ocr 内容为：WALKER_N AVG_ITERATIONS DIM AVG_MIN_VALUE SUCCESS N N ACCURACY 50 20603.3853.54 47 2 94.00% 0.0596980236290 20732944303 3 0.8954630497480 50 18.00% 20855.7852.56 4 2.129212 1.242862 50 2.00% 5 209624654.65 50 3.38285911779835 2.00% -->
+<p><img src="/images/misc-defense/image_012_1755968922485-2d01a2dc-7406-4c0c-be89-c8068f36ccd0.png"></p>
+<!-- 这是一张图片，ocr 内容为：DIM2 AVG ITERATIONS:603.38 TRUE.VALUE 12 30 550 0.8 600 0.6 ITERATIONS MIN VALUE -->
+<p><img src="/images/misc-defense/image_013_1755968937456-859b0990-2cb2-435e-994b-f0246eb167b3.png"></p>
+<!-- 这是一张图片，ocr 内容为：DIM-5 TRUEVALUE 17.5 15.0 12.5 35 10.0 06 7.5 25 20 2100 1800 1900 2000 2200 500 1500 ITERATIONS MIN_VALUE -->
+<p><img src="/images/misc-defense/image_014_1755968951044-a69bf619-edbd-4bbd-9c99-63c86faa613a.png"></p>
+<p>Griewank</p>
+<!-- 这是一张图片，ocr 内容为：WALKER N AVG ITERATIONS DIM VALUE N AVG_MIN N SUCCESS ACCURACY 23450 0.000000士0.000000 20614.18士46.03 50 50 100.00% 0.001756 47 20761.06士47.70 0.000444 94.00% 50 20916.28士69.97 38 0.001775 76.00% 50 27 201084.68士 89. 73 0.003402 士0.003686 54.00% 50 20 1982.58 30 0.002958 士 185.93 60.00% 50 0.003623 干 20 3 50 士 100.00% 50 20 0.000000 士0.000000 3574.20 187.56 士0.000000 20 5109.52 0.000000 士 30 201.64 50 50 100.00% 50 士 士0.000000 0.000000 20 6628.74 100.00% 259.14 40 50 -->
+<p><img src="/images/misc-defense/image_015_1755969064813-bc02749b-019b-4920-94e7-d0b3063fdd4b.png"></p>
+<!-- 这是一张图片，ocr 内容为：DIM-2 AVG_ITERATIONS:614.18 27 26 15 25 10 22 000 000 750 1.0 700 0.8 MIN_VALUE -->
+<p><img src="/images/misc-defense/image_016_1755969110173-93ae2d2c-827a-4249-afed-fac4444bf464.png"></p>
+<!-- 这是一张图片，ocr 内容为：DIM-5 EVALUE AVG_ITERATIONS:1084.68 25 600 1300 0.003 0.004 1100 0.000 1200 0.001 900 1000 0.005 0.006 0.007 MIN VALUE -->
+<p><img src="/images/misc-defense/image_017_1755969125665-aa798eb6-7a88-4108-90b5-3257298d71c4.png"></p>
+<!-- 这是一张图片，ocr 内容为：DIM-10 AVG_ITERATIONS:1982.58 100 20 10 250 OOS 1600 2000 0.004 1800 0.000 0.003 0.005 0,002 2200 0.007 ITERATIONS -->
+<p><img src="/images/misc-defense/image_018_1755969142170-8c715a74-181f-46bb-b073-3f077b552bda.png"></p>
+<h2 id="算法特点"><a href="#算法特点" class="headerlink" title="算法特点"></a>算法特点</h2><p>以Rastrigin函数为例：</p>
+<p>粒子数量的增多能够提高算法的正确率(数据对比：20、50、100、200、500)</p>
+<!-- 这是一张图片，ocr 内容为：DIM AVG_ITERATIONS WALKER_N AVG_MIN_VALUE SUCCESS N ACCURACY 2 0.05969810.236290 50 94.00% 20603385354 47 3 207329443.03 50 0.895463 9 18.00% 4 1 50 208557852.56 2.1292121242862 2.00% 5 209624654.65 1 50 3.38285911779835 2.00% -->
+<p><img src="/images/misc-defense/image_019_1755969227977-fb3c1280-0b33-4964-ba1b-d1b26c131a04.png"></p>
+<!-- 这是一张图片，ocr 内容为：WALKER_N AVG_ITERATIONS DIM AVG_MIN VALUE ACCURACY SUCCESS N U 2 50 501261201102.65 100.00% 0.00000000000000 50 3 501458.8611302 50 30 0.3979840.487428 60.00% 4 14 0.9352620.755383 50 28.00% 50 1646.38113.04 5 50 2.069515151.105076 3 501964.60145.59 6.00% -->
+<p><img src="/images/misc-defense/image_020_1755969241000-4cabbee2-5f4e-4d21-a9f3-e2a361adc2b3.png"></p>
+<!-- 这是一张图片，ocr 内容为：DIM WALKER_N AVG_ITERATIONS AVG_MIN_VALUE SUCCESS ACCURACY NN 2345 100214676173.19 100.00% 50 0.000000 50 0.000000 1002625.40198.43 0.079597 50 92.00% 46 22 50 0.55717770493885 1002968.88241.66 44.00% 5 1002981.78162.95 1.2337490.615268 10.00% 50 -->
+<p><img src="/images/misc-defense/image_021_1755969255454-61a009b3-2a40-4762-bede-e4a4dc951a76.png"></p>
+<!-- 这是一张图片，ocr 内容为：DIM N AVG_ITERATIONS WALKER_N AVG_MIN_VALUE SUCCESS N ACCURACY N 50 50 0.000000 2003718.54262.96 0.000000 100.00% 2345 50 042627418836 50 200 4 0.0000000.0000000 100.00% 80.00% 2004851181290.78 50 40 0.198992 220.397984 10 2005031.70248.09 50 0.8755640.512766 20.00% -->
+<p><img src="/images/misc-defense/image_022_1755969268326-e3597476-d75b-4fbf-a8b3-2105c71b2f5a.png"></p>
+<!-- 这是一张图片，ocr 内容为：5 50 31 62.00% 5001061980士58365 士0.482940 0.378084 -->
+<p><img src="/images/misc-defense/image_023_1755969281818-25843fdb-568e-44c9-9cca-cf8a29d0c631.png"></p>
+<p>缺点：</p>
+<p>粒子数的增多会导致迭代次数的增多，对于搜索范围大的情况适应度低，缺少智能性。</p>
+<h2 id="代码展示"><a href="#代码展示" class="headerlink" title="代码展示"></a>代码展示</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> modelscope.models.cv.image_skychange.skychange <span class="keyword">import</span> scale_rect</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 测试函数</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">func1</span>(<span class="params">matrix_y</span>):<span class="comment"># y=x*x</span></span><br><span class="line">    y=<span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> matrix_y:</span><br><span class="line">        y+=i*i</span><br><span class="line">    <span class="keyword">return</span> y</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">func1</span>(<span class="params">matrix_y</span>):    <span class="comment">#double well function</span></span><br><span class="line">    y=<span class="number">0</span></span><br><span class="line">    l,k,h=<span class="number">3.0</span>,<span class="number">0.5</span>,<span class="number">5.0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> matrix_y:</span><br><span class="line">        y+=h*<span class="built_in">pow</span>((<span class="built_in">pow</span>(i, <span class="number">2</span>)-<span class="built_in">pow</span>(l, <span class="number">2</span>)), <span class="number">2</span>)/<span class="built_in">pow</span>(l, <span class="number">4</span>)+k*i</span><br><span class="line">    <span class="keyword">return</span> y</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">func</span>(<span class="params">matrix_y</span>):    <span class="comment">#Rastrigin</span></span><br><span class="line">    y=<span class="number">10</span>*dim</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> matrix_y:</span><br><span class="line">        y+=i*i-<span class="number">10</span>*np.cos(<span class="number">2</span>*np.pi*i)</span><br><span class="line">    <span class="keyword">return</span> y</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">func1</span>(<span class="params">matrix_y</span>):    <span class="comment">#Griewank</span></span><br><span class="line">    a,b,y=<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span></span><br><span class="line">    index=<span class="number">1</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> matrix_y:</span><br><span class="line">        a=a+i*i</span><br><span class="line">        b=b*np.cos(i/np.sqrt(index))</span><br><span class="line">        index+=<span class="number">1</span></span><br><span class="line">    y=<span class="number">1</span>+<span class="number">1</span>/<span class="number">4000</span>*a-b</span><br><span class="line">    <span class="keyword">return</span> y</span><br><span class="line"></span><br><span class="line"><span class="comment"># 判断最近5次的迭代，样本点的总体方差是否稳定</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">is_var_stable</span>(<span class="params">var_history, window_size = <span class="number">5</span>, threshold = <span class="number">0.01</span></span>):</span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">len</span>(var_history) &lt; window_size:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">    <span class="comment"># 提取最近window_size个方差值</span></span><br><span class="line">    recent_var = var_history[-window_size:]</span><br><span class="line">    scale_recent_var = np.std(recent_var)</span><br><span class="line">    <span class="keyword">if</span> scale_recent_var &lt; acc1:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">min_id</span>(<span class="params">a</span>):</span><br><span class="line">    func_values = np.array([func(a[:, i]) <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(walker_n)])</span><br><span class="line">    <span class="keyword">return</span> np.argmin(func_values)</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">max_id</span>(<span class="params">a</span>):</span><br><span class="line">    func_values = np.array([func(a[:, i]) <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(walker_n)])</span><br><span class="line">    <span class="keyword">return</span> np.argmax(func_values)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 参数初始化</span></span><br><span class="line">acc1 = <span class="number">1e-10</span>  <span class="comment"># 影响迭代次数和准确精度</span></span><br><span class="line">acc2 = <span class="number">0.000001</span></span><br><span class="line">var_history = []</span><br><span class="line">begin, end = -<span class="number">6</span>, <span class="number">6</span></span><br><span class="line">scale = end - begin</span><br><span class="line">dim = <span class="number">3</span></span><br><span class="line">walker_n = <span class="number">20</span></span><br><span class="line">ite_times = <span class="number">0</span></span><br><span class="line">flag = <span class="literal">True</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 初始化样本点（随机分布）</span></span><br><span class="line">a = np.random.uniform(low = begin, high = end, size = (dim,walker_n))</span><br><span class="line">b = np.zeros((dim,walker_n))</span><br><span class="line">best = func(a[:,min_id(a)])</span><br><span class="line">best_postion = a[:,min_id(a)]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 进入优化主过程</span></span><br><span class="line"><span class="keyword">while</span> flag == <span class="literal">True</span>:</span><br><span class="line">    ite_times += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 每个样本点进行高斯采样</span></span><br><span class="line">    b = np.random.normal(loc=a, scale=scale, size=(dim, walker_n))</span><br><span class="line">    <span class="comment"># 边界处理</span></span><br><span class="line">    mask = (b &lt; begin) | (b &gt; end)</span><br><span class="line">    <span class="keyword">while</span> np.<span class="built_in">any</span>(mask):</span><br><span class="line">        b[mask] = np.random.normal(loc=a[mask], scale=scale)  <span class="comment"># 从数组b中选出所有对应mask中为True的位置的元素。b[mask]为一维数组</span></span><br><span class="line">        mask = (b &lt; begin) | (b &gt; end)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 贪心收敛</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(walker_n):</span><br><span class="line">        <span class="keyword">if</span> func(a[:,i]) &gt; func(b[:,i]):</span><br><span class="line">            a[:,i] = b[:,i]</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 保留历史最优</span></span><br><span class="line">    <span class="keyword">if</span> best &gt; func(a[:,min_id(a)]):</span><br><span class="line">        best = func(a[:,min_id(a)])</span><br><span class="line">        best_postion = a[:,min_id(a)]</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 计算本次迭代后的样本点总体方差</span></span><br><span class="line">    mean_a = np.mean(a, axis=<span class="number">1</span>, keepdims=<span class="literal">True</span>)  <span class="comment"># 均值向量：每个维度的均值</span></span><br><span class="line">    squared_distances = np.<span class="built_in">sum</span>((a - mean_a) ** <span class="number">2</span>, axis=<span class="number">0</span>)    <span class="comment"># 计算每个粒子与均值向量的欧氏距离平方</span></span><br><span class="line">    total_var = np.mean(squared_distances)     <span class="comment"># 计算平均平方距离 (总体方差)</span></span><br><span class="line">    var_history.append(total_var)</span><br><span class="line">    <span class="comment"># print(&quot;var_history:&quot;,var_history)</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> is_var_stable(var_history):</span><br><span class="line">        scale = scale / <span class="number">2</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(scale)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> is_var_stable(var_history) <span class="keyword">and</span> scale &lt; acc2:</span><br><span class="line">        <span class="keyword">if</span> func(a[:,min_id(a)]) &lt; best:</span><br><span class="line">            min_value = func(a[:,min_id(a)])</span><br><span class="line">            min_postion = a[:,min_id(a)]</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            min_value = best</span><br><span class="line">            min_postion = best_postion</span><br><span class="line">        flag = <span class="literal">False</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 输出结果</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Scale=&quot;</span>, scale,<span class="string">&quot;Itetimes&quot;</span>, ite_times)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Min_location=&quot;</span>, min_postion)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Min_value=&quot;</span>, min_value)</span><br></pre></td></tr></table></figure>
+
+
+
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E7%AE%97%E6%B3%95/" rel="tag"># 算法</a>
+              <a href="/tags/%E7%AD%94%E8%BE%A9/" rel="tag"># 答辩</a>
+              <a href="/tags/%E4%BC%98%E5%8C%96/" rel="tag"># 优化</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2026/03/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" rel="prev" title="人工智能">
+                  <i class="fa fa-angle-left"></i> 人工智能
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2026/03/QDA/" rel="next" title="QDA">
+                  QDA <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2023 – 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">未经授权不得转载</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

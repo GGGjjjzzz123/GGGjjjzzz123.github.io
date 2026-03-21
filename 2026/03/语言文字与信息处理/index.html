@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"gggjjjzzz123.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.27.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="使用软件Vmware：创建、管理虚拟机平台，在一台物理计算机上创建出多台虚拟的计算机。其最基础、最重要的功能就是虚拟化。 课程任务：创建一台虚拟机用来进行语言文字处理 安装Windows 7虚拟机 实现虚拟机与主机之间的拖拽功能 不能进行拖拽的原因（虚拟机无法与主机共享文件的原因）：未安装vmware tools 什么是vmware tools：VMware tools是VMware虚拟机中自带的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GJZ&#39;s Blog">
+<meta property="og:url" content="https://gggjjjzzz123.github.io/2026/03/%E8%AF%AD%E8%A8%80%E6%96%87%E5%AD%97%E4%B8%8E%E4%BF%A1%E6%81%AF%E5%A4%84%E7%90%86/index.html">
+<meta property="og:site_name" content="GJZ&#39;s Blog">
+<meta property="og:description" content="使用软件Vmware：创建、管理虚拟机平台，在一台物理计算机上创建出多台虚拟的计算机。其最基础、最重要的功能就是虚拟化。 课程任务：创建一台虚拟机用来进行语言文字处理 安装Windows 7虚拟机 实现虚拟机与主机之间的拖拽功能 不能进行拖拽的原因（虚拟机无法与主机共享文件的原因）：未安装vmware tools 什么是vmware tools：VMware tools是VMware虚拟机中自带的">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-nlp/image_001_1757248285162-be591982-633e-4afd-bc4e-41ec88ce2d85.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-nlp/image_002_1757234181971-7279cc20-4898-4c84-898a-1c8820ef2bed.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-nlp/image_003_1757750876396-268024f5-665c-488a-89c5-cc9c4fb76192.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-nlp/image_004_1757751007174-d7d4cf51-9b06-4979-9787-dd1db0293f8a.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-nlp/image_005_1757756361384-a3dcbb32-9538-40be-a44a-e7a9f2c7b6be.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-nlp/image_006_1757756458958-b33b2a60-6684-4dfd-bd54-d829e4474aa9.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-nlp/image_007_1757756474603-50aba70b-9219-4c84-bccc-bf10cac683d8.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-nlp/image_008_1757756501096-9d036c6a-0a5f-46a2-84f4-53ea4991ed66.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-nlp/image_009_1757756543926-141dc76e-ecf9-46c4-b7cd-eb343f0415ce.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-nlp/image_010_1757756576475-cfb326be-a98d-4382-a8e7-4b88fca9a97a.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-nlp/image_011_1757756617161-4e49dab3-e36b-4484-b75b-0c2ea4d113ca.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-nlp/image_012_1757756751377-b8722134-e0b5-4742-ada2-6964b7026b23.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-nlp/image_013_1757751804354-b6995f6a-8dd6-4922-9e79-bddd701c0838.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-nlp/image_014_1757752011669-f04da362-83bb-4b1a-8ebc-f1946649ae03.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-nlp/image_015_1757752316339-9de7336d-4891-48f7-96ed-f3db926c0e53.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-nlp/image_016_1757752363081-5f63464a-50bc-4397-8d95-ad10fd6e8cc8.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-nlp/image_017_1757752589285-1a60cd7f-bbaf-4439-840a-2045ba666f29.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-nlp/image_018_1757752616116-c7f9b1af-bc83-4e56-9648-7311f746cf38.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-nlp/image_019_1757752644232-1fe9e211-fcd1-42f9-b615-0f1cb03ed285.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-nlp/image_020_1757752712603-e9e1c638-9eec-4251-9985-b9806f0efb12.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-nlp/image_021_1757752802099-fcdabfdc-bec9-4e9d-b7f3-6b3928ad292c.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-nlp/image_022_1757752850938-c1054d7c-7034-4665-955c-58f533c55296.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-nlp/image_023_1757753044001-4f1c2fa9-151f-4452-a3e3-5d45fc140a9b.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-nlp/image_024_1757753250029-b2a7cbaf-ae44-4250-97ba-369258d3a1e9.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-nlp/image_025_1757757252208-1ee3b080-d617-4877-a4fd-537760844357.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-nlp/image_026_1757757130646-6c669733-772e-4b3a-80b9-19c34229519f.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-nlp/image_027_1757757352004-6fec96e0-d488-428b-b497-f659b188331a.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-nlp/image_028_1757757410303-4336c2e9-d9a4-425b-990d-382e9d9b8b2b.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-nlp/image_029_1757762538498-1917d00e-20c4-43b5-a25a-52768937038e.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-nlp/image_030_1757762581160-087e6363-c509-49e6-95d2-1cc594a21f84.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-nlp/image_031_1757762709385-c830dbf4-81dd-4568-a1a5-cb3c78ec9c9d.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-nlp/image_032_1757762727225-fab5242f-701c-43c7-b3ba-472bdaf4f6fc.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-nlp/image_033_1757762929742-bc687ad9-feba-4fae-8e93-03a4ec192832.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-nlp/image_034_1757822886484-9d1f3eb0-91b6-4a85-9323-c3e3693191d1.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-nlp/image_035_1757822997933-6856e617-644f-48dc-8188-413277e9fe96.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-nlp/image_036_1757826903049-e5ad6384-99a7-464b-8242-f8b14be0ed21.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-nlp/image_037_1757827334724-a6c499c2-3bab-47a3-8d99-4bb602d58adb.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-nlp/image_038_1757827443579-c268a374-648c-49f3-8735-e57fa247bb46.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-nlp/image_039_1757827509805-ad7a2b28-5f8e-45d4-be3e-f315bb427e22.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-nlp/image_040_1757827554064-d6b8dec1-cab4-48ae-971e-7bf194ab65da.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-nlp/image_041_1757827623393-131939c1-ce9d-4799-b64a-cb83e950952e.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-nlp/image_042_1757827682787-36ae23a1-5315-4111-ad20-529fea5f0ed1.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-nlp/image_043_1757827711775-516cf34d-7996-4dc3-8cac-96ee7f3612bb.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-nlp/image_044_1757828452820-013bb161-28ba-4214-aca2-33e792443249.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-nlp/image_045_1757828473598-f0bf6b6d-acb6-46a7-b758-56eecb7955aa.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-nlp/image_046_1757828505048-78e09d10-63cd-44bb-a65a-e21842567405.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-nlp/image_047_1757829409697-f0e55807-0895-4411-a14a-eb0e33039b10.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-nlp/image_048_1757829474119-609f2831-8df1-41ed-8705-e95f00865ca8.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-nlp/image_049_1757828301162-6e8cdbf6-7c32-4dbf-81bb-f93d3ec6bfa6.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-nlp/image_050_1757829646711-37856714-8e68-4817-bb6e-e3ac455426c1.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-nlp/image_051_1757829621573-d4420720-0d2d-4a8c-b97b-8527e993da1f.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-nlp/image_052_1757829988980-63fa1689-2157-4927-9276-14ecc9d633a0.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-nlp/image_053_1759231328269-88b75931-c8b4-4c80-b8b3-c7ac0eae3155.jpeg">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-nlp/image_054_1760251983109-d939a139-f534-4216-a4be-9b300c61e385.jpeg">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-nlp/image_055_1760326005051-b9a17120-1620-4576-8f04-8d9741f92593.jpeg">
+<meta property="article:published_time" content="2026-03-21T10:57:11.600Z">
+<meta property="article:modified_time" content="2026-03-21T13:25:53.486Z">
+<meta property="article:author" content="GGGjjjzzz123">
+<meta property="article:tag" content="分享, 技术, 博客, 开发, 学习">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gggjjjzzz123.github.io/images/courses-nlp/image_001_1757248285162-be591982-633e-4afd-bc4e-41ec88ce2d85.png">
+
+
+<link rel="canonical" href="https://gggjjjzzz123.github.io/2026/03/%E8%AF%AD%E8%A8%80%E6%96%87%E5%AD%97%E4%B8%8E%E4%BF%A1%E6%81%AF%E5%A4%84%E7%90%86/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://gggjjjzzz123.github.io/2026/03/%E8%AF%AD%E8%A8%80%E6%96%87%E5%AD%97%E4%B8%8E%E4%BF%A1%E6%81%AF%E5%A4%84%E7%90%86/","path":"2026/03/语言文字与信息处理/","title":""}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title> | GJZ's Blog</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">GJZ's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">博主是一名努力进步、热爱生活、充满生命力的人</p>
+      <img class="custom-logo-image" src="/images/android-chrome-512x512.png" alt="GJZ's Blog">
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-技术文章"><a href="/tech/" rel="section"><i class="fa fa-code fa-fw"></i>技术文章</a></li><li class="menu-item menu-item-项目文档"><a href="/projects/" rel="section"><i class="fa fa-rocket fa-fw"></i>项目文档</a></li><li class="menu-item menu-item-课程笔记"><a href="/notes/" rel="section"><i class="fa fa-book fa-fw"></i>课程笔记</a></li><li class="menu-item menu-item-杂项随笔"><a href="/misc/" rel="section"><i class="fa fa-pencil fa-fw"></i>杂项随笔</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E8%BD%AF%E4%BB%B6"><span class="nav-number">1.</span> <span class="nav-text">使用软件</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">GGGjjjzzz123</p>
+  <div class="site-description" itemprop="description">GJZ的博客，用于存放各种技术文章，分享技术经验。主要内容包括项目开发、技术分享、学习笔记等。希望通过这个博客与大家交流，共同进步！</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">28</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">31</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/yourname" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;yourname" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://gggjjjzzz123.github.io/2026/03/%E8%AF%AD%E8%A8%80%E6%96%87%E5%AD%97%E4%B8%8E%E4%BF%A1%E6%81%AF%E5%A4%84%E7%90%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="GGGjjjzzz123">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="GJZ's Blog">
+      <meta itemprop="description" content="GJZ的博客，用于存放各种技术文章，分享技术经验。主要内容包括项目开发、技术分享、学习笔记等。希望通过这个博客与大家交流，共同进步！">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | GJZ's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2026-03-21 21:25:53" itemprop="dateModified" datetime="2026-03-21T21:25:53+08:00">2026-03-21</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="使用软件"><a href="#使用软件" class="headerlink" title="使用软件"></a>使用软件</h2><p>Vmware：创建、管理虚拟机平台，在一台物理计算机上创建出多台虚拟的计算机。其最基础、最重要的功能就是虚拟化。</p>
+<p>课程任务：创建一台虚拟机用来进行语言文字处理</p>
+<p>安装Windows 7虚拟机</p>
+<p>实现虚拟机与主机之间的拖拽功能</p>
+<p>不能进行拖拽的原因（虚拟机无法与主机共享文件的原因）：未安装vmware tools</p>
+<p>什么是vmware tools：VMware tools是VMware虚拟机中自带的一种增强工具，是VMware提供的增强虚拟显卡和硬盘性能、以及同步虚拟机与主机时钟的驱动程序。只有在虚拟机中安装了VMware tools，才能实现主机与虚拟机之间的文件共享，同时可支持自由拖拽的功能，鼠标也可以在虚拟机与主机之间自由移动（不用再按ctrl+alt），且虚拟机屏幕也可实现全屏化。还可改善网络性能。</p>
+<p>具体作用：<br>①更新虚拟机中显卡驱动，使虚拟机中的XWindows可以运行在SVGA模式下。如果不安装VMware Tools，虚拟机中的图形环境被限制为VGA模式图形（640*480,16色），而使用VMware Tools，虚拟机中将SVGA驱动程序，虚拟机将支持最高32位显示和最高显示分辨率，显著提升总体的图形性能。</p>
+<p>②主机和客户机之间时间同步。但是需要注意的是，只有当虚拟机操作系统中设置一个比在主机中设置的时间更早时，才可以在虚拟机和主机之间进行时间同步。</p>
+<p>③支持同一个分区的真实启动和从虚拟机中启动，自动修改相应的设置文件。从软盘和&#x2F;或CD-ROM直接安装未修改的操作系统，在创建一台虚拟机时，这个安装过程是第一步并且也是唯一必需的一步。</p>
+<p>④自动捕获和释放鼠标光标，为安装VMware Tools的时候只能用Crrl+Alt来释放鼠标，安装VMware Tools之后可以实现虚拟机和主机图形用户界面直接平滑移动鼠标光标。</p>
+<p>⑤在主机和客户机之间或者从一台虚拟机到另一台虚拟机进行复制粘贴操作。</p>
+<p>⑥改善网络性能。</p>
+<p>（1）直接进行安装可能会报错，原因是是缺少补丁。接下来就要去官网安装win7补丁（64或32）</p>
+<p><a target="_blank" rel="noopener" href="https://www.catalog.update.microsoft.com/Search.aspx?q=KB4474419">Microsoft Update Catalog</a></p>
+<p>（2）选择对应的版本，进行下载，可直接下载到U盘中或者下到本地后再拷贝到U盘（这一步的作用是通过U盘将本地与虚拟机进行交互）。</p>
+<!-- 这是一张图片，ocr 内容为：2019送用于WINDOIWS 7的09安全更新. DOWNLOAD 2019/9/10 53.3 MB WINDOWS 7 安全更新程序 适合基于X64的系统(KR4474419) -->
+<p><img src="/images/courses-nlp/image_001_1757248285162-be591982-633e-4afd-bc4e-41ec88ce2d85.png"></p>
+<p>（3）在虚拟机中打开U盘，双击进行安装。</p>
+<p>又遇到了安装vmw tools后无法进行拖拽的问题</p>
+<!-- 这是一张图片，ocr 内容为：X WINDOWS 7 X64 - VMWARE WORKSTATION 好包口日8 WORKSTATION 主页 我的计算机 WINDOWS 7 X64 回收站 VMWARE WORKSTATION 无法连接更新服务器.请检查您的INTERNET设置或 联系您的系统管理员. 确定 CH 16:36 2025/9/7 VMWARETOOLS具有很多功能,能改善鼠标移动性,视频和 安装TOOLS 不要提醒我 以后提醒我 性能.请登录客户机操作系统,单击'安装TOOLS". -->
+<p><img src="/images/courses-nlp/image_002_1757234181971-7279cc20-4898-4c84-898a-1c8820ef2bed.png"></p>
+<p>需要下载官网的补丁</p>
+<p><font style="color:rgb(77, 77, 77);">Windows 7 SP1 64位，这是Windows 7的最终服务包版本，集成了所有官方更新和修补程序，确保系统的稳定性和安全性。</font></p>
+<p><font style="color:rgb(77, 77, 77);"></font></p>
+<p><font style="color:#DF2A3F;">在自己电脑上安装win7虚拟机的作用是为了模拟机房的电脑（win7）</font></p>
+<ol>
+<li><font style="color:rgb(77, 77, 77);">在自己电脑上安装了win7系统后，打开，在win7中安装VirtualPC软件（32位和64位win7均可使用），直接拖拽进虚拟机界面即可</font></li>
+</ol>
+<!-- 这是一张图片，ocr 内容为：应用程序 VIRTUALPC2007SP1 64位+32位2合1 V6.0.192...   2025/9/13 15:52 26,920 KB -->
+<p><img src="/images/courses-nlp/image_003_1757750876396-268024f5-665c-488a-89c5-cc9c4fb76192.png"></p>
+<p>安装成功后的界面</p>
+<!-- 这是一张图片，ocr 内容为：完整版WINDOWS 7 X64 -VMWARE WORKSTATION 母 帮助(H) 文件(E)编辑(E)查看(V) 选项卡(T) 虚拟机(M) 完整版WINDOWS7X64 介主页 VIRTUALPC.... USER 位+32位2... I口X 您正在安装---[VIRTUALPC2007 SP1简体中文注册版] 计算机 VIRTUALPC安装向导完成 天林工作室教学校 安装程序已在您的电脑中安装了VIRTUALPC.此应用程序 可以通过选择安装的快捷方式运行. 单击"完成"退出安装程序. 运行VIRTUALPC2007SP1简体中文注册版 网络 回收站 软件制作:老秋 帮助 完成(F) 老秋工作室] 控制面板 VIRTUALPC 16:09 2025/9/13 要将输入定向到该虚拟机,请将鼠标指针移入其中或按CTL+G. -->
+<p><img src="/images/courses-nlp/image_004_1757751007174-d7d4cf51-9b06-4979-9787-dd1db0293f8a.png"></p>
+<ol start="2">
+<li>使用VirtualPC创建Win XP虚拟机，将虚拟机和硬盘都保存在了C盘下</li>
+</ol>
+<p>（1）使用新建虚拟机向导进行创建，点击“新建一台虚拟机”</p>
+<!-- 这是一张图片，ocr 内容为：VIRTUALPC控制台 搜索TOOL 文件(F) 帮助(H) 操作(A) 新建(N).. 类型 修改日期 大小 设置(T) -2位2合1V6.0.1... 2025/9/13 15:52 应用程序 26,920 KB 移除(R) 2025/9/1 20:24 光盘映像文件 1,200 KB 启动(S) 新建虚拟机向导 选项 新建一台或添加一台已存在的虚拟机到VIRTUALPC控制台. 音乐 请选择一个选项: 计算机 新建一台虚拟机(C) 回 以基本配置需求创建一台虚拟机. 网络 以默认设置创建一台虚拟机(U) 以默认设置来自动创建一个,VMC 文件.这样创建的虚拟机没有关联到 在何虚拟硬盘,所以必须在"设置"对话框中指定一个虚拟硬盘. 添加一台已存在的虚拟机(A) 空制 以WMC 文件添加一台已存在的虚拟机到VIRTUALPC控制台. VIRTUALPC2007S IRTU 上一步(B) 下一步 >ON) 取消 应用程序 -->
+<p><img src="/images/courses-nlp/image_005_1757756361384-a3dcbb32-9538-40be-a44a-e7a9f2c7b6be.png"></p>
+<p>（2）设置虚拟机的名称和位置，保存在C盘下</p>
+<!-- 这是一张图片，ocr 内容为：已存在的虚拟机的名称和位置 保存在(): 本地磁盘(C:) 名称 修改日期 PERFLOGS 2009/7/14 11:20 最近访问的位置 PROGRAM FILES 2023/5/28 11:09 2025/9/13 16:04 PROGRAM FILES(X86) 2025/9/13 16:59 TOOL 桌面 WINDOWS 2023/5/28 12:21 用户 2023/5/28 11:04 计算机 网络 WIRXPL 保存(S) 文件名(F): 保存类型(T): 虚拟机配置文件(*.VMC) 取消 -->
+<p><img src="/images/courses-nlp/image_006_1757756458958-b33b2a60-6684-4dfd-bd54-d829e4474aa9.png"></p>
+<p>点击“下一步”</p>
+<!-- 这是一张图片，ocr 内容为：新建虚拟机向导 虚拟机的名称和位置 指定的名称将会显示在VIRTUALPC控制台的虚拟机列表中. 请输入虚拟机的名称.选择一个能确定虚拟机软件,硬件配置或代表操作系 统的名称.文件自动保存在"我的虚拟机"文件夹中.如果要保存到其它位置, 请使用浏览按钮. 名称和位置(L): C:￥WINXP.WMC 浏览(R).. 下一步 >QI) 上一步(B) 取消 -->
+<p><img src="/images/courses-nlp/image_007_1757756474603-50aba70b-9219-4c84-bccc-bf10cac683d8.png"></p>
+<p>（3）设置“操作系统”</p>
+<!-- 这是一张图片，ocr 内容为：新建虚拟机向导 操作系统 请选择要在此虚拟机上安装的操作系统. 在下面选择一个操作系统可以让向导推荐虚拟机的设置.如果要安装的客 户机操作系统没有在下面列出,请选择大概与之需要同样内存大小的操作 系统或选择其他. 默认硬件选择: 操作系统(O): RAM: 128 MB WINDOWS XP 虚拟磁盘: 65,536 MB 声卡:SOUND BLASTER 16 COMPATIBLE 下一步>OI) 上一步(B) 取消 -->
+<p><img src="/images/courses-nlp/image_008_1757756501096-9d036c6a-0a5f-46a2-84f4-53ea4991ed66.png"></p>
+<p>（4）分配内存大小</p>
+<!-- 这是一张图片，ocr 内容为：新建虚拟机向导 内存 配置虚拟机的内存. 为了提高虚拟机的性能和在其操作系统上运行更多的应用软件,请多分配 一些内存.要保留内存给其他虚拟机,请按照建议分配内存. 推荐内存大小:[128MB] 分配给虚拟机内存大小: 使用推荐内存大小(U) 更改分配内存大小(A) 给虚拟机设置内存(S): 1500 MB 64 MB 3583 MB 上一步(B) 下一步>QF) 取消 -->
+<p><img src="/images/courses-nlp/image_009_1757756543926-141dc76e-ecf9-46c4-b7cd-eb343f0415ce.png"></p>
+<p>（5）选择“新建虚拟硬盘”</p>
+<!-- 这是一张图片，ocr 内容为：新建虚拟机向导 虚拟硬盘选项 在安装操作系统之前,必须添加虚拟硬盘. 虚拟硬盘是一个保存着客户机操作系统,应用程序和数据文件等在物理硬 盘上的.WHD文件. 创建或选定的第一个虚拟硬盘叫硬盘1,在设置对话框中叫居动硬盘. 要使用哪种硬盘: 已存在的虚拟硬盘(A) 新建虚拟硬盘(E) 下一步 >QT) 上一步(B) 取消 -->
+<p><img src="/images/courses-nlp/image_010_1757756576475-cfb326be-a98d-4382-a8e7-4b88fca9a97a.png"></p>
+<p>（6）设置虚拟硬盘大小，不能太大也不能太小</p>
+<!-- 这是一张图片，ocr 内容为：新建虚拟机向导 虚拟硬盘位置 向导以默认大小创建了一个动态扩展虚拟硬盘. 给新建的虚拟硬盘输入一个名称.如果没有指定一个位置,虚拟硬盘文件将 会自动地保存在虚拟机配置文件目录中. 名称和位置(L): C:半WINXP硬盘.VHD 浏览(R).. 最大虚拟硬盘大小:130,557MB 虚拟硬盘大小: 8000 MB 要了解更多关于虚拟硬盘的类型,请查看VIRTUALPC的帮助.要使用虚拟硬 盘高级选项,请使用虚拟磁盘向导. 下一步 >OT) 上一步(B) 取消 -->
+<p><img src="/images/courses-nlp/image_011_1757756617161-4e49dab3-e36b-4484-b75b-0c2ea4d113ca.png"></p>
+<p>（7）确认虚拟硬盘的位置是否和新建的此虚拟机一同存在了C盘下，并修改了硬盘的名字（去掉了空格，也不知道空格会有什么影响，跟着老师来）</p>
+<!-- 这是一张图片，ocr 内容为：虚拟硬盘位置 保存在(): 本地磁盘(C:) 修改日期 名称 2009/7/14 11:20 PERFLOGS 最近访问的位置 PROGRAM FILES 2023/5/28 11:09 PROGRAM FILES(X86) 2025/9/13 16:04 2025/9/13 16:59 TOOL 桌面 WINDOWS 2023/5/28 12:21 用户 2023/5/28 11:04 库 计算机 网络 WINKP硬盘 保存(S) 文件名QI): 保存类型(T): 虚拟硬盘(*.VHD) 取消 -->
+<p><img src="/images/courses-nlp/image_012_1757756751377-b8722134-e0b5-4742-ada2-6964b7026b23.png"></p>
+<p>（8）完成虚拟机的创建</p>
+<!-- 这是一张图片，ocr 内容为：完整版WINDOWS 7 X64-VMWARE WORKSTATION 安 文件(E)编辑(E)查看(V) I 虚拟机(M)选项卡(T)帮助(H) 完整版WINDOWS7X64X 介主页 VIRTUALPC控制台 VIRTUALPC... USER 文件(F操作(A)帮助(H) 位+32位2... 新建(N). 设置(T) 移除(R) 计算机 新建虚拟机向导 完成新建虚拟机向导 圆 网络 成功完成新建虚拟机向导.虚拟机将创建于以下属 性: 名称: WINXP 内存: 1500 MB 虚拟硬盘:WINXP硬盘.VHD 回收站 要关闭向导并创建虚拟机,请单击完成. 控制面板 完成 上一步(B) 取消 VIRTUALPC 16:22 2025/9/13 西临绘入空白破波虎 -->
+<p><img src="/images/courses-nlp/image_013_1757751804354-b6995f6a-8dd6-4922-9e79-bddd701c0838.png"></p>
+<p>:::success<br>WinXP：刚创建的电脑</p>
+<p>WinXP硬盘：刚创建的电脑硬盘</p>
+<p>只要把这两个文件拷走，这台新创建的电脑（虚拟机）就会跟着U盘走了。拷走之前最好把硬盘压缩一下。</p>
+<!-- 这是一张图片，ocr 内容为：本地磁盘(C:) 计算机 搜索本地磁盘(C:) 新建文件夹 共享 组织 名称 类型 修改日期 大小 收藏夹 下载 PERFLOGS 文件夹 2009/7/1411:20 桌面 文件夹 PROGRAM FILES 2023/5/28 11:09 最近访问的位置 文件夹 PROGRAM FILES(X86) 2025/9/13 16:04 文件夹 2023/5/28 12:21 WINDOWS 库 文件夹 2023/5/28 11:04 用户 视频 9 KB VIRTUAL MACHINE SE... 2025/9/1316:26 WIN XP 图片 2025/9/13 16:26 VIRTUALMACHINEH.... WINXP硬盘 19KB 文档 音乐 -->
+<p><img src="/images/courses-nlp/image_014_1757752011669-f04da362-83bb-4b1a-8ebc-f1946649ae03.png"></p>
+<p>:::</p>
+<ol start="3">
+<li>设置新电脑（虚拟机）配置</li>
+</ol>
+<p>（1）点击设置</p>
+<!-- 这是一张图片，ocr 内容为：USER VIRTUALPC.... 位+32位2... VIRTUAL PC控制台 帮助(H) 文件(F) 操作(A) 新建(N).. WINXP 计算机 没有运行 设置(T) 移除(R) 设置WINXP 网络 文件名 设置 当前值 文件名 WINXP 重命名虚拟机. 内存 1500 MB 硬盘 WINXP硬盘 文件名(F): WINXP 硬盘2 无 回收站 硬盘3 无 禁用 还原磁盘 第二控制器 CD/DVD驱动器 自动检测 软盘驱动器 无无无无 COM1 COM2 控制面板 LPT1 网络适配器:1 网络连接 声音 开启 不可用 虚拟机的名称典型代表了它的软件,硬件配置情况. 硬件虚拟化 无指针整合 鼠标 没有安装 共享文件夹 VIRTUALPC 黑犬认 显示 显示消息 关闭 16:31 CH 2025/9/13 -->
+<p><img src="/images/courses-nlp/image_015_1757752316339-9de7336d-4891-48f7-96ed-f3db926c0e53.png"></p>
+<p>（2）勾选“允许使用还原磁盘”</p>
+<!-- 这是一张图片，ocr 内容为：完整版WINDOWS7X64 价主页 VIRTUALPC.... USER 位+32位2... X  X VIRTUAL PC控制台 文件(F)操作(A)帮助(H) 新建(N)... WINXP 没有运行 计算机 设置(T) 移除(R) 设置WINXP 网络 还原磁盘 当前值 设置 文件名 WINXP 允许使用还原磁盘(E) 内存 1500 MB 硬盘 WINXP硬盘 无无 硬盘2 回收站 硬盘3 还原磁盘 开启 CD/DVD 驱动器 第二控制器 自动检测 软盘驱动器 无无无 COM1 COM2 控制面板 LPT1 网络适配器:1 网络连接 声音 开启 硬件虚拟化 不可用 还原磁盘映像文件保存了使用虚拟机时对其所作的任何更 改.当结束进程时,选择保存更改到虚拟硬盘,提交更改直 无指针整合 鼠标 到下一个进程,或者删除更改.启用此功能需要在.VMC所 没有安装 共享文件夹 VIRTUALPC 在位置使用额外的空间. 黑犬认 显示 显示消息 关闭 16:32 CH 2025/9/13 -->
+<p><img src="/images/courses-nlp/image_016_1757752363081-5f63464a-50bc-4397-8d95-ad10fd6e8cc8.png"></p>
+<p>（3）检查网卡（网络连接）</p>
+<!-- 这是一张图片，ocr 内容为：X 设置WINXP 网络连接 设置 当前值 文件名 WINXP 网络适配器数量(N): 内存 1500 MB 硬盘 1 WINXP硬盘 适配器 1(A): INTEL(R)PRO/1000 MT NETWORK C 硬盘2 无无 适配器 2(D): 硬盘3 未连接 还原磁盘 开启 适配器3(T): 未连接 第二控制器 CD/DVD驱动器 软盘驱动器 自动检测 适配器 4(E): 未连接 无无无无 COM1 COM2 LPT1 网络连接 网络适配器:1 声音 开启 硬件虚拟化 不可用 选择要在虚拟机上使用的网卡的数量.然后可以指定物理 机器上的哪块网卡是用来与虚拟网卡进行通讯的.还可以 无指针整合 鼠标 为第一块网卡选择是使用本地网络还是共享网络. 共享文件夹 没有安装 默认 显示 显示消息 关闭 取消 确定 -->
+<p><img src="/images/courses-nlp/image_017_1757752589285-1a60cd7f-bbaf-4439-840a-2045ba666f29.png"></p>
+<p>（4）检查声卡（声音）</p>
+<!-- 这是一张图片，ocr 内容为：X 设置WINXP 声音 设置 当前值 文件名 WINXP 开启声卡(E) 内存 1500 MB 硬盘 1 WINXP硬盘 硬盘2 无无 硬盘3 还原磁盘 开启 第二控制器 CD/DVD驱动器 软盘驱动器 自动检测 无无无 COM1 COM2 LPT1 网络适配器:1 网络连接 声音 开启 硬件虚拟化 不可用 如果打算以虚拟服务器来运行虚拟机,或者没有模拟声 卡,请禁用声卡. 无指针整合 鼠标 共享文件夹 没有安装 默认 显示 显示消息 关闭 取消 确定 -->
+<p><img src="/images/courses-nlp/image_018_1757752616116-c7f9b1af-bc83-4e56-9648-7311f746cf38.png"></p>
+<p>（5）检查虚拟化（硬件虚拟化）</p>
+<!-- 这是一张图片，ocr 内容为：设置WINXP 硬件辅助虚拟化 设置 当前值 文件名 WINXP 1月硬件辅助虚拟化(E) 内存 1500 MB 硬盘1 WINXP硬盘 注意:这台计算机不支持硬件辅助虚拟化(N) 硬盘2 无无 硬盘3 开启 还原磁盘 CD/DVD驱动器 第二控制器 软盘驱动器 自动检测 无无无无 COM1 COM2 LPT1 网络适配器:1 网络连接 声音 开启 硬件虚拟化 不可用 如果启用这个选项,在条件允许的情况下,这台计算机将 无指针整合 运行于硬件辅助虚拟化模式.这个选项仅当VIRTUAL PC中为 鼠标 所有虚拟机启用硬件辅助虚拟化才生效. 共享文件夹 没有安装 默认 显示 显示消息 关闭 取消 确定 -->
+<p><img src="/images/courses-nlp/image_019_1757752644232-1fe9e211-fcd1-42f9-b615-0f1cb03ed285.png"></p>
+<p>（6）检查关闭设置（关闭），默认是“关闭时显示这些可选的消息：”，后续会有修改。</p>
+<!-- 这是一张图片，ocr 内容为：设置WINXP 关闭 设置 当前值 文件名 WINXP 关闭时显示这些可选的消息(S): 内存 1500MB 保存状态(A) 硬盘1 WINXP硬盘 无无 硬盘2 关闭(H) 硬盘3 关闭电源(T) 还原磁盘 开启 第二控制器 CD/DVD驱动器 自动关闭不显示任何消息并(O): 软盘驱动器 自动检测 保存状态 无无无无 COM1 COM2 LPT1 网络连接 网络适配器:1 声音 开启 硬件虚拟化 不可用 可以在关闭时显示选项信息或者指定虚拟机如何自动关闭 而不用用户的命令. 鼠标 无指针整合 共享文件夹 没有安装 黑犬认 显示 显示消息 关闭 确定 取消 -->
+<p><img src="/images/courses-nlp/image_020_1757752712603-e9e1c638-9eec-4251-9985-b9806f0efb12.png"></p>
+<ol start="4">
+<li>点击“启动”进行开机</li>
+</ol>
+<!-- 这是一张图片，ocr 内容为：VIRTUALPC控制台 帮助(H) 操作(A) 文件(F) 新建(N). WINXP 没有运行 设置(T) 移除(R) 启动(S) -->
+<p><img src="/images/courses-nlp/image_021_1757752802099-fcdabfdc-bec9-4e9d-b7f3-6b3928ad292c.png"></p>
+<p>此时，电脑发现硬盘中什么也没有，就准备用网卡启动，下一步用软盘进行启动</p>
+<!-- 这是一张图片，ocr 内容为：WINXP - MICROSOFT VIRTUAL PC 2007 帮助(H) 操作(A) 编辑(E)CD软驱(F) (BIOS INTEGRATED) ARGON PXE BOOT AGENT V2.00 (C) COPYRIGHT 2004 ARGON TECHMOLOGY CORPORATION ALL RIGHTS RESERVED. WWW.ARGONTECHNO LOGY.COM (T) CLIEMT HAC ADDR: 00 03 FF DE EZ 3B GUID: OF97EZA9-4EB6-1241-99EA-182BE69EA5B7 DHCP.A (R) C)... -->
+<p><img src="/images/courses-nlp/image_022_1757752850938-c1054d7c-7034-4665-955c-58f533c55296.png"></p>
+<ol start="5">
+<li>用软盘进行启动</li>
+</ol>
+<p>软盘如下（该软盘是吴兵老师自己开发的）：</p>
+<!-- 这是一张图片，ocr 内容为：光盘映像文件 ZH UCDOS NEW2014.IMG 2025/9/1 20:24 1,200 KB -->
+<p><img src="/images/courses-nlp/image_023_1757753044001-4f1c2fa9-151f-4452-a3e3-5d45fc140a9b.png"></p>
+<p>（1）点击“软驱”–&gt;“载入虚拟软盘映像”</p>
+<!-- 这是一张图片，ocr 内容为：X P - MICROSOFT VIRTUAL PC I PC 2007 WINXP - 帮助(H) 操作(A)编辑(E) 软驱(F) CD 载入虚拟软盘映像(C)... REBOOT AND SELECT OR INSERT BOOT ME 释放磁盘 -->
+<p><img src="/images/courses-nlp/image_024_1757753250029-b2a7cbaf-ae44-4250-97ba-369258d3a1e9.png"></p>
+<p>（2）导入镜像文件</p>
+<!-- 这是一张图片，ocr 内容为：选择软盘映像 查找范围(): TOOL 名称 修改日期 ZH_UCDOS NEW2014 2025/9/1 20:24 最近访问的位置 桌面 计算机 网络 打开(0) 文件名QI): 文件类型(T): 软盘映像(*.VFD,*.IMG*.IMA,*.DSK) 取消 -->
+<p><img src="/images/courses-nlp/image_025_1757757252208-1ee3b080-d617-4877-a4fd-537760844357.png"></p>
+<p>（3）使软盘启动起效，点击“操作”–&gt;“复位”</p>
+<!-- 这是一张图片，ocr 内容为：X WINXP - MICROSOFT VIRTUAL PC 2007 操作(A) 帮助(H) 编辑(E)CD软驱(F) GRATED) RIGHT ALT+ENTER 全屏模式(F) ORPORATION RIGHT ALT+DEL CTRL+ALT+DEL(D) OGY.COM 暂停(P) RIGHT ALT+P UID: 0BF0050C-5148-5044-BF51-FA0BA05D64D9 RIGHT ALT+R 复位(R) RIGHT ALT+F4 关闭(C)... 安装或升级附加模块(I) RIGHT ALT+I 属性(O) -->
+<p><img src="/images/courses-nlp/image_026_1757757130646-6c669733-772e-4b3a-80b9-19c34229519f.png"></p>
+<p>（4）点击“复位”</p>
+<!-- 这是一张图片，ocr 内容为：X WINXP - MICROSOFT VIRTUAL PC 2007 软驱(F) 帮助(H) 操作(A)编辑(E) CD ARGON PXE BOOT AGENT V2.00 (BIOS INTEGRATED) (C) COPYRIGHT 2004 ARGON TECHMOLOGY CORPORATION ALL RIGHTS RESERVED. WWW.ARGONTECHNOLOGY.COM ICLIENT MAC ADDR: 00 03 FF DE E2 3B GUID: OBFOO50C-5148-5044-BP51-TAOBA0BA05D64D9 DHCP.... WINXP 如果复位这台虚拟机,将丢失所有未保存的更改. 要复位这台虚拟机吗? 取消 复位 -->
+<p><img src="/images/courses-nlp/image_027_1757757352004-6fec96e0-d488-428b-b497-f659b188331a.png"></p>
+<p>（5）启动完毕</p>
+<!-- 这是一张图片，ocr 内容为：WINXP - MICROSOFT VIRTUAL PC 2007 操作(A)编辑(E)CD软驱(F) 帮助(H) TRANSFER SIZE AD JUSTED BUFFER SIZE: 30000 KB 512 SECTOR SIZE: DIRECTORY ENTRIES: 64 8 TRANSFER SIZE: DR SIZE TOO LARGE IN FILE \CNTX\UMADD386 SYS SECTOR SIZ MICROSOFT CD-ROM DRIVER, ON 1.1 (IDECD001) VERSION VOLUME IN DRIVE A HE LABEL HAS NO DIRECTORY OF A:\ COMMAND 7-24-87 25276 12:00A COM UCDOS 5-08-97 <DIR> 7:55P WPS 10-07-97 10:42A BAT 29 <DIR> 8-30-14 CNTX 11:34A 12:03P 8-30-14 AUTOEXEC BAT 104 12:06P CONFIG SIS 8-30-14 180 <DIR> WIN98 12:13P 8-30-14 1:58P 8-30-14 ZHDOS BAT 403 360960 BYTES FREE 8 FILE(S) A:\CNTX IS UPC2007SP1 ADDTION FOR DOS - -->
+<p><img src="/images/courses-nlp/image_028_1757757410303-4336c2e9-d9a4-425b-990d-382e9d9b8b2b.png"></p>
+<p>（6）输入zhdos可启用汉藏语版本</p>
+<!-- 这是一张图片，ocr 内容为：WINXP - MICROSOFT VIRTUAL PC 2007 操作(A)编辑(E)CD 帮助(H) 软驱(F) [ENTER ] RUN WPS WIN-2H [ENTER] RUN C:NYS [英文] 半角 [藏汉学习版]西南民院吴兵软件研制小组 1997年4月 -->
+<p><img src="/images/courses-nlp/image_029_1757762538498-1917d00e-20c4-43b5-a25a-52768937038e.png"></p>
+<p>（7）再输入wps，可进入最初版本的wps界面（该界面支持鼠标）</p>
+<!-- 这是一张图片，ocr 内容为：WINXP - I - MICROSOFT VIRTUAL PC 2007 操作(A) 帮助(H) 编辑(E) 软驱(F) CD SUPER-WPS文字处理系统 香港金山公司研制 KINGSUN 1991年9月 主菜单版本2.2 版权所有 作者:求伯君 李明 二二一二二一 编辑文书文件 DNPHFX 编辑非文书文件 打印文书文件 帮助信息 文件服务功能 退出处理系统 [英文] [藏汉学习版] 半角 1997年4月 西南民院吴兵软件研制小组 -->
+<p><img src="/images/courses-nlp/image_030_1757762581160-087e6363-c509-49e6-95d2-1cc594a21f84.png"></p>
+<p>（8）进入ZWBX可查看藏文的字根</p>
+<!-- 这是一张图片，ocr 内容为：WINXP - MICROSOFT VIRTUAL PC 2007 帮助(H) 软驱(F) 操作(A) 编辑(E) CD SUPER-WPS文字 小理系统 T路径:C:NUCDOS 香港金山公司 F文件:WPS 文件名 KINGSUN WPS ZWBX 版作 主菜单版本2.2 编辑文书文件 二二二二 SNPHFX 编辑非文书文件 ESC 取消 打印文书文件 帮助信息 文件服务功能 退出处理系统 被编辑的文件名: [藏汉学习版]西南民院吴兵软件研制小组 [英文] 1997年4月 半角 -->
+<p><img src="/images/courses-nlp/image_031_1757762709385-c830dbf4-81dd-4568-a1a5-cb3c78ec9c9d.png"></p>
+<!-- 这是一张图片，ocr 内容为：- MICROSOFT VIRTUAL PC 2007 WINXP 操作(A)编辑(E)CD软驱(F) 帮助(H) 菜单文件:C://UCDOS\2WBX.WPS 行-00001 插入行 列-001 控制ON 藏文笔型] 学习输入藏文: 按<ALT-F9>选择了[藏文笔型]输入法后,按下面提供的方法步骤,可很快学会! 1.熟练掌握藏文字根编码表. 2.按发音顺序,依次敲入对应的编码字母, 3.当输入的字有上加字时,最后敲上加字的编码. 4.藏文数字的输入,分别对应键盘上的数字键. 5.依次输入完编码后,按空格键结束. 6. 注意:. 在输入藏文时,当不知道某个字根时,可以用""键代替之,它相当于五笔输入, 法中的'Z键!. 藏文笔型字根编码表 15 G6 3 1 8 4 0 2 必7 0 半角 [英文] 1997年4月 [藏汉学习版] 西南民院吴兵软件研制小组 -->
+<p><img src="/images/courses-nlp/image_032_1757762727225-fab5242f-701c-43c7-b3ba-472bdaf4f6fc.png"></p>
+<p>（9）按“alt”+”F9”可选择藏文笔型输入法</p>
+<!-- 这是一张图片，ocr 内容为：半角藏文笔型 -->
+<p><img src="/images/courses-nlp/image_033_1757762929742-bc687ad9-feba-4fae-8e93-03a4ec192832.png"></p>
+<p>（10）按“esc”退出</p>
+<p>（11）选择“4”退出汉藏文系统</p>
+<ol start="6">
+<li>退出操作</li>
+</ol>
+<p>（1）点右上角的红叉，弹出提示框，选择“关闭电源并保存更改”，并勾选上“提交更改到虚拟硬盘”，点击“确认”。</p>
+<!-- 这是一张图片，ocr 内容为：WINXP - MICROSOFT VIRTUAL PC 2007 操作(A)编辑(E)CD软驱( 帮助(H) C:NUCDOS>CD C:\> C:\> 关闭 想要虚拟机做什么? 关闭电源并保存更改 保存状态并保存更改 关闭电源并保存更改 关闭电源并删除更改 提又史以到巫以吸盔(() 由于 SATURDAY,SEPTEMBER 13,2025,5:46:54 PM 没有提 交到虚拟硬盘,已作更改. 确定 取消 -->
+<p><img src="/images/courses-nlp/image_034_1757822886484-9d1f3eb0-91b6-4a85-9323-c3e3693191d1.png"></p>
+<p>（2）目前虚拟机（做的虚拟机）的占用空间还很小</p>
+<!-- 这是一张图片，ocr 内容为：WINXP 13 KB 2025/9/1412:09 VIRTUAL  I MACHINE SE... VIRTUALMACHINEH.... WINXP硬盘 2025/9/13 17:46 19KB -->
+<p><img src="/images/courses-nlp/image_035_1757822997933-6856e617-644f-48dc-8188-413277e9fe96.png"></p>
+<ol>
+<li>新创建一台虚拟机</li>
+</ol>
+<!-- 这是一张图片，ocr 内容为：X X VIRTUALPC控制台 操作(A) 文件(F) 帮助(H) 新建(N).. WINXP 没有运行 设置(T) 新建虚拟机向导 选项 新建一台或添加一台已存在的虚拟机到VIRTUALPC控制台. 请选择一个选项: 新建一台虚拟机(C) 以基本配置需求创建一台虚拟机. 以默认设置创建一台虚拟机(U) 以默认设置来自动创建一个 UMC 文件.这样创建的虚拟机没有关联到 任何虚拟硬盘,所以必须在"设置"对话框中指定一个虚拟硬盘. 回收站 添加一台已存在的虚拟机(A) 以YMC文件添加一台已存在的虚拟机到VIRTUALPC控制台. 控制面板 下一步 >OT) 上一步(B) 取消 -->
+<p><img src="/images/courses-nlp/image_036_1757826903049-e5ad6384-99a7-464b-8242-f8b14be0ed21.png"></p>
+<p>（1）把虚拟机的位置放在这个文件夹下（不知道为什么，先按照老师的来），名为“zhdos”</p>
+<!-- 这是一张图片，ocr 内容为：已存在的虚拟机的名称和位置 保存在(): TMPWB 最近使用的项目 修改日期 桌面 的项. 网络 最近访问的位置 库 USER 计算机 本地磁盘(C:) 桌面 TMPWB DVD 驱动器 (:) SHARED FOLDERS (LIVMWARE-HOST)(Z:) 计算机 网络 保存(S) 文件名ON): ZHDOS 保存类型(T): 虚拟机配置文件(*.VMC) 取消 -->
+<p><img src="/images/courses-nlp/image_037_1757827334724-a6c499c2-3bab-47a3-8d99-4bb602d58adb.png"></p>
+<p>（2）操作系统选择“其他”</p>
+<!-- 这是一张图片，ocr 内容为：新建虚拟机向导 操作系统 请选择要在此虚拟机上安装的操作系统. 在下面选择一个操作系统可以让向导推荐虚拟机的设置.如果要安装的客 户机操作系统没有在下面列出,请选择大概与之需要同样内存大小的操作 系统或选择其他. 操作系统(O): 默认硬件选择: RAM: 128 MB 其他 虚拟磁盘: 16.384 MB WINDOWS 98 WINDOWS NT WORKSTATION 声卡:SOUND BLASTER 16 COMPATIBLE WINDOWS 2000 WINDOWS XP OS2 WINDOWS VISTA WINDOWS NT SERVER WINDOWS 2000 SERVER WINDOWS SERVER  2003 WINDOWS SERVER 2008 下一步>QI) 上一步 (B) 取消 其他 -->
+<p><img src="/images/courses-nlp/image_038_1757827443579-c268a374-648c-49f3-8735-e57fa247bb46.png"></p>
+<p>（3）虚拟机分配内存最好不要超过8个，6MB就够了</p>
+<!-- 这是一张图片，ocr 内容为：新建虚拟机向导 内存 配置虚拟机的内存. 为了提高虚拟机的性能和在其操作系统上运行更多的应用软件,请多分配 一些内存.要保留内存给其他虚拟机,请按照建议分配内存. 推荐内存大小:[128MB] 分配给虚拟机内存大小: 使用推荐内存大小(U) 更改分配内存大小(A) 给虚拟机设置内存(S): MB 3583 MB 4 MB 下一步 >QI) 上一步(B) 取消 -->
+<p><img src="/images/courses-nlp/image_039_1757827509805-ad7a2b28-5f8e-45d4-be3e-f315bb427e22.png"></p>
+<p>（4）创建虚拟硬盘</p>
+<!-- 这是一张图片，ocr 内容为：新建虚拟机向导 虚拟硬盘选项 在安装操作系统之前,必须添加虚拟硬盘. 虚拟硬盘是一个保存着客户机操作系统,应用程序和数据文件等在物理硬 盘上的 WHD 文件. 创建或选定的第一个虚拟硬盘叫硬盘1,在设置对话框中叫肩动硬盘. 要使用哪种硬盘: 已存在的虚拟硬盘(A) 新建虚拟硬盘(E) 下一步 >QF) 上一步(B) 取消 -->
+<p><img src="/images/courses-nlp/image_040_1757827554064-d6b8dec1-cab4-48ae-971e-7bf194ab65da.png"></p>
+<p>把中文去点，否则不方便</p>
+<!-- 这是一张图片，ocr 内容为：虚拟硬盘位置 保存在(): .TMPWB 名称 修改日期 没有与搜索条件匹配的项. 最近访问的位置 桌面 库 计算机 网络 保存(S) 文件名QI): ZHDOSL 保存类型(T): 虚拟硬盘(*.VHD) 取消 -->
+<p><img src="/images/courses-nlp/image_041_1757827623393-131939c1-ce9d-4799-b64a-cb83e950952e.png"></p>
+<p>硬盘大小最好不要超过200MB，100MB就够了</p>
+<!-- 这是一张图片，ocr 内容为：新建虚拟机向导 虚拟硬盘位置 向导以默认大小创建了一个动态扩展虚拟硬盘. 给新建的虚拟硬盘输入一个名称.如果没有指定一个位置,虚拟硬盘文件将 会自动地保存在虚拟机配置文件目录中. 名称和位置(L): C:￥TMPWB￥ZHDOS.VHD 浏览(R)... 最大虚拟硬盘大小:130,557 MB 虚拟硬盘大小: 100 MB 要了解更多关于虚拟硬盘的类型,请查看VIRTUAL PC的帮助.要使用虚拟硬 盘高级选项,请使用虚拟磁盘向导. 上一步(B) 下一步>OI) 取消 -->
+<p><img src="/images/courses-nlp/image_042_1757827682787-36ae23a1-5315-4111-ad20-529fea5f0ed1.png"></p>
+<p>（5）完成创建虚拟机</p>
+<!-- 这是一张图片，ocr 内容为：新建虚拟机向导 完成新建虚拟机向导 成功完成新建虚拟机向导.虚拟机将创建于以下属 性: 名称: ZHDOS 内存: 6 MB 虚拟硬盘: ZHDOS.VHD 要关闭向导并创建虚拟机,请单击完成. 完成 上一步(B) 取消 -->
+<p><img src="/images/courses-nlp/image_043_1757827711775-516cf34d-7996-4dc3-8cac-96ee7f3612bb.png"></p>
+<ol start="2">
+<li>设置新建虚拟机（zhdos）的配置</li>
+</ol>
+<p>（1）内存</p>
+<!-- 这是一张图片，ocr 内容为：设置ZHDOS 内存 设置 当前值 文件名 ZHDOS 更改为这台虚拟机分配的内存(RAM): 内存 6 MB 硬盘1 ZHDOS.VHD 6 RAM(R): MB 无无 硬盘2 硬盘3 禁用 还原磁盘 第二控制器 CD/DVD 驱动器 自动检测 软盘驱动器 4 MB 3583 MB 无无无无 COM1 COM2 LPT1 网络适配器:1 网络连接 声音 开启 硬件虚拟化 不可用 分配给虚拟机的内存数量是受物理机器内存数量限制的. 许多因素决定了最优化分配内存给这台虚拟机,包括物理 无指针整合 鼠标 机器所拥有内存的数量和客户机操作系统所需要的内存数 没有安装 共享文件夹 量. 黑犬认 显示 显示消息 关闭 -->
+<p><img src="/images/courses-nlp/image_044_1757828452820-013bb161-28ba-4214-aca2-33e792443249.png"></p>
+<p>（2）硬盘</p>
+<!-- 这是一张图片，ocr 内容为：X 设置ZHDOS 硬盘 1 设置 当前值 文件名 ZHDOS 无(N) 内存 6 MB 虚拟硬盘文件(V): 硬盘 ZHDOS.VHD 硬盘2 无无 C:￥TMPWB￥ZHDOS.VHD 硬盘3 浏览(R)... 禁用 还原磁盘 CD/DVD 驱动器 第二控制器 要新建一个或编辑一个已存在的虚拟磁盘,请单击虚 自动检测 软盘驱动器 拟磁盘向导. 无无无 COM1 虚拟硬盘向导(D) COM2 LPT1 网络适配器:1 网络连接 声音 开启 硬件虚拟化 不可用 硬盘1是虚拟机的启动硬盘. 鼠标 无指针整合 共享文件夹 没有安装 黑犬认 显示 显示消息 关闭 取消 确定 -->
+<p><img src="/images/courses-nlp/image_045_1757828473598-f0bf6b6d-acb6-46a7-b758-56eecb7955aa.png"></p>
+<p>（3）还原磁盘</p>
+<!-- 这是一张图片，ocr 内容为：设置ZHDOS 还原磁盘 设置 当前值 文件名 ZHDOS 允许使用还原磁盘(E) 内存 6 MB 硬盘1 ZHDOS.VHD 无无 硬盘2 硬盘3 还原磁盘 开启 第二控制器 CD/DVD 驱动器 软盘驱动器 自动检测 无无无无 COM1 COM2 LPT1 网络适配器:1 网络连接 声音 开启 硬件虚拟化 不可用 还原磁盘映像文件保存了使用虚拟机时对其所作的任何更 改.当结束进程时,选择保存更改到虚拟硬盘,提交更改直 无指针整合 鼠标 到下一个进程,或者删除更改.启用此功能需要在.VMC所 没有安装 共享文件夹 在位置使用额外的空间. 黑犬认 显示 显示消息 关闭 取消 确定 -->
+<p><img src="/images/courses-nlp/image_046_1757828505048-78e09d10-63cd-44bb-a65a-e21842567405.png"></p>
+<p>（4）硬盘虚拟化（因该是要启动的，但是我这里启动不了）</p>
+<!-- 这是一张图片，ocr 内容为：设置ZHDOS 硬件辅助虚拟化 设置 当前值 文件名 ZHDOS 启用硬件辅助虚拟化(E) 内存 6 MB 硬盘 1 ZHDOS.VHD 注意:这台计算机不支持硬件辅助虚拟化(N) 硬盘2 无 无 硬盘3 禁用 还原磁盘 第二控制器 CD/DVD 驱动器 自动检测 软盘驱动器 无无无 COM1 COM2 LPT1 网络适配器:1 网络连接 声音 开启 硬件虚拟化 不可用 如果启用这个选项,在条件允许的情况下,这台计算机将 无指针整合 运行干硬件辅助虚拟化模式.这个选项仅当VIRTUAL PC中为 鼠标 所有虚拟机启用硬件辅助虚拟化才生效. 共享文件夹 没有安装 黑伏认 显示 显示消息 关闭 取消 确定 -->
+<p><img src="/images/courses-nlp/image_047_1757829409697-f0e55807-0895-4411-a14a-eb0e33039b10.png"></p>
+<p>（5）关闭设置（默认参数先不去设置它）</p>
+<!-- 这是一张图片，ocr 内容为：设置ZHDOS 关闭 设置 当前值 文件名 ZHDOS 关闭时显示这些可选的消息(S): 内存 6 MB 硬盘 保存状态(A) ZHDOS.VHD 无 硬盘2 关闭(H) 无 硬盘3 关闭电源(T) 还原磁盘 禁用 第二控制器 CD/DVD 驱动器 自动关闭不显示任何消息并(O): 软盘驱动器 自动检测 保存状态 无无无 COM1 COM2 GLPT1 网络连接 网络适配器:1 声音 开启 不可用 硬件虚拟化 可以在关闭时显示选项信息或者指定虚拟机如何自动关闭 而不用用户的命令. 无指针整合 鼠标 没有安装 共享文件夹 黑犬认 显示 关闭 显示消息 取消 确定 -->
+<p><img src="/images/courses-nlp/image_048_1757829474119-609f2831-8df1-41ed-8705-e95f00865ca8.png"></p>
+<ol start="3">
+<li>启动虚拟机zhdos，启动之后立刻把光盘装进来</li>
+</ol>
+<p>:::success<br>这是非常重要的光盘，用它的操作系统将C盘格式化</p>
+<!-- 这是一张图片，ocr 内容为：2025/9/1 20:23 光盘映像文件 WINXP2.GHOST暨大源盘_VPCDOS.ISO 707,870 KB -->
+<p><img src="/images/courses-nlp/image_049_1757828301162-6e8cdbf6-7c32-4dbf-81bb-f93d3ec6bfa6.png"></p>
+<p>:::</p>
+<p>（1）安装光盘</p>
+<!-- 这是一张图片，ocr 内容为：X - MICROSOFT VIRTUAL PC 2007 ZHDOS 操作(A) 软驱(F) 编辑(E) 帮助(H) CD 载入物理驱动器D: 载入ISO映像(1)... 释放CD 弹出CD(E) -->
+<p><img src="/images/courses-nlp/image_050_1757829646711-37856714-8e68-4817-bb6e-e3ac455426c1.png"></p>
+<!-- 这是一张图片，ocr 内容为：X 选择CD映像 查找范围(): WW山 TOOL 修改日期 类型 名称 TC2.读显16点阵和矢量字库_FOR学生 文化 2025/9/1412:56 最近访问的位置 文化 UCDOS6 蕴OK可输+NC(FOR学生 均FROM.VHD)...  2025/9/14 12:57 光盘 WINXP2.GHOST暨大源盘_VPCDOS.ISO 2025/9/1  20:23 桌面 计算机 网络 打开(0) WINXP2_GHOST暨大源盘_VPCDOS.ISO 文件名OI): 文件类型(T): 取消 CD映像(*.ISO) -->
+<p><img src="/images/courses-nlp/image_051_1757829621573-d4420720-0d2d-4a8c-b97b-8527e993da1f.png"></p>
+<p>（2）进入光盘</p>
+<!-- 这是一张图片，ocr 内容为：ZHDOS - MICROSOFT VIRTUAL PC 2007 操作(A) 软驱(F)帮助(H) 编辑(E) CD GHOSTXPSP2硬件维护小组专用版 03.2 全自动恢复WINXP到硬盘第一分区 [1] GHOST8.3企业版 [2] 效率源磁盘坏道检测修复 [3] PARTITIONMAGIC8.05中英版 [4] 江民DOS杀毒伴侣(病毒库更新至2006-3-24) [5] DM9.56中英版 [6] 增强版及工具合集 [7] DOS 制作: JMNMU 瞬间把硬盘分成4个区(请慎用) [8] QQ.81674281 2006年3月22日 从硬盘启动计算机 [ESC] 请使用数字[1-91或者方向键选择,回车键执行操作 26 SIZE:1024*780 -->
+<p><img src="/images/courses-nlp/image_052_1757829988980-63fa1689-2157-4927-9276-14ecc9d633a0.png"></p>
+<p>点阵字库解析流程图</p>
+<p><img src="/images/courses-nlp/image_053_1759231328269-88b75931-c8b4-4c80-b8b3-c7ac0eae3155.jpeg" alt="画板"></p>
+<p>矢量字库解析流程图</p>
+<p><img src="/images/courses-nlp/image_054_1760251983109-d939a139-f534-4216-a4be-9b300c61e385.jpeg" alt="画板"></p>
+<p>藏文输入法程序解析流程图</p>
+<p><img src="/images/courses-nlp/image_055_1760326005051-b9a17120-1620-4576-8f04-8d9741f92593.jpeg" alt="画板"></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2026/03/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FOS/" rel="prev" title="">
+                  <i class="fa fa-angle-left"></i> 
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2026/03/%E7%A7%BB%E5%8A%A8%E7%BB%88%E7%AB%AF%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91/" rel="next" title="">
+                   <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2023 – 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">未经授权不得转载</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

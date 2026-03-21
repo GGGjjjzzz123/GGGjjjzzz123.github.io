@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"gggjjjzzz123.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.27.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="代码学习思路包括：自己创造一个优化算法，要求思路清晰代码简洁。双阱实验这个重要度往后放一放，把它作为一个灵感任务 论文：优化算法的量子动力学探讨1 优化算法的量子动力学理论 将优化问题中的目标函数f(x)视为薛定谔方程中的势能，就是优化算法的量子动力学方程，这一方程转化为了势能f(x)下的约束态量子问题。得到的对应关系：波函数模方的演化过程&#x3D;解的概率演化过程，目标函数的全局最小值&amp;#x3">
+<meta property="og:type" content="article">
+<meta property="og:title" content="QDA">
+<meta property="og:url" content="https://gggjjjzzz123.github.io/2026/03/QDA/index.html">
+<meta property="og:site_name" content="GJZ&#39;s Blog">
+<meta property="og:description" content="代码学习思路包括：自己创造一个优化算法，要求思路清晰代码简洁。双阱实验这个重要度往后放一放，把它作为一个灵感任务 论文：优化算法的量子动力学探讨1 优化算法的量子动力学理论 将优化问题中的目标函数f(x)视为薛定谔方程中的势能，就是优化算法的量子动力学方程，这一方程转化为了势能f(x)下的约束态量子问题。得到的对应关系：波函数模方的演化过程&#x3D;解的概率演化过程，目标函数的全局最小值&amp;#x3">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/misc-qda/image_001_1741516151378-c69d877e-4fd1-4c1d-becc-fa6f1b19992b.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/misc-qda/image_002_1741516140982-6d9419b5-5676-4c69-af02-56046feda1b8.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/misc-qda/image_003_1741516128716-0d5e99d9-9485-4355-b4b2-298dd8d3b594.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/misc-qda/image_004_1741925543762-9533fd72-8450-45a8-a61e-97bf8539b19e.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/misc-qda/image_005_1741925480837-e82e27bf-cda3-4f40-9a7a-e913267af013.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/misc-qda/image_006_1741925590593-c914e2a0-da7b-4303-acc8-c47f0cfadea5.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/misc-qda/image_007_1741925689570-8eb59aa1-9110-4e6c-8e2a-954b9be6ab09.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/misc-qda/image_008_1741925986904-2aafadc5-d6c7-4ce1-b9c6-587765656e62.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/misc-qda/image_009_1741925858837-c0e1caeb-34e1-4ed9-9ec3-e3fc806c00ac.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/misc-qda/image_010_1742017450687-f5a77cea-2333-415a-8f04-7c4f4d3f65f5.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/misc-qda/image_011_1742017567232-6f9f0756-b7dd-44b7-9fcc-5a06c0862a4d.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/misc-qda/image_012_1742028810627-f6ed802e-fa01-40fe-a2dc-426455add567.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/misc-qda/image_013_1742054442463-6bc5778b-bec9-4b05-a271-a531f114cc99.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/misc-qda/image_014_1742020000757-8eb8aa6c-97ce-468a-a42f-5125296c406f.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/misc-qda/image_015_1742020098439-e87d5fbb-6de9-4d18-87b8-0b14caa13001.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/misc-qda/image_016_1742021580656-c742dde1-b400-462b-8285-ada4721fc575.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/misc-qda/image_017_1742019928732-45dccd6e-09d3-4e3d-8501-91befc1f6b6f.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/misc-qda/image_018_1742099913314-6ad6a786-7b52-4c12-9385-75d55cce4ed5.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/misc-qda/image_019_1742027372498-ec32b523-a68a-4b74-890c-b737a362298b.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/misc-qda/image_020_1742059111547-b40ae3ed-370b-4160-8bbf-6a40017dc042.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/misc-qda/image_021_1742027473183-1023791f-11eb-4dfc-b3ea-9432e40345e2.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/misc-qda/image_022_1742058726681-6fbc4271-9ec5-4dda-8cea-9e86d9a45f3d.png">
+<meta property="article:published_time" content="2026-03-20T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-03-21T13:43:12.684Z">
+<meta property="article:author" content="GGGjjjzzz123">
+<meta property="article:tag" content="量子动力学">
+<meta property="article:tag" content="优化算法">
+<meta property="article:tag" content="QDA">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gggjjjzzz123.github.io/images/misc-qda/image_001_1741516151378-c69d877e-4fd1-4c1d-becc-fa6f1b19992b.png">
+
+
+<link rel="canonical" href="https://gggjjjzzz123.github.io/2026/03/QDA/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://gggjjjzzz123.github.io/2026/03/QDA/","path":"2026/03/QDA/","title":"QDA"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>QDA | GJZ's Blog</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">GJZ's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">博主是一名努力进步、热爱生活、充满生命力的人</p>
+      <img class="custom-logo-image" src="/images/android-chrome-512x512.png" alt="GJZ's Blog">
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-技术文章"><a href="/tech/" rel="section"><i class="fa fa-code fa-fw"></i>技术文章</a></li><li class="menu-item menu-item-项目文档"><a href="/projects/" rel="section"><i class="fa fa-rocket fa-fw"></i>项目文档</a></li><li class="menu-item menu-item-课程笔记"><a href="/notes/" rel="section"><i class="fa fa-book fa-fw"></i>课程笔记</a></li><li class="menu-item menu-item-杂项随笔"><a href="/misc/" rel="section"><i class="fa fa-pencil fa-fw"></i>杂项随笔</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%BA%E6%96%87%EF%BC%9A%E4%BC%98%E5%8C%96%E7%AE%97%E6%B3%95%E7%9A%84%E9%87%8F%E5%AD%90%E5%8A%A8%E5%8A%9B%E5%AD%A6%E6%8E%A2%E8%AE%A8"><span class="nav-number">1.</span> <span class="nav-text">论文：优化算法的量子动力学探讨</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#QDA%E7%AE%97%E6%B3%95"><span class="nav-number">2.</span> <span class="nav-text">QDA算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#qdf%E8%B7%91%E4%BA%8C%E6%AC%A1%E5%87%BD%E6%95%B0%EF%BC%8C%E5%8F%8C%E4%BA%95%EF%BC%8Crastrigin%EF%BC%8C%E9%83%BD%E8%83%BD%E8%B7%91%E5%88%B0%E5%A4%9A%E5%B0%91%E7%BB%B4%EF%BC%8C%E6%AD%A3%E7%A1%AE%E7%8E%87%E5%A6%82%E4%BD%95"><span class="nav-number">3.</span> <span class="nav-text">qdf跑二次函数，双井，rastrigin，都能跑到多少维，正确率如何</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BA%8C%E6%AC%A1%E5%87%BD%E6%95%B0%EF%BC%9A"><span class="nav-number">3.0.1.</span> <span class="nav-text">二次函数：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%8C%E9%98%B1%E5%87%BD%E6%95%B0%E6%9C%89%E4%B8%89%E4%B8%AA%E5%8F%82%E6%95%B0%EF%BC%8C%E4%BF%AE%E6%94%B9%E9%82%A3%E4%B8%89%E4%B8%AA%E5%8F%82%E6%95%B0%E8%A7%82%E5%AF%9F%E5%9C%A8%E4%B8%8D%E5%90%8C%E7%9A%84%E5%8F%8C%E9%98%B1%E5%87%BD%E6%95%B0%E4%B8%8A%EF%BC%8C%E7%AE%97%E6%B3%95%E7%9A%84%E6%95%88%E7%8E%87"><span class="nav-number">4.</span> <span class="nav-text">双阱函数有三个参数，修改那三个参数观察在不同的双阱函数上，算法的效率</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#l%E5%AF%B9%E5%87%BD%E6%95%B0%E5%9B%BE%E5%83%8F%E7%9A%84%E5%BD%B1%E5%93%8D"><span class="nav-number">4.1.</span> <span class="nav-text">l对函数图像的影响</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#k%E5%AF%B9%E5%87%BD%E6%95%B0%E5%9B%BE%E5%83%8F%E7%9A%84%E5%BD%B1%E5%93%8D"><span class="nav-number">4.2.</span> <span class="nav-text">k对函数图像的影响</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#h%E5%AF%B9%E5%87%BD%E6%95%B0%E5%9B%BE%E5%83%8F%E7%9A%84%E5%BD%B1%E5%93%8D"><span class="nav-number">4.3.</span> <span class="nav-text">h对函数图像的影响</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B0%83%E8%AF%95l"><span class="nav-number">4.4.</span> <span class="nav-text">调试l</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B0%83%E8%AF%95k"><span class="nav-number">4.5.</span> <span class="nav-text">调试k</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B0%83%E8%AF%95h"><span class="nav-number">4.6.</span> <span class="nav-text">调试h</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81"><span class="nav-number">5.</span> <span class="nav-text">代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#gjz5-0"><span class="nav-number">6.</span> <span class="nav-text">gjz5.0</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">GGGjjjzzz123</p>
+  <div class="site-description" itemprop="description">GJZ的博客，用于存放各种技术文章，分享技术经验。主要内容包括项目开发、技术分享、学习笔记等。希望通过这个博客与大家交流，共同进步！</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">28</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">31</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/yourname" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;yourname" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://gggjjjzzz123.github.io/2026/03/QDA/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="GGGjjjzzz123">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="GJZ's Blog">
+      <meta itemprop="description" content="GJZ的博客，用于存放各种技术文章，分享技术经验。主要内容包括项目开发、技术分享、学习笔记等。希望通过这个博客与大家交流，共同进步！">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="QDA | GJZ's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          QDA
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2026-03-21 21:43:12" itemprop="dateModified" datetime="2026-03-21T21:43:12+08:00">2026-03-21</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%9D%82%E9%A1%B9%E9%9A%8F%E7%AC%94/" itemprop="url" rel="index"><span itemprop="name">杂项随笔</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>代码学习思路包括：自己创造一个<font style="color:#DF2A3F;">优化算法</font>，<font style="color:#DF2A3F;">要求思路清晰代码简洁</font>。<font style="color:#DF2A3F;">双阱实验</font>这个重要度往后放一放，把它作为一个灵感任务</p>
+<h2 id="论文：优化算法的量子动力学探讨"><a href="#论文：优化算法的量子动力学探讨" class="headerlink" title="论文：优化算法的量子动力学探讨"></a>论文：优化算法的量子动力学探讨</h2><p>1 优化算法的量子动力学理论</p>
+<p><font style="background-color:#FBDE28;">将优化问题中的目标函数f(x)视为薛定谔方程中的势能</font>，就是优化算法的量子动力学方程，这一方程转化为了势能f(x)下的约束态量子问题。得到的对应关系：波函数模方的演化过程&#x3D;解的概率演化过程，目标函数的全局最小值&#x3D;基态波函数模方问题</p>
+<p>（薛定谔方程：以电子运动的能量为约束条件，通过这种能量的约束去描述电子绕原子核周围产生的运动，解这个方程得到一系列波函数）</p>
+<p>4）目标函数在极值点的二阶Taylor近似与对应的迭代操作</p>
+<p>一整段的因果都不懂</p>
+<p>3 基本迭代过程的性能及波函数模方</p>
+<p>实验原理实验过程不懂，整个实验都不懂，这个实验是干什么的</p>
+<h2 id="QDA算法"><a href="#QDA算法" class="headerlink" title="QDA算法"></a>QDA算法</h2><p>1.基态判据：np.var(a[i, :]) &gt; pow(scale, 2)，为什么要将每一维度的方差与scale的平方做比较，而论文中是与scale做比较</p>
+<p>2.均值替换在这里起到的作用是什么，作用大吗</p>
+<p>3.设置维度的作用又是什么，采样点的各维度数值为什么都要带入的函数中，多维度的采样点为什么要进行一维的函数操作</p>
+<p>:::success<br>优化算法是针对高维的函数优化，解决高维就是优化算法的意义</p>
+<p>:::</p>
+<p>我的想法:<br>1.迭代方向起的作用有点小，仅仅依靠适应度值的比较，进行赋值探索</p>
+<p>（是否可以事先探索出一个总体的大方向再进行正态采样探索）</p>
+<p>2.缺少一个差解接受机制，容易陷入局部最优</p>
+<p>3.均值替换在这里起的作用是不是不是很关键，可以用别的机制来代替吗</p>
+<h2 id="qdf跑二次函数，双井，rastrigin，都能跑到多少维，正确率如何"><a href="#qdf跑二次函数，双井，rastrigin，都能跑到多少维，正确率如何" class="headerlink" title="qdf跑二次函数，双井，rastrigin，都能跑到多少维，正确率如何"></a>qdf跑二次函数，双井，rastrigin，都能跑到多少维，正确率如何</h2><h4 id="二次函数："><a href="#二次函数：" class="headerlink" title="二次函数："></a>二次函数：</h4><p>100维以上，500维也能跑出来，准确率较高，10的负几次方数量级下降慢</p>
+<!-- 这是一张图片，ocr 内容为：二次函数 DIM MIN VALUE LTETIMES WALKER N ACCURACY 266 20 100.00% 1.06E-11 10 525 20 4.69E-11 100.00% 20 1.22E-10 20 770 30 100.00% 2.12E-10 40 20 100.00% 1011 1253 20 3.39E-10 50 100.00% 1483 09 100.00% 20 5.09E-10 1725 70 20 100.00% 7.14E-10 100.00% 80 20 9.80E-10 1950 2179 20 100.00% 1.26E-09 90 20 100.00% 2408 100 1.47E-09 2858 20 120 2.17E-09 100.00% 150 100.00% 20 3449 3.65E-09 4686 200 20 100.00% 6.54E-09 5678 20 250 100.00% 9.75E-09 -->
+<p><img src="/images/misc-qda/image_001_1741516151378-c69d877e-4fd1-4c1d-becc-fa6f1b19992b.png"></p>
+<p><strong>双井：</strong><br>20维，到20维之后正确率下降明显，正确率为90%（误差为1e-1）</p>
+<!-- 这是一张图片，ocr 内容为：双势阱函数 WALKER_N LTETIMES MIN_VALUE DIM TRUE VALUE ACCURACY 1 -1.527142 -1.52714 46 20 100.00% 2 -3.054285 91 20 100.00% -3.05428 3 173 -4.58143 -4,581427 20 100.00% 4 247 20 -6.10857 100.00% -6.10857 5 303 20 100.00% -7.63571 -7.635712 6 654 -9.16285 -9.162855 20 100.00% 7 578 20 -10.69 100.00% -10.69 20 100.00% -12.21714 -12.21714 633 8 9 695 -13.74428 20 -13.7443 100.00% 763 20 -14.97164 -15.27144 10 90.00% 20 15 -22.60735 1889 -22.90711 90.00% 20 3356 -29. 94327 20 80.00% -30.54228 20 25 -37. 2792 -38.1786 3479 70.00% 20 30 40.00% 5576 -44.01555 -45.8143 35 -51.65126 -53.45 4485 20 40.00% -->
+<p><img src="/images/misc-qda/image_002_1741516140982-6d9419b5-5676-4c69-af02-56046feda1b8.png"></p>
+<p><strong>rastrigin:</strong></p>
+<p>跑到7维就很卡了出不来，1到6维数量级下降明显，正确率下降的应该也很快</p>
+<!-- 这是一张图片，ocr 内容为：RASTRIGIN MIN VALUE DIM LTETIMES WALKER N ACCURACY 9.75E-13 1 20 100.00% 496 2 20 1.64E-11 100.00% 2387 3 20 1.03E-10 100.00% 5114 4 20 90.00% 9.95E-02 45446 5 20 1.99E-01 90.00% -->
+<p><img src="/images/misc-qda/image_003_1741516128716-0d5e99d9-9485-4355-b4b2-298dd8d3b594.png"></p>
+<h2 id="双阱函数有三个参数，修改那三个参数观察在不同的双阱函数上，算法的效率"><a href="#双阱函数有三个参数，修改那三个参数观察在不同的双阱函数上，算法的效率" class="headerlink" title="双阱函数有三个参数，修改那三个参数观察在不同的双阱函数上，算法的效率"></a>双阱函数有三个参数，修改那三个参数观察在不同的双阱函数上，算法的效率</h2><p>问题：函数的难度取决于什么</p>
+<h3 id="l对函数图像的影响"><a href="#l对函数图像的影响" class="headerlink" title="l对函数图像的影响"></a>l对函数图像的影响</h3><p>l&#x3D;1.0,k&#x3D;0.1,h&#x3D;1.0</p>
+<!-- 这是一张图片，ocr 内容为：DOUBLE WELL FUNCTION IN 2D 2D 0 -2 -4 -7.5 -5.0 -2.5 7.5 2.5 0.0 10.0 5.0 -10.0 X -->
+<p><img src="/images/misc-qda/image_004_1741925543762-9533fd72-8450-45a8-a61e-97bf8539b19e.png"></p>
+<p>l, k, h &#x3D; 5.0, 0.1, 1.0</p>
+<!-- 这是一张图片，ocr 内容为：DOUBLE WELL FUNCTION IN 2D 2D 0 -2 -4 -7.5 -5.0 -2.5 7.5 2.5 0.0 10.0 5.0 -10.0 X -->
+<p><img src="/images/misc-qda/image_005_1741925480837-e82e27bf-cda3-4f40-9a7a-e913267af013.png"></p>
+<h3 id="k对函数图像的影响"><a href="#k对函数图像的影响" class="headerlink" title="k对函数图像的影响"></a>k对函数图像的影响</h3><p>l, k, h &#x3D; 1.0, 0.1, 1.0</p>
+<!-- 这是一张图片，ocr 内容为：DOUBLE WELL FUNCTION IN 2D 2D 0 -2 -4 -7.5 -5.0 -2.5 7.5 2.5 0.0 10.0 5.0 -10.0 X -->
+<p><img src="/images/misc-qda/image_006_1741925590593-c914e2a0-da7b-4303-acc8-c47f0cfadea5.png"></p>
+<p>l, k, h &#x3D; 1.0, 1.0, 1.0</p>
+<!-- 这是一张图片，ocr 内容为：DOUBLE WELL FUNCTION IN 2D 2D 0 -2 -4 -7.5 -5.0 -2.5 7.5 2.5 0.0 10.0 5.0 -10.0 X -->
+<p><img src="/images/misc-qda/image_007_1741925689570-8eb59aa1-9110-4e6c-8e2a-954b9be6ab09.png"></p>
+<h3 id="h对函数图像的影响"><a href="#h对函数图像的影响" class="headerlink" title="h对函数图像的影响"></a>h对函数图像的影响</h3><p>l, k, h &#x3D; 1.0, 0.1, 1.0</p>
+<!-- 这是一张图片，ocr 内容为：DOUBLE WELL FUNCTION IN 2D 2D 20 10 0 -10 -20 -7.5 -5.0 -2.5 7.5 2.5 0.0 10.0 5.0 -10.0 X -->
+<p><img src="/images/misc-qda/image_008_1741925986904-2aafadc5-d6c7-4ce1-b9c6-587765656e62.png"></p>
+<p>l, k, h &#x3D; 1.0, 0.1, 10.0</p>
+<!-- 这是一张图片，ocr 内容为：DOUBLE WELL FUNCTION IN 2D 2D 20 10 0 -10 -20 -7.5 -5.0 -2.5 7.5 2.5 0.0 10.0 5.0 -10.0 X -->
+<p><img src="/images/misc-qda/image_009_1741925858837-c0e1caeb-34e1-4ed9-9ec3-e3fc806c00ac.png"></p>
+<h3 id="调试l"><a href="#调试l" class="headerlink" title="调试l"></a>调试l</h3><p>l, k, h &#x3D; 5.0, 0.1, 1.0</p>
+<!-- 这是一张图片，ocr 内容为：DOUBLE WELL FUNCTION IN 2D 2.0 2D 1.5 1.0 0.5 支 0.0 -0.5 -1.0 -1.5 -2.0 -7.5 -5.0 7.5 -2.5 2.5 0.0 5.0 10.0 -10.0 X -->
+<p><img src="/images/misc-qda/image_010_1742017450687-f5a77cea-2333-415a-8f04-7c4f4d3f65f5.png"></p>
+<p>l, k, h &#x3D; 0.01, 0.1, 1.0</p>
+<!-- 这是一张图片，ocr 内容为：DOUBLE WELL FUNCTION IN 2D 2.0 2D 1.5 1.0 0.5 支 0.0 -0.5 -1.0 -1.5 -2.0 -7.5 -5.0 7.5 -2.5 2.5 0.0 5.0 10.0 -10.0 X -->
+<p><img src="/images/misc-qda/image_011_1742017567232-6f9f0756-b7dd-44b7-9fcc-5a06c0862a4d.png"><!-- 这是一张图片，ocr 内容为：DOUBLE WELL FUNCTION IN 2D 2.0 2D 1.5 1.0 0.5 支 0.0 -0.5 -1.0 -1.5 -2.0 -0.015 0.005 -0.010 0.020 -0.005 0.000 -0.020 0.015 0.010 X --><br><img src="/images/misc-qda/image_012_1742028810627-f6ed802e-fa01-40fe-a2dc-426455add567.png"></p>
+<p>数据整理</p>
+<!-- 这是一张图片，ocr 内容为：K0.1 H1.0 MIN VALUE TRUE_VALUE RELATIVE ERROR ITETIMES ACCURACY 0.1 0.05 1.00E-07 -0.010003123 52054 -0.010003118 100.00% 22253 1.00E-07 0.1 -0.020012484 100.00% 0.1 -0.020012466 1.00E-09 373 -0.100310571 -0.10031057 0.5 100.00% 0.1 1 100.00% 1.00E-09 209 -0.201234753 -0.201234753 0.1 1 100.00% 1.5 1.00E-11 185 0.1 -0.302761651 -0.302761651 2 100.00% 1.00E-11 148 0.1 0.404880869 -0.404880869 158 1.00E-12 0.1 2.5 -0.507582474 -0.507582474 100.00% 3 1 115 0.1 -0.610856967 1.00E-12 100.00% -0.610856967 0.1 1.00E-13 -0.714695248 3.5 106 -0.714695248 100.00% 4 0.1 100.00% -0.81908859 92 1.00E-13 -0.81908859 0.1 90 4.5 -0.924028618 100.00% 1.00E-14 -0.924028618 -->
+<p><img src="/images/misc-qda/image_013_1742054442463-6bc5778b-bec9-4b05-a271-a531f114cc99.png"></p>
+<p>发现：</p>
+<p>1.l的值越小，算法的迭代次数越大，效率就越低，相对误差的数量级就越大，误差也就越大</p>
+<p>2.l的值越大，迭代次数越少（最终稳定在七八十左右），效率高，相对误差小</p>
+<p>3.在图像上看，l值越小，k对函数图像的影响就越小</p>
+<p>4.最小值的绝对值随着l的增大而增大</p>
+<h3 id="调试k"><a href="#调试k" class="headerlink" title="调试k"></a>调试k</h3><p> l, k, h &#x3D; 5.0, 0.01, 1.0</p>
+<!-- 这是一张图片，ocr 内容为：DOUBLE WELL FUNCTION IN 2D 150 2D 100 50 0 -50 -100 -150 X O X 40 20 -40 -20 -->
+<p><img src="/images/misc-qda/image_014_1742020000757-8eb8aa6c-97ce-468a-a42f-5125296c406f.png"><!-- 这是一张图片，ocr 内容为：DOUBLE WELL FUNCTION IN 2D 10.0 7.5 5.0 2.5 0.0 -2.5 -5.0 -7.5 2D -10.0 -5.0 7.5 -2.5 2.5 0.0 5.0 10.0 -7.5 -10.0 X --><br><img src="/images/misc-qda/image_015_1742020098439-e87d5fbb-6de9-4d18-87b8-0b14caa13001.png"></p>
+<p>l, k, h &#x3D; 5.0, 2.0, 1.0</p>
+<!-- 这是一张图片，ocr 内容为：DOUBLE WELL FUNCTION IN 2D 150 2D 100 50 0 -50 -100 -150 X O X 40 20 -40 -20 -->
+<p><img src="/images/misc-qda/image_016_1742021580656-c742dde1-b400-462b-8285-ada4721fc575.png"></p>
+<p>l, k, h &#x3D; 5.0, 6.0, 1.0</p>
+<!-- 这是一张图片，ocr 内容为：DOUBLE WELL FUNCTION IN 2D 150 2D 100 50 0 -50 -100 -150 X O X 40 20 -40 -20 -->
+<p><img src="/images/misc-qda/image_017_1742019928732-45dccd6e-09d3-4e3d-8501-91befc1f6b6f.png"></p>
+<p>数据整理</p>
+<!-- 这是一张图片，ocr 内容为：1-5.0 ITETIMES TRUE VALUE H1.0 RELATIVE ERROR MIN VALUE ACCURACY 1 5 1.00E-12 100.00% -0.010003123 9700 0.001 -0.010003123 1 5 1.00E-13 716 -0.100310571 100.00% 0.01 -0.100310571 1 5 1.00E-13 100.00% -0.507582474 135 0.05 -0.507582474 1 5 1.00E-12 91 -1.029507283 0.1 -1.029507283 100.00% 5 1 81 1.00E-13 -5.623906134 -5.623906134 0.5 100.00% 1 81 5 1 1.00E-12 100.00% -12.16412443 -12.16412443 2 1 -27.13280958 5 81 100.00% 1.00E-12 -27.13280958 1 3 5 1.00E-12 100.00% 80 -44.0017788 -44.0017788 1 5 4 1.00E-12 81 100.00% 62.37648293 62.37648293 5 81 5 100.00% -82.02254234 -82.02254234 1.00E-11 81 5 1.00E-11 6 100.00% -102.7810351 -102.7810351 5 83 100.00% 10 -194.9639181 1.00E-12 -194.9639181 1.00E-12 5 100.00% 82 20 -472.1525031 -472.1525031 -->
+<p><img src="/images/misc-qda/image_018_1742099913314-6ad6a786-7b52-4c12-9385-75d55cce4ed5.png"></p>
+<p>发现：</p>
+<p>1.当k值越小，迭代次数越大，效率低</p>
+<p>2.k值越大，迭代次数越小（稳定在80左右）</p>
+<p>3.相对误差稳定，正确率高</p>
+<p>4.最小值随着k的值增大而增大</p>
+<h3 id="调试h"><a href="#调试h" class="headerlink" title="调试h"></a>调试h</h3><p>l, k, h &#x3D; 5.0, 0.1, 1.0</p>
+<!-- 这是一张图片，ocr 内容为：DOUBLE WELL FUNCTION IN 2D 15 2D 10 5 0 -5 -10 -15 XO 10 15 -10 -15 -->
+<p><img src="/images/misc-qda/image_019_1742027372498-ec32b523-a68a-4b74-890c-b737a362298b.png"></p>
+<p>l, k, h &#x3D; 5.0, 0.1, 500</p>
+<!-- 这是一张图片，ocr 内容为：DOUBLE WELL FUNCTION IN 2D 15 2D 10 5 0 -5 -10 -15 XO 10 15 -10 -15 -->
+<p><img src="/images/misc-qda/image_020_1742059111547-b40ae3ed-370b-4160-8bbf-6a40017dc042.png"><!-- 这是一张图片，ocr 内容为：DOUBLE WELL FUNCTION IN 2D 1000 2D 750 500 250 -250 -500 -750 -1000 XO 10 15 -10 -15 --><br><img src="/images/misc-qda/image_021_1742027473183-1023791f-11eb-4dfc-b3ea-9432e40345e2.png"></p>
+<p>数据整理</p>
+<!-- 这是一张图片，ocr 内容为：K0.1 1-5.0 MIN VALUE ITETIMES RELATIVE ERROR TRUE VALUE ACCURACY 0.1 91 -1.029507283 100.00% 1.00E-14 -1.029507283 1.00E-12 5 5 342 0.1 100.00% -1.006173766 -1.006173766 5 1.00E-12 100.00% 776 0.1 -1.003105709 10 -1.003105709 5 100.00% 1.00E-11 1.002074724 15 -1.002074724 0.1 993 1,00E-12 5 100.00% 1741 20 -1.001557647 1.001557647 0.1 100.00% 3055 1.00E-12 30 5 0.1 -1.001039506 -1.001039505 5 1.00E-12 3874 50 100.00% 1.000624221 0.1 -1.000624221 5 1.00E-10 5402 0.1 -1.000312305 100 100.00% -1.000312305 5 1.00E-09 200 0.1 15980 -1.000156201 -1.000156201 100.00% 1.00E-10 5 0.1 300 100.00% 22535 -1.000104145 -1.000104145 5 1.00E-11 500 67038 100.00% 0.1 -1.000062492 -1.000062492 1.00E-08 100.00% 0.1 1000 85690 -1.000031248 -1.00031248 5 100.00% 1.00E-10 2000 0.1 -1.00015624 156286 -1.000015624 -->
+<p><img src="/images/misc-qda/image_022_1742058726681-6fbc4271-9ec5-4dda-8cea-9e86d9a45f3d.png"></p>
+<p>发现：<br>1.h的值越小，迭代次数越小，相对误差小</p>
+<p>2.h值越大，迭代次数越小，相对误差变化不大</p>
+<p>3.最小值不随h值变化</p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">begin = -<span class="number">10.0</span></span><br><span class="line">end = <span class="number">10.0</span></span><br><span class="line">dim = <span class="number">2</span></span><br><span class="line">k = <span class="number">10</span></span><br><span class="line">scale = end - begin</span><br><span class="line">ite_times = <span class="number">0</span></span><br><span class="line">acc = <span class="number">0.000001</span></span><br><span class="line"></span><br><span class="line">a = np.random.uniform(low = begin, high = end, size = (k,dim))</span><br><span class="line">b = np.zeros((k,dim))</span><br><span class="line"></span><br><span class="line"><span class="comment"># while scale &lt; acc:</span></span><br><span class="line">ite_times += <span class="number">1</span></span><br><span class="line">b = np.random.normal(loc = a, scale = scale, size = (k,dim))</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(a)</span><br><span class="line"><span class="built_in">print</span>(b)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">begin = -<span class="number">10.0</span></span><br><span class="line">end = <span class="number">10.0</span></span><br><span class="line">dim = <span class="number">2</span></span><br><span class="line">k = <span class="number">10</span></span><br><span class="line">scale = end - begin</span><br><span class="line">ite_times = <span class="number">0</span></span><br><span class="line">acc = <span class="number">0.000001</span></span><br><span class="line"></span><br><span class="line">a = np.random.uniform(low = begin, high = end, size = (k,dim))</span><br><span class="line">b = np.zeros((k,dim))</span><br><span class="line"></span><br><span class="line"><span class="comment"># while scale &lt; acc:</span></span><br><span class="line">ite_times += <span class="number">1</span></span><br><span class="line">b = np.random.normal(loc = a, scale = scale, size = (k,dim))</span><br><span class="line"><span class="comment"># 筛选出不在范围内的采样点位置为True</span></span><br><span class="line">mask = (b &lt; begin) | (b &gt; end)</span><br><span class="line"><span class="built_in">print</span>(b[mask])</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> np.<span class="built_in">any</span>(mask):</span><br><span class="line">    b[mask] = np.random.normal(loc = a[mask], scale = scale)    <span class="comment"># 从数组b中选出所有对应mask中为True的位置的元素。!!b[mask]为一维数组</span></span><br><span class="line">    mask = (b &lt; begin) | (b &gt; end)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(a)</span><br><span class="line"><span class="built_in">print</span>(b)</span><br><span class="line"><span class="built_in">print</span>(mask)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">func</span>(<span class="params">x</span>):</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">sum</span>(i*i <span class="keyword">for</span> i <span class="keyword">in</span> x)</span><br><span class="line"></span><br><span class="line">begin = -<span class="number">10.0</span></span><br><span class="line">end = <span class="number">10.0</span></span><br><span class="line">dim = <span class="number">2</span></span><br><span class="line">k = <span class="number">10</span></span><br><span class="line">scale = end - begin</span><br><span class="line">ite_times = <span class="number">0</span></span><br><span class="line">acc = <span class="number">0.000001</span></span><br><span class="line"></span><br><span class="line">a = np.random.uniform(low = begin, high = end, size = (k,dim))</span><br><span class="line">b = np.zeros((k,dim))</span><br><span class="line"></span><br><span class="line"><span class="comment"># while scale &lt; acc:</span></span><br><span class="line">ite_times += <span class="number">1</span></span><br><span class="line">b = np.random.normal(loc = a, scale = scale, size = (k,dim))</span><br><span class="line"><span class="comment"># 筛选出不在范围内的采样点位置为True</span></span><br><span class="line">mask = (b &lt; begin) | (b &gt; end)</span><br><span class="line"><span class="built_in">print</span>(b[mask])</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> np.<span class="built_in">any</span>(mask):</span><br><span class="line">    b[mask] = np.random.normal(loc = a[mask], scale = scale)    <span class="comment"># 从数组b中选出所有对应mask中为True的位置的元素。!!b[mask]为一维数组</span></span><br><span class="line">    mask = (b &lt; begin) | (b &gt; end)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 好的解保留，坏的解直接舍掉</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(k):</span><br><span class="line">    <span class="keyword">if</span> func(a[i]) &gt; func(b[i]):</span><br><span class="line">        a[i] = b[i].copy</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(a)</span><br><span class="line"><span class="built_in">print</span>(b)</span><br><span class="line"><span class="built_in">print</span>(mask)</span><br></pre></td></tr></table></figure>
+
+<h2 id="gjz5-0"><a href="#gjz5-0" class="headerlink" title="gjz5.0"></a>gjz5.0</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> modelscope.models.cv.image_skychange.skychange <span class="keyword">import</span> scale_rect</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 测试函数</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">func1</span>(<span class="params">matrix_y</span>):<span class="comment"># y=x*x</span></span><br><span class="line">    y=<span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> matrix_y:</span><br><span class="line">        y+=i*i</span><br><span class="line">    <span class="keyword">return</span> y</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">func1</span>(<span class="params">matrix_y</span>):    <span class="comment">#double well function</span></span><br><span class="line">    y=<span class="number">0</span></span><br><span class="line">    l,k,h=<span class="number">3.0</span>,<span class="number">0.5</span>,<span class="number">5.0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> matrix_y:</span><br><span class="line">        y+=h*<span class="built_in">pow</span>((<span class="built_in">pow</span>(i, <span class="number">2</span>)-<span class="built_in">pow</span>(l, <span class="number">2</span>)), <span class="number">2</span>)/<span class="built_in">pow</span>(l, <span class="number">4</span>)+k*i</span><br><span class="line">    <span class="keyword">return</span> y</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">func</span>(<span class="params">matrix_y</span>):    <span class="comment">#Rastrigin</span></span><br><span class="line">    y=<span class="number">10</span>*dim</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> matrix_y:</span><br><span class="line">        y+=i*i-<span class="number">10</span>*np.cos(<span class="number">2</span>*np.pi*i)</span><br><span class="line">    <span class="keyword">return</span> y</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">func1</span>(<span class="params">matrix_y</span>):    <span class="comment">#Griewank</span></span><br><span class="line">    a,b,y=<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span></span><br><span class="line">    index=<span class="number">1</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> matrix_y:</span><br><span class="line">        a=a+i*i</span><br><span class="line">        b=b*np.cos(i/np.sqrt(index))</span><br><span class="line">        index+=<span class="number">1</span></span><br><span class="line">    y=<span class="number">1</span>+<span class="number">1</span>/<span class="number">4000</span>*a-b</span><br><span class="line">    <span class="keyword">return</span> y</span><br><span class="line"></span><br><span class="line"><span class="comment"># 判断最近5次的迭代，样本点的总体方差是否稳定</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">is_var_stable</span>(<span class="params">var_history, window_size = <span class="number">5</span>, threshold = <span class="number">0.01</span></span>):</span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">len</span>(var_history) &lt; window_size:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">    <span class="comment"># 提取最近window_size个方差值</span></span><br><span class="line">    recent_var = var_history[-window_size:]</span><br><span class="line">    <span class="comment"># # 计算相邻方差值的相对变化率</span></span><br><span class="line">    <span class="comment"># relative_changes = np.abs(np.diff(recent_var) / recent_var[:-1])</span></span><br><span class="line">    <span class="comment"># # 找出最大变化率</span></span><br><span class="line">    <span class="comment"># max_change = np.max(relative_changes)</span></span><br><span class="line">    <span class="comment">#</span></span><br><span class="line">    <span class="comment"># # 判断最大变化是否小于阈值</span></span><br><span class="line">    <span class="comment"># return max_change &lt; threshold</span></span><br><span class="line">    scale_recent_var = np.std(recent_var)</span><br><span class="line">    <span class="keyword">if</span> scale_recent_var &lt; acc1:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">min_id</span>(<span class="params">a</span>):</span><br><span class="line">    func_values = np.array([func(a[:, i]) <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(walker_n)])</span><br><span class="line">    <span class="keyword">return</span> np.argmin(func_values)</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">max_id</span>(<span class="params">a</span>):</span><br><span class="line">    func_values = np.array([func(a[:, i]) <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(walker_n)])</span><br><span class="line">    <span class="keyword">return</span> np.argmax(func_values)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 参数初始化</span></span><br><span class="line">acc1 = <span class="number">1e-10</span>  <span class="comment"># 影响迭代次数和准确精度</span></span><br><span class="line">acc2 = <span class="number">0.000001</span></span><br><span class="line">var_history = []</span><br><span class="line">begin, end = -<span class="number">6</span>, <span class="number">6</span></span><br><span class="line">scale = end - begin</span><br><span class="line">dim = <span class="number">3</span></span><br><span class="line">walker_n = <span class="number">20</span></span><br><span class="line">ite_times = <span class="number">0</span></span><br><span class="line">flag = <span class="literal">True</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Scale= 7.152557373046875e-07 Itetimes 94</span></span><br><span class="line"><span class="comment"># Min_location= [-3.10673565 -3.10673626]</span></span><br><span class="line"><span class="comment"># Min_value= -3.05428483743|8519</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 初始化样本点（随机分布）</span></span><br><span class="line">a = np.random.uniform(low = begin, high = end, size = (dim,walker_n))</span><br><span class="line">b = np.zeros((dim,walker_n))</span><br><span class="line">best = func(a[:,min_id(a)])</span><br><span class="line">best_postion = a[:,min_id(a)]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 进入优化主过程</span></span><br><span class="line"><span class="keyword">while</span> flag == <span class="literal">True</span>:</span><br><span class="line">    ite_times += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 每个样本点进行高斯采样</span></span><br><span class="line">    b = np.random.normal(loc=a, scale=scale, size=(dim, walker_n))</span><br><span class="line">    <span class="comment"># 边界处理</span></span><br><span class="line">    mask = (b &lt; begin) | (b &gt; end)</span><br><span class="line">    <span class="keyword">while</span> np.<span class="built_in">any</span>(mask):</span><br><span class="line">        b[mask] = np.random.normal(loc=a[mask], scale=scale)  <span class="comment"># 从数组b中选出所有对应mask中为True的位置的元素。b[mask]为一维数组</span></span><br><span class="line">        mask = (b &lt; begin) | (b &gt; end)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 贪心收敛</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(walker_n):</span><br><span class="line">        <span class="keyword">if</span> func(a[:,i]) &gt; func(b[:,i]):</span><br><span class="line">            a[:,i] = b[:,i]</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 保留历史最优</span></span><br><span class="line">    <span class="keyword">if</span> best &gt; func(a[:,min_id(a)]):</span><br><span class="line">        best = func(a[:,min_id(a)])</span><br><span class="line">        best_postion = a[:,min_id(a)]</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 计算本次迭代后的样本点总体方差</span></span><br><span class="line">    mean_a = np.mean(a, axis=<span class="number">1</span>, keepdims=<span class="literal">True</span>)  <span class="comment"># 均值向量：每个维度的均值</span></span><br><span class="line">    squared_distances = np.<span class="built_in">sum</span>((a - mean_a) ** <span class="number">2</span>, axis=<span class="number">0</span>)    <span class="comment"># 计算每个粒子与均值向量的欧氏距离平方</span></span><br><span class="line">    total_var = np.mean(squared_distances)     <span class="comment"># 计算平均平方距离 (总体方差)</span></span><br><span class="line">    var_history.append(total_var)</span><br><span class="line">    <span class="comment"># print(&quot;var_history:&quot;,var_history)</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> is_var_stable(var_history):</span><br><span class="line">        scale = scale / <span class="number">2</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(scale)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> is_var_stable(var_history) <span class="keyword">and</span> scale &lt; acc2:</span><br><span class="line">        <span class="keyword">if</span> func(a[:,min_id(a)]) &lt; best:</span><br><span class="line">            min_value = func(a[:,min_id(a)])</span><br><span class="line">            min_postion = a[:,min_id(a)]</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            min_value = best</span><br><span class="line">            min_postion = best_postion</span><br><span class="line">        flag = <span class="literal">False</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 输出结果</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Scale=&quot;</span>, scale,<span class="string">&quot;Itetimes&quot;</span>, ite_times)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Min_location=&quot;</span>, min_postion)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Min_value=&quot;</span>, min_value)</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line"><span class="comment"># 测试函数</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">func</span>(<span class="params">matrix_y</span>):<span class="comment"># y=x*x</span></span><br><span class="line">    y=<span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> matrix_y:</span><br><span class="line">        y+=i*i</span><br><span class="line">    <span class="keyword">return</span> y</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">func1</span>(<span class="params">matrix_y</span>):    <span class="comment">#double well function</span></span><br><span class="line">    y=<span class="number">0</span></span><br><span class="line">    l,k,h=<span class="number">3.0</span>,<span class="number">0.5</span>,<span class="number">5.0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> matrix_y:</span><br><span class="line">        y+=h*<span class="built_in">pow</span>((<span class="built_in">pow</span>(i, <span class="number">2</span>)-<span class="built_in">pow</span>(l, <span class="number">2</span>)), <span class="number">2</span>)/<span class="built_in">pow</span>(l, <span class="number">4</span>)+k*i</span><br><span class="line">    <span class="keyword">return</span> y</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">func1</span>(<span class="params">matrix_y</span>):    <span class="comment">#Rastrigin</span></span><br><span class="line">    y=<span class="number">10</span>*dim</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> matrix_y:</span><br><span class="line">        y+=i*i-<span class="number">10</span>*np.cos(<span class="number">2</span>*np.pi*i)</span><br><span class="line">    <span class="keyword">return</span> y</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">func1</span>(<span class="params">matrix_y</span>):    <span class="comment">#Griewank</span></span><br><span class="line">    a,b,y=<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span></span><br><span class="line">    index=<span class="number">1</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> matrix_y:</span><br><span class="line">        a=a+i*i</span><br><span class="line">        b=b*np.cos(i/np.sqrt(index))</span><br><span class="line">        index+=<span class="number">1</span></span><br><span class="line">    y=<span class="number">1</span>+<span class="number">1</span>/<span class="number">4000</span>*a-b</span><br><span class="line">    <span class="keyword">return</span> y</span><br><span class="line"></span><br><span class="line"><span class="comment"># 判断最近5次的迭代，样本点的总体方差是否稳定</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">is_var_stable</span>(<span class="params">var_history, window_size = <span class="number">5</span>, threshold = <span class="number">0.01</span></span>):</span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">len</span>(var_history) &lt; window_size:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">    <span class="comment"># 提取最近window_size个方差值</span></span><br><span class="line">    recent_var = var_history[-window_size:]</span><br><span class="line">    <span class="comment"># # 计算相邻方差值的相对变化率</span></span><br><span class="line">    <span class="comment"># relative_changes = np.abs(np.diff(recent_var) / recent_var[:-1])</span></span><br><span class="line">    <span class="comment"># # 找出最大变化率</span></span><br><span class="line">    <span class="comment"># max_change = np.max(relative_changes)</span></span><br><span class="line">    <span class="comment">#</span></span><br><span class="line">    <span class="comment"># # 判断最大变化是否小于阈值</span></span><br><span class="line">    <span class="comment"># return max_change &lt; threshold</span></span><br><span class="line">    scale_recent_var = np.std(recent_var)</span><br><span class="line">    <span class="keyword">if</span> scale_recent_var &lt; acc1:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">min_id</span>(<span class="params">a</span>):</span><br><span class="line">    func_values = np.array([func(a[:, i]) <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(walker_n)])</span><br><span class="line">    <span class="keyword">return</span> np.argmin(func_values)</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">max_id</span>(<span class="params">a</span>):</span><br><span class="line">    func_values = np.array([func(a[:, i]) <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(walker_n)])</span><br><span class="line">    <span class="keyword">return</span> np.argmax(func_values)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 参数初始化</span></span><br><span class="line">acc1 = <span class="number">1e-10</span>  <span class="comment"># 影响迭代次数和准确精度</span></span><br><span class="line">acc2 = <span class="number">0.000001</span></span><br><span class="line">begin, end = -<span class="number">6</span>, <span class="number">6</span></span><br><span class="line">dim = <span class="number">5</span></span><br><span class="line">walker_n = <span class="number">20</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">true_value = <span class="number">0</span>  <span class="comment"># 测试函数的真实最优值</span></span><br><span class="line">success_count = <span class="number">0</span>   <span class="comment"># 成功的次数</span></span><br><span class="line">n = <span class="number">50</span>   <span class="comment"># 循环次数</span></span><br><span class="line">min_values = [] <span class="comment"># 存放每次寻得的最优结果</span></span><br><span class="line">iterations_list = []    <span class="comment"># 每次运行的迭代次数</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 多次运行测试</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line">    <span class="comment"># 初始化每次运行的参数</span></span><br><span class="line">    var_history = []</span><br><span class="line">    scale = end - begin</span><br><span class="line">    ite_times = <span class="number">0</span></span><br><span class="line">    flag = <span class="literal">True</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 初始化样本点（随机分布）</span></span><br><span class="line">    a = np.random.uniform(low = begin, high = end, size = (dim,walker_n))</span><br><span class="line">    b = np.zeros((dim,walker_n))</span><br><span class="line">    best = func(a[:,min_id(a)])</span><br><span class="line">    best_postion = a[:,min_id(a)]</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 进入优化主过程</span></span><br><span class="line">    <span class="keyword">while</span> flag == <span class="literal">True</span>:</span><br><span class="line">        ite_times += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># 每个样本点进行高斯采样</span></span><br><span class="line">        b = np.random.normal(loc=a, scale=scale, size=(dim, walker_n))</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 边界处理</span></span><br><span class="line">        mask = (b &lt; begin) | (b &gt; end)</span><br><span class="line">        <span class="keyword">while</span> np.<span class="built_in">any</span>(mask):</span><br><span class="line">            b[mask] = np.random.normal(loc=a[mask], scale=scale)  <span class="comment"># 从数组b中选出所有对应mask中为True的位置的元素。b[mask]为一维数组</span></span><br><span class="line">            mask = (b &lt; begin) | (b &gt; end)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 贪心收敛</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(walker_n):</span><br><span class="line">            <span class="keyword">if</span> func(a[:,i]) &gt; func(b[:,i]):</span><br><span class="line">                a[:,i] = b[:,i]</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 保留历史最优</span></span><br><span class="line">        <span class="keyword">if</span> best &gt; func(a[:,min_id(a)]):</span><br><span class="line">            best = func(a[:,min_id(a)])</span><br><span class="line">            best_postion = a[:,min_id(a)]</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 计算本次迭代后的样本点总体方差</span></span><br><span class="line">        mean_a = np.mean(a, axis=<span class="number">1</span>, keepdims=<span class="literal">True</span>)  <span class="comment"># 均值向量：每个维度的均值</span></span><br><span class="line">        squared_distances = np.<span class="built_in">sum</span>((a - mean_a) ** <span class="number">2</span>, axis=<span class="number">0</span>)    <span class="comment"># 计算每个粒子与均值向量的欧氏距离平方</span></span><br><span class="line">        total_var = np.mean(squared_distances)     <span class="comment"># 计算平均平方距离 (总体方差)</span></span><br><span class="line">        var_history.append(total_var)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 调整高斯采样的尺度</span></span><br><span class="line">        <span class="keyword">if</span> is_var_stable(var_history):</span><br><span class="line">            scale = scale / <span class="number">2</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># 迭代停止条件（是否已经收敛于最优值）</span></span><br><span class="line">        <span class="keyword">if</span> is_var_stable(var_history) <span class="keyword">and</span> scale &lt; acc2:</span><br><span class="line">            <span class="keyword">if</span> func(a[:,min_id(a)]) &lt; best:</span><br><span class="line">                min_value = func(a[:,min_id(a)])</span><br><span class="line">                min_postion = a[:,min_id(a)]</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                min_value = best</span><br><span class="line">                min_postion = best_postion</span><br><span class="line">            flag = <span class="literal">False</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 记录本次运行结果</span></span><br><span class="line">    min_values.append(min_value)</span><br><span class="line">    iterations_list.append(ite_times)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 检查是否成功找到全局最优解</span></span><br><span class="line">    <span class="keyword">if</span> np.<span class="built_in">abs</span>(min_value - true_value) &lt; <span class="number">1e-6</span>:</span><br><span class="line">        success_count += <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 计算统计结果</span></span><br><span class="line">accuracy = (success_count / n) * <span class="number">100</span>    <span class="comment"># 算法的成功率</span></span><br><span class="line">avg_min_value = np.mean(min_values)     <span class="comment"># 最优值平均值</span></span><br><span class="line">std_min_value = np.std(min_values)      <span class="comment"># 最优值的标准差</span></span><br><span class="line">avg_iterations = np.mean(iterations_list)       <span class="comment"># 平均迭代次数</span></span><br><span class="line">std_iterations = np.std(iterations_list)        <span class="comment"># 迭代次数的标准差</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 输出统计结果</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;\n=========== 统计结果 ===========&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;总运行次数: <span class="subst">&#123;n&#125;</span>&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;成功次数: <span class="subst">&#123;success_count&#125;</span>&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;成功率: <span class="subst">&#123;accuracy:<span class="number">.2</span>f&#125;</span>%&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;最优值平均值: <span class="subst">&#123;avg_min_value:<span class="number">.6</span>f&#125;</span> ± <span class="subst">&#123;std_min_value:<span class="number">.6</span>f&#125;</span>&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;平均迭代次数: <span class="subst">&#123;avg_iterations:<span class="number">.2</span>f&#125;</span> ± <span class="subst">&#123;std_iterations:<span class="number">.2</span>f&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 绘制结果分布图</span></span><br><span class="line">plt.figure(figsize=(<span class="number">12</span>, <span class="number">5</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 最优值分布</span></span><br><span class="line">plt.subplot(<span class="number">1</span>, <span class="number">2</span>, <span class="number">1</span>)</span><br><span class="line">plt.hist(min_values, bins=<span class="number">20</span>, alpha=<span class="number">0.7</span>, edgecolor=<span class="string">&#x27;black&#x27;</span>)</span><br><span class="line">plt.axvline(x=true_value, color=<span class="string">&#x27;r&#x27;</span>, linestyle=<span class="string">&#x27;--&#x27;</span>, label=<span class="string">&#x27;真实最优值&#x27;</span>)</span><br><span class="line">plt.xlabel(<span class="string">&#x27;最优值&#x27;</span>)</span><br><span class="line">plt.ylabel(<span class="string">&#x27;频次&#x27;</span>)</span><br><span class="line">plt.title(<span class="string">&#x27;最优值分布&#x27;</span>)</span><br><span class="line">plt.legend()</span><br><span class="line">plt.grid(<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">plt.subplot(<span class="number">1</span>, <span class="number">2</span>, <span class="number">2</span>)</span><br><span class="line">plt.hist(iterations_list, bins=<span class="number">20</span>, alpha=<span class="number">0.7</span>, edgecolor=<span class="string">&#x27;black&#x27;</span>)</span><br><span class="line">plt.axvline(x=avg_iterations, color=<span class="string">&#x27;r&#x27;</span>, linestyle=<span class="string">&#x27;--&#x27;</span>, label=<span class="string">f&#x27;平均迭代次数: <span class="subst">&#123;avg_iterations:<span class="number">.2</span>f&#125;</span>&#x27;</span>)</span><br><span class="line">plt.xlabel(<span class="string">&#x27;迭代次数&#x27;</span>)</span><br><span class="line">plt.ylabel(<span class="string">&#x27;频次&#x27;</span>)</span><br><span class="line">plt.title(<span class="string">&#x27;迭代次数分布&#x27;</span>)</span><br><span class="line">plt.legend()</span><br><span class="line">plt.grid(<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">plt.tight_layout()</span><br><span class="line">plt.show()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 绘制收敛曲线示例（最后一次运行）</span></span><br><span class="line">plt.figure(figsize=(<span class="number">10</span>, <span class="number">6</span>))</span><br><span class="line">plt.plot(<span class="built_in">range</span>(<span class="number">1</span>, ite_times+<span class="number">1</span>), var_history)</span><br><span class="line">plt.xlabel(<span class="string">&#x27;迭代次数&#x27;</span>)</span><br><span class="line">plt.ylabel(<span class="string">&#x27;总体方差&#x27;</span>)</span><br><span class="line">plt.title(<span class="string">&#x27;最后一次运行的方差收敛曲线&#x27;</span>)</span><br><span class="line">plt.grid(<span class="literal">True</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+
+
+<p><a href="undefined"></a></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E9%87%8F%E5%AD%90%E5%8A%A8%E5%8A%9B%E5%AD%A6/" rel="tag"># 量子动力学</a>
+              <a href="/tags/%E4%BC%98%E5%8C%96%E7%AE%97%E6%B3%95/" rel="tag"># 优化算法</a>
+              <a href="/tags/QDA/" rel="tag"># QDA</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2026/03/gjz5.0%E7%AD%94%E8%BE%A9/" rel="prev" title="gjz5.0答辩">
+                  <i class="fa fa-angle-left"></i> gjz5.0答辩
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2026/03/C++/" rel="next" title="">
+                   <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2023 – 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">未经授权不得转载</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

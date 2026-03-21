@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"gggjjjzzz123.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.27.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="版本说明CentOS-7-x86_64-DVD-2003.iso VMware Workstation 17pro 前期准备 安装VMware 官网下载CentOS7映像文件： Download - The CentOS Project 参考教程这个教程真的很详细，点赞！ 在VMware中安装CentOS7（超详细的图文教程）_在vmware上安装centos-CSDN博客 配置CentOS7 打">
+<meta property="og:type" content="article">
+<meta property="og:title" content="在VMware中安装CentOS7">
+<meta property="og:url" content="https://gggjjjzzz123.github.io/2025/03/%E5%9C%A8VMware%E4%B8%AD%E5%AE%89%E8%A3%85CentOS7/index.html">
+<meta property="og:site_name" content="GJZ&#39;s Blog">
+<meta property="og:description" content="版本说明CentOS-7-x86_64-DVD-2003.iso VMware Workstation 17pro 前期准备 安装VMware 官网下载CentOS7映像文件： Download - The CentOS Project 参考教程这个教程真的很详细，点赞！ 在VMware中安装CentOS7（超详细的图文教程）_在vmware上安装centos-CSDN博客 配置CentOS7 打">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/vmware-centos7/image_001_1748602516365-10b81a10-81ac-457c-8e70-e0706099b7c5.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/vmware-centos7/image_002_1748602577583-87432547-2045-4a1c-8e79-9d584b8cf0e5.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/vmware-centos7/image_003_1748602719157-93889b74-6f8a-46d8-ac29-967b862e5e34.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/vmware-centos7/image_004_1748602974982-f751aa6e-445a-417f-b86b-454066e6ab74.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/vmware-centos7/image_005_1748603103266-e9fc93da-455b-4ec9-be2e-955824ce64b1.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/vmware-centos7/image_006_1748603165898-2e064faf-e0ee-4497-8c44-02df20fa6fe4.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/vmware-centos7/image_007_1748603346994-7835e6d9-1555-4548-9d4f-7e9458169d10.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/vmware-centos7/image_008_1748603414172-1666a8d3-469a-4309-8395-917e51c2f769.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/vmware-centos7/image_009_1748603603020-8ddc69dd-30e1-4937-a8e0-645944969d8f.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/vmware-centos7/image_010_1748603671301-7e2078f2-5f7b-4dd0-9482-c016b25a8d58.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/vmware-centos7/image_011_1748603732047-7e5f28dc-f52c-4fcb-b52f-857e2fb56384.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/vmware-centos7/image_012_1748604373000-837f6552-4f85-40a1-993d-a3efb373ee3a.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/vmware-centos7/image_013_1748604449146-da752c95-d0d9-4c56-974b-2e82a43dceec.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/vmware-centos7/image_014_1748604535725-b4051918-6cf2-4433-a4a6-afd7e198b494.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/vmware-centos7/image_015_1748604615058-778e33a7-1b81-4084-af34-b4d7c12e3171.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/vmware-centos7/image_016_1748604910488-11e05936-a58c-4283-baf7-dde448fb2362.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/vmware-centos7/image_017_1748604961477-fafe769e-3644-4fdf-8079-347383963eac.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/vmware-centos7/image_018_1748604985947-27c96f73-aad7-4a3d-97ba-ee7ccc2bf570.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/vmware-centos7/image_019_1748605015691-d359fa32-1194-4471-86cb-6b61055ee5ca.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/vmware-centos7/image_020_1748605088869-72c78d05-00da-470e-b99b-83925dfe8df0.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/vmware-centos7/image_021_1748605157479-a38aac25-8277-479d-9d4f-bc646988fc8a.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/vmware-centos7/image_022_1748605626564-286fd536-84d0-410c-a61a-0fb9158bdd6d.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/vmware-centos7/image_023_1748605754023-4f95fc8d-b398-4e04-a883-aca832851e85.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/vmware-centos7/image_024_1748605986827-e744f486-1294-471c-832c-ebd9f1774451.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/vmware-centos7/image_025_1748606103862-b7eb8f27-968b-4067-a49b-c6f16f00eaee.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/vmware-centos7/image_026_1748606180580-bbc77c7c-d8d9-4124-ae9a-f0ecebbcea4a.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/vmware-centos7/image_027_1748606268619-08d96300-f755-455d-9c3f-758cc0b52ca1.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/vmware-centos7/image_028_1748606506855-8b16a0bb-3d60-49c7-a6e8-8c83003c53d1.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/vmware-centos7/image_029_1748606596395-9bd471ca-10f7-4f25-a4ef-f812d48753cb.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/vmware-centos7/image_030_1748606635507-f0865b7c-61b7-4bc5-a362-1e7fc796d358.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/vmware-centos7/image_031_1748606716416-a8a76539-7b81-4200-94d1-567e97ddd3c4.png">
+<meta property="article:published_time" content="2025-03-19T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-03-20T14:18:22.493Z">
+<meta property="article:author" content="GGGjjjzzz123">
+<meta property="article:tag" content="VMware">
+<meta property="article:tag" content="虚拟机">
+<meta property="article:tag" content="CentOS">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gggjjjzzz123.github.io/images/vmware-centos7/image_001_1748602516365-10b81a10-81ac-457c-8e70-e0706099b7c5.png">
+
+
+<link rel="canonical" href="https://gggjjjzzz123.github.io/2025/03/%E5%9C%A8VMware%E4%B8%AD%E5%AE%89%E8%A3%85CentOS7/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://gggjjjzzz123.github.io/2025/03/%E5%9C%A8VMware%E4%B8%AD%E5%AE%89%E8%A3%85CentOS7/","path":"2025/03/在VMware中安装CentOS7/","title":"在VMware中安装CentOS7"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>在VMware中安装CentOS7 | GJZ's Blog</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">GJZ's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">博主是一名努力进步、热爱生活、充满生命力的人</p>
+      <img class="custom-logo-image" src="/images/android-chrome-512x512.png" alt="GJZ's Blog">
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-技术文章"><a href="/tech/" rel="section"><i class="fa fa-code fa-fw"></i>技术文章</a></li><li class="menu-item menu-item-项目文档"><a href="/projects/" rel="section"><i class="fa fa-rocket fa-fw"></i>项目文档</a></li><li class="menu-item menu-item-课程笔记"><a href="/notes/" rel="section"><i class="fa fa-book fa-fw"></i>课程笔记</a></li><li class="menu-item menu-item-杂项随笔"><a href="/misc/" rel="section"><i class="fa fa-pencil fa-fw"></i>杂项随笔</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%89%88%E6%9C%AC%E8%AF%B4%E6%98%8E"><span class="nav-number">1.</span> <span class="nav-text">版本说明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E6%95%99%E7%A8%8B"><span class="nav-number">2.</span> <span class="nav-text">参考教程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%85%8D%E7%BD%AECentOS7"><span class="nav-number">3.</span> <span class="nav-text">配置CentOS7</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85CentOS7"><span class="nav-number">4.</span> <span class="nav-text">安装CentOS7</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CentOS7%E7%9A%84%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE"><span class="nav-number">5.</span> <span class="nav-text">CentOS7的网络配置</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">GGGjjjzzz123</p>
+  <div class="site-description" itemprop="description">GJZ的博客，用于存放各种技术文章，分享技术经验。主要内容包括项目开发、技术分享、学习笔记等。希望通过这个博客与大家交流，共同进步！</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">28</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">31</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/yourname" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;yourname" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://gggjjjzzz123.github.io/2025/03/%E5%9C%A8VMware%E4%B8%AD%E5%AE%89%E8%A3%85CentOS7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="GGGjjjzzz123">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="GJZ's Blog">
+      <meta itemprop="description" content="GJZ的博客，用于存放各种技术文章，分享技术经验。主要内容包括项目开发、技术分享、学习笔记等。希望通过这个博客与大家交流，共同进步！">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="在VMware中安装CentOS7 | GJZ's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          在VMware中安装CentOS7
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2026-03-20 22:18:22" itemprop="dateModified" datetime="2026-03-20T22:18:22+08:00">2026-03-20</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/" itemprop="url" rel="index"><span itemprop="name">技术文章</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="版本说明"><a href="#版本说明" class="headerlink" title="版本说明"></a>版本说明</h2><p>CentOS-7-x86_64-DVD-2003.iso</p>
+<p>VMware Workstation 17pro</p>
+<p>前期准备</p>
+<p>安装VMware</p>
+<p>官网下载CentOS7映像文件：</p>
+<p><a target="_blank" rel="noopener" href="https://www.centos.org/download/">Download - The CentOS Project</a></p>
+<h2 id="参考教程"><a href="#参考教程" class="headerlink" title="参考教程"></a>参考教程</h2><p>这个教程真的很详细，点赞！</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_45743985/article/details/121152504">在VMware中安装CentOS7（超详细的图文教程）_在vmware上安装centos-CSDN博客</a></p>
+<h2 id="配置CentOS7"><a href="#配置CentOS7" class="headerlink" title="配置CentOS7"></a>配置CentOS7</h2><ol>
+<li>打开“VMware Workstation”软件，选择创建虚拟机，随后进入新建虚拟机向导</li>
+<li>选择第一个“典型”，点击“下一步”</li>
+</ol>
+<!-- 这是一张图片，ocr 内容为：VMWARE WORKSTATION X 包 母 查看(V)虚拟机(M) 文件(F)编辑(E) 选项卡(T) 帮助(H) 库 我的计算机 主页 在此处键入内容进行搜索 我的计算机 其他LINUX5.X内核64位 WODKSTATION DDO.1 17 新建虚拟机向导 VMWARE WELCOME TO THE NEW VIRTUAL WORKSTATION MACHINE WIZARD PRO 连接远程服务器 17 WHAT TYPE OF CONFIGURATION DO YOU WANT? TYPICAL(RECOMMENDED) 通过几个简单的步骤创建WORKSTATION 17.5.X虚拟机. CUSTOM(ADVANCED) CREATE A VIRTUAL MACHINE WITH ADVANCED OPTIONS, SUCH AS A SCSI CONTROLLER TYPE, VIRTUAL DISK TYPE AND COMPATIBILITY WITH OLDER VMWARE PRODUCTS. 下一步(N) <上一步(B) 帮助 取消 VMWARE -->
+<p><img src="/images/vmware-centos7/image_001_1748602516365-10b81a10-81ac-457c-8e70-e0706099b7c5.png"></p>
+<ol start="3">
+<li>选择“稍后安装操作系统”，点击“下一步”</li>
+</ol>
+<!-- 这是一张图片，ocr 内容为：VMWARE WORKSTATION X 文件(F)编辑(E) 查看(V)虚拟机(M) 选项卡(T)帮助(H) 库 X 我的计算机 主页 在此处键入内容进行搜索 我的计算机 其他LINUX5.X内核64位 WIODKSTATION DD0.17 新建虚拟机向导 安装客户机操作系统 虚拟机如同物理机,需要操作系统.您将如何安装客户机操作系统? INSTALL FROM: 连接远程服务器 INSTALLER DISC: 无可用驱动器 INSTALLER DISC IMAGE FILE(ISO): UBUNTU-22.04.5-DESKTOP-AMD64.ISO BROWSE... I WILL INSTALL THE OPERATING SYSTEM LATER. THE VIRTUAL MACHINE WILL BE O ILL BE CREATED WITH A BLANK HARD DISK. 下一步(N)> < 上一步(B) 帮助 取消 VMWARE -->
+<p><img src="/images/vmware-centos7/image_002_1748602577583-87432547-2045-4a1c-8e79-9d584b8cf0e5.png"></p>
+<ol start="4">
+<li>客户机操作系统选择”Linux(L)”，版本选择“CentOS 7 64位”，点击“下一步”</li>
+</ol>
+<!-- 这是一张图片，ocr 内容为：VMWARE WORKSTATION X 中 文件(E)编辑(E)查看(V) 虚拟机(M) 选项卡(T) 帮助(H) 主页 我的计算机X 在此处键入内容进行搜索 我的计算机 其他LINUX5.X内核64位 WODKSTATION DD0.17 新建虚拟机向导 选择客户机操作系统 此虚拟机中将安装哪种操作系统? GUEST OPERATING SYSTEM 连接远程服务器 MICROSOFT WINDOWS LINUX VMWARE ESX OTHER VERSION CENTOS764位 下一步(N) 帮助 < 上一步(B) 取消 VMWARE -->
+<p><img src="/images/vmware-centos7/image_003_1748602719157-93889b74-6f8a-46d8-ac29-967b862e5e34.png"></p>
+<ol start="5">
+<li>默认虚拟机名称即可，选择<font style="background-color:#FBDE28;">虚拟机文件</font>保存位置（这一步很重要，一定要单独新建一个文件夹来存，否则会散在根文件夹下，后面移动的时候会造成配置文件缺失！！导致需要将所有文件删除后重新安装一遍），点击“下一步”</li>
+</ol>
+<!-- 这是一张图片，ocr 内容为：新建虚拟机向导 命名虚拟机 您希望该虚拟机使用什么名称? VIRTUAL MACHINE NAME: CENTOS764位 LOCATION: D://LINUX|CENTOS7 BROWSE... THE DEFAULT LOCATION CAN BE CHANGED AT EDIT > PREFERENCES. <上一步(B) 取消 下一步(N) -->
+<p><img src="/images/vmware-centos7/image_004_1748602974982-f751aa6e-445a-417f-b86b-454066e6ab74.png"></p>
+<ol start="6">
+<li>最大磁盘大小默认20G即可，然后选择“将虚拟磁盘存储为单个文件”，下一步</li>
+</ol>
+<!-- 这是一张图片，ocr 内容为：新建虚拟机向导 指定磁盘容量 磁盘大小为多少? 虚拟机的硬盘作为一个或多个文件存储在主机的物理磁盘中.这些文件最初很小,随着 您向虚拟机中添加应用程序,文件和数据而逐渐变大. 20.0 最大磁盘大小(GB)(S): 针对CENTOS 7 64位的建议大小:20 GB 将虚拟磁盘存储为单个文件(O) 将虚拟磁盘拆分成多个文件(M) 拆分磁盘后,可以更轻松地在计算机之间移动虚拟机,但可能会降低大容量磁盘的 性能. 上一步(B) 下一步(N) 帮助 取消 -->
+<p><img src="/images/vmware-centos7/image_005_1748603103266-e9fc93da-455b-4ec9-be2e-955824ce64b1.png"></p>
+<ol start="7">
+<li>点击”自定义硬件“</li>
+</ol>
+<!-- 这是一张图片，ocr 内容为：新建虚拟机向导 已准备好创建虚拟机 单击"完成"创建虚拟机.然后可以安装 CENTOS764位. THE VIRTUAL MACHINE WILL BE CREATED WITH THE FOLLOWING SETTINGS: 名称: CENTOS764位 位置: D://LINUX/CENTOS7 版本: WORKSTATION 17.5.X 操作系统: CENTOS764位 硬盘: 20 GB 内存: 1024 MB 网络适配器: NAT 其他设备: CD/DVD,USB控制器,声卡 CUSTOMIZE HARDWARE... 上一步(B) 取消 完成 -->
+<p><img src="/images/vmware-centos7/image_006_1748603165898-2e064faf-e0ee-4497-8c44-02df20fa6fe4.png"></p>
+<ol start="8">
+<li>选中“新CD&#x2F;DVD(IDE)”，连接中选择“使用ISO映像文件”，在“浏览”中找到下载CentOS7镜像文件的存放地址，点击关闭，再点击完成</li>
+</ol>
+<!-- 这是一张图片，ocr 内容为：硬件 设备状态 摘要 设备 已连接(C) 圈内存 1 GB 处理器 启动时连接(O) 新CD/DVD(IDE) 自动检测 网络适配器 NAT 连接 存在 USB控制器 使用物理驱动器(P): 自动检测 声卡 自动检测 显示器 自动检测 使用ISO映像文件(M): D:\LINUX|CENTOS-7-X86_64-C 浏览(B)... 高级(V)... 移除(R) 添加(A)... 帮助 关闭 -->
+<p><img src="/images/vmware-centos7/image_007_1748603346994-7835e6d9-1555-4548-9d4f-7e9458169d10.png"></p>
+<ol start="9">
+<li>完成后如下界面</li>
+</ol>
+<!-- 这是一张图片，ocr 内容为：X CENTOS 7 64位-VMWARE WORKSTATION 回 编辑(E) 查看(V) 文件(F) 选项卡(T)帮助(H) 虚拟机(M) 库 CENTOS764位 介主页 我的计算机 在此处键入内容进行搜索 CENTOS764位 我的计算机 其他LINUX5.X内核64位 开启此虚拟机 CENTOS764位 编辑虚拟机设置 设备 室内存 1 GB 1 处理器 20 GB 硬盘(SCSI) 正在使用文件D:.. CD/DVD(IDE) NAT 网络适配器 存在 USB控制器 自动检测 小声卡 显示器 自动检测 描述 虚拟机详细信息 状态:已关机 配置文件:D:\LINUXICENTOS7\CENTOS 7 64位VMX 硬件兼容性:WORKSTATION 17.5.X 虚拟机 主IP地址:网络信息不可用 -->
+<p><img src="/images/vmware-centos7/image_008_1748603414172-1666a8d3-469a-4309-8395-917e51c2f769.png"></p>
+<h2 id="安装CentOS7"><a href="#安装CentOS7" class="headerlink" title="安装CentOS7"></a>安装CentOS7</h2><ol>
+<li>选中刚刚配置的CentOS7，然后点击右边控制台中的“开启次虚拟机”。（开机失败可能是因为权限不够，关闭VMware，重新以管理员的身份运行）</li>
+</ol>
+<!-- 这是一张图片，ocr 内容为：CENTOS764位-VMWAREWORKSTATION 文件(F)编辑(E)查看(V)虚 ()虚拟机(M) )帮助(H) 选项卡(T) 库 我的计算机 主页 CENTOS764位 在此处键入内容进行搜索 CENTOS764位 我的计算机 其他LINUX5.X内核64位 开启此虚拟机 CENTOS764位 编辑虚拟机设置 设备 圈内存 1 GB 处理器 硬盘(SCSI) 20 GB CD/DVD(IDE) 正在使用文件D:... NAT 网络适配器 存在 USB控制器 声卡 自动检测 自动检测 显示器 描述 虚拟机详细信息 状态:已关机 配置文件:D:/LINUXICENTOS7\CENTOS 7 64位.VMX 硬件兼容性:WORKSTATION 17.5.X 虚拟机 主IP地址:网络信息不可用 -->
+<p><img src="/images/vmware-centos7/image_009_1748603603020-8ddc69dd-30e1-4937-a8e0-645944969d8f.png"></p>
+<ol start="2">
+<li><font style="color:rgb(77, 77, 77);">虚拟机启动之后会出现如下界面（白色表示选中），默认选中的是Test this media &amp; install CentOS  7。 我们将鼠标移入到虚拟机中，并按下键盘中的“↑”键，选择Install CentOS 7，最后按下“Enter 键”。</font></li>
+</ol>
+<p><font style="color:rgb(77, 77, 77);">界面说明：</font></p>
+<p><font style="color:rgb(77, 77, 77);">Install CentOS 7                                         </font><font style="color:rgb(77, 77, 77);"> </font><a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=%E5%AE%89%E8%A3%85CentOS%207&spm=1001.2101.3001.7020"><font style="color:rgb(252, 85, 49);">安装CentOS 7</font></a></p>
+<p><font style="color:rgb(77, 77, 77);">Test this media &amp; install CentOS  7            测试安装文件并安装CentOS  7</font></p>
+<p><font style="color:rgb(77, 77, 77);">Troubleshooting                                          修复故障</font></p>
+<p><font style="color:rgb(77, 77, 77);">（没来及截图，下图为别人的图）</font></p>
+<!-- 这是一张图片，ocr 内容为： -->
+<p><img src="/images/vmware-centos7/image_010_1748603671301-7e2078f2-5f7b-4dd0-9482-c016b25a8d58.png"></p>
+<ol start="3">
+<li>下图为正在安装的界面（这个过程可能会很慢）</li>
+</ol>
+<!-- 这是一张图片，ocr 内容为：CENTOS 7 64 - VMWARE WORKSTATION HTHABALIF- 何日 编辑(E) 查看(V) 虚拟机(M) 选项卡(T) 帮助(H) (F) 我的计算机 CENTOS764位 主页 在此处键入内容进行搜索 PRESS THE (ENTER> KEY TO BEGIN THE INSTALLATION PROCESS, 我的计算机 其他LINUX5.X内核64位 0.0000001 DETECTED CPU FAMILY 6 MODEL 154 STEPPING 3 0.0000000L WARNING: INTEL PROCESSOR - THIS HARDWARE HAS NOT UNDERGONE UPSTRE CENTOS764位 AM TESTING. NG. PLEASE CONSULT HTTP://WIKI.CENTOS.ORG FAQ FOR MORE INFORMATION IT 13.632900) DRACUT-PRE-UDEUT3291: NODPROBE: ERROR: COULD NOT INSERT 'FLOPPY' NO SUCH DEUICE STARTED SHOW PLYMOUTH BOOT SCREEN. OK I STARTED FORWARD PASSWORD REQUESTS TO PLYMOUTH DIRECTORY WATCH OK OK ] REACHED TARGET PATHS. 吕景 REACHED TARGET BASIC SYSTEM. STARTED DEVICE-MAPPER MULTIPATH DEVICE CONTROLLER. STARTING OPEN-ISCSI... ] STARTED OPEN-ISCSI. OK STARTING DRACUT INITQUEUE HOOK....... 16.5781271 SD O:0:0:0: ISDAL ASSUMING DRIVE CACHE: WRITE THROUGH 18.425041L DRACUT-INITQUEUEL710L: MOUNT: /DEU/SRO IS URITE-PROTECTED, MOUNTING READ-ONLY OK I STARTED SHOW PLYMOUTH BOOT SCREEN. OK 1 STARTED FORWARD PASSWORD REQUESTS TO PLYMOUTH DIRECTORY WATCH OK ] REACHED TARGET PATHS. OK ] REACHED TARGET BASIC SYSTEM. OK 1 STARTED DEVICE-MAPPER MULTIPATH DEUICE CONTROLLER. LLL STARTING OPEN-ISCSI... OK ] STARTED OPEN-ISCSI. STARTING DRACUT INITQUEUE HOOK... 18.42504LI DRACUT-INITQUEUEL710]: NOUNT: /DEU/SRO IS URITE-PROTECTED, MOUNTING READ-ONLY 0K ] CREATED SLICE SYSTEM-CHECKISOMD5.SLICE. STARTING MEDIA CHECK ON /DEU/SRO. /DEU/SR0: 8BB338EA5436A2863746710B44AC3540 IFRAGMENT SUNS: 5AZ292BFF63CCA7EEZ4FFBE453C0BFB9276E3FDA 752L628B44EC514DFEBE FRAGMENT COUNT:20 PRESS [ESC] TO ABORT CHECK. CHECKING:011.5% 按照在物理计算机中的步骤安装CENTOS764 单击虚拟屏幕 位.安装完成后,操作系统会进行引导,单击"我 我已完成安装 帮助 可发送按键 已完成安装". -->
+<p><img src="/images/vmware-centos7/image_011_1748603732047-7e5f28dc-f52c-4fcb-b52f-857e2fb56384.png"></p>
+<p>:::success<br><font style="color:rgb(77, 77, 77);">注意：  在虚拟机中的操作，鼠标必须要移入到虚拟机中，否则虚拟机感应不到，无法对其进行操作。</font></p>
+<ul>
+<li><font style="color:rgb(77, 77, 77);">鼠标移动到虚拟机内部单击或者按下Ctrl + G，鼠标即可移入到虚拟机中。</font></li>
+<li><font style="color:rgb(77, 77, 77);">按下Ctrl + Alt，鼠标即可移出虚拟机。</font></li>
+</ul>
+<p>:::</p>
+<ol start="4">
+<li>选择语言“中文”—&gt;“简体中文（中国）”，点击继续</li>
+</ol>
+<!-- 这是一张图片，ocr 内容为：CENTOS 7 64位 - VMWARE WORKSTATION 选项卡(T) 帮助(H) 虚拟机(M) 文件(F)编辑(E) 查看(V) 库 X CENTOS764位 我的计算机 主页 在此处键入内容进行搜索 CENTOS 7安装 我的计算机 帮助! SN园 其他LINUX5.X内核64位 CENTOS764位 CENTOS 欢迎使用CENTOS 7. 您在安装过程中想使用哪种语言? 简体中文(中国) BEUXS TELUGU 繁体中文(台湾) TAJIK TOYNKN 繁体中文(中华人民共和国香港特别行 THAIL BU1. 简体中文(新加坡) TURKISH TURKCE UKRAINIAN YKPAIHCBKA URDU 9J TIENG VIET VIETNAMESE 中文 CHINESE ZULU ISIZULU 在这里进行搜索. X 继续(C) 退出(Q) 按照在物理计算机中的步骤安装CENTOS764 单击虚拟屏幕 位.安装完成后,操作系统会进行引导,单击 我 帮助 我已完成安装 可发送按键 已完成安装 -->
+<p><img src="/images/vmware-centos7/image_012_1748604373000-837f6552-4f85-40a1-993d-a3efb373ee3a.png"></p>
+<ol start="5">
+<li>本地化设置，选择“日期和时间”，城市选择“上海”</li>
+</ol>
+<!-- 这是一张图片，ocr 内容为：CENTOS 7 64位 - VMWARE WORKSTATION 次可日 编辑(E)查看(V) 文件(F) 虚拟机(M) 帮助(H) 选项卡(T) 车 X 介主页 我的计算机 X CENTOS764位 在此处键入内容进行搜索 日期&时间 CENTOS 7安装 我的计算机 完成(D) 帮助! 5用 其他LINUX5.X内核64位 CENTOS764位 上海 网络时间(N) 亚洲 城市(C): 地区(R): 关闭 24小时制(H) 26 PM 07 日 05 年 月 30 2025 AM/PM 如果您要使用NTP,需要首先设置网络. 要将输入定向到该虚拟机,请在虚拟机内部单击或按CTL+G. 小 -->
+<p><img src="/images/vmware-centos7/image_013_1748604449146-da752c95-d0d9-4c56-974b-2e82a43dceec.png"></p>
+<ol start="6">
+<li>软件设置，选择“软件选择”，只选择“最小安装”</li>
+</ol>
+<!-- 这是一张图片，ocr 内容为：主页 分 CENTOS764位 我的计算机 软件选择 CENTOS7安装 完成(D) 帮助! 基本环境 已选环境的附加选项 最小安装 调试工具 调试行为异常程序以及诊断性能问题的工具. 基本功能. 计算节点 兼容性程序库 执行计算及处理的安装. 用于在 CENTOS LINUX 的之前版本中构建的应用程序的兼容 基础设施服务器 程序库. 用于操作网络基础设施服务的服务器. 开发工具 文件及打印服务器 基本开发环境. 用于企业的文件,打印及存储服务器. 安全性工具 基本网页服务器 用于完整性和可信验证的安全性工具. 提供静态及动态互联网内容的服务器. 智能卡支持 虚拟化主机 支持使用智能卡验证. 最小虚拟化主机. 系统管理工具 带GUI的服务器 对系统管理有用的程序. 带有用于操作网络基础设施服务GUI的服务器. GNOME桌面 GNOME是一个非常直观且用户友好的桌面环境. KDE PLASMA WORKSPACES KDE PLASMA WORKSPACES  是一个高度可配置图形用户界 面,其中包括面板,桌面,系统图标以及桌面向导和很多 功能强大的KDE 应用程序. 开发及生成工作站 田干软件,硬件,图形或老内容开发的工作站 -->
+<p><img src="/images/vmware-centos7/image_014_1748604535725-b4051918-6cf2-4433-a4a6-afd7e198b494.png"></p>
+<ol start="7">
+<li>系统设置，选择“安装位置”，在其他存储选项中选择“我要配置分区”，点击完成</li>
+</ol>
+<!-- 这是一张图片，ocr 内容为：安装目标位置 CENTOS 7安装 完成(D) 帮助! 西CN 选择要在其中安装系统的设备.点击主菜单中的"开始安装"按钮前不会对该设备进行任何操作. 本地标准磁盘 20 GIB VMWARE,VMWARE VIRTUAL S SDA/20GIB空闲 不会对未在此处选择的磁盘进行任何操作. 专用磁盘&网络磁盘 添加磁盘(A)... 不会对未在此处选择的磁盘进行任何操作. 其它存储选项 分区 自动配置分区(U). 我要配置分区(1). 我想让额外空间可用(M). 加密 加密我的数据(E).然后设置密码. 已选择1 个磁盘;容量20 GIB;20 GIB  刷新(R) 完整磁盘摘要以及引导程序(F).. -->
+<p><img src="/images/vmware-centos7/image_015_1748604615058-778e33a7-1b81-4084-af34-b4d7c12e3171.png"></p>
+<ol start="8">
+<li>手动分区选择标准分区，然后点击下方的“+”添加分区，分别创建三个分区：&#x2F;boot(300MB)、交换分区swap(512MB)、根分区&#x2F;(不填写大小，即所有默认剩余的空间都分给根分区)</li>
+</ol>
+<!-- 这是一张图片，ocr 内容为：X CENTOS764位 我的计算机 主页 手动分区 CENTOS 7安装 帮助! 完成(D) 新CENTOS7安装 您还没有为 CENTOS 7的安装创建任何挂载点.您可 以: 点这里自动创建他们(C) 通过点击"+"按钮创建新挂载点. 添加新挂载点 新挂载点将使用以下分区方案(N) 在下方创建挂载点后 标准分区 有更多自定义选项可用. 挂载点(P): /BOOT 300L 期望容量(D): 载点后,您可在这里浏览它们的详细信 取消(C) 添加挂载点(A) C 可用空间 总空间 20 GIB 20 GIB 已选择1个存储设备(S) 全部重设(R) -->
+<p><img src="/images/vmware-centos7/image_016_1748604910488-11e05936-a58c-4283-baf7-dde448fb2362.png"></p>
+<ol start="9">
+<li>点击完成</li>
+</ol>
+<!-- 这是一张图片，ocr 内容为：手动分区 CENTOS 7安装 完成(D) 帮助! CENTOS7安装 SDA3 系统 挂载点(P): 设备: /BOOT 300 MIB SDA1 VMWARE,VMWARE VIRTUAL S (SDA) 19.21 GIB 期望容量(D): SDA3 19.21 GIB 修改...(M) SWAP 512 MIB SDA2 设备类型(T): 标准分区 加密(E) 文件系统(Y): XFS 重新格式化(O) 名称(N): 标签(L): SDA3 C - 可用空间 总空间 20 GIB 992.5 KIB 全部重设(R) 已选择1个存储设备(S) -->
+<p><img src="/images/vmware-centos7/image_017_1748604961477-fafe769e-3644-4fdf-8079-347383963eac.png"></p>
+<ol start="10">
+<li>点击接受更改</li>
+</ol>
+<!-- 这是一张图片，ocr 内容为：手动分区 CENTOS 7安装 完成(D) 帮助! 新CENTOS7岁装 更改摘要 系统 您的自定义更改将产生以下变更,这些变更将会在您返回到主菜单并开始安装时生效: /BOOT SDA1 VMWARE VIRTUAL S 类型 挂载点 设备名称 操作 顺序 T UNKNOWN 销毁格式 SDA SDA3 2 创建格式分区表(MSDOS) SDA (M) SWAP 3 SDA1 创建设备PARTITION SDA2 4567 创建设备PARTITION SDA2 创建设备PARTITION SDA3 SDA3 创建格式XFS 创建格式SWAP SDA2 8 /BOOT 创建格式XFS SDA1 I 取消并返回到自定义分区(C) 接受更改(A) 可用空间 总空间 20 GIB 992.5 KIB 全部重设(R) 已选择1个存储设备(S) 内部单击或按CTRL+G -->
+<p><img src="/images/vmware-centos7/image_018_1748604985947-27c96f73-aad7-4a3d-97ba-ee7ccc2bf570.png"></p>
+<ol start="11">
+<li>回到界面，点击开始安装</li>
+</ol>
+<!-- 这是一张图片，ocr 内容为：安装信息摘要 CENTOS 7安装 帮助! 避盘(A) CENTOS 亚洲/上海时区 汉语 语言支持(L) 简体中文(中国) 软件 安装源(1) 软件选择(S) 本地介质 最小安装 系统 安装位置(D) KDUMP 已后用KDUMP 已选择自定义分区 网络和主机名(N) SECURITY POLICY 未连接 NO PROFILE SELECTED 退出(Q) 开始安装(B) 上本五松安润快切前我们并 门并不公惕你的磁舟 -->
+<p><img src="/images/vmware-centos7/image_019_1748605015691-d359fa32-1194-4471-86cb-6b61055ee5ca.png"></p>
+<ol start="12">
+<li><font style="color:rgb(77, 77, 77);">设置管理员ROOT密码，这是最高权限root用户的密码（默认账号为root，密码为现在要设置的）。</font><ul>
+<li><font style="color:rgb(77, 77, 77);">提示：这个密码非常重要，请务必牢记！！！</font></li>
+</ul>
+</li>
+</ol>
+<!-- 这是一张图片，ocr 内容为：主页 我的计算机 CENTOS764位 配置 CENTOS 7安装 帮助! CENTOS 用户设置 创建用户(U) ROOT 密码 不会创建任何用户 密码未设置 ROOT 密 正在安装LINUX-FIRMWARE(103/305) ENTOS CORE SIG RODUCES THE CENTOS LINUX DISTRIBUTION. KI.CENTOS.ORG/SPECIALLNTERESTGROUP 请先完成带有此图标标记的内容再进行下一步. 中立单主 -->
+<p><img src="/images/vmware-centos7/image_020_1748605088869-72c78d05-00da-470e-b99b-83925dfe8df0.png"></p>
+<ol start="13">
+<li>下图为正在安装的界面（这也是一个非常漫长的过程）</li>
+</ol>
+<!-- 这是一张图片，ocr 内容为：主页 我的计算机 CENTOS764位 配置 CENTOS7安装 帮助! CN CENTOS 用户设置 创建用户(U) ROOT密码 已经设置ROOT密码 不会创建任何用户 正在安装BINUTILS(174/305) ENTOS PROMOTION SIG ROMOTING CENTOS IN EVENTS, CONFERENCES AND EVERYWHERE! KI.CENTOS.ORG/SPECIALLNTERESTGROUP -->
+<p><img src="/images/vmware-centos7/image_021_1748605157479-a38aac25-8277-479d-9d4f-bc646988fc8a.png"></p>
+<ol start="14">
+<li>安装完成后选择“重启”</li>
+</ol>
+<!-- 这是一张图片，ocr 内容为：主页 我的计算机 CENTOS764位 配置 CENTOS 7安装 帮助! CN CENTOS 用户设置 创建用户(U) ROOT 密码 不会创建任何用户 已经设置ROOT密码 完成! CENTOS 已成功安装并可以使用 重后然后使用吧 重启(R) 使用本产品即表示遵守此许可协议/USR/SHARE/CENTOS-RELEASE/EULA -->
+<p><img src="/images/vmware-centos7/image_022_1748605626564-286fd536-84d0-410c-a61a-0fb9158bdd6d.png"></p>
+<ol start="15">
+<li>输入账号密码进行登录</li>
+</ol>
+<!-- 这是一张图片，ocr 内容为：我的计算机 CENTOS764位 主页 CENTOS LINUX   (CORE) I KERNE1 3.10.0-1127.EL7.X86_64 ON AN X86_64 LOCALHOST LOGIN:ROOT PASSWORD: -->
+<p><img src="/images/vmware-centos7/image_023_1748605754023-4f95fc8d-b398-4e04-a883-aca832851e85.png"></p>
+<p>:::success<br><font style="color:rgb(77, 77, 77);">至此，CentOS7的安装全部完成了。</font></p>
+<p><font style="color:rgb(77, 77, 77);">说明：CentOS 7默认安装好之后是没有自动开启网络连接的！所以下面我们还要配置一下CentOS7的网络。</font></p>
+<p>:::</p>
+<h2 id="CentOS7的网络配置"><a href="#CentOS7的网络配置" class="headerlink" title="CentOS7的网络配置"></a><font style="color:rgb(79, 79, 79);">CentOS7的网络配置</font></h2><p><font style="color:rgb(77, 77, 77);">因为前面在设置CentOS7的网络适配器的时候，设置是NAT模式。</font></p>
+<p><font style="color:rgb(77, 77, 77);">所以这里有两种方法，一种是自动获取IP，另一种是固定获取IP<br></font><font style="color:rgb(77, 77, 77);">（我只采用了第一种方法——自动获取IP）</font></p>
+<ol>
+<li>首先要确保的是CentOS为NAT模式，点击上方工具栏中的“虚拟机”—&gt;“设置”，选择“网络适配器”，查看“NAT模式”是否有勾选</li>
+</ol>
+<!-- 这是一张图片，ocr 内容为：虚拟机设置 硬件 选项 设备状态 摘要 设备 已连接(C) 1 GB 处理器 1 启动时连接(O) 硬盘(SCSI) 20 GB 正在使用文件D:/LINUXLCENTO... CD/DVD(IDE) 网络连接 网络适配器 NAT 桥接模式(B):直接连接物理网络 存在 USB控制器 复制物理网络连接状态(P) 自动检测 声卡 显示器 自动检测 NAT 模式(N):用于共享主机的 IP 地址 仅主机模式(H):与主机共享的专用网络 自定义(U):特定虚拟网络 正在加载虚拟网络... LAN区段(L): LAN区段(S)... 高级(V)... 添加(A)... 移除(R) 取消 帮助 确定 -->
+<p><img src="/images/vmware-centos7/image_024_1748605986827-e744f486-1294-471c-832c-ebd9f1774451.png"></p>
+<ol start="2">
+<li><font style="color:rgb(77, 77, 77);">在VMware界面（管理员方式启动）点击“编辑”里面的“虚拟网络编辑器”，然后勾选DHCP服务将IP地址分配给虚拟机，并设置子网IP(默认就好)</font></li>
+</ol>
+<!-- 这是一张图片，ocr 内容为：虚拟网络编辑器 外部连接 子网地址 主机连接 名称 类型 DHCP 自动桥接 桥接模式 VMNETO 已启用 已连接 仅主机... VMNET1 192.168.178.0 已连接 NAT模式 已启用 NAT模式 VMNET8 192.168.216.0 重命名网络(W)... 添加网络(E)... 移除网络(O) VMNET信息 桥接模式(将虚拟机直接连接到外部网络)(B) 自动设置(U)... 已桥接至(G):自动 NAT 模式(与虚拟机共享主机的IP 地址)(N) NAT设置(S)... )仅主机模式(在专用网络内连接虚拟机)(H) 将主机虚拟适配器连接到此网络(V) 主机虚拟适配器名称:VMWARE 网络适配器 VMNET8 DHCP设置(P)... 使用本地 DHCP 服务将IP 地址分配给虚拟机(D) 子网IP(1): 子网掩码(M): 255.255.255.0 192.168.216. 0 还原默认设置(R) 导出(X)... 帮助 确定 应用(A) 导入(T)... 取消 -->
+<p><img src="/images/vmware-centos7/image_025_1748606103862-b7eb8f27-968b-4067-a49b-c6f16f00eaee.png"></p>
+<ol start="3">
+<li><font style="color:rgb(77, 77, 77);">点击NAT模式旁边的“NAT设置”，然后修改与子网IP同网段下的网关IP，就是前三位必须相同，</font></li>
+</ol>
+<p>:::success<br><font style="color:rgb(77, 77, 77);">即192.168.30要相同，最后一位数不相同即可（其实已经自动设置好了，默认），最后点击“确认”保存设置。</font></p>
+<p>:::</p>
+<!-- 这是一张图片，ocr 内容为：虚拟网络编辑器 外部连接 主机连接 类型 子网地址 名称 DHCP 桥接模式 自动桥接 VMNETO 母 仅主机... 已启用 已连接 192.168.178.0 VMNET1 NAT模式NAT模式 已启用 已连接 192.168.216.0 VMNET8 CENTOS764位X 算机 64 ON AN AN X86 64 NAT 设置 网络: VMNET8 子网IP:192.168.216.0 添加风 子网掩码:255.255.255.0 VMNET信息 网关IP(G):192.168.216.2 桥接模式(将虚拟机直接连接到外部网络)(B) 端口转发(F) 已桥接至(G):自动 主机端口 描述 类型 虚拟机IP地址 NAT 模式(与虚拟机共享主机的 IP 地址)(N) 仅主机模式(在专用网络内连接虚拟机)(H) 将主机虚拟适配器连接到此网络(V) VMNET8 主机虚拟适配器名称:VMWARE 网络适配器VM 添加(A)... 移除(R) 属性(P) 使用本地DHCP 服务将IP 地址分配给虚拟机(D) 高级 子网IP(1): 子网掩码(M): 192.168.216.0 255.255 允许活动的FTP(T) 允许任何组织唯一标识符(O) 确定 还原默认设置(R) 导入(T)... 导出(X)... UDP超时(以秒为单位)(U):30 0 配置端口(C): 击"确认" 启用IPV6(E) IPV6 前缀(6):FD15:4BA5:5A2B:1008:://64 帮助 1318字 DNS设置(D)... NETBIOS设置(N)... STWORK-SCRIPTS/,并且用IS命令 要将输入定向至 确定 取消 帮助 网卡没有被识别这种只能重李 -->
+<p><img src="/images/vmware-centos7/image_026_1748606180580-bbc77c7c-d8d9-4124-ae9a-f0ecebbcea4a.png"></p>
+<ol start="4">
+<li><font style="color:rgb(77, 77, 77);">然后启动虚拟机，进入网络配置文件目录：cd &#x2F;etc&#x2F;sysconfig&#x2F;network-scripts&#x2F;，并且用 ls 命令查看是否有ifcfg-xxx名称的配置文件（ifcfg-lo除外），如果没有则说明网卡没有被识别，这种只能重装或者换个CentOS的版本</font></li>
+</ol>
+<!-- 这是一张图片，ocr 内容为：CENTOS LINUX 7(CORE) KERNE1 3.10.0-1127.E17.X86 64 ON AN X86 64 LOCA LHOST LOQIN:ROOT PASSWORD: FROOT@LOCALHOST "# CD /ETC/SUSCONF IG/NETWORK-SCRIPTS [ROOT@LOCALHOST NETWORK-SCRIPTS]# LS IFUP-ALIASES IFUP-IPV6 IFUP-POST INIT. IPV6-GLOBAL IFUP-TEAM IFDOWM-TEAM IFDOWM-ETH IFCFG-ENS33 IFUP-BNEP IFUP-TEAMPORT IFUP-PPP IFDOWN-TEAMPORT IFCFG-LO IFDOWN-IPPP IFDOWM-PPP IFUP-ISDN NETWORK-FUNCTIONS IFUP-ETH IFUP-ROUTES IFDOWM-TUNNEL IFDOWM IFUP-PLIP IFUP-TUNNEL NETWORK-FUNCT IONS-IPV6 IFDOWM-IPV6 IFDOWM-ROUTES IFDOWM-ISDN IFDOWM-SIT IFUP-WIRELESS IFUP-IPPP IFUP-PLUSB IFDOWM-BNEP IFUP-SIT IFUP [ROOT@LOCALHOST NETWORK-SCRIPTS]# -->
+<p><img src="/images/vmware-centos7/image_027_1748606268619-08d96300-f755-455d-9c3f-758cc0b52ca1.png"></p>
+<ol start="5">
+<li><font style="color:rgb(77, 77, 77);">编辑ifcfg-ens33文件：输入“vi ifcfg-ens33”</font></li>
+</ol>
+<ul>
+<li><font style="color:rgb(77, 77, 77);">按“i” 进入insert编辑模式，</font></li>
+<li><font style="color:rgb(77, 77, 77);">将BOOTPROTO设为dhcp，将ONBOOT设为yes，</font></li>
+<li><font style="color:rgb(77, 77, 77);">按下Esc进入命令模式输入:wq保存并退出。</font></li>
+</ul>
+<!-- 这是一张图片，ocr 内容为：PROXY METHODENONE BROWSERONLYENO BOOTPROTO DHCP DEFROUTE-UES IPUAFAILUREFATALNO IPV6INITYES IPV6 AUTOCONFYES IPV6DEFROUTEYES IPV6 FAILURE FATALNO IPU6_ADDR_GEN_MODESTABLE-PRIVACY NAMEENS33 UUID-E856D144-E9AB-4503-9B1E-53B0514003F8 DEVICE-ENS33 ONBOOTYES "IFCFG-ENS33" 15L, 280 [ROOT@LOCALHOST NETWORK-SCRIPTS]# -->
+<p><img src="/images/vmware-centos7/image_028_1748606506855-8b16a0bb-3d60-49c7-a6e8-8c83003c53d1.png"></p>
+<ol start="6">
+<li><font style="color:rgb(77, 77, 77);">配置完成之后输入：service network restart，重启网卡让网卡设置生效，之后就可以上网了，显示“OK”即可</font></li>
+</ol>
+<!-- 这是一张图片，ocr 内容为：AILEA TO RESTART HEYWORK SEROICE: UNIT HOT HOT IOUNA . ITROOT@LOCALHOST NETWORK-SCRIPTS# SERVICE NETWORK RESTART OK RESTARTING NETWORK (VIA SYSTEMCTL): [ROOT@LOCALHOST NETWORK-SCRIPTS]# -->
+<p><img src="/images/vmware-centos7/image_029_1748606596395-9bd471ca-10f7-4f25-a4ef-f812d48753cb.png"></p>
+<ol start="7">
+<li><font style="color:rgb(77, 77, 77);">输入ip addr检查一下动态分配的IP，可以发现分配的动态IP</font></li>
+</ol>
+<!-- 这是一张图片，ocr 内容为：[ROOT@LOCALHOST NETWORK-SCRIPTS]# IP ADDR STATE UNKNOWN GROUP DE 1: LO: <LOOPBACK,UP,LOWER UP> MTU 65536 QDISC UP DEFAULT QLEN 1000 NOGUEUE 00:00:00:00:00:00 LINK/LOOPBACK 00:00:00:00:00:00 BRD 00: INET 127.0.0.1/8 SCOPE HOST LO VALID IRT FOREVER PREFERRED LFT FOREVER INET6 :1/128 SCOPE HOST VALID LFT FOREVER PREFERRED LFT FOREVER 12: CUS33: (BRONDCAST,NULTICAST,UP,UP,LOMER`UP) MTU ISUB GDISC PRIFO-FAST STATE UP GROUP DEFAULT GLEN LINK/ETHER 00:29:55:F5:CA BRD FF:FF:FF:FF:FF:FF:FF INET 19Z,168.216.13B/Z1 BRD 192,168.216.255 SCOPE GLABAL NOPREFIXROUTE DYNAMIC ENS33 VALID_LFT 1751SEC PREFERRED_LFT 1751SEC INET6 FE80::D7FC:E9B3:BD1F :F52A/64 SCOPE LINK NOPREFIXROUTE VALID_LFT FOREVER PREFERRED LFT FOREVER [ROOT@LOCALHOST NETWORK-SCRIPTS]# -->
+<p><img src="/images/vmware-centos7/image_030_1748606635507-f0865b7c-61b7-4bc5-a362-1e7fc796d358.png"></p>
+<ol start="8">
+<li><font style="color:rgb(77, 77, 77);">最后验证是否可以访问外网，若可以访问外网，即可验证成功</font></li>
+</ol>
+<!-- 这是一张图片，ocr 内容为：VALID IRT FOREVER PREFERREA-LRT FOREVER [ROOT@LOCALHOST NETWORK-SCRIPTS]# PING WUW.BAIDU.COM LPING WUW.A.SHIFEN.COM (183.2.172.177) 56(84) BYTES OF DATA 164 BYTES FROM 183.2.172.177 (183.2.172.177): ICMP.SEQ-1 TTL-128 TIME-35.8 MS 164 BUTES FROM 183.2.172.177 (183.2.172.177): ICMP_SEQ-Z TT1-128 TIME-37.9 MS 164 BYTES FROM 183.2.172.177 (183.2.172.177): ICMP_SEQ-3 TT1-128 TIME-37.7 MS 164 BUTES FROM 183.2.172.177 (183.2.172.177): ICMP_SEQ-1 TT1-128 TIME-39.8 MS 164 BYTES FROM 183.2.172.177 (183.2.17Z.177): ICMP-SEQ-SEQ-5 TTL-128 TIME-37.3 M 164 BUTES FROM 183.2.172.177 (183.2.172.177): ICMP-SEQ-6 TTL-128 TIME-39.6 MS 164 BYTES FROM 183.2.172.177 (183.2.172.177): ICMP-SEQ-7 TTL-128 TIME-43.8 MS F1864 BUTES FROM 183.2.172.177 (183.2.172.177): ICMP_SEQ-8 TTL-128 TIMEE37.5 M 164 BUTES FROM 183.2.172.17? (183.2.17Z.177): ICMP-SEQ-9 TTL:128 TIME-38.8 MS -->
+<p><img src="/images/vmware-centos7/image_031_1748606716416-a8a76539-7b81-4200-94d1-567e97ddd3c4.png"></p>
+<p><font style="color:#DF2A3F;">注意：ctrl+c可停止访问</font></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/VMware/" rel="tag"># VMware</a>
+              <a href="/tags/%E8%99%9A%E6%8B%9F%E6%9C%BA/" rel="tag"># 虚拟机</a>
+              <a href="/tags/CentOS/" rel="tag"># CentOS</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/03/%E5%9C%A8VMware%E4%B8%AD%E5%AE%89%E8%A3%85Win7/" rel="prev" title="在VMware中安装Win7">
+                  <i class="fa fa-angle-left"></i> 在VMware中安装Win7
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2025/03/%E5%9C%A8VMware%E4%B8%AD%E5%AE%89%E8%A3%85Ubuntu/" rel="next" title="在VMware中安装Ubuntu">
+                  在VMware中安装Ubuntu <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2023 – 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">未经授权不得转载</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

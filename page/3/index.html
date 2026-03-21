@@ -1,0 +1,2285 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"gggjjjzzz123.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.27.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="GJZ的博客，用于存放各种技术文章，分享技术经验。主要内容包括项目开发、技术分享、学习笔记等。希望通过这个博客与大家交流，共同进步！">
+<meta property="og:type" content="website">
+<meta property="og:title" content="GJZ&#39;s Blog">
+<meta property="og:url" content="https://gggjjjzzz123.github.io/page/3/index.html">
+<meta property="og:site_name" content="GJZ&#39;s Blog">
+<meta property="og:description" content="GJZ的博客，用于存放各种技术文章，分享技术经验。主要内容包括项目开发、技术分享、学习笔记等。希望通过这个博客与大家交流，共同进步！">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="GGGjjjzzz123">
+<meta property="article:tag" content="分享, 技术, 博客, 开发, 学习">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://gggjjjzzz123.github.io/page/3/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":true,"isPost":false,"lang":"zh-CN","comments":"","permalink":"","path":"page/3/index.html","title":""}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>GJZ's Blog</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">GJZ's Blog</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">博主是一名努力进步、热爱生活、充满生命力的人</p>
+      <img class="custom-logo-image" src="/images/android-chrome-512x512.png" alt="GJZ's Blog">
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-技术文章"><a href="/tech/" rel="section"><i class="fa fa-code fa-fw"></i>技术文章</a></li><li class="menu-item menu-item-项目文档"><a href="/projects/" rel="section"><i class="fa fa-rocket fa-fw"></i>项目文档</a></li><li class="menu-item menu-item-课程笔记"><a href="/notes/" rel="section"><i class="fa fa-book fa-fw"></i>课程笔记</a></li><li class="menu-item menu-item-杂项随笔"><a href="/misc/" rel="section"><i class="fa fa-pencil fa-fw"></i>杂项随笔</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">GGGjjjzzz123</p>
+  <div class="site-description" itemprop="description">GJZ的博客，用于存放各种技术文章，分享技术经验。主要内容包括项目开发、技术分享、学习笔记等。希望通过这个博客与大家交流，共同进步！</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">28</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">31</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/yourname" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;yourname" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://gggjjjzzz123.github.io/2025/03/%E5%9C%A8VMware%E4%B8%AD%E5%AE%89%E8%A3%85Ubuntu/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="GGGjjjzzz123">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="GJZ's Blog">
+      <meta itemprop="description" content="GJZ的博客，用于存放各种技术文章，分享技术经验。主要内容包括项目开发、技术分享、学习笔记等。希望通过这个博客与大家交流，共同进步！">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | GJZ's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2025/03/%E5%9C%A8VMware%E4%B8%AD%E5%AE%89%E8%A3%85Ubuntu/" class="post-title-link" itemprop="url">在VMware中安装Ubuntu</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2026-03-20 22:18:22" itemprop="dateModified" datetime="2026-03-20T22:18:22+08:00">2026-03-20</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/" itemprop="url" rel="index"><span itemprop="name">技术文章</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="配置Ubuntu"><a href="#配置Ubuntu" class="headerlink" title="配置Ubuntu"></a>配置Ubuntu</h2><ol>
+<li>打开“VMware Workstation”软件，选择创建虚拟机，随后进入新建虚拟机向导</li>
+<li>选择第一个“典型”，点击“下一步”</li>
+</ol>
+<!-- 这是一张图片，ocr 内容为：VMWARE WORKSTATION 园回回名包口 查看(V) 虚拟机(M)选项卡(T)帮助(H) 文件(F)编辑(E) 库 X 主页 我的计算机 在此处键入内容进行搜索 我的计算机 其他LINUX5.X内核64位 WORKSTATIONPRO17 CENTOS764位 卫 连接远程服务器 打开虚拟机 创建新的虚拟机 VMWARE -->
+<p><img src="/images/vmware-ubuntu/image_001_1748605416332-bae73e42-00b3-4dd0-8d3b-abcd315976d3.png"></p>
+<ol start="3">
+<li>选择“稍后安装操作系统”，点击下一步</li>
+</ol>
+<!-- 这是一张图片，ocr 内容为：新建虚拟机向导 安装客户机操作系统 虚拟机如同物理机,需要操作系统.您将如何安装客户机操作系统? INSTALL FROM: INSTALLER DISC: 无可用驱动器 INSTALLER DISC IMAGE FILE(ISO): D:\LINUXLCENTOS-7-X86_64-DVD-2003.ISO BROWSE... I WILL INSTALL THE OPERATING SYSTEM LATER. THE VIRTUAL MACHINE WILL BE CREATED WITH A BLANK HARD DISK. 下一步(N) 取消 帮助 <上一步(B) -->
+<p><img src="/images/vmware-ubuntu/image_002_1748605525354-99e28adf-4fdd-4e74-9e26-eb85e926accd.png"></p>
+<ol start="4">
+<li>选择客户机操作系统为“Linux”，版本为“Ubuntu 64位”，点击下一步</li>
+</ol>
+<!-- 这是一张图片，ocr 内容为：新建虚拟机向导 选择客户机操作系统 此虚拟机中将安装哪种操作系统? GUEST OPERATING SYSTEM MICROSOFT WINDOWS LINUX VMWARE ESX OTHER VERSION UBUNTU64位 下一步(N) <上一步(B) 帮助 取消 -->
+<p><img src="/images/vmware-ubuntu/image_003_1748607297930-89fde686-1b69-43c8-acbc-c033f14f3746.png"></p>
+<ol start="5">
+<li>虚拟机名称默认即可，选择虚拟机文件存储位置（注意：一定要单独新建一个文件夹来存）</li>
+</ol>
+<!-- 这是一张图片，ocr 内容为：新建虚拟机向导 命名虚拟机 您希望该虚拟机使用什么名称? VIRTUAL MACHINE NAME: UBUNTU64位 LOCATION: D://LINUX\UBUNTU BROWSE... THE DEFAULT LOCATION CAN BE CHANGED AT EDIT > PREFERENCES. 下一步(N) <上一步(B) 取消 -->
+<p><img src="/images/vmware-ubuntu/image_004_1748607283503-a9f5f6c1-4070-4dd4-8f5b-d71e5de327b2.png"></p>
+<ol start="6">
+<li>设置最大磁盘大小20G（默认），选择“将虚拟磁盘存储为单个文件”</li>
+</ol>
+<!-- 这是一张图片，ocr 内容为：新建虚拟机向导 指定磁盘容量 磁盘大小为多少? 虚拟机的硬盘作为一个或多个文件存储在主机的物理磁盘中.这些文件最初很小,随着 您向虚拟机中添加应用程序,文件和数据而逐渐变大. 20.0 最大磁盘大小(GB)(S): 针对UBUNTU 64位的建议大小:20 GB 将虚拟磁盘存储为单个文件(O) 将虚拟磁盘拆分成多个文件(M) 拆分磁盘后,可以更轻松地在计算机之间移动虚拟机,但可能会降低大容量磁盘的 性能. 上一步(B) 下一步(N)> 取消 帮助 -->
+<p><img src="/images/vmware-ubuntu/image_005_1748607579897-b085dc47-7454-47c7-ba9a-cc9ec4605521.png"></p>
+<ol start="7">
+<li>点击“自定义硬件”</li>
+</ol>
+<!-- 这是一张图片，ocr 内容为：新建虚拟机向导 已准备好创建虚拟机 单击'完成创建虚拟机.然后可以安装UE 安装UBUNTU64位. THE VIRTUAL MACHINE WILL BE CREATED WITH THE FOLLOWING SETTINGS: 名称: UBUNTU64位 位置: D:\LINUX|UBUNTU 版本: WORKSTATION 17.5.X 操作系统: UBUNTU64位 硬盘: 20 GB 内存: 4096 MB 网络适配器: NAT 2个CPU内核,CD/DVD,USB控制器,声卡 其他设备: SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS CUSTOMIZE HARDWARE... <上一步(B) 完成 取消 -->
+<p><img src="/images/vmware-ubuntu/image_006_1748607608217-038062ef-f04c-42e1-9007-99a16a4810bc.png"></p>
+<ol start="8">
+<li>选中“新CD&#x2F;DVD”，在连接中选择“使用ISO映像文件”，在浏览中选择存放Ubuntu映像文件的地址，点击关闭，再点击完成</li>
+</ol>
+<!-- 这是一张图片，ocr 内容为：硬件 设备状态 摘要 设备 已连接(C) 4 GB 处理器 2 启动时连接(O) 自动检测 新CD/DVD(SATA) 网络适配器 连接 NAT USB控制器 存在 使用物理驱动器(P): 自动检测 声卡 自动检测 显示器 自动检测 使用ISO映像文件(M): D:\LINUX/UBUNTU-22.04.5-DES 浏览(B)... 高级(V)... 移除(R) 添加(A)... 帮助 关闭 -->
+<p><img src="/images/vmware-ubuntu/image_007_1748607721896-1794f1d5-5a68-4cf1-aaff-2477fc4bf4e4.png"></p>
+<ol start="9">
+<li>Ubuntu已经配置好了</li>
+</ol>
+<!-- 这是一张图片，ocr 内容为：向 UBUNTU 64 - VMWARE WORKSTATION 编辑(E) 查看(V) 虚拟机(M)选项卡(T) 帮助(H) 文件(F) 库 UBUNTU 64位 主页 我的计算机 在此处键入内容进行搜索 UBUNTU64位 我的计算机 向句句 其他LINUX5.X内核64位 开启此虚拟机 CENTOS764位 编辑虚拟机设置 UBUNTU64位 设备 内存 4 GB 2 处理器 硬盘(SCSI) 20 GB 正在使用文件D:... CD/DVD(SATA) NAT 网络适配器 存在 USB控制器 自动检测 声卡 显示器 自动检测 虚拟机详细信息 状态:已关机 描述 配置文件:D://LINUX\UBUNTU/UBUNT 在此处键入对该虚拟机的描述. 64位.VMX 硬件兼容性:WORKSTATION 17.5.X虚拟 机 主IP地址:网络信息不可用 -->
+<p><img src="/images/vmware-ubuntu/image_008_1748607780468-92195de4-61d8-4bba-8f84-045ce2551670.png"></p>
+<h2 id="安装Ubuntu"><a href="#安装Ubuntu" class="headerlink" title="安装Ubuntu"></a>安装Ubuntu</h2><ol>
+<li>选中刚刚配置的CentOS7，然后点击右边控制台中的“开启次虚拟机”。（开机失败可能是因为权限不够，关闭VMware，重新以管理员的身份运行）</li>
+</ol>
+<!-- 这是一张图片，ocr 内容为：UBUNTU 64 - VMWARE WORKSTATION 文件(F)编辑(E) 查看(V) 虚拟机(M)选项卡(T) 帮助(H) 库 UBUNTU 64位 主页 我的计算机 在此处键入内容进行搜索 UBUNTU64位 我的计算机 包包包 其他LINUX5.X内核64位 开启此虚拟机 CENTOS764位 编辑虚拟机设置 UBUNTU64位 设备 4 GB 圈内存 处理器 2 硬盘(SCSI) 20 GB 正在使用文件D:... CD/DVD(SATA) 网络适配器 NAT 存在 USB控制器 自动检测 声卡 自动检测 显示器 虚拟机详细信息 状态:已关机 描述 配置文件:D:\LINUX\UBUNTU/UBUNT 在此处键入对该虚拟机的描述. 64位.VMX 硬件兼容性:WORKSTATION 17.5.X虚拟 机 主IP地址:网络信息不可用 -->
+<p><img src="/images/vmware-ubuntu/image_009_1748607846673-0cd0a5e3-88c6-4eb7-96e6-38be0768b98f.png"></p>
+<ol start="2">
+<li>选择第一个选项</li>
+</ol>
+<!-- 这是一张图片，ocr 内容为：我的计算机 介主页 UBUNTU 64位 GNUGRUB VERSION 2.06 TRY OR INSTALL UBUNTU UBUNTU (SAFE GRAPHICS) OEM INSTALL (FOR MANUFACTURERS) TEST MEMORY USE THE T AND - KEYS TO SELECT WHICH ENTRY IS HIGHLIGHTED. 'E' TO EDIT THE COMMANDS THE SELECTED OS, PRESS ENTER TO BOOT TH BEFORE BOOTING OR 'C' -LINE. FOR A COMMAND-LI THE HIGHLIGHTED ENTRY WILL BE A AUTOMATICALLY IN 21S. EXECUTED -->
+<p><img src="/images/vmware-ubuntu/image_010_1748607936163-bf8539f1-2284-45c9-92a3-1d9e4cdf572d.png"></p>
+<ol start="3">
+<li>启动之后出现安装界面</li>
+</ol>
+<!-- 这是一张图片，ocr 内容为：我的计算机 主页 UBUNTU 64位 MAY 30 20:26 SAJAIDUHTE BURES BOAHTIN HRVATSKI ISLENSKA LTALIANO KURDI LATVISKI LIETUVISKAI MAGYAR NEDERLANDS NO LOCALIZATION(UTF-8) SAJAIDUHTTIT UBUNTU GEAHCCALUBUNTU NORSK BOKMAL NORSK NYNORSK OCCITAN YOU CAN TRY UBUNTU WITHOUT MAKING ANY CHANGES TO YOUR COMPUTER, DIRECTLY FROM THIS CD. POLSKI OR IF YOU'READY.YOU CANINSTALL UBUNTU ALONGSIDE (OR INSTEAD OF YOUR CURRENT OPERATING PORTUGUES SYSTEM. THIS SHOULDN'T TAKE TOO LONG. PORTUGUES DO BRASIL ROMANA SAMEGILLII 机内部单击或按CTRL+G. -->
+<p><img src="/images/vmware-ubuntu/image_011_1748608000677-2626f792-4512-42d4-a956-28f229239e4c.png"></p>
+<ol start="4">
+<li>语言选择“简体中文”，选择“安装Ubuntu”</li>
+</ol>
+<!-- 这是一张图片，ocr 内容为：我的计算机 UBUNTU64位X 主页 MAY 30 20:29 U 安装 欢迎 SLLY BEUK GGGOLOM BOUC BWILALU CLC 试用UBUNTU 安装UBUNTU 的只 COCAGRI 您可以直接从此CD尝试UBUNTU,而不用对您的电脑作任何更改. 10号原 中文(简体) 如果您已经准备完毕,您可以与现有系统并存(或者替代)方式将UBUNTU安装到您的电脑上. 此过程无需耗时太久. 中文(繁体) 日本语 标移动性,视频和性能.请答灵客户机操作系统,单击'安 单击虚拟屏暮 VMWARE -->
+<p><img src="/images/vmware-ubuntu/image_012_1748609716441-c276047f-e0cd-40e5-9aa1-711fe3462338.png"></p>
+<ol start="5">
+<li>键盘布局默认选择“Chinese”，点击继续</li>
+</ol>
+<!-- 这是一张图片，ocr 内容为：UBUNTU64位 我的计算机 主页 U MAY 30 20:32 安装 键盘布局 选择您的键盘布局: BELARUSIAN CHINESE CHINESE-HANYU PINYIN(WITH ALTGR DEAD KEYS) BELGIAN CHINESE-MONGOLIAN(BICHIG) BERBER(ALGERIA,LATIN) CHINESE-MONGOLIAN(GALIK) BOSNIAN CHINESE-MONGOLIAN(MANCHU GALIK) BRAILLE CHINESE-MONGOLIAN(MANCHU) BULGARIAN CHINESE-MONGOLIAN(TODO GALIK) BURMESE CHINESE CHINESE-MONGOLIAN(TODO) CHINESE-MONGOLIAN(XIBE) CROATIAN CHINESE-TIBETAN CZECH CHINESE-TIBETAN(WITH ASCIL NUMERALS) DANISH CHINESE-UYGHUR DHIVEHI DUTCH DZONGKHA ENGLISH(AUSTRALIAN) 在这里输入以测试您的键盘 探测键盘布局 后退(B) 继续 退出(Q) VMWARETOOLS具有很多功能,能改善鼠标移动性,视须和性能.请登录客户机操作系统,单击"安装 单击虚拟屏幕 不要提醒我 安装TOOLS 以后提醒我 可发送按键 TOOLS" -->
+<p><img src="/images/vmware-ubuntu/image_013_1748609773193-9541ee58-e38d-4a11-bd2e-3aec96ac3585.png"></p>
+<ol start="6">
+<li>选择“正常安装”，其他选项选择“为图形或…”，点击继续</li>
+</ol>
+<!-- 这是一张图片，ocr 内容为：我的计算机 介主页 UBUNTU 64位 X MAY 30 20:34 安装 更新和其他软件 您希望先安装哪些应用? 正常安装 网络浏览器,工具,办公软件,游戏和媒体播放器. 最小安装 网络浏览器和基本工具 其他选项 安装UBUNTU时下载更新 这能节约安装后的时间. 为图形或无线硬件,以及其它媒体格式安装第三方软件 此软件及其文档遵循许可条款.其中一些是专有的. 退出(O) 后退(B) 继续 -->
+<p><img src="/images/vmware-ubuntu/image_014_1748609904923-d3bbd18f-83a0-49db-a3a8-29c29248d313.png"></p>
+<ol start="7">
+<li>安装类型，记得勾选“清除…”，点击现在安装，再点击继续</li>
+</ol>
+<!-- 这是一张图片，ocr 内容为：安装 安装类型 这台计算机似乎没有安装操作系统.您准备怎么做? 清除整个磁盘并安装UBUNTU 注意:这会删除所有系统里面的全部程序,文档,照片,音乐和其他文件. 高级特性... 尚未选择任何项目 其他选项 您可以自己创建,调整分区,或者为UBUNTU选择多个分区. 后退(B) 退出(Q) 现在安装(1) -->
+<p><img src="/images/vmware-ubuntu/image_015_1748609968267-45542283-9077-42e7-9de1-f1b0e29a422e.png"></p>
+<ol start="8">
+<li>地区选择上海，点击继续</li>
+</ol>
+<!-- 这是一张图片，ocr 内容为：安装 您在什么地方? SHANGHAI 后退(B) 继续 -->
+<p><img src="/images/vmware-ubuntu/image_016_1748610013167-c67ac2c9-1266-4729-a3ac-0fe7aab2f5fa.png"></p>
+<ol start="9">
+<li>输入相关信息，点击继续（密码：gjz）</li>
+</ol>
+<!-- 这是一张图片，ocr 内容为：安装 您是谁? 您的姓名: GJZ GJZ-VIRTUAL-MACHINE 您的计算机名: 与其他计算机联络时使用的名称. 选择一个用户名: GJZ 选择一个密码: 密码强度:合理 确认您的密码: 自动登录 登录时需要密码 使用ACTIVEDIRECTORY 您将在下一步中输入域和其他详细信息. 继续 后退(B) -->
+<p><img src="/images/vmware-ubuntu/image_017_1748610076458-02b93f23-6fb5-444b-8f79-503fff6173b3.png"></p>
+<ol start="10">
+<li>进行安装（过程巨慢）</li>
+</ol>
+<!-- 这是一张图片，ocr 内容为：安装 SKIP 正在完成文件复制... -->
+<p><img src="/images/vmware-ubuntu/image_018_1748610100399-8cd95150-f12b-49ec-bec1-8d8f2b0d297a.png"></p>
+<ol start="11">
+<li>完成！</li>
+</ol>
+<!-- 这是一张图片，ocr 内容为：我的计算机 UBUNTU64位 主页 X X 活动 5月31日04:55 ZH 主目录 .内部单击或按CTRL+G. -->
+<p><img src="/images/vmware-ubuntu/image_019_1748611186899-d9e719ea-ec3b-423c-8a4f-5b2b167a06a2.png"></p>
+<p>换源</p>
+<!-- 这是一张图片，ocr 内容为：软件和更新 活动 10月25日03:07 软件和更新 X 身份验证 开发者选项 其它软件 附加驱动 更新 UBUNTU软件 UBUNTUPRO 可从互联网下载 CANONICAL支持的自由和开源软件(MAIN) 选择下载服务器 社区 设备 MIRRORS.HUST.EDU.CN 选择最佳服务器(S) O 因版 MIRRORS.JCUT.EDU.CN MIRRORS.JLU.EDU.CN 源代 MIRRORS.JXUST.EDU.CN 下载自: MIRRORS.SDU.EDU.CN MIRRORS.SOHU.COM MIRRORS.TUNA.TSINGHUA.EDU.CN 可从光驱车 MIRRORS.XITU.EDU.CN INST MIRRORS.YUN-IDC.COM 官方 版权 协议: HTTPS 选择服务器(S) 取消(C) 六 还原(V) 关闭(C) -->
+<p><img src="/images/vmware-ubuntu/image_020_1761305476128-7a06ac15-f8a9-4de8-bb7a-8ca6ebb676d2.png"></p>
+<p>Ubuntu粘贴复制</p>
+<p>1、更换国内源（阿里）</p>
+<p>2、sudo apt-get update</p>
+<p>3、sudo apt-get upgrade</p>
+<p>4、sudo apt-get  install open-vm-tools</p>
+<p>5、sudo apt-get install open-vm-tools-desktop</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://gggjjjzzz123.github.io/2025/03/%E5%9C%A8VMware%E4%B8%AD%E5%AE%89%E8%A3%85CentOS7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="GGGjjjzzz123">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="GJZ's Blog">
+      <meta itemprop="description" content="GJZ的博客，用于存放各种技术文章，分享技术经验。主要内容包括项目开发、技术分享、学习笔记等。希望通过这个博客与大家交流，共同进步！">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | GJZ's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2025/03/%E5%9C%A8VMware%E4%B8%AD%E5%AE%89%E8%A3%85CentOS7/" class="post-title-link" itemprop="url">在VMware中安装CentOS7</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2026-03-20 22:18:22" itemprop="dateModified" datetime="2026-03-20T22:18:22+08:00">2026-03-20</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/" itemprop="url" rel="index"><span itemprop="name">技术文章</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="版本说明"><a href="#版本说明" class="headerlink" title="版本说明"></a>版本说明</h2><p>CentOS-7-x86_64-DVD-2003.iso</p>
+<p>VMware Workstation 17pro</p>
+<p>前期准备</p>
+<p>安装VMware</p>
+<p>官网下载CentOS7映像文件：</p>
+<p><a target="_blank" rel="noopener" href="https://www.centos.org/download/">Download - The CentOS Project</a></p>
+<h2 id="参考教程"><a href="#参考教程" class="headerlink" title="参考教程"></a>参考教程</h2><p>这个教程真的很详细，点赞！</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_45743985/article/details/121152504">在VMware中安装CentOS7（超详细的图文教程）_在vmware上安装centos-CSDN博客</a></p>
+<h2 id="配置CentOS7"><a href="#配置CentOS7" class="headerlink" title="配置CentOS7"></a>配置CentOS7</h2><ol>
+<li>打开“VMware Workstation”软件，选择创建虚拟机，随后进入新建虚拟机向导</li>
+<li>选择第一个“典型”，点击“下一步”</li>
+</ol>
+<!-- 这是一张图片，ocr 内容为：VMWARE WORKSTATION X 包 母 查看(V)虚拟机(M) 文件(F)编辑(E) 选项卡(T) 帮助(H) 库 我的计算机 主页 在此处键入内容进行搜索 我的计算机 其他LINUX5.X内核64位 WODKSTATION DDO.1 17 新建虚拟机向导 VMWARE WELCOME TO THE NEW VIRTUAL WORKSTATION MACHINE WIZARD PRO 连接远程服务器 17 WHAT TYPE OF CONFIGURATION DO YOU WANT? TYPICAL(RECOMMENDED) 通过几个简单的步骤创建WORKSTATION 17.5.X虚拟机. CUSTOM(ADVANCED) CREATE A VIRTUAL MACHINE WITH ADVANCED OPTIONS, SUCH AS A SCSI CONTROLLER TYPE, VIRTUAL DISK TYPE AND COMPATIBILITY WITH OLDER VMWARE PRODUCTS. 下一步(N) <上一步(B) 帮助 取消 VMWARE -->
+<p><img src="/images/vmware-centos7/image_001_1748602516365-10b81a10-81ac-457c-8e70-e0706099b7c5.png"></p>
+<ol start="3">
+<li>选择“稍后安装操作系统”，点击“下一步”</li>
+</ol>
+<!-- 这是一张图片，ocr 内容为：VMWARE WORKSTATION X 文件(F)编辑(E) 查看(V)虚拟机(M) 选项卡(T)帮助(H) 库 X 我的计算机 主页 在此处键入内容进行搜索 我的计算机 其他LINUX5.X内核64位 WIODKSTATION DD0.17 新建虚拟机向导 安装客户机操作系统 虚拟机如同物理机,需要操作系统.您将如何安装客户机操作系统? INSTALL FROM: 连接远程服务器 INSTALLER DISC: 无可用驱动器 INSTALLER DISC IMAGE FILE(ISO): UBUNTU-22.04.5-DESKTOP-AMD64.ISO BROWSE... I WILL INSTALL THE OPERATING SYSTEM LATER. THE VIRTUAL MACHINE WILL BE O ILL BE CREATED WITH A BLANK HARD DISK. 下一步(N)> < 上一步(B) 帮助 取消 VMWARE -->
+<p><img src="/images/vmware-centos7/image_002_1748602577583-87432547-2045-4a1c-8e79-9d584b8cf0e5.png"></p>
+<ol start="4">
+<li>客户机操作系统选择”Linux(L)”，版本选择“CentOS 7 64位”，点击“下一步”</li>
+</ol>
+<!-- 这是一张图片，ocr 内容为：VMWARE WORKSTATION X 中 文件(E)编辑(E)查看(V) 虚拟机(M) 选项卡(T) 帮助(H) 主页 我的计算机X 在此处键入内容进行搜索 我的计算机 其他LINUX5.X内核64位 WODKSTATION DD0.17 新建虚拟机向导 选择客户机操作系统 此虚拟机中将安装哪种操作系统? GUEST OPERATING SYSTEM 连接远程服务器 MICROSOFT WINDOWS LINUX VMWARE ESX OTHER VERSION CENTOS764位 下一步(N) 帮助 < 上一步(B) 取消 VMWARE -->
+<p><img src="/images/vmware-centos7/image_003_1748602719157-93889b74-6f8a-46d8-ac29-967b862e5e34.png"></p>
+<ol start="5">
+<li>默认虚拟机名称即可，选择<font style="background-color:#FBDE28;">虚拟机文件</font>保存位置（这一步很重要，一定要单独新建一个文件夹来存，否则会散在根文件夹下，后面移动的时候会造成配置文件缺失！！导致需要将所有文件删除后重新安装一遍），点击“下一步”</li>
+</ol>
+<!-- 这是一张图片，ocr 内容为：新建虚拟机向导 命名虚拟机 您希望该虚拟机使用什么名称? VIRTUAL MACHINE NAME: CENTOS764位 LOCATION: D://LINUX|CENTOS7 BROWSE... THE DEFAULT LOCATION CAN BE CHANGED AT EDIT > PREFERENCES. <上一步(B) 取消 下一步(N) -->
+<p><img src="/images/vmware-centos7/image_004_1748602974982-f751aa6e-445a-417f-b86b-454066e6ab74.png"></p>
+<ol start="6">
+<li>最大磁盘大小默认20G即可，然后选择“将虚拟磁盘存储为单个文件”，下一步</li>
+</ol>
+<!-- 这是一张图片，ocr 内容为：新建虚拟机向导 指定磁盘容量 磁盘大小为多少? 虚拟机的硬盘作为一个或多个文件存储在主机的物理磁盘中.这些文件最初很小,随着 您向虚拟机中添加应用程序,文件和数据而逐渐变大. 20.0 最大磁盘大小(GB)(S): 针对CENTOS 7 64位的建议大小:20 GB 将虚拟磁盘存储为单个文件(O) 将虚拟磁盘拆分成多个文件(M) 拆分磁盘后,可以更轻松地在计算机之间移动虚拟机,但可能会降低大容量磁盘的 性能. 上一步(B) 下一步(N) 帮助 取消 -->
+<p><img src="/images/vmware-centos7/image_005_1748603103266-e9fc93da-455b-4ec9-be2e-955824ce64b1.png"></p>
+<ol start="7">
+<li>点击”自定义硬件“</li>
+</ol>
+<!-- 这是一张图片，ocr 内容为：新建虚拟机向导 已准备好创建虚拟机 单击"完成"创建虚拟机.然后可以安装 CENTOS764位. THE VIRTUAL MACHINE WILL BE CREATED WITH THE FOLLOWING SETTINGS: 名称: CENTOS764位 位置: D://LINUX/CENTOS7 版本: WORKSTATION 17.5.X 操作系统: CENTOS764位 硬盘: 20 GB 内存: 1024 MB 网络适配器: NAT 其他设备: CD/DVD,USB控制器,声卡 CUSTOMIZE HARDWARE... 上一步(B) 取消 完成 -->
+<p><img src="/images/vmware-centos7/image_006_1748603165898-2e064faf-e0ee-4497-8c44-02df20fa6fe4.png"></p>
+<ol start="8">
+<li>选中“新CD&#x2F;DVD(IDE)”，连接中选择“使用ISO映像文件”，在“浏览”中找到下载CentOS7镜像文件的存放地址，点击关闭，再点击完成</li>
+</ol>
+<!-- 这是一张图片，ocr 内容为：硬件 设备状态 摘要 设备 已连接(C) 圈内存 1 GB 处理器 启动时连接(O) 新CD/DVD(IDE) 自动检测 网络适配器 NAT 连接 存在 USB控制器 使用物理驱动器(P): 自动检测 声卡 自动检测 显示器 自动检测 使用ISO映像文件(M): D:\LINUX|CENTOS-7-X86_64-C 浏览(B)... 高级(V)... 移除(R) 添加(A)... 帮助 关闭 -->
+<p><img src="/images/vmware-centos7/image_007_1748603346994-7835e6d9-1555-4548-9d4f-7e9458169d10.png"></p>
+<ol start="9">
+<li>完成后如下界面</li>
+</ol>
+<!-- 这是一张图片，ocr 内容为：X CENTOS 7 64位-VMWARE WORKSTATION 回 编辑(E) 查看(V) 文件(F) 选项卡(T)帮助(H) 虚拟机(M) 库 CENTOS764位 介主页 我的计算机 在此处键入内容进行搜索 CENTOS764位 我的计算机 其他LINUX5.X内核64位 开启此虚拟机 CENTOS764位 编辑虚拟机设置 设备 室内存 1 GB 1 处理器 20 GB 硬盘(SCSI) 正在使用文件D:.. CD/DVD(IDE) NAT 网络适配器 存在 USB控制器 自动检测 小声卡 显示器 自动检测 描述 虚拟机详细信息 状态:已关机 配置文件:D:\LINUXICENTOS7\CENTOS 7 64位VMX 硬件兼容性:WORKSTATION 17.5.X 虚拟机 主IP地址:网络信息不可用 -->
+<p><img src="/images/vmware-centos7/image_008_1748603414172-1666a8d3-469a-4309-8395-917e51c2f769.png"></p>
+<h2 id="安装CentOS7"><a href="#安装CentOS7" class="headerlink" title="安装CentOS7"></a>安装CentOS7</h2><ol>
+<li>选中刚刚配置的CentOS7，然后点击右边控制台中的“开启次虚拟机”。（开机失败可能是因为权限不够，关闭VMware，重新以管理员的身份运行）</li>
+</ol>
+<!-- 这是一张图片，ocr 内容为：CENTOS764位-VMWAREWORKSTATION 文件(F)编辑(E)查看(V)虚 ()虚拟机(M) )帮助(H) 选项卡(T) 库 我的计算机 主页 CENTOS764位 在此处键入内容进行搜索 CENTOS764位 我的计算机 其他LINUX5.X内核64位 开启此虚拟机 CENTOS764位 编辑虚拟机设置 设备 圈内存 1 GB 处理器 硬盘(SCSI) 20 GB CD/DVD(IDE) 正在使用文件D:... NAT 网络适配器 存在 USB控制器 声卡 自动检测 自动检测 显示器 描述 虚拟机详细信息 状态:已关机 配置文件:D:/LINUXICENTOS7\CENTOS 7 64位.VMX 硬件兼容性:WORKSTATION 17.5.X 虚拟机 主IP地址:网络信息不可用 -->
+<p><img src="/images/vmware-centos7/image_009_1748603603020-8ddc69dd-30e1-4937-a8e0-645944969d8f.png"></p>
+<ol start="2">
+<li><font style="color:rgb(77, 77, 77);">虚拟机启动之后会出现如下界面（白色表示选中），默认选中的是Test this media &amp; install CentOS  7。 我们将鼠标移入到虚拟机中，并按下键盘中的“↑”键，选择Install CentOS 7，最后按下“Enter 键”。</font></li>
+</ol>
+<p><font style="color:rgb(77, 77, 77);">界面说明：</font></p>
+<p><font style="color:rgb(77, 77, 77);">Install CentOS 7                                         </font><font style="color:rgb(77, 77, 77);"> </font><a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=%E5%AE%89%E8%A3%85CentOS%207&spm=1001.2101.3001.7020"><font style="color:rgb(252, 85, 49);">安装CentOS 7</font></a></p>
+<p><font style="color:rgb(77, 77, 77);">Test this media &amp; install CentOS  7            测试安装文件并安装CentOS  7</font></p>
+<p><font style="color:rgb(77, 77, 77);">Troubleshooting                                          修复故障</font></p>
+<p><font style="color:rgb(77, 77, 77);">（没来及截图，下图为别人的图）</font></p>
+<!-- 这是一张图片，ocr 内容为： -->
+<p><img src="/images/vmware-centos7/image_010_1748603671301-7e2078f2-5f7b-4dd0-9482-c016b25a8d58.png"></p>
+<ol start="3">
+<li>下图为正在安装的界面（这个过程可能会很慢）</li>
+</ol>
+<!-- 这是一张图片，ocr 内容为：CENTOS 7 64 - VMWARE WORKSTATION HTHABALIF- 何日 编辑(E) 查看(V) 虚拟机(M) 选项卡(T) 帮助(H) (F) 我的计算机 CENTOS764位 主页 在此处键入内容进行搜索 PRESS THE (ENTER> KEY TO BEGIN THE INSTALLATION PROCESS, 我的计算机 其他LINUX5.X内核64位 0.0000001 DETECTED CPU FAMILY 6 MODEL 154 STEPPING 3 0.0000000L WARNING: INTEL PROCESSOR - THIS HARDWARE HAS NOT UNDERGONE UPSTRE CENTOS764位 AM TESTING. NG. PLEASE CONSULT HTTP://WIKI.CENTOS.ORG FAQ FOR MORE INFORMATION IT 13.632900) DRACUT-PRE-UDEUT3291: NODPROBE: ERROR: COULD NOT INSERT 'FLOPPY' NO SUCH DEUICE STARTED SHOW PLYMOUTH BOOT SCREEN. OK I STARTED FORWARD PASSWORD REQUESTS TO PLYMOUTH DIRECTORY WATCH OK OK ] REACHED TARGET PATHS. 吕景 REACHED TARGET BASIC SYSTEM. STARTED DEVICE-MAPPER MULTIPATH DEVICE CONTROLLER. STARTING OPEN-ISCSI... ] STARTED OPEN-ISCSI. OK STARTING DRACUT INITQUEUE HOOK....... 16.5781271 SD O:0:0:0: ISDAL ASSUMING DRIVE CACHE: WRITE THROUGH 18.425041L DRACUT-INITQUEUEL710L: MOUNT: /DEU/SRO IS URITE-PROTECTED, MOUNTING READ-ONLY OK I STARTED SHOW PLYMOUTH BOOT SCREEN. OK 1 STARTED FORWARD PASSWORD REQUESTS TO PLYMOUTH DIRECTORY WATCH OK ] REACHED TARGET PATHS. OK ] REACHED TARGET BASIC SYSTEM. OK 1 STARTED DEVICE-MAPPER MULTIPATH DEUICE CONTROLLER. LLL STARTING OPEN-ISCSI... OK ] STARTED OPEN-ISCSI. STARTING DRACUT INITQUEUE HOOK... 18.42504LI DRACUT-INITQUEUEL710]: NOUNT: /DEU/SRO IS URITE-PROTECTED, MOUNTING READ-ONLY 0K ] CREATED SLICE SYSTEM-CHECKISOMD5.SLICE. STARTING MEDIA CHECK ON /DEU/SRO. /DEU/SR0: 8BB338EA5436A2863746710B44AC3540 IFRAGMENT SUNS: 5AZ292BFF63CCA7EEZ4FFBE453C0BFB9276E3FDA 752L628B44EC514DFEBE FRAGMENT COUNT:20 PRESS [ESC] TO ABORT CHECK. CHECKING:011.5% 按照在物理计算机中的步骤安装CENTOS764 单击虚拟屏幕 位.安装完成后,操作系统会进行引导,单击"我 我已完成安装 帮助 可发送按键 已完成安装". -->
+<p><img src="/images/vmware-centos7/image_011_1748603732047-7e5f28dc-f52c-4fcb-b52f-857e2fb56384.png"></p>
+<p>:::success<br><font style="color:rgb(77, 77, 77);">注意：  在虚拟机中的操作，鼠标必须要移入到虚拟机中，否则虚拟机感应不到，无法对其进行操作。</font></p>
+<ul>
+<li><font style="color:rgb(77, 77, 77);">鼠标移动到虚拟机内部单击或者按下Ctrl + G，鼠标即可移入到虚拟机中。</font></li>
+<li><font style="color:rgb(77, 77, 77);">按下Ctrl + Alt，鼠标即可移出虚拟机。</font></li>
+</ul>
+<p>:::</p>
+<ol start="4">
+<li>选择语言“中文”—&gt;“简体中文（中国）”，点击继续</li>
+</ol>
+<!-- 这是一张图片，ocr 内容为：CENTOS 7 64位 - VMWARE WORKSTATION 选项卡(T) 帮助(H) 虚拟机(M) 文件(F)编辑(E) 查看(V) 库 X CENTOS764位 我的计算机 主页 在此处键入内容进行搜索 CENTOS 7安装 我的计算机 帮助! SN园 其他LINUX5.X内核64位 CENTOS764位 CENTOS 欢迎使用CENTOS 7. 您在安装过程中想使用哪种语言? 简体中文(中国) BEUXS TELUGU 繁体中文(台湾) TAJIK TOYNKN 繁体中文(中华人民共和国香港特别行 THAIL BU1. 简体中文(新加坡) TURKISH TURKCE UKRAINIAN YKPAIHCBKA URDU 9J TIENG VIET VIETNAMESE 中文 CHINESE ZULU ISIZULU 在这里进行搜索. X 继续(C) 退出(Q) 按照在物理计算机中的步骤安装CENTOS764 单击虚拟屏幕 位.安装完成后,操作系统会进行引导,单击 我 帮助 我已完成安装 可发送按键 已完成安装 -->
+<p><img src="/images/vmware-centos7/image_012_1748604373000-837f6552-4f85-40a1-993d-a3efb373ee3a.png"></p>
+<ol start="5">
+<li>本地化设置，选择“日期和时间”，城市选择“上海”</li>
+</ol>
+<!-- 这是一张图片，ocr 内容为：CENTOS 7 64位 - VMWARE WORKSTATION 次可日 编辑(E)查看(V) 文件(F) 虚拟机(M) 帮助(H) 选项卡(T) 车 X 介主页 我的计算机 X CENTOS764位 在此处键入内容进行搜索 日期&时间 CENTOS 7安装 我的计算机 完成(D) 帮助! 5用 其他LINUX5.X内核64位 CENTOS764位 上海 网络时间(N) 亚洲 城市(C): 地区(R): 关闭 24小时制(H) 26 PM 07 日 05 年 月 30 2025 AM/PM 如果您要使用NTP,需要首先设置网络. 要将输入定向到该虚拟机,请在虚拟机内部单击或按CTL+G. 小 -->
+<p><img src="/images/vmware-centos7/image_013_1748604449146-da752c95-d0d9-4c56-974b-2e82a43dceec.png"></p>
+<ol start="6">
+<li>软件设置，选择“软件选择”，只选择“最小安装”</li>
+</ol>
+<!-- 这是一张图片，ocr 内容为：主页 分 CENTOS764位 我的计算机 软件选择 CENTOS7安装 完成(D) 帮助! 基本环境 已选环境的附加选项 最小安装 调试工具 调试行为异常程序以及诊断性能问题的工具. 基本功能. 计算节点 兼容性程序库 执行计算及处理的安装. 用于在 CENTOS LINUX 的之前版本中构建的应用程序的兼容 基础设施服务器 程序库. 用于操作网络基础设施服务的服务器. 开发工具 文件及打印服务器 基本开发环境. 用于企业的文件,打印及存储服务器. 安全性工具 基本网页服务器 用于完整性和可信验证的安全性工具. 提供静态及动态互联网内容的服务器. 智能卡支持 虚拟化主机 支持使用智能卡验证. 最小虚拟化主机. 系统管理工具 带GUI的服务器 对系统管理有用的程序. 带有用于操作网络基础设施服务GUI的服务器. GNOME桌面 GNOME是一个非常直观且用户友好的桌面环境. KDE PLASMA WORKSPACES KDE PLASMA WORKSPACES  是一个高度可配置图形用户界 面,其中包括面板,桌面,系统图标以及桌面向导和很多 功能强大的KDE 应用程序. 开发及生成工作站 田干软件,硬件,图形或老内容开发的工作站 -->
+<p><img src="/images/vmware-centos7/image_014_1748604535725-b4051918-6cf2-4433-a4a6-afd7e198b494.png"></p>
+<ol start="7">
+<li>系统设置，选择“安装位置”，在其他存储选项中选择“我要配置分区”，点击完成</li>
+</ol>
+<!-- 这是一张图片，ocr 内容为：安装目标位置 CENTOS 7安装 完成(D) 帮助! 西CN 选择要在其中安装系统的设备.点击主菜单中的"开始安装"按钮前不会对该设备进行任何操作. 本地标准磁盘 20 GIB VMWARE,VMWARE VIRTUAL S SDA/20GIB空闲 不会对未在此处选择的磁盘进行任何操作. 专用磁盘&网络磁盘 添加磁盘(A)... 不会对未在此处选择的磁盘进行任何操作. 其它存储选项 分区 自动配置分区(U). 我要配置分区(1). 我想让额外空间可用(M). 加密 加密我的数据(E).然后设置密码. 已选择1 个磁盘;容量20 GIB;20 GIB  刷新(R) 完整磁盘摘要以及引导程序(F).. -->
+<p><img src="/images/vmware-centos7/image_015_1748604615058-778e33a7-1b81-4084-af34-b4d7c12e3171.png"></p>
+<ol start="8">
+<li>手动分区选择标准分区，然后点击下方的“+”添加分区，分别创建三个分区：&#x2F;boot(300MB)、交换分区swap(512MB)、根分区&#x2F;(不填写大小，即所有默认剩余的空间都分给根分区)</li>
+</ol>
+<!-- 这是一张图片，ocr 内容为：X CENTOS764位 我的计算机 主页 手动分区 CENTOS 7安装 帮助! 完成(D) 新CENTOS7安装 您还没有为 CENTOS 7的安装创建任何挂载点.您可 以: 点这里自动创建他们(C) 通过点击"+"按钮创建新挂载点. 添加新挂载点 新挂载点将使用以下分区方案(N) 在下方创建挂载点后 标准分区 有更多自定义选项可用. 挂载点(P): /BOOT 300L 期望容量(D): 载点后,您可在这里浏览它们的详细信 取消(C) 添加挂载点(A) C 可用空间 总空间 20 GIB 20 GIB 已选择1个存储设备(S) 全部重设(R) -->
+<p><img src="/images/vmware-centos7/image_016_1748604910488-11e05936-a58c-4283-baf7-dde448fb2362.png"></p>
+<ol start="9">
+<li>点击完成</li>
+</ol>
+<!-- 这是一张图片，ocr 内容为：手动分区 CENTOS 7安装 完成(D) 帮助! CENTOS7安装 SDA3 系统 挂载点(P): 设备: /BOOT 300 MIB SDA1 VMWARE,VMWARE VIRTUAL S (SDA) 19.21 GIB 期望容量(D): SDA3 19.21 GIB 修改...(M) SWAP 512 MIB SDA2 设备类型(T): 标准分区 加密(E) 文件系统(Y): XFS 重新格式化(O) 名称(N): 标签(L): SDA3 C - 可用空间 总空间 20 GIB 992.5 KIB 全部重设(R) 已选择1个存储设备(S) -->
+<p><img src="/images/vmware-centos7/image_017_1748604961477-fafe769e-3644-4fdf-8079-347383963eac.png"></p>
+<ol start="10">
+<li>点击接受更改</li>
+</ol>
+<!-- 这是一张图片，ocr 内容为：手动分区 CENTOS 7安装 完成(D) 帮助! 新CENTOS7岁装 更改摘要 系统 您的自定义更改将产生以下变更,这些变更将会在您返回到主菜单并开始安装时生效: /BOOT SDA1 VMWARE VIRTUAL S 类型 挂载点 设备名称 操作 顺序 T UNKNOWN 销毁格式 SDA SDA3 2 创建格式分区表(MSDOS) SDA (M) SWAP 3 SDA1 创建设备PARTITION SDA2 4567 创建设备PARTITION SDA2 创建设备PARTITION SDA3 SDA3 创建格式XFS 创建格式SWAP SDA2 8 /BOOT 创建格式XFS SDA1 I 取消并返回到自定义分区(C) 接受更改(A) 可用空间 总空间 20 GIB 992.5 KIB 全部重设(R) 已选择1个存储设备(S) 内部单击或按CTRL+G -->
+<p><img src="/images/vmware-centos7/image_018_1748604985947-27c96f73-aad7-4a3d-97ba-ee7ccc2bf570.png"></p>
+<ol start="11">
+<li>回到界面，点击开始安装</li>
+</ol>
+<!-- 这是一张图片，ocr 内容为：安装信息摘要 CENTOS 7安装 帮助! 避盘(A) CENTOS 亚洲/上海时区 汉语 语言支持(L) 简体中文(中国) 软件 安装源(1) 软件选择(S) 本地介质 最小安装 系统 安装位置(D) KDUMP 已后用KDUMP 已选择自定义分区 网络和主机名(N) SECURITY POLICY 未连接 NO PROFILE SELECTED 退出(Q) 开始安装(B) 上本五松安润快切前我们并 门并不公惕你的磁舟 -->
+<p><img src="/images/vmware-centos7/image_019_1748605015691-d359fa32-1194-4471-86cb-6b61055ee5ca.png"></p>
+<ol start="12">
+<li><font style="color:rgb(77, 77, 77);">设置管理员ROOT密码，这是最高权限root用户的密码（默认账号为root，密码为现在要设置的）。</font><ul>
+<li><font style="color:rgb(77, 77, 77);">提示：这个密码非常重要，请务必牢记！！！</font></li>
+</ul>
+</li>
+</ol>
+<!-- 这是一张图片，ocr 内容为：主页 我的计算机 CENTOS764位 配置 CENTOS 7安装 帮助! CENTOS 用户设置 创建用户(U) ROOT 密码 不会创建任何用户 密码未设置 ROOT 密 正在安装LINUX-FIRMWARE(103/305) ENTOS CORE SIG RODUCES THE CENTOS LINUX DISTRIBUTION. KI.CENTOS.ORG/SPECIALLNTERESTGROUP 请先完成带有此图标标记的内容再进行下一步. 中立单主 -->
+<p><img src="/images/vmware-centos7/image_020_1748605088869-72c78d05-00da-470e-b99b-83925dfe8df0.png"></p>
+<ol start="13">
+<li>下图为正在安装的界面（这也是一个非常漫长的过程）</li>
+</ol>
+<!-- 这是一张图片，ocr 内容为：主页 我的计算机 CENTOS764位 配置 CENTOS7安装 帮助! CN CENTOS 用户设置 创建用户(U) ROOT密码 已经设置ROOT密码 不会创建任何用户 正在安装BINUTILS(174/305) ENTOS PROMOTION SIG ROMOTING CENTOS IN EVENTS, CONFERENCES AND EVERYWHERE! KI.CENTOS.ORG/SPECIALLNTERESTGROUP -->
+<p><img src="/images/vmware-centos7/image_021_1748605157479-a38aac25-8277-479d-9d4f-bc646988fc8a.png"></p>
+<ol start="14">
+<li>安装完成后选择“重启”</li>
+</ol>
+<!-- 这是一张图片，ocr 内容为：主页 我的计算机 CENTOS764位 配置 CENTOS 7安装 帮助! CN CENTOS 用户设置 创建用户(U) ROOT 密码 不会创建任何用户 已经设置ROOT密码 完成! CENTOS 已成功安装并可以使用 重后然后使用吧 重启(R) 使用本产品即表示遵守此许可协议/USR/SHARE/CENTOS-RELEASE/EULA -->
+<p><img src="/images/vmware-centos7/image_022_1748605626564-286fd536-84d0-410c-a61a-0fb9158bdd6d.png"></p>
+<ol start="15">
+<li>输入账号密码进行登录</li>
+</ol>
+<!-- 这是一张图片，ocr 内容为：我的计算机 CENTOS764位 主页 CENTOS LINUX   (CORE) I KERNE1 3.10.0-1127.EL7.X86_64 ON AN X86_64 LOCALHOST LOGIN:ROOT PASSWORD: -->
+<p><img src="/images/vmware-centos7/image_023_1748605754023-4f95fc8d-b398-4e04-a883-aca832851e85.png"></p>
+<p>:::success<br><font style="color:rgb(77, 77, 77);">至此，CentOS7的安装全部完成了。</font></p>
+<p><font style="color:rgb(77, 77, 77);">说明：CentOS 7默认安装好之后是没有自动开启网络连接的！所以下面我们还要配置一下CentOS7的网络。</font></p>
+<p>:::</p>
+<h2 id="CentOS7的网络配置"><a href="#CentOS7的网络配置" class="headerlink" title="CentOS7的网络配置"></a><font style="color:rgb(79, 79, 79);">CentOS7的网络配置</font></h2><p><font style="color:rgb(77, 77, 77);">因为前面在设置CentOS7的网络适配器的时候，设置是NAT模式。</font></p>
+<p><font style="color:rgb(77, 77, 77);">所以这里有两种方法，一种是自动获取IP，另一种是固定获取IP<br></font><font style="color:rgb(77, 77, 77);">（我只采用了第一种方法——自动获取IP）</font></p>
+<ol>
+<li>首先要确保的是CentOS为NAT模式，点击上方工具栏中的“虚拟机”—&gt;“设置”，选择“网络适配器”，查看“NAT模式”是否有勾选</li>
+</ol>
+<!-- 这是一张图片，ocr 内容为：虚拟机设置 硬件 选项 设备状态 摘要 设备 已连接(C) 1 GB 处理器 1 启动时连接(O) 硬盘(SCSI) 20 GB 正在使用文件D:/LINUXLCENTO... CD/DVD(IDE) 网络连接 网络适配器 NAT 桥接模式(B):直接连接物理网络 存在 USB控制器 复制物理网络连接状态(P) 自动检测 声卡 显示器 自动检测 NAT 模式(N):用于共享主机的 IP 地址 仅主机模式(H):与主机共享的专用网络 自定义(U):特定虚拟网络 正在加载虚拟网络... LAN区段(L): LAN区段(S)... 高级(V)... 添加(A)... 移除(R) 取消 帮助 确定 -->
+<p><img src="/images/vmware-centos7/image_024_1748605986827-e744f486-1294-471c-832c-ebd9f1774451.png"></p>
+<ol start="2">
+<li><font style="color:rgb(77, 77, 77);">在VMware界面（管理员方式启动）点击“编辑”里面的“虚拟网络编辑器”，然后勾选DHCP服务将IP地址分配给虚拟机，并设置子网IP(默认就好)</font></li>
+</ol>
+<!-- 这是一张图片，ocr 内容为：虚拟网络编辑器 外部连接 子网地址 主机连接 名称 类型 DHCP 自动桥接 桥接模式 VMNETO 已启用 已连接 仅主机... VMNET1 192.168.178.0 已连接 NAT模式 已启用 NAT模式 VMNET8 192.168.216.0 重命名网络(W)... 添加网络(E)... 移除网络(O) VMNET信息 桥接模式(将虚拟机直接连接到外部网络)(B) 自动设置(U)... 已桥接至(G):自动 NAT 模式(与虚拟机共享主机的IP 地址)(N) NAT设置(S)... )仅主机模式(在专用网络内连接虚拟机)(H) 将主机虚拟适配器连接到此网络(V) 主机虚拟适配器名称:VMWARE 网络适配器 VMNET8 DHCP设置(P)... 使用本地 DHCP 服务将IP 地址分配给虚拟机(D) 子网IP(1): 子网掩码(M): 255.255.255.0 192.168.216. 0 还原默认设置(R) 导出(X)... 帮助 确定 应用(A) 导入(T)... 取消 -->
+<p><img src="/images/vmware-centos7/image_025_1748606103862-b7eb8f27-968b-4067-a49b-c6f16f00eaee.png"></p>
+<ol start="3">
+<li><font style="color:rgb(77, 77, 77);">点击NAT模式旁边的“NAT设置”，然后修改与子网IP同网段下的网关IP，就是前三位必须相同，</font></li>
+</ol>
+<p>:::success<br><font style="color:rgb(77, 77, 77);">即192.168.30要相同，最后一位数不相同即可（其实已经自动设置好了，默认），最后点击“确认”保存设置。</font></p>
+<p>:::</p>
+<!-- 这是一张图片，ocr 内容为：虚拟网络编辑器 外部连接 主机连接 类型 子网地址 名称 DHCP 桥接模式 自动桥接 VMNETO 母 仅主机... 已启用 已连接 192.168.178.0 VMNET1 NAT模式NAT模式 已启用 已连接 192.168.216.0 VMNET8 CENTOS764位X 算机 64 ON AN AN X86 64 NAT 设置 网络: VMNET8 子网IP:192.168.216.0 添加风 子网掩码:255.255.255.0 VMNET信息 网关IP(G):192.168.216.2 桥接模式(将虚拟机直接连接到外部网络)(B) 端口转发(F) 已桥接至(G):自动 主机端口 描述 类型 虚拟机IP地址 NAT 模式(与虚拟机共享主机的 IP 地址)(N) 仅主机模式(在专用网络内连接虚拟机)(H) 将主机虚拟适配器连接到此网络(V) VMNET8 主机虚拟适配器名称:VMWARE 网络适配器VM 添加(A)... 移除(R) 属性(P) 使用本地DHCP 服务将IP 地址分配给虚拟机(D) 高级 子网IP(1): 子网掩码(M): 192.168.216.0 255.255 允许活动的FTP(T) 允许任何组织唯一标识符(O) 确定 还原默认设置(R) 导入(T)... 导出(X)... UDP超时(以秒为单位)(U):30 0 配置端口(C): 击"确认" 启用IPV6(E) IPV6 前缀(6):FD15:4BA5:5A2B:1008:://64 帮助 1318字 DNS设置(D)... NETBIOS设置(N)... STWORK-SCRIPTS/,并且用IS命令 要将输入定向至 确定 取消 帮助 网卡没有被识别这种只能重李 -->
+<p><img src="/images/vmware-centos7/image_026_1748606180580-bbc77c7c-d8d9-4124-ae9a-f0ecebbcea4a.png"></p>
+<ol start="4">
+<li><font style="color:rgb(77, 77, 77);">然后启动虚拟机，进入网络配置文件目录：cd &#x2F;etc&#x2F;sysconfig&#x2F;network-scripts&#x2F;，并且用 ls 命令查看是否有ifcfg-xxx名称的配置文件（ifcfg-lo除外），如果没有则说明网卡没有被识别，这种只能重装或者换个CentOS的版本</font></li>
+</ol>
+<!-- 这是一张图片，ocr 内容为：CENTOS LINUX 7(CORE) KERNE1 3.10.0-1127.E17.X86 64 ON AN X86 64 LOCA LHOST LOQIN:ROOT PASSWORD: FROOT@LOCALHOST "# CD /ETC/SUSCONF IG/NETWORK-SCRIPTS [ROOT@LOCALHOST NETWORK-SCRIPTS]# LS IFUP-ALIASES IFUP-IPV6 IFUP-POST INIT. IPV6-GLOBAL IFUP-TEAM IFDOWM-TEAM IFDOWM-ETH IFCFG-ENS33 IFUP-BNEP IFUP-TEAMPORT IFUP-PPP IFDOWN-TEAMPORT IFCFG-LO IFDOWN-IPPP IFDOWM-PPP IFUP-ISDN NETWORK-FUNCTIONS IFUP-ETH IFUP-ROUTES IFDOWM-TUNNEL IFDOWM IFUP-PLIP IFUP-TUNNEL NETWORK-FUNCT IONS-IPV6 IFDOWM-IPV6 IFDOWM-ROUTES IFDOWM-ISDN IFDOWM-SIT IFUP-WIRELESS IFUP-IPPP IFUP-PLUSB IFDOWM-BNEP IFUP-SIT IFUP [ROOT@LOCALHOST NETWORK-SCRIPTS]# -->
+<p><img src="/images/vmware-centos7/image_027_1748606268619-08d96300-f755-455d-9c3f-758cc0b52ca1.png"></p>
+<ol start="5">
+<li><font style="color:rgb(77, 77, 77);">编辑ifcfg-ens33文件：输入“vi ifcfg-ens33”</font></li>
+</ol>
+<ul>
+<li><font style="color:rgb(77, 77, 77);">按“i” 进入insert编辑模式，</font></li>
+<li><font style="color:rgb(77, 77, 77);">将BOOTPROTO设为dhcp，将ONBOOT设为yes，</font></li>
+<li><font style="color:rgb(77, 77, 77);">按下Esc进入命令模式输入:wq保存并退出。</font></li>
+</ul>
+<!-- 这是一张图片，ocr 内容为：PROXY METHODENONE BROWSERONLYENO BOOTPROTO DHCP DEFROUTE-UES IPUAFAILUREFATALNO IPV6INITYES IPV6 AUTOCONFYES IPV6DEFROUTEYES IPV6 FAILURE FATALNO IPU6_ADDR_GEN_MODESTABLE-PRIVACY NAMEENS33 UUID-E856D144-E9AB-4503-9B1E-53B0514003F8 DEVICE-ENS33 ONBOOTYES "IFCFG-ENS33" 15L, 280 [ROOT@LOCALHOST NETWORK-SCRIPTS]# -->
+<p><img src="/images/vmware-centos7/image_028_1748606506855-8b16a0bb-3d60-49c7-a6e8-8c83003c53d1.png"></p>
+<ol start="6">
+<li><font style="color:rgb(77, 77, 77);">配置完成之后输入：service network restart，重启网卡让网卡设置生效，之后就可以上网了，显示“OK”即可</font></li>
+</ol>
+<!-- 这是一张图片，ocr 内容为：AILEA TO RESTART HEYWORK SEROICE: UNIT HOT HOT IOUNA . ITROOT@LOCALHOST NETWORK-SCRIPTS# SERVICE NETWORK RESTART OK RESTARTING NETWORK (VIA SYSTEMCTL): [ROOT@LOCALHOST NETWORK-SCRIPTS]# -->
+<p><img src="/images/vmware-centos7/image_029_1748606596395-9bd471ca-10f7-4f25-a4ef-f812d48753cb.png"></p>
+<ol start="7">
+<li><font style="color:rgb(77, 77, 77);">输入ip addr检查一下动态分配的IP，可以发现分配的动态IP</font></li>
+</ol>
+<!-- 这是一张图片，ocr 内容为：[ROOT@LOCALHOST NETWORK-SCRIPTS]# IP ADDR STATE UNKNOWN GROUP DE 1: LO: <LOOPBACK,UP,LOWER UP> MTU 65536 QDISC UP DEFAULT QLEN 1000 NOGUEUE 00:00:00:00:00:00 LINK/LOOPBACK 00:00:00:00:00:00 BRD 00: INET 127.0.0.1/8 SCOPE HOST LO VALID IRT FOREVER PREFERRED LFT FOREVER INET6 :1/128 SCOPE HOST VALID LFT FOREVER PREFERRED LFT FOREVER 12: CUS33: (BRONDCAST,NULTICAST,UP,UP,LOMER`UP) MTU ISUB GDISC PRIFO-FAST STATE UP GROUP DEFAULT GLEN LINK/ETHER 00:29:55:F5:CA BRD FF:FF:FF:FF:FF:FF:FF INET 19Z,168.216.13B/Z1 BRD 192,168.216.255 SCOPE GLABAL NOPREFIXROUTE DYNAMIC ENS33 VALID_LFT 1751SEC PREFERRED_LFT 1751SEC INET6 FE80::D7FC:E9B3:BD1F :F52A/64 SCOPE LINK NOPREFIXROUTE VALID_LFT FOREVER PREFERRED LFT FOREVER [ROOT@LOCALHOST NETWORK-SCRIPTS]# -->
+<p><img src="/images/vmware-centos7/image_030_1748606635507-f0865b7c-61b7-4bc5-a362-1e7fc796d358.png"></p>
+<ol start="8">
+<li><font style="color:rgb(77, 77, 77);">最后验证是否可以访问外网，若可以访问外网，即可验证成功</font></li>
+</ol>
+<!-- 这是一张图片，ocr 内容为：VALID IRT FOREVER PREFERREA-LRT FOREVER [ROOT@LOCALHOST NETWORK-SCRIPTS]# PING WUW.BAIDU.COM LPING WUW.A.SHIFEN.COM (183.2.172.177) 56(84) BYTES OF DATA 164 BYTES FROM 183.2.172.177 (183.2.172.177): ICMP.SEQ-1 TTL-128 TIME-35.8 MS 164 BUTES FROM 183.2.172.177 (183.2.172.177): ICMP_SEQ-Z TT1-128 TIME-37.9 MS 164 BYTES FROM 183.2.172.177 (183.2.172.177): ICMP_SEQ-3 TT1-128 TIME-37.7 MS 164 BUTES FROM 183.2.172.177 (183.2.172.177): ICMP_SEQ-1 TT1-128 TIME-39.8 MS 164 BYTES FROM 183.2.172.177 (183.2.17Z.177): ICMP-SEQ-SEQ-5 TTL-128 TIME-37.3 M 164 BUTES FROM 183.2.172.177 (183.2.172.177): ICMP-SEQ-6 TTL-128 TIME-39.6 MS 164 BYTES FROM 183.2.172.177 (183.2.172.177): ICMP-SEQ-7 TTL-128 TIME-43.8 MS F1864 BUTES FROM 183.2.172.177 (183.2.172.177): ICMP_SEQ-8 TTL-128 TIMEE37.5 M 164 BUTES FROM 183.2.172.17? (183.2.17Z.177): ICMP-SEQ-9 TTL:128 TIME-38.8 MS -->
+<p><img src="/images/vmware-centos7/image_031_1748606716416-a8a76539-7b81-4200-94d1-567e97ddd3c4.png"></p>
+<p><font style="color:#DF2A3F;">注意：ctrl+c可停止访问</font></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://gggjjjzzz123.github.io/2025/03/%E5%9C%A8VMware%E4%B8%AD%E5%AE%89%E8%A3%85Win7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="GGGjjjzzz123">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="GJZ's Blog">
+      <meta itemprop="description" content="GJZ的博客，用于存放各种技术文章，分享技术经验。主要内容包括项目开发、技术分享、学习笔记等。希望通过这个博客与大家交流，共同进步！">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | GJZ's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2025/03/%E5%9C%A8VMware%E4%B8%AD%E5%AE%89%E8%A3%85Win7/" class="post-title-link" itemprop="url">在VMware中安装Win7</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2026-03-20 22:18:22" itemprop="dateModified" datetime="2026-03-20T22:18:22+08:00">2026-03-20</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/" itemprop="url" rel="index"><span itemprop="name">技术文章</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>安装过程参考以下教程：</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43872190/article/details/119853889">虚拟机VMware安装Windows7保姆级教程_vmware安装win7-CSDN博客</a></p>
+<p>用户名：GJZ</p>
+<p>计算机名称：GJZ-PC</p>
+<p>密码：GJZ</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://gggjjjzzz123.github.io/2025/03/%E6%99%BA%E5%83%8F%E5%B7%A5%E5%9D%8A%E2%80%94%E2%80%94%E5%9F%BA%E4%BA%8E%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B%E7%9A%84%E5%A4%9A%E5%9C%BA%E6%99%AF%E9%AB%98%E7%9C%9F%E5%AE%9E%E5%BC%82%E5%B8%B8%E5%9B%BE%E7%89%87%E6%95%B0%E6%8D%AE%E7%94%9F%E6%88%90%E5%B9%B3%E5%8F%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="GGGjjjzzz123">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="GJZ's Blog">
+      <meta itemprop="description" content="GJZ的博客，用于存放各种技术文章，分享技术经验。主要内容包括项目开发、技术分享、学习笔记等。希望通过这个博客与大家交流，共同进步！">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | GJZ's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2025/03/%E6%99%BA%E5%83%8F%E5%B7%A5%E5%9D%8A%E2%80%94%E2%80%94%E5%9F%BA%E4%BA%8E%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B%E7%9A%84%E5%A4%9A%E5%9C%BA%E6%99%AF%E9%AB%98%E7%9C%9F%E5%AE%9E%E5%BC%82%E5%B8%B8%E5%9B%BE%E7%89%87%E6%95%B0%E6%8D%AE%E7%94%9F%E6%88%90%E5%B9%B3%E5%8F%B0/" class="post-title-link" itemprop="url">智像工坊——基于扩散模型的多场景高真实异常图片数据生成平台</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2026-03-20 22:18:22" itemprop="dateModified" datetime="2026-03-20T22:18:22+08:00">2026-03-20</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E9%A1%B9%E7%9B%AE%E6%96%87%E6%A1%A3/" itemprop="url" rel="index"><span itemprop="name">项目文档</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E9%A1%B9%E7%9B%AE%E6%96%87%E6%A1%A3/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">机器学习</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p><img src="/images/ml-anomaly-detection/image_001_1761640431126-e222b16c-500d-4acc-bacf-5c90d5e07208.jpeg" alt="画板"></p>
+<p>这个项目在干什么？</p>
+<p>在复杂真实道路场景下，自动驾驶系统可以“看得懂”道路上的未知或异常目标（核心任务：道路异常目标识别），并且能轻量化部署到边缘设备上。</p>
+<p>通过以下三方面实现这一目标</p>
+<ol>
+<li>图像生成：用多模态条件扩散生成高真实度的异常样本，解决异常样本少的问题。</li>
+<li>研究开放世界&#x2F;跨域的异常分割方法，能区分“已知类”与“未知异常”并在不同天气&#x2F;光照下稳健工作。</li>
+<li>研究轻量化并保证异常细节检测，以便在边缘设备上部署</li>
+</ol>
+<p>自动驾驶</p>
+<p>为什么要发展自动驾驶？因为90%以上的交通事故都是人为，人类的疏忽造成悲剧。因此想要通过自动驾驶降低交通事故的发生频率。</p>
+<p>起初人们将关注点放在了定位和路线规划，但已经抵达上线，没有进步的空间。</p>
+<p>于是，近年来将视线回归到技术最底层——感知，让其拥有真正的视觉</p>
+<p>感知的关键在于提取特征</p>
+<p>轮廓的本质是像素亮度的骤变</p>
+<!-- 这是一张图片，ocr 内容为：模块化辅助驾驶 区 输出 输入 规划模块 感知模块 执行模块 端到端辅助驾驶 端到端模块 输出 输入 -->
+<p><img src="/images/ml-anomaly-detection/image_001_1761561087762-d3e71c95-e452-4fc1-981e-3f32a8e69ee4.png"></p>
+<p>全景分割给每个像素标记两种标签，一种区分物体类别（全局），另一种区分物体实例（细节）</p>
+<p>语义分割擅长给像素分类，但不区分同类物体</p>
+<p>实例分割能区分个体，但不关注整体场景</p>
+<p>多模态辅助的条件扩散异常目标生成与自适应融合方法：<br>输入多模态信息–&gt;编码融合–&gt;条件注入到扩散模型–&gt;生成异常目标–&gt;后处理修正</p>
+<p>“实现几何-语义-感知一致”：是多模态扩散生成模型（尤其是在自动驾驶领域）中非常关键的目标</p>
+<p>所生成的异常目标需要满足“几何-语义-感知”三方面的条件</p>
+<p>视觉怎么识别空间感</p>
+<p>语义到底是什么</p>
+<p>感知的范围很大？感知的定义是什么？</p>
+<h2 id=""><a href="#" class="headerlink" title=""></a></h2><h2 id="智像工坊——基于扩散模型的道路高真实异常图片生成平台"><a href="#智像工坊——基于扩散模型的道路高真实异常图片生成平台" class="headerlink" title="智像工坊——基于扩散模型的道路高真实异常图片生成平台"></a>智像工坊——基于扩散模型的道路高真实异常图片生成平台</h2><p><u><font style="color:#DF2A3F;">该项目是基于自动驾驶场景下道路异常目标识别关键技术研究中第一个关键技术衍生的大创项目</font></u></p>
+<h3 id="涉及到的技术（需要学习）"><a href="#涉及到的技术（需要学习）" class="headerlink" title="涉及到的技术（需要学习）"></a><font style="color:#000000;">涉及到的技术（需要学习）</font></h3><pre><code> 本项目基于条件扩散模型开展多场景高真实异常图片生成研究，旨在提升生成图像的几何一致性与视觉自然感。首先利用全景分割提取道路、车辆、建筑等语义区域，解析场景结构与空间布局，为异常目标的合理放置提供位置与尺度参考。其次，融合深度、位置、参照物、光照等多源信息构建多模态条件特征，并将其注入扩散模型，实现对生成过程的可控引导，使异常目标在大小、光照及风格上与背景环境协调一致。再次，设计光照与比例自适应调整机制，对生成结果进行亮度映射与边缘平滑处理，确保目标与场景间的过度自然、融合无痕。最后，将模型封装为可视化平台，实现图像上传、异常目标设定与自动生成。
+</code></pre>
+<p>技术路线包括：<font style="background-color:#FBDE28;">场景分割与信息提取→多模态条件构建→扩散生成与优化→光照比例校正→平台集成与应用验证</font>，实现高真实、多样化的异常图像生成与应用。</p>
+<h3 id="项目实现逻辑"><a href="#项目实现逻辑" class="headerlink" title="项目实现逻辑"></a>项目实现逻辑</h3><p>原版：</p>
+<p><img src="/images/ml-anomaly-detection/image_002_1773839277838-e36a77b7-0bcb-4ef2-a977-586d82829ce4.jpeg" alt="画板"></p>
+<p><font style="background-color:#FBDE28;">改版</font>：</p>
+<p><img src="/images/ml-anomaly-detection/image_002_1773839277838-e36a77b7-0bcb-4ef2-a977-586d82829ce4.jpeg" alt="画板"></p>
+<h3 id="第一板块——场景理解（语义、几何、风格）："><a href="#第一板块——场景理解（语义、几何、风格）：" class="headerlink" title="第一板块——场景理解（语义、几何、风格）："></a>第一板块——场景理解（语义、几何、风格）：</h3><h4 id="进行全景分割，提取语义层和实例层（创新点）"><a href="#进行全景分割，提取语义层和实例层（创新点）" class="headerlink" title="进行全景分割，提取语义层和实例层（创新点）"></a><font style="background-color:#FBDE28;">进行全景分割，提取语义层和实例层（创新点）</font></h4><ul>
+<li>可通过多尺度特征金字塔+上下文注意力机制提高边界精度</li>
+<li>可通过形态学操作和边缘平滑去除断裂、阴影的干扰</li>
+<li>可通过几何约束保证候选区域“贴合道路表面”</li>
+</ul>
+<h4 id="深度信息提取"><a href="#深度信息提取" class="headerlink" title="深度信息提取"></a>深度信息提取</h4><ul>
+<li>可通过延长车道线&#x2F;道路边界线，求消失点，以消失点为参考确定地平线位置。</li>
+<li>接着可使用“图像高度归一化比例”推断放置点深度。</li>
+</ul>
+<h4 id="基于全景分割实例层的参照物比例推断"><a href="#基于全景分割实例层的参照物比例推断" class="headerlink" title="基于全景分割实例层的参照物比例推断"></a>基于全景分割实例层的参照物比例推断</h4><ul>
+<li>可通过实例的测量高度和实例的真实高度建立比例关系</li>
+</ul>
+<h4 id="环境与光照信息提取"><a href="#环境与光照信息提取" class="headerlink" title="环境与光照信息提取"></a>环境与光照信息提取</h4><h3 id="第二板块——多模态条件特征构建"><a href="#第二板块——多模态条件特征构建" class="headerlink" title="第二板块——多模态条件特征构建"></a>第二板块——多模态条件特征构建</h3><h4 id="一共包括5个特征："><a href="#一共包括5个特征：" class="headerlink" title="一共包括5个特征："></a>一共包括5个特征：</h4><ul>
+<li>原始场景图像：通过输入获取</li>
+<li>文本提示：用CLIP文本编码器对文本提示进行编码，通过用户输入获取</li>
+<li>空间几何（目标放置位置以位置深度）：通过场景理解模块中的全景分割（得到道路区域掩码）+深度信息+候选空间获得</li>
+<li>周边参照物信息：通过场景理解模块中的全景分割实例层</li>
+<li>天气&#x2F;光照环境：通过场景理解中的提取光照、色调、亮度信息获得</li>
+</ul>
+<h4 id="多模态条件融合"><a href="#多模态条件融合" class="headerlink" title="多模态条件融合"></a>多模态条件融合</h4><ul>
+<li>可采取特征拼接与跨模态注意力机制结合的方式，将不同来源信息统一至共享潜空间</li>
+</ul>
+<h3 id="第三板块——基于条件扩散模型的异常目标生成"><a href="#第三板块——基于条件扩散模型的异常目标生成" class="headerlink" title="第三板块——基于条件扩散模型的异常目标生成"></a>第三板块——基于条件扩散模型的异常目标生成</h3><h4 id="构建DDPM-DDIM反向去噪框架"><a href="#构建DDPM-DDIM反向去噪框架" class="headerlink" title="构建DDPM&#x2F;DDIM反向去噪框架"></a>构建DDPM&#x2F;DDIM反向去噪框架</h4><ul>
+<li>U-Net接收参数信息（当前带噪图+时间步编码+多模态条件向量）预测噪声图</li>
+</ul>
+<h4 id="通过双重条件注入方法将融合后的多模态条件注入扩散模型参与去噪过程"><a href="#通过双重条件注入方法将融合后的多模态条件注入扩散模型参与去噪过程" class="headerlink" title="通过双重条件注入方法将融合后的多模态条件注入扩散模型参与去噪过程"></a>通过双重条件注入方法将融合后的多模态条件注入扩散模型参与去噪过程</h4><ul>
+<li>全局条件注入：可使用自适应归一化，控制整体的风格、色调、光照、类别一致性</li>
+<li>空间条件注入：可使用放置位置热力图，控制生成区域、目标边界、形状与姿态</li>
+</ul>
+<h3 id="第四板块——后处理优化（结果融合与尺度自适应调整）"><a href="#第四板块——后处理优化（结果融合与尺度自适应调整）" class="headerlink" title="第四板块——后处理优化（结果融合与尺度自适应调整）"></a>第四板块——后处理优化（结果融合与尺度自适应调整）</h3><h4 id="几何尺度精调"><a href="#几何尺度精调" class="headerlink" title="几何尺度精调"></a>几何尺度精调</h4><ul>
+<li>可通过调整生成结果的像素高度实现 比例真实   与参照物一致   与透视一致</li>
+</ul>
+<h4 id="光照与风格适配"><a href="#光照与风格适配" class="headerlink" title="光照与风格适配"></a>光照与风格适配</h4><ul>
+<li>可使用Retinex光照模型和色彩恒常性理论实现 亮度匹配   色温校正   饱和度与对比度调整   光照方向一致化</li>
+</ul>
+<h4 id="边缘无缝融合（结构一致性）"><a href="#边缘无缝融合（结构一致性）" class="headerlink" title="边缘无缝融合（结构一致性）"></a>边缘无缝融合（结构一致性）</h4><ul>
+<li>可使用软掩码、高斯模糊、多尺度融合（Burt–Adelson）实现 高频细节连续   低频色彩平滑   无抠图感   无突兀边界</li>
+</ul>
+<p>1.<br>2. 什么是扩散模型？什么是条件扩散模型？</p>
+<p>答：扩散模型的四大核心部分：（1）前向扩散过程（2）反向去噪模型（3）U-Net主干网络（4）噪声调度器；条件扩散模型多的部分：（4）条件注入机制（（5）多模态条件构建模块   在项目中这部分也可作为单独模块）</p>
+<ol start="3">
+<li>我们做的是什么方面的道路？</li>
+<li>多场景是指什么？</li>
+<li>什么是多模态？</li>
+<li><em><strong><u>为什么选择扩散模型（为核心）？</u></strong></em></li>
+</ol>
+<p>答： 主要是从<font style="color:#DF2A3F;">“效果”</font>和<font style="color:#DF2A3F;">“可控性”</font>两个角度选的扩散模型。（1）扩散模型的生成过程是“从噪声一步步去噪”的，每一步都会在高维空间中逐渐调整细节，这类模型在纹理、光照、材质等“细节逼真度”上更有优势，也更稳定。（2） 我们不是要随便生成一张图，而是要生成“放在某条路面上的异常物体”，所以必须要可控：  扩散模型本身就有<font style="color:#DF2A3F;">成熟的</font><font style="color:#DF2A3F;">条件扩散框架</font>（比如加上掩码、条件向量等），比较容易接收我们后面构建的多种条件：语义分割图、深度信息、简单的光照信息等，所以它比纯粹的传统图像叠加或者简单风格迁移更适合作为核心生成模块。  </p>
+<ol start="7">
+<li><em><strong><u>现有异常图像数据存在“比例失真、光影不一致”等缺陷 ，为什么扩散模型能够解决这些问题？你们的方法与现有工作相比有哪些关键改进？  </u></strong></em></li>
+</ol>
+<p>答：（1） 扩散模型的生成过程是“从噪声一步步去噪”的，每一步都会在高维空间中逐渐<font style="color:#DF2A3F;">调整细节</font>，这类模型在纹理、光照、材质等“细节逼真度”上更有优势，也更稳定。所以它非常适合作为我们“高真实感异常目标”的生成基础。  </p>
+<p>（2）<font style="color:#DF2A3F;">改进：</font>我们不是只靠扩散本身，而是做了“场景约束 + 条件控制”的改进。传统的合成方法很多是简单叠加，比如把异物抠出来放在路面上，对比例和光影缺乏建模，容易出现“漂浮感”“亮度不对”。<br>在这个基础上，我们有三点具体改进：</p>
+<ul>
+<li>使用<font style="color:#DF2A3F;">全景分割 + 深度估计</font>，先理解场景结构和几何信息，用这些信息约束异常目标的位置和大小；</li>
+<li>构建包含<font style="color:#DF2A3F;">语义、几何、光照</font>在内的多模态条件，把它们输入扩散模型，让生成过程是“受控”的，而不是完全随机；</li>
+<li>最后增加<font style="color:#DF2A3F;">光照与比例自适应后处理模块</font><font style="color:#DF2A3F;">，</font>对亮度、阴影和边缘做二次优化，减少违和感。</li>
+</ul>
+<p>（<font style="color:#DF2A3F;"> 别人主要是在做“图像合成”，我们是在做“场景理解 + 条件扩散 + 后处理一体化”的高真实异常生成，这就是我们的改进方向。 </font> ）</p>
+<ol start="8">
+<li>为什么将全景分割与多模态条件注入扩散模型会让生成的一场物体语义上合理，还能自动适应不同场景的物理比例和空间位置，避免“漂浮感”和比例失真。</li>
+<li>你们如何确保能够在一年内完成一个可用的扩散模型生成平台？哪些技术是你们自己做，哪些是调用框架？  </li>
+<li>你们准备如何实现“多模态条件注入”？具体到模型结构，如何把语义分割、深度图、光照信息输入扩散模型？  </li>
+<li>请问你们的背景数据（正常道路场景）来源是什么？是否涉及版权？是否能够形成一个小规模自建数据集？  </li>
+<li>这些创新中的哪一部分是你们真正要做的？哪部分是调用现有模型？创新点是否过于依赖现有开源技术？  </li>
+<li>怎么确保语义、几何与风格一致？</li>
+<li>你们准备如何从一张图像中提取“光照方向”和“色温”这两类信息？各自对应什么算法？  </li>
+<li>你准备使用单目深度估计还是带有 LiDAR 的数据？为什么？如果是单目，你如何保证深度稳定性？  </li>
+<li>你们的创新点写得很好，但扩散模型 + 场景分割 + 条件控制是业界常见做法了。<br>我们质疑：</li>
+</ol>
+<p><strong>你们的创新到底在哪里？是否真的“新”？还是在已有方法上做简单组合？</strong></p>
+<ol start="17">
+<li>你们如何在有限算力下完成模型训练？是否使用微调（fine-tuning）而非从零训练？  </li>
+<li>为什么不用语义分割或实例分割，而必须用全景分割？这对生成异常目标有何具体优势？ </li>
+<li><!-- 这是一张图片，ocr 内容为：你们需要把: 语义分割 深度图 光照参数 场景类别标签 融合成扩散模型的条件. 请回答: 你们准备用什么方式融合这些多模态信息?拼接(CONCATENATE)?编码器?还是CROSS- ATTENTION?理由是什么? (这是老师最常问来判断项目是不是套概念) -->
+<img src="/images/ml-anomaly-detection/image_002_1763298922947-49cc5f40-849a-4ba1-ac54-a0944bb4f9a5.png"> </li>
+<li>创新点中提到的：我们旨在设计一个融合深度信息与光照感知的后处理机制，通过分析背景环境的光照和色调，自动调整生成目标的亮度、色彩和阴影，使其与场景无缝融合，大幅提升图像的真实感。</li>
+</ol>
+<p>后处理机制？自动调整？</p>
+<!-- 这是一张图片，ocr 内容为：三,项目创新点概述 (限100-200字,请用关键语句或字段列出项目主要创新之处和项目特色) (一)创新点: 我们创新地将全景分割与多模态条件注入扩散模型,让生成的异常物体 不仅在语义上合理,还能自动适应不同场景的物理比例和空间位置,有效避 免"漂浮感"和比例失真. (二)项目特色: 我们旨在设计一个融合深度信息与光照感知的后处理机制,通过分析背 景环境的光照和色调,自动调整生成目标的亮度,色彩和阴影,使其与场景 无缝融合,大幅提升图像的真实感. -->
+<p><img src="/images/ml-anomaly-detection/image_003_1763298271380-e7fe0475-3a8a-4adf-8cb3-c5248c142d6f.png"></p>
+<p>实现思路</p>
+<p> 目的：在复杂道路场景上，用“多模态条件 + 条件扩散 + 自适应融合”，自动往路面里“长出”真实、合理、不违和的异常目标，并封装成一个可用的平台。  </p>
+<!-- 这是一张图片，ocr 内容为：因为扩散模型的输出具有以下特性: 它按照条件生成了一个看似合理的异常目标 但生成的像素本质是"模型根据统计学习给出的最佳猜测" 这种输出往往存在: 1光照不完全匹配背景 尺度可能仍有细微误差(尤其是边界深度变化) 3.边缘会显得略硬或略模糊,与真实场景不够贴合 这些问题无法在模型内部100%解决. -->
+<p><img src="/images/ml-anomaly-detection/image_004_1763368313279-705eaa69-e4ea-416e-ba5a-4954f85e8b24.png"></p>
+<!-- 这是一张图片，ocr 内容为：五,为什么这种两阶段方案特别符合你项目的目标? 因为你的目标强调: 几何一致 光照一致 边缘无缝融合 高真实感 这些都是视觉融合问题,不是生成问题. 扩散模型生成只是"生成" 后处理才是"融合" 两者合起来才达到理想效果. 你原文中的这句总结就是最好的证明: "实现几何-语义-感知一致,驱动模型生成真实,合理且无缝融合的复杂道路异常目 标. 注意这里的"无缝融合"就是后处理完成的效果. -->
+<p><img src="/images/ml-anomaly-detection/image_005_1763368405771-7802775d-7c12-4222-a062-f5f38b0f6efd.png"></p>
+<p>这部分要调研验证</p>
+<p><img src="/images/ml-anomaly-detection/image_004_1773800435316-719c1b3c-6e99-49eb-ac4a-805ce4173b08.jpeg" alt="画板"></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://gggjjjzzz123.github.io/2025/03/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B8%8E%E8%9C%82%E8%9C%9C%E6%95%B0%E6%8D%AE%E7%BB%93%E5%90%88/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="GGGjjjzzz123">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="GJZ's Blog">
+      <meta itemprop="description" content="GJZ的博客，用于存放各种技术文章，分享技术经验。主要内容包括项目开发、技术分享、学习笔记等。希望通过这个博客与大家交流，共同进步！">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | GJZ's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2025/03/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B8%8E%E8%9C%82%E8%9C%9C%E6%95%B0%E6%8D%AE%E7%BB%93%E5%90%88/" class="post-title-link" itemprop="url">机器学习与蜂蜜数据结合</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2026-03-20 22:18:22" itemprop="dateModified" datetime="2026-03-20T22:18:22+08:00">2026-03-20</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E9%A1%B9%E7%9B%AE%E6%96%87%E6%A1%A3/" itemprop="url" rel="index"><span itemprop="name">项目文档</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E9%A1%B9%E7%9B%AE%E6%96%87%E6%A1%A3/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">机器学习</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="数据"><a href="#数据" class="headerlink" title="数据"></a>数据</h2><p>五种不同年份的泡菜水（0年&#x2F;5年&#x2F;15年&#x2F;25年&#x2F;50年），每个年份有5个样品，总共25份样品。现有3类指标：（1）GC香气物质127个特征（2）LC代谢物质2298个特征（3）MI微生物10个特征</p>
+<h2 id="具体实验过程"><a href="#具体实验过程" class="headerlink" title="具体实验过程"></a>具体实验过程</h2><h3 id="一、数据预处理"><a href="#一、数据预处理" class="headerlink" title="一、数据预处理"></a>一、数据预处理</h3><h4 id="（一）数据规范化"><a href="#（一）数据规范化" class="headerlink" title="（一）数据规范化"></a>（一）数据规范化</h4><ol>
+<li>先将表格的数据进行格式上的标准化和统一</li>
+</ol>
+<p>（1）Spettri_NIR_NoSmoot.xlsx→NIR_for_ML.xlsx</p>
+<p><a target="_blank" rel="noopener" href="https://www.yuque.com/attachments/yuque/0/2025/xlsx/50965833/1765117914528-d7ae6a33-5527-4fb1-951b-62dd3516ed4c.xlsx">NIR_for_ML.xlsx</a></p>
+<h4 id="（二）数据标准化"><a href="#（二）数据标准化" class="headerlink" title="（二）数据标准化"></a>（二）数据标准化</h4><p>:::success<br>原始数据: 16个样本，1501个特征</p>
+<p>:::</p>
+<p>**<u>目的：</u>**去掉没信息的特征（全是 0、几乎很少出现的那种），避免干扰模型；把剩下的特征拉到同一个“尺度”和“分布”上，让算法不会因为不同单位、不同数量级而偏心。</p>
+<ol>
+<li>检查缺失值</li>
+</ol>
+<p>（1）删除全0特征和常数特征：模型学不到任何差异</p>
+<p>:::success<br>   删除全0特征: 0个</p>
+<p>   删除常数特征: 0个</p>
+<p>   剩余特征: 1501个</p>
+<p>:::</p>
+<p>（2）删除出现比例&lt;20%的特征（即”存在率“）：防止模型过拟合</p>
+<p>:::success<br>   删除存在率&lt;20%的特征: 0个</p>
+<p>   剩余特征: 1501个</p>
+<p>:::</p>
+<p>（3）将剩余的缺失值用最小非零值×0.5填充（代谢组学常见方法）”0“不完全是0，只是很小，在统计里叫“左删失数据”，常见做法是→用“最小非零值的一半”去填这些 0。这样不会把 0 当成一个特别极端的大差别，又保持“高值 &gt; 低值”的规律不变。</p>
+<p>:::success<br>   原始含 0 的特征数: 0，总 0 值数量: 0</p>
+<p>   缺失值填充完成，替换了 0 个特征，共替换 0 个 0；剩余 0 值: 0</p>
+<p>:::</p>
+<ol start="2">
+<li>进行log转换和Z-score标准化（mean&#x3D;0,std&#x3D;1）：因为三组数据之间特征的差异很大，需要确保所有变量处在可比尺度，是数量级差异不影响后续模型。</li>
+</ol>
+<p>:::success<br>&#x3D;&#x3D;&#x3D; 预处理完成 &#x3D;&#x3D;&#x3D;</p>
+<p>最终数据: 16个样本, 1501个特征</p>
+<p>:::</p>
+<p><a target="_blank" rel="noopener" href="https://www.yuque.com/attachments/yuque/0/2025/xlsx/50965833/1765118939115-02aa489d-28b5-454d-84e0-0e550daad14d.xlsx">NIR_processed.xlsx</a></p>
+<h3 id="二、特征筛选"><a href="#二、特征筛选" class="headerlink" title="二、特征筛选"></a>二、特征筛选</h3><ol>
+<li>单变量显著性筛选</li>
+</ol>
+<ul>
+<li>**<u>目的：</u>**判断这一变量在不同年份之间有没有统计意义上的差异。如果有说明可能是影响发酵过程的重要标志物；如果没有就是噪声、背景数据、无关信息。</li>
+<li><strong><u>检验策略（怎么判断）：</u></strong><ul>
+<li><strong><font style="color:rgb(15, 17, 21);">方法选择</font></strong><font style="color:rgb(15, 17, 21);">：由于代谢组学数据通常不满足正态分布假设，统一采用Kruskal-Wallis非参数检验</font></li>
+</ul>
+</li>
+</ul>
+<p><font style="color:rgb(15, 17, 21);">计算特征随年份变化的显著性概率p值，p值越小说明与年份的相关性越强</font></p>
+<pre><code>- **具体流程**：
+- 1. &lt;font style=&quot;color:rgb(15, 17, 21);&quot;&gt;将每个特征按发酵年份（N0、N5、N15、N25、N50）分组&lt;/font&gt;
+- &lt;font style=&quot;color:rgb(15, 17, 21);&quot;&gt;2. Kruskal-Wallis检验：对每个特征执行检验，得到p值&lt;/font&gt;
+- &lt;font style=&quot;color:rgb(15, 17, 21);&quot;&gt;3. 使用FDR（False Discovery Rate）方法校正p值，控制假阳性率&lt;/font&gt;
+- &lt;font style=&quot;color:rgb(15, 17, 21);&quot;&gt;4.保留q值 &lt; 0.05的显著特征&lt;/font&gt;
+</code></pre>
+<p>:::success<br>筛选结果摘要:</p>
+<p><font style="color:rgb(15, 17, 21);">处理了1501个特征</font></p>
+<p>显著特征数 (q &lt; 0.05): 1456</p>
+<p>备选特征数 (q &lt; 0.1): 1501</p>
+<p>主要筛选比例: 97.0%</p>
+<p>:::</p>
+<p>:::color1<br>显著特征示例: [8504, 5356, 5352, 5348, 5344, 5340, 5336, 5332, 5328, 5324]</p>
+<p>:::</p>
+<p><a target="_blank" rel="noopener" href="https://www.yuque.com/attachments/yuque/0/2025/xlsx/50965833/1765118956048-c50165b6-8b92-4669-9d5f-74d5d1f9f938.xlsx">NIR_Kruskal+FDR_Selected.xlsx</a></p>
+<ol start="2">
+<li>随机森林特征筛选</li>
+</ol>
+<p>:::success<br>样本数：16</p>
+<p>输入特征数：1456</p>
+<p>树的数量：500</p>
+<p>输出：top15特征</p>
+<p>:::</p>
+<p><strong><font style="color:rgb(15, 17, 21);">目的</font></strong><font style="color:rgb(15, 17, 21);">：在单变量筛选的基础上，进一步基于多变量交互作用评估特征重要性，选择最具判别能力的特征子集。</font></p>
+<p><strong><font style="color:rgb(15, 17, 21);">筛选流程</font></strong><font style="color:rgb(15, 17, 21);">：</font></p>
+<ol>
+<li><strong><font style="color:rgb(15, 17, 21);">模型训练</font></strong><font style="color:rgb(15, 17, 21);">：使用随机森林对单变量筛选后的特征进行训练</font></li>
+<li><strong><font style="color:rgb(15, 17, 21);">重要性计算</font></strong><font style="color:rgb(15, 17, 21);">：基于基尼不纯度减少计算每个特征的重要性得分</font></li>
+<li><strong><font style="color:rgb(15, 17, 21);">特征排序</font></strong><font style="color:rgb(15, 17, 21);">：按重要性得分从高到低排序</font></li>
+<li><strong><font style="color:rgb(15, 17, 21);">Top15选择</font></strong><font style="color:rgb(15, 17, 21);">：选择重要性排名前15的特征用于后续分析</font></li>
+</ol>
+<p><a target="_blank" rel="noopener" href="https://www.yuque.com/attachments/yuque/0/2025/xlsx/50965833/1765117806556-8074f2d0-3922-44e5-9d59-48ec259f6b2e.xlsx">RF_feature_importance_full.xlsx</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.yuque.com/attachments/yuque/0/2025/xlsx/50965833/1765117806627-64b0e700-8ac0-40ec-9a8f-6b26bbf0e64e.xlsx">RF_top15_features.xlsx</a></p>
+<h3 id="三、可视化分析"><a href="#三、可视化分析" class="headerlink" title="三、可视化分析"></a>三、可视化分析</h3><p>:::success<br><strong><font style="color:rgb(15, 17, 21);">输入：</font></strong><font style="color:rgb(15, 17, 21);"> </font></p>
+<ul>
+<li><font style="color:rgb(15, 17, 21);">15个特征数据</font></li>
+</ul>
+<p>:::</p>
+<h4 id="图1：PCA散点图（带分组椭圆圈）"><a href="#图1：PCA散点图（带分组椭圆圈）" class="headerlink" title="图1：PCA散点图（带分组椭圆圈）"></a><font style="color:rgb(15, 17, 21);">图1：PCA散点图（带分组椭圆圈）</font></h4><p>:::success<br><strong><font style="color:rgb(15, 17, 21);">输出：</font></strong></p>
+<ul>
+<li><font style="color:rgb(15, 17, 21);">PC1方差解释率：57.795%</font></li>
+<li><font style="color:rgb(15, 17, 21);">PC2方差解释率：22.369%</font></li>
+<li><font style="color:rgb(15, 17, 21);">累计方差解释率：80.163%</font></li>
+</ul>
+<p><font style="color:rgb(15, 17, 21);">【前两个主成分能够解释80%以上的数据变异】</font></p>
+<p>:::</p>
+<!-- 这是一张图片，ocr 内容为： -->
+<p><img src="/images/ml-honey/image_001_1764402505687-6d7a2763-24a8-488b-9814-97c12a11c803.png"></p>
+<h4 id="图2：PCA方差解释率折线图"><a href="#图2：PCA方差解释率折线图" class="headerlink" title="图2：PCA方差解释率折线图"></a><font style="color:rgb(15, 17, 21);">图2：PCA方差解释率折线图</font></h4><p>:::success<br><strong><font style="color:rgb(15, 17, 21);">输出：</font></strong></p>
+<p><font style="color:rgb(15, 17, 21);">● 左图：各主成分独立方差贡献</font></p>
+<p><font style="color:rgb(15, 17, 21);">● 右图：累计方差解释率</font></p>
+<p>:::</p>
+<!-- 这是一张图片，ocr 内容为： -->
+<p><img src="/images/ml-honey/image_002_1764402620634-61c3f36b-b7fa-44ce-8dea-4d672eae28d5.png"></p>
+<h4 id="图3：随机森林分类的混淆矩阵"><a href="#图3：随机森林分类的混淆矩阵" class="headerlink" title="图3：随机森林分类的混淆矩阵"></a><font style="color:rgb(15, 17, 21);">图3：随机森林分类的混淆矩阵</font></h4><p>:::success<br><strong>输入</strong>：15个特征，5个分组<br><strong>A.验证策略</strong></p>
+<ul>
+<li>方法：分层5折交叉验证</li>
+<li>每折测试集：每个时间点类别中随机选取1个样本（共5个）</li>
+<li>每折训练集：剩余20个样本（每个类别4个）</li>
+<li>总轮数：5轮（确保每类中的每个样本恰好作为测试集1次）</li>
+</ul>
+<p><strong>输出</strong>：</p>
+<p><strong>B.验证结果</strong></p>
+<ul>
+<li><p>交叉验证准确率：100% (±0.0%)<br>Cross-validation accuracy scores:<br>Fold 1: 1.0000<br>Fold 2: 1.0000<br>Fold 3: 1.0000<br>Fold 4: 1.0000<br>Fold 5: 1.0000</p>
+<pre><code> Mean CV accuracy: 1.0000 (±0.0000)
+</code></pre>
+</li>
+<li><p>置信区间：因零方差无法计算，反映完美分离标准差为0，置信区间无法计算</p>
+</li>
+<li><p>Cohen’s Kappa系数：1.0000（几乎完全一致）</p>
+</li>
+</ul>
+<p><strong><font style="color:rgb(15, 17, 21);"> C. 验证可视化</font></strong></p>
+<p><font style="color:rgb(15, 17, 21);">混淆矩阵热图（百分比形式）</font></p>
+<p>:::</p>
+<!-- 这是一张图片，ocr 内容为： -->
+<p><img src="/images/ml-honey/image_003_1764402692218-cc0cc2b8-73a9-4b11-ba6e-748361eaca53.png"></p>
+<h4 id="图4：基于PCA的决策边界可视化"><a href="#图4：基于PCA的决策边界可视化" class="headerlink" title="图4：基于PCA的决策边界可视化"></a><font style="color:rgb(15, 17, 21);">图4：基于PCA的决策边界可视化</font></h4><p>:::success<br><strong><font style="color:rgb(15, 17, 21);">输出：</font></strong></p>
+<ul>
+<li>PCA-based RF CV accuracy: 1.0000 (±0.0000)</li>
+<li>PCA数据范围：PC1 [-6.21, 2.92], PC2 [-2.01, 3.67]</li>
+</ul>
+<p>即使仅使用前两个PCA主成分，模型仍能达到100%准确率，说明数据在降维后仍具有极强的判别能力</p>
+<p>:::</p>
+<!-- 这是一张图片，ocr 内容为： -->
+<p><img src="/images/ml-honey/image_004_1764402978112-c917ca06-d440-4654-8c85-01bd4b4d95ed.png"></p>
+<h2 id="GC"><a href="#GC" class="headerlink" title="GC"></a>GC</h2><h3 id="一、数据预处理-1"><a href="#一、数据预处理-1" class="headerlink" title="一、数据预处理"></a>一、数据预处理</h3><blockquote>
+<p>特征过滤（删除全0列、常数列、存在率低于20%）、缺失值修补、数值转换、标准化</p>
+</blockquote>
+<ol>
+<li>代码</li>
+</ol>
+<p><a target="_blank" rel="noopener" href="https://www.yuque.com/attachments/yuque/0/2025/py/50965833/1765117806777-aa6c4ea3-7917-449b-96c3-0e753c8b7259.py">GC数据预处理.py</a></p>
+<ol start="2">
+<li>结果</li>
+</ol>
+<p><a target="_blank" rel="noopener" href="https://www.yuque.com/attachments/yuque/0/2025/xlsx/50965833/1765117806656-ed289dbf-27ba-4acb-b7d4-52aa7ca6e09e.xlsx">GC_processed.xlsx</a></p>
+<p>:::info</p>
+<ol>
+<li><p>删除全0特征</p>
+<p>删除全0特征: 0个</p>
+</li>
+<li><p>删除常数特征</p>
+<p>删除常数特征: 0个</p>
+<p>剩余特征: 127个</p>
+</li>
+<li><p>存在率过滤 (&lt;20%)</p>
+<p>删除存在率&lt;20%的特征: 0个</p>
+<p>剩余特征: 127个</p>
+</li>
+<li><p>缺失值填充 (最小非零值×0.5)</p>
+<p>原始含0的特征数: 68，总0值数量: 795</p>
+<p>缺失值填充完成，替换了 68 个特征，共替换 795 个零值；剩余0值: 0</p>
+</li>
+<li><p>Log转换和Z-score标准化</p>
+</li>
+</ol>
+<p><font style="color:#DF2A3F;">数据预处理完后，最终数据: 25个样本, 127个特征</font></p>
+<p>:::</p>
+<h3 id="二、特征筛选——Kruskal-Wallis-FDR"><a href="#二、特征筛选——Kruskal-Wallis-FDR" class="headerlink" title="二、特征筛选——Kruskal-Wallis+FDR"></a>二、特征筛选——Kruskal-Wallis+FDR</h3><ol>
+<li>代码</li>
+</ol>
+<p><a target="_blank" rel="noopener" href="https://www.yuque.com/attachments/yuque/0/2025/py/50965833/1765117806843-c5e6b307-f8d9-42be-b599-f8d22f757017.py">Kruskal_FDR.py</a></p>
+<ol start="2">
+<li>结果</li>
+</ol>
+<p><a target="_blank" rel="noopener" href="https://www.yuque.com/attachments/yuque/0/2025/xlsx/50965833/1765117806850-db26ddd0-90bf-41a7-b429-215040287e0b.xlsx">特征筛选_Kruskal_FDR_全部特征统计.xlsx</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.yuque.com/attachments/yuque/0/2025/xlsx/50965833/1765117806893-7fb30297-67fb-458d-9a34-50958d4b8823.xlsx">特征筛选_Kruskal_FDR_显著特征列表（q_0.05）.xlsx</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.yuque.com/attachments/yuque/0/2025/xlsx/50965833/1765117807020-df241b7f-ec62-4103-8b64-e141aece5f23.xlsx">GC_Kruskal+FDR_Selected.xlsx</a></p>
+<p>:::info<br>二、特征筛选</p>
+<p>（一）单变量特征筛选：使用Kruskal-Wallis检验 + FDR校正</p>
+<p>Kruskal-Wallis+FDR纠正筛选结果摘要:</p>
+<p>总特征数: 127</p>
+<p>显著特征数 (q &lt; 0.05): 87</p>
+<p>备选特征数 (q &lt; 0.1): 94</p>
+<p>主要筛选比例（我们取q &lt; 0.05）: 68.5%</p>
+<p>已成功导出以下文件：</p>
+<ol>
+<li>特征筛选_Kruskal_FDR_全部特征统计.xlsx</li>
+<li>特征筛选_Kruskal_FDR_显著特征列表（q_0.05）.xlsx</li>
+<li>筛选后数据矩阵：GC_Kruskal+FDR_Selected.xlsx（矩阵维度：25 个样本 × 87 个特征）<font style="color:#DF2A3F;">（后面实验用这个）</font></li>
+</ol>
+<p>:::</p>
+<h3 id="三、特征筛选——随机森林特征筛选"><a href="#三、特征筛选——随机森林特征筛选" class="headerlink" title="三、特征筛选——随机森林特征筛选"></a>三、特征筛选——随机森林特征筛选</h3><ol>
+<li>代码</li>
+</ol>
+<p><a target="_blank" rel="noopener" href="https://www.yuque.com/attachments/yuque/0/2025/py/50965833/1765117807083-dce6cb79-fa6b-45af-aec4-f8a164cd248f.py">3随机森林特征筛选.py</a></p>
+<ol start="2">
+<li>结果</li>
+</ol>
+<p><a target="_blank" rel="noopener" href="https://www.yuque.com/attachments/yuque/0/2025/xlsx/50965833/1765117807074-cf553062-18e1-455f-ba91-c90d6b0b2099.xlsx">(1)随机森林特征筛选全排名.xlsx</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.yuque.com/attachments/yuque/0/2025/xlsx/50965833/1765117807147-c2588114-b1a8-4f71-b836-b14326891031.xlsx">(2)用于做PCA的前10个特征.xlsx</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.yuque.com/attachments/yuque/0/2025/xlsx/50965833/1765117807147-005b7ca4-1d22-4825-bd4e-5146ef2a26be.xlsx">(3)随机森林Top10特征矩阵.xlsx</a></p>
+<p>:::info<br>（二）随机森林特征筛选</p>
+<p>样本数：25</p>
+<p>输入特征数：87</p>
+<p>Top10 用于做PCA的特征及排名:</p>
+<ol>
+<li><p>5-Methylhexyl 2-methylbutanoate: 0.0239</p>
+</li>
+<li><p>4-Ethyl-2-methoxyphenol: 0.0237</p>
+</li>
+<li><p>Dihydro-beta-ionone: 0.0205</p>
+</li>
+<li><p>elaidic acid ethyl ester: 0.0204</p>
+</li>
+<li><p>Methyl acetate: 0.0204</p>
+</li>
+<li><p>Ethyl linolenate: 0.0203</p>
+</li>
+<li><p>(+)-Limonene: 0.0193</p>
+</li>
+<li><p>β-Ionone: 0.0191</p>
+</li>
+<li><p>isobutanol: 0.0185</p>
+</li>
+<li><p>2-epi-trans-β-caryophyllene: 0.0182</p>
+</li>
+</ol>
+<p>树：500</p>
+<p>top_n &#x3D; 10</p>
+<p>:::</p>
+<h3 id="四、模型与可视化"><a href="#四、模型与可视化" class="headerlink" title="四、模型与可视化"></a>四、模型与可视化</h3><ol>
+<li>代码：</li>
+</ol>
+<p><a target="_blank" rel="noopener" href="https://www.yuque.com/attachments/yuque/0/2025/py/50965833/1765117807251-e7f1c31b-2845-4bd9-aafa-e00609abd31a.py">模型.py</a></p>
+<ol start="2">
+<li>结果</li>
+</ol>
+<p>:::success<br><strong><font style="color:rgb(15, 17, 21);">输入：</font></strong><font style="color:rgb(15, 17, 21);"> </font></p>
+<ul>
+<li><font style="color:rgb(15, 17, 21);">15个特征数据</font></li>
+</ul>
+<p>:::</p>
+<h4 id="图1：PCA散点图（带分组椭圆圈）-1"><a href="#图1：PCA散点图（带分组椭圆圈）-1" class="headerlink" title="图1：PCA散点图（带分组椭圆圈）"></a><font style="color:rgb(15, 17, 21);">图1：PCA散点图（带分组椭圆圈）</font></h4><p>:::success<br><strong><font style="color:rgb(15, 17, 21);">输出：</font></strong></p>
+<ul>
+<li><font style="color:rgb(15, 17, 21);">PC1方差解释率：46.969%</font></li>
+<li><font style="color:rgb(15, 17, 21);">PC2方差解释率：25.806%</font></li>
+<li><font style="color:rgb(15, 17, 21);">累计方差解释率：72.775%</font></li>
+</ul>
+<p><font style="color:rgb(15, 17, 21);">【前两个主成分能够解释70%以上的数据变异】</font></p>
+<p>:::</p>
+<!-- 这是一张图片，ocr 内容为：PCA SCORE PLOT WITH GROUP ELLIPSES 0-YEAR REGION 5-YEAR REGION 15-YEAR REGION 25-YEAR REGION 50-YEAR REGION 0-YEAR 5-YEAR 15-YEAR 2 25-YEAR 50-YEAR PC2 (25.81% VARIANCE) 3 2 -1 PC1(46.97% VARIANCE) -->
+<p><img src="/images/ml-honey/image_005_1764997326178-22b61bbe-01e2-4a6b-bb7d-8c55f8a525e4.png"></p>
+<h4 id="图2：PCA方差解释率折线图-1"><a href="#图2：PCA方差解释率折线图-1" class="headerlink" title="图2：PCA方差解释率折线图"></a><font style="color:rgb(15, 17, 21);">图2：PCA方差解释率折线图</font></h4><p>:::success<br><strong><font style="color:rgb(15, 17, 21);">输出：</font></strong></p>
+<p><font style="color:rgb(15, 17, 21);">● 左图：各主成分独立方差贡献</font></p>
+<p><font style="color:rgb(15, 17, 21);">● 右图：累计方差解释率</font></p>
+<p>:::</p>
+<!-- 这是一张图片，ocr 内容为：VARIANCE EXPLAINED BY EACH PC CUMULATIVE VARIANCE EXPLAINED 1.0 80% THRESHOLD 0.4 CUMULATIVE EXPLAINED VARIANCE 60 EXPLAINED VARIANCE RATIO 33 0.8 0.7 0.6 0.1 0.5 0.0 5 2 8 9 5 10 4 6 10 4 PRINCIPAL COMPONENT PRINCIPAL O COMPONENT -->
+<p><img src="/images/ml-honey/image_006_1764997390979-812e2b13-0915-4908-ad5f-f273138a1b00.png"></p>
+<h4 id="图3：随机森林分类的混淆矩阵-1"><a href="#图3：随机森林分类的混淆矩阵-1" class="headerlink" title="图3：随机森林分类的混淆矩阵"></a><font style="color:rgb(15, 17, 21);">图3：随机森林分类的混淆矩阵</font></h4><p>:::success<br><strong>输入</strong>：15个特征，5个分组<br><strong>A.验证策略</strong></p>
+<ul>
+<li>方法：分层5折交叉验证</li>
+<li>每折测试集：每个时间点类别中随机选取1个样本（共5个）</li>
+<li>每折训练集：剩余20个样本（每个类别4个）</li>
+<li>总轮数：5轮（确保每类中的每个样本恰好作为测试集1次）</li>
+</ul>
+<p><strong>输出</strong>：</p>
+<p><strong>B.验证结果</strong></p>
+<ul>
+<li><p>交叉验证准确率：100% (±0.0%)<br>Cross-validation accuracy scores:<br>Fold 1: 1.0000<br>Fold 2: 1.0000<br>Fold 3: 1.0000<br>Fold 4: 1.0000<br>Fold 5: 1.0000</p>
+<pre><code> Mean CV accuracy: 1.0000 (±0.0000)
+</code></pre>
+</li>
+<li><p>置信区间：因零方差无法计算，反映完美分离标准差为0，置信区间无法计算</p>
+</li>
+<li><p>Cohen’s Kappa系数：1.0000（几乎完全一致）</p>
+</li>
+</ul>
+<p><strong><font style="color:rgb(15, 17, 21);"> C. 验证可视化</font></strong></p>
+<p><font style="color:rgb(15, 17, 21);">混淆矩阵热图（百分比形式）</font></p>
+<p>:::</p>
+<!-- 这是一张图片，ocr 内容为：CONFUSION MATRIX 100 0-YEAR 0.0 0.0 0.0 0.0 100.0 80 5-YEAR 0.0 0.0 0.0 100.0 0.0 60 TRUE LABEL PERCENTAGE 15-YEAR 0.0 0.0 0.0 100.0 0.0 40 25-YEAR 0.0 0.0 0.0 100.0 0.0 20 50-YEAR 100.0 0.0 0.0 0.0 0.0 5-YEAR 25-YEAR 0-YEAR 50-YEAR 15-YEAR PREDICTED LABEL -->
+<p><img src="/images/ml-honey/image_007_1764997405617-231b3671-7541-42e7-ba53-3085da1c790c.png"></p>
+<h4 id="图4：基于PCA的决策边界可视化-1"><a href="#图4：基于PCA的决策边界可视化-1" class="headerlink" title="图4：基于PCA的决策边界可视化"></a><font style="color:rgb(15, 17, 21);">图4：基于PCA的决策边界可视化</font></h4><p>:::success<br><strong><font style="color:rgb(15, 17, 21);">输出：</font></strong></p>
+<ul>
+<li>PCA-based RF CV accuracy: 1.0000 (±0.0000)</li>
+<li>PCA数据范围：PC1 [-3.13, 3.21], PC2 [-1.85, 3.09]</li>
+</ul>
+<p>即使仅使用前两个PCA主成分，模型仍能达到100%准确率，说明数据在降维后仍具有极强的判别能力</p>
+<p>:::</p>
+<!-- 这是一张图片，ocr 内容为：RANDOM FOREST DECISION BOUNDARIES (PCA-BASED, CORRECT CV) 0-YEAR 5-YEAR 15-YEAR 3 25-YEAR 50-YEAR PC2(25.81% VARIANCE) 3 2 PC1(46.97% VARIANCE) -->
+<p><img src="/images/ml-honey/image_008_1764997418607-6a582f4b-d7b1-4e82-9a7e-15bcb9130a09.png"></p>
+<h2 id="改版前："><a href="#改版前：" class="headerlink" title="改版前："></a>改版前：</h2><p>——————————————————-分割线—————————————————–</p>
+<p>（1）all_features_sorted.xlsx（含group）</p>
+<p><a target="_blank" rel="noopener" href="https://www.yuque.com/attachments/yuque/0/2025/xlsx/50965833/1765117807289-6f9a4816-97c4-421b-8d2c-faf06546d5e0.xlsx">all_features_sorted.xlsx</a></p>
+<p>（2）all_features_X_only.xlsx（不含group）</p>
+<p><a target="_blank" rel="noopener" href="https://www.yuque.com/attachments/yuque/0/2025/xlsx/50965833/1765117807311-4b0c6b3e-bb34-4360-a3b1-1d7f6f0a52cf.xlsx">all_features_X_only.xlsx</a></p>
+<p>:::success<br>总共25个样本，2435个特征</p>
+<p>:::</p>
+<h4 id="（二）数据标准化-1"><a href="#（二）数据标准化-1" class="headerlink" title="（二）数据标准化"></a>（二）数据标准化</h4><p>**<u>目的：</u>**去掉没信息的特征（全是 0、几乎很少出现的那种），避免干扰模型；把剩下的特征拉到同一个“尺度”和“分布”上，让算法不会因为不同单位、不同数量级而偏心。</p>
+<p>论文：PLS-DA + VIP 思路，结合ANOVA判断统计显著性</p>
+<p>我们：合并数据+单变量统计+随机森重要性筛特征，结合ANOVA&#x2F;Kruskal-Wallis(p&lt;0.05)</p>
+<ol>
+<li>检查缺失值</li>
+</ol>
+<p>（1）删除全0特征和常数特征：模型学不到任何差异</p>
+<p>（2）删除出现比例&lt;20%的特征（即”存在率“）：防止模型过拟合</p>
+<p>（3）将剩余的缺失值用最小非零值×0.5填充（代谢组学常见方法）：”0“不完全是0，只是很小，在统计里叫“左删失数据”，常见做法是→用“最小非零值的一半”去填这些 0。这样不会把 0 当成一个特别极端的大差别，又保持“高值 &gt; 低值”的规律不变。</p>
+<p><a target="_blank" rel="noopener" href="https://www.yuque.com/attachments/yuque/0/2025/xlsx/50965833/1765117807341-91d926fc-9086-43c3-a562-8e1a83783365.xlsx">dataset_missing_processed.xlsx</a></p>
+<p>:::success<br>原始特征数：2435</p>
+<p>删除全零或常数特征：0个</p>
+<p>删除存在率&lt;20%特征：3个</p>
+<p>经过筛选后剩余特征数量：2432</p>
+<p>:::</p>
+<ol start="2">
+<li>进行log转换和Z-score标准化（mean&#x3D;0,std&#x3D;1）：因为三组数据之间特征的差异很大，需要确保所有变量处在可比尺度，是数量级差异不影响后续模型。</li>
+</ol>
+<p><a target="_blank" rel="noopener" href="https://www.yuque.com/attachments/yuque/0/2025/xlsx/50965833/1765117807369-7f7f2e05-c170-4cf8-bb07-e7922f0a71d7.xlsx">dataset_final_ready.xlsx</a></p>
+<p>:::success<br>这份数据作为后面所有单变量检验+随机森林建模的数据来源</p>
+<p>特征数量：2432</p>
+<p>:::</p>
+<h3 id="特征筛选"><a href="#特征筛选" class="headerlink" title="特征筛选"></a>特征筛选</h3><ol>
+<li>单变量显著性筛选</li>
+</ol>
+<ul>
+<li>**<u>目的：</u>**判断这一变量在不同年份之间有没有统计意义上的差异。如果有说明可能是影响发酵过程的重要标志物；如果没有就是噪声、背景数据、无关信息。</li>
+<li><strong><u>检验策略（怎么判断）：</u></strong><ul>
+<li>若特征数据近似正太分布且方差一致→使用ANOVA（方差分析）</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>F &#x3D; 组间差异 ÷ 组内差异</p>
+</blockquote>
+<pre><code>- 否则→使用Kruskal-Wallis（非参数检验）
+</code></pre>
+<p>上述是统计方法的选择，来判断被统计变量是不是随年份变化显著，然后计算这种变化是随机性的概率p，如果p越小，就认为这个变量与年份有关。</p>
+<ul>
+<li><strong><u>单变量显著性筛选后的特征：</u></strong></li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://www.yuque.com/attachments/yuque/0/2025/xlsx/50965833/1765117807527-868e7697-c96c-4841-bfd4-882f09405faf.xlsx">univariate_results.xlsx</a></p>
+<ul>
+<li><strong><u>单变量显著性筛选后的数据：</u></strong></li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://www.yuque.com/attachments/yuque/0/2025/xlsx/50965833/1765117807499-8fc68922-728a-4724-be94-17d4c48eb744.xlsx">dataset_univar_filtered.xlsx</a></p>
+<p>:::success<br>筛选结果：</p>
+<p>特征总数：2432</p>
+<p>显著特征数（p&lt;0.05）：1480</p>
+<p>筛掉的特征数：952</p>
+<p>保留比例：60.86%</p>
+<p>:::</p>
+<ol start="2">
+<li>随机森林重要性筛选</li>
+</ol>
+<p>500棵树，随机数42</p>
+<p>筛选后的特征排序</p>
+<p><a target="_blank" rel="noopener" href="https://www.yuque.com/attachments/yuque/0/2025/xlsx/50965833/1765117807503-f5e65de2-06ef-41b5-ad83-7c6391edc9eb.xlsx">RF_feature_importance_full.xlsx</a></p>
+<p>排名前30的特征</p>
+<!-- 这是一张图片，ocr 内容为： -->
+<p><img src="/images/ml-honey/image_009_1764061728548-7042b280-1347-458c-a476-31bec67abe94.png"><!-- 这是一张图片，ocr 内容为： --><br><img src="/images/ml-honey/image_010_1764062151043-ec16e12d-a612-4a0e-ab9f-d69b1ff7341b.png"></p>
+<p><a target="_blank" rel="noopener" href="https://www.yuque.com/attachments/yuque/0/2025/xlsx/50965833/1765117807535-b5225012-72e2-435a-b363-0e26f938b688.xlsx">RF_top30_features.xlsx</a></p>
+<p>保留前30特征的数据，用作PCA</p>
+<p><a target="_blank" rel="noopener" href="https://www.yuque.com/attachments/yuque/0/2025/xlsx/50965833/1765117807663-8331d260-b0b0-40d8-8806-7b52bf273726.xlsx">dataset_RF_Selected_Top30.xlsx</a></p>
+<h3 id=""><a href="#" class="headerlink" title=""></a></h3><h3 id="-1"><a href="#-1" class="headerlink" title=""></a></h3>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://gggjjjzzz123.github.io/2025/03/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%EF%BC%9A%E4%B8%8D%E5%90%8C%E5%B9%B4%E4%BB%BD%E6%B3%A1%E6%A4%92%E6%B0%B4%EF%BC%88%E6%97%A7%E5%8F%82%E6%95%B0%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97%E7%89%B9%E5%BE%81%E7%AD%9B%E9%80%89%EF%BC%893.0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="GGGjjjzzz123">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="GJZ's Blog">
+      <meta itemprop="description" content="GJZ的博客，用于存放各种技术文章，分享技术经验。主要内容包括项目开发、技术分享、学习笔记等。希望通过这个博客与大家交流，共同进步！">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | GJZ's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2025/03/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%EF%BC%9A%E4%B8%8D%E5%90%8C%E5%B9%B4%E4%BB%BD%E6%B3%A1%E6%A4%92%E6%B0%B4%EF%BC%88%E6%97%A7%E5%8F%82%E6%95%B0%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97%E7%89%B9%E5%BE%81%E7%AD%9B%E9%80%89%EF%BC%893.0/" class="post-title-link" itemprop="url">机器学习：不同年份泡椒水（旧参数随机森林特征筛选）3.0</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2026-03-20 22:18:22" itemprop="dateModified" datetime="2026-03-20T22:18:22+08:00">2026-03-20</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E9%A1%B9%E7%9B%AE%E6%96%87%E6%A1%A3/" itemprop="url" rel="index"><span itemprop="name">项目文档</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E9%A1%B9%E7%9B%AE%E6%96%87%E6%A1%A3/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">机器学习</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p><font style="color:#DF2A3F;">以下是最终版本的数据和图像（按照这个文档中的数据为准，之前的可能文档包含新、旧数据，容易混）</font></p>
+<h2 id="GC"><a href="#GC" class="headerlink" title="GC"></a>GC</h2><p>GC所做的变动：</p>
+<p>（1）PCA可以继续用之前的图（二维的PCA画椭圆分类图、方差解释率和累计方差的两个图、基于PCA的决策边界图）</p>
+<p>（2）下面图一的Top 10的柱状图可以接着用</p>
+<p><font style="color:#DF2A3F;">（3）需要添加下面图二的模型验证折线图（用来说明选取前十个特征的原因）</font></p>
+<p><a target="_blank" rel="noopener" href="https://www.yuque.com/attachments/yuque/0/2026/xlsx/50965833/1768360438393-49105cc9-5480-4756-86c6-721b766cd8bf.xlsx">(1)随机森林特征筛选_Gini全排名.xlsx</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.yuque.com/attachments/yuque/0/2026/xlsx/50965833/1768360485698-9f633af2-2bbf-46b0-b076-76b6e95bdd3e.xlsx">(2)用于做PCA的前10个特征.xlsx</a></p>
+<p>图一：Top 10的柱状图</p>
+<!-- 这是一张图片，ocr 内容为：TOP 10 MOST IMPORTANT FEATURES 0.0243 4-ETHYL-2-METHOXYPHENOL 0.0231 5-METHYLHEXYL 2-METHYLBUTANOATE 0.0213 ELAIDIC ACID ETHYL ESTER 0.0199 DIHYDRO-BETA-IONONE 0.0198 ETHYL LINOLENATE 0.0185 B-LONONE 0.0179 2-EPI-TRANS-B-CARYOPHYLLENE 0.0178 METHYL ACETATE 0.0176 (+)-LIMONENE 4-ETHYLPHENOL 0.0176 0.020 0.015 0.010 0.005 0.000 0.025 CONTRIBUTION(NORMALIZED GINI IMPORTANCE) -->
+<p><img src="/images/ml-paojiaoshui/image_001_1768360597577-a4e36ba2-879c-4033-9ab9-7a02e5be91aa.png"></p>
+<p>图二：模型验证折线图（选取top_n的依据）</p>
+<!-- 这是一张图片，ocr 内容为：1.0 0.9 .06 5-FOLD CV ACCURACY BBUN RANDOM FOREST 0.3 1 SD OPTIMAL(N10) 0.2 50 60 40 70 80 30 20 0 10 NUMBER OF FEATURES -->
+<p><img src="/images/ml-paojiaoshui/image_002_1768490356182-3cb1d5a8-ceab-4c3a-921d-6f5cf9b1205f.png"></p>
+<h2 id="LC"><a href="#LC" class="headerlink" title="LC"></a>LC</h2><p>LC所做变动（LC的图需要全部替换）：</p>
+<p><font style="color:#DF2A3F;">（1）下面图一的Top 2柱状图需要替换（不能用之前的Top 15了，无法解释15的由来）</font></p>
+<p><font style="color:#DF2A3F;">（2）下面图二、图三、图四均是对应Top 2重新画的，需要全部替换</font></p>
+<p><font style="color:#DF2A3F;">（3）需要新添加图五或图六的折线图（用来说明选取前十个特征的原因），图五图六之间本质没有区别，图六是图五的局部放大版，看需求使用</font></p>
+<p>（4）图七的混淆矩阵不一定要用，看论文是否需要</p>
+<p><a target="_blank" rel="noopener" href="https://www.yuque.com/attachments/yuque/0/2026/xlsx/50965833/1768360706269-9fe0db76-37af-454c-bb7e-f217d1772f68.xlsx">(1)随机森林特征筛选_Gini全排名（含贡献率）.xlsx</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.yuque.com/attachments/yuque/0/2026/xlsx/50965833/1768491695163-b6c6c34b-bdd9-4fc8-87c3-3c73d81caf8a.xlsx">(2)随机森林Top2特征（Gini贡献率）.xlsx</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.yuque.com/attachments/yuque/0/2026/xlsx/50965833/1768491705685-15fb60b6-4c4b-4500-a4f1-0057261db058.xlsx">(3)随机森林Top2特征矩阵.xlsx</a></p>
+<p>图一：Top 2柱状图</p>
+<!-- 这是一张图片，ocr 内容为：FEATURES TOP 2 MOST IMPORTANT F 0.0053 METHYLCODEINE 0.0052 NALTREXONE 0.004 0.002 0.000 0.005 0.001 0.003 CONTRIBUTION(NORMALIZED GINI IMPORTANCE) -->
+<p><img src="/images/ml-paojiaoshui/image_003_1768491752309-46d40577-16dd-4d78-8049-b321c7f59084.png"></p>
+<p>图二：PCA分组图</p>
+<!-- 这是一张图片，ocr 内容为：PCA SCORE PLOT WITH GROUP ELLIPSES 1.0 0.5 PC2(31.21%VARIANCE) 0.0 0-YEAR REGION 5-YEAR REGION -0.5 15-YEAR REGION 25-YEAR REGION 50-YEAR REGION 0-YEAR 5-YEAR -1.0 15-YEAR 25-YEAR 50-YEAR -1.0 -0.5 -1.5 0.5 -2.0 1.0 -2.5 0.0 -3.0 PC1(68.79% VARIANCE) -->
+<p><img src="/images/ml-paojiaoshui/image_004_1768491452672-93808776-6109-47ad-8d86-1bd4f6ce41b2.png"></p>
+<p>图三：方差解释率和累计方差图</p>
+<!-- 这是一张图片，ocr 内容为：VARIANCE EXPLAINED BY EACH PC CUMULATIVE VARIANCE EXPLAINED 0.70 1.00 80% THRESHOLD 0.65 0.95 CUMULATIVE EXPLAINED VARIANCE 0.60 EXPLAINEDVARIANCE RATIO 0.90 0.55 NSS 05 0.50 0.45 0.40 0.35 0.70 0.30 PRINCIPAL COMPONENT PRINCIPAL COMPONENT -->
+<p><img src="/images/ml-paojiaoshui/image_005_1768491471249-1ad42238-8298-4623-a20d-663adf25142e.png"></p>
+<p>图四：基于PCA的决策边界图</p>
+<!-- 这是一张图片，ocr 内容为：RANDOM FOREST DECISION BOUNDARIES (PCA-BASED, CORRECT CV) 0-YEAR 1.5 5-YEAR 15-YEAR 25-YEAR 50-YEAR 1.0 PC2(31.21%VARIANCE) 0.5 0.0 -0.5 -1.0 -1.5 0 PC1(68.79% VARIANCE) -->
+<p><img src="/images/ml-paojiaoshui/image_006_1768495294307-ebe7adc3-eb3c-4288-8df7-bee118f1fd70.png"></p>
+<p>图五：折线图（x轴是包含统计学筛选过后的1155个全部特征）</p>
+<!-- 这是一张图片，ocr 内容为：1.0 0.9 5-FOLD CV ACCURACY 0.8 0.7 LLSGUU RANDOM FOREST 0.3 1 SD OPTIMAL(N2) 0.2 600 0 400 1000 800 200 NUMBER OF F FEATURES -->
+<p><img src="/images/ml-paojiaoshui/image_007_1768496697252-0e038e65-6fa2-4885-9070-d98a2793196d.png"></p>
+<p>图六：折线图（将图五的局部细节放大）</p>
+<!-- 这是一张图片，ocr 内容为：1.0 0.9 8000600 5-FOLD CV ACCURACY RANDOM FOREST(1~20) 1 SD 0.3 OPTIMAL(N2) 0.2 2.5 7.5 17.5 10.0 12.5 5.0 20.0 15.0 NUMBER OF FEATURES -->
+<p><img src="/images/ml-paojiaoshui/image_008_1768503322532-7d3b660f-91fe-47f0-9048-6b97050eca08.png"></p>
+<p>图七：随机森林混淆矩阵</p>
+<!-- 这是一张图片，ocr 内容为：CONFUSION MATRIX 100 0-YEAR 0.0 0.0 0.0 0.0 100.0 80 5-YEAR 0.0 0.0 0.0 100.0 0.0 60 TRUE LABEL PERCENTAGE 15-YEAR 0.0 0.0 0.0 100.0 0.0 40 25-YEAR 0.0 0.0 0.0 100.0 0.0 20 50-YEAR 100.0 0.0 0.0 0.0 0.0 5-YEAR 25-YEAR 0-YEAR 50-YEAR 15-YEAR PREDICTED LABEL -->
+<p><img src="/images/ml-paojiaoshui/image_009_1768491478463-d5354e3e-3023-4baa-8e5d-30df9d850358.png"></p>
+<h2 id="MI"><a href="#MI" class="headerlink" title="MI"></a>MI</h2><p>MI的数据进行的两种处理：一种是带单变量处理的（处理结果为图一和图二）；另一种是不带单变量处理的（图三和图四）</p>
+<p>因为微生物的结果很差，所以看需求决定是否要用下面的图。每种处理的决策边界图选取了多次不同的top_n划分，结果如图二和图三。</p>
+<p><a target="_blank" rel="noopener" href="https://www.yuque.com/attachments/yuque/0/2026/xlsx/50965833/1768360928163-51ffc306-643b-46ee-ae35-2cc40afbaaa9.xlsx">(1)随机森林特征筛选_Gini全排名（含贡献率）.xlsx</a></p>
+<p>图一：Top 9柱状图（带单变量筛选）</p>
+<!-- 这是一张图片，ocr 内容为：TOP 9 MOST IMPORTANT P FEATURES 0.1419 G_LEUCONOSTOC 0.1412 G_LACTIPLANTIBACILLUS 0.1315 WEISSELLA 0.1300 G_LEVILACTOBACILLUS 0.1157 9_COMPANILACTOBACILLUS 0.1077 OCEANOBACILLUS 9. 0.1073 LACTOCOCCUS G. 0.0896 PEDIOCOCCUS G 0.0350 UNCLASSIFIED F LACTOBACILLACEAE 0.02 0.00 0.10 0.12 0.06 0.14 0.08 0.04 CONTRIBUTION(NORMALIZED GINI IMPORTANCE) -->
+<p><img src="/images/ml-paojiaoshui/image_010_1768564801855-f4085e26-d57b-4b61-af23-56ef9a952dd4.png"></p>
+<p>图二：基于PCA的决策边界图（依据柱状图排名，依次选前top9、8、7、6、5、4、3、2）</p>
+<!-- 这是一张图片，ocr 内容为：OM FOREST DECISION BOUNDARIES (PCA-BASED, CORRECT CV) RANDOM F 0-YEAR 5-YEAR 15-YEAR 25-YEAR 50-YEAR PC2(24.62% VARIANCE) 0 -2 -3 -1 PC1(48.91% VARIANCE) -->
+<p><img src="/images/ml-paojiaoshui/image_011_1768565512399-e49a20bf-f554-4ed7-8ad0-1481955faf54.png"><!-- 这是一张图片，ocr 内容为：RANDOM FOREST DECISION BOUNDARIES(PCA-BASED, CORRECT CV) 0-YEAR 5-YEAR 15-YEAR 25-YEAR 50-YEAR PC2(49.28% VARIANCE) -1 -2 PC1(50.72% VARIANCE) --><br><img src="/images/ml-paojiaoshui/image_012_1768565512468-3bcb89a1-b088-4b3c-920e-e2fbfff8423d.png"><!-- 这是一张图片，ocr 内容为：RANDOM FOREST DECISION BOUNDARIES (PCA-BASED, CORRECT CV) 0-YEAR 2.0 5-YEAR 15-YEAR 25-YEAR 1.5 50-YEAR 1.0 PC2(33.14% VARIANCE) 0.5 0.0 -0.5 -1.0 -1.5 -2.0 3 0 PC1(51.77% VARIANCE) --><br><img src="/images/ml-paojiaoshui/image_013_1768565512501-fb6a83fd-6de4-4b96-a036-bfd6e952a4a8.png"><!-- 这是一张图片，ocr 内容为：M FOREST DECISION BOUNDARIES (PCA-BASED, CORRECT CV) RANDOM 0-YEAR 5-YEAR 15-YEAR 25-YEAR 50-YEAR PC2(34.05% VARIANCE) O -2 2 0 -2 -1 PC1(41.62%VARIANCE) --><br><img src="/images/ml-paojiaoshui/image_014_1768565512577-37358b1c-ca88-4fc3-9eb0-8eda0056c426.png"><!-- 这是一张图片，ocr 内容为：RANDOM FOREST DECISION BOUNDARIES (PCA-BASED, CORRECT CV) 0-YEAR 5-YEAR 15-YEAR 25-YEAR 50-YEAR PC2 (29.38% VARIANCE) O -2 3 2 -2 PC1(45.99% VARIANCE) --><br><img src="/images/ml-paojiaoshui/image_015_1768565512562-35bb14c3-78f3-4e89-8cd3-4c4a3d2eff41.png"><!-- 这是一张图片，ocr 内容为：RANDOM FOREST DECISION BOUNDARIES (PCA-BASED, CORRECT CV) 0-YEAR 5-YEAR 15-YEAR 25-YEAR 50-YEAR PC2(23.45% VARIANCE) 0 -3 PC1(43.34% VARIANCE) --><br><img src="/images/ml-paojiaoshui/image_016_1768565541170-fedfdaa3-9c75-4c78-99e9-a24a9849428e.png"><!-- 这是一张图片，ocr 内容为：OM FOREST DECISION BOUNDARIES (PCA-BASED, CORRECT CV) RANDOM 0-YEAR 5-YEAR 15-YEAR 25-YEAR 50-YEAR PC2(20.81% VARIANCE) 0 -3 2 -5 -2 PC1(46.36% VARIANCE) --><br><img src="/images/ml-paojiaoshui/image_017_1768565541273-f3e66286-76dc-4771-bda1-8c5f2f4166fa.png"><!-- 这是一张图片，ocr 内容为：M FOREST DECISION BOUNDARIES (PCA-BASED, CORRECT CV) RANDOM F 3 0-YEAR 5-YEAR 15-YEAR 25-YEAR 50-YEAR PC2(18.94% VARIANCE) 2 PC1(41.42% VARIANCE) --><br><img src="/images/ml-paojiaoshui/image_018_1768565541239-8b6611d5-8c3b-4965-9656-63a69225a5a0.png"></p>
+<p>图三：Top 4柱状图（不带单变量筛选）</p>
+<!-- 这是一张图片，ocr 内容为：TOP 4 MOST IMPORTANT FEATURES 0.3021 G_LEVILACTOBACILLUS 0.2620 9__LACTIPLANTIBACILLUS 0.2414 COMPANILACTOBACILLUS 9__OCEANOBACILLUS 0.1945 0.25 0.20 0.15 0.10 0.05 0.30 0.00 CONTRIBUTION(NORMALIZED GINI IMPORTANCE) -->
+<p><img src="/images/ml-paojiaoshui/image_019_1768565622370-68827bd5-3aa2-4331-9001-7f3aeb699f0f.png"></p>
+<p>图四：基于PCA的决策边界（依据柱状图排名，依次选前top4、3、2）</p>
+<!-- 这是一张图片，ocr 内容为：RANDOM FOREST DECISION BOUNDARIES (PCA-BASED, CORRECT CV) 0-YEAR 1.5 5-YEAR 15-YEAR 25-YEAR 1.0 50-YEAR 0.5 PC2 (28.80% VARIANCE) 0.0 -0.5 -1.0 -1.5 -2.0 -3 -1 PC1(71.20% VARIANCE) -->
+<p><img src="/images/ml-paojiaoshui/image_020_1768565622353-d6dc146e-f7de-47e5-bf35-c118251fc08b.png"><!-- 这是一张图片，ocr 内容为：RANDOM FOREST DECISION BOUNDARIES (PCA-BASED, CORRECT CV) 0-YEAR 1.5 5-YEAR 15-YEAR 25-YEAR 50-YEAR 1.0 0.5 PC2 (22.23% VARIANCE) 0.0 -0.5 -1.0 -1.5 -2.0 -2.5 0 PC1(70.99% VARIANCE) --><br><img src="/images/ml-paojiaoshui/image_021_1768565622427-2fd70588-583a-4592-b926-2ee8951724a2.png"><!-- 这是一张图片，ocr 内容为：RANDOM FOREST DECISION BOUNDARIES (PCA-BASED, CORRECT CV) 0-YEAR 1.5 5-YEAR 15-YEAR 25-YEAR 50-YEAR 1.0 0.5 PC2 (17.54% VARIANCE) 0.0 -0.5 -1.0 -1.5 -2.0 -5 PC1(68.83% VARIANCE) --><br><img src="/images/ml-paojiaoshui/image_022_1768565622429-b95e91e6-99fc-4a61-8a8d-677900d92162.png"></p>
+<h2 id="核磁NMR"><a href="#核磁NMR" class="headerlink" title="核磁NMR"></a>核磁NMR</h2><p>核磁为新增内容，所有的图如下：</p>
+<!-- 这是一张图片，ocr 内容为：TOP 6 MOST LMPORTANT FEATURES 0.0623 BUTYRATE-0.8793 0.0621 METHYLGUANIDINE-2.8247 0.0583 URACIL-5.7972 PROPYLENE_GLYCOL-1.1349 0.0536 0.0510 BETAINE-3.2536 0.0477 ETHANOL-1.1706 0.01 0.06 0.00 0.02 0.04 0.03 0.05 CONTRIBUTION(NORMALIZED GINI IMPORTANCE) -->
+<p><img src="/images/ml-paojiaoshui/image_023_1768501013345-6d07bc4b-ad6f-410b-b425-26a46e232347.png"></p>
+<!-- 这是一张图片，ocr 内容为：PCA SCORE PLOT WITH GROUP ELLIPSES 0-YEAR REGION 5-YEAR REGION 15-YEAR REGION 25-YEAR REGION 50-YEAR REGION 0-YEAR 5-YEAR 15-YEAR 25-YEAR 50-YEAR PC2(25.40% VARIANCE) 0 PC1(44.21% VARIANCE) -->
+<p><img src="/images/ml-paojiaoshui/image_024_1768501042197-f45ab8ff-81b1-4750-b3cb-eb88b98967c0.png"></p>
+<!-- 这是一张图片，ocr 内容为：VARIANCE EXPLAINED BY EACH PC CUMULATIVE VARIANCE EXPLAINED 1.0 80% THRESHOLD 0.4 CUMULATIVE EXPLAINED VARIANCE R. EXPLAINED VARIANCE RATIO 0.3 JI 0.2 0.6 0.1 0.5 0.0 2 2 PRINCIPAL COMPONENT PRINCIPAL COMPONENT -->
+<p><img src="/images/ml-paojiaoshui/image_025_1768501049792-02018540-f620-4e00-9cfe-74e0afc770a9.png"></p>
+<!-- 这是一张图片，ocr 内容为：RANDOM FOREST DECISION BOUNDARIES (PCA-BASED, CORRECT CV) 0-YEAR 5-YEAR 15-YEAR 25-YEAR 2 50-YEAR PC2 (25.40% VARIANCE) -2 1 PC1(44.21%VARIANCE) -->
+<p><img src="/images/ml-paojiaoshui/image_026_1768502777205-43ac8df0-9a4c-480f-92c3-6ef1cb9aa3f8.png"></p>
+<!-- 这是一张图片，ocr 内容为：1.0 0.9 10. 5-FOLD CV ACCURACY BBUTU RANDOM FOREST 0.3 1SD OPTIMAL(N-6) 0.2 5 25 20 30 10 0 NUMBER OF FEATURES -->
+<p><img src="/images/ml-paojiaoshui/image_027_1768502821074-001e4979-09aa-4eff-8bca-022eca871db1.png"></p>
+<!-- 这是一张图片，ocr 内容为：CONFUSION MATRIX 100 0-YEAR 0.0 0.0 0.0 0.0 100.0 80 5-YEAR 0.0 0.0 0.0 100.0 0.0 60 TRUE LABEL PERCENTAGE 15-YEAR 0.0 0.0 0.0 100.0 0.0 40 25-YEAR 0.0 0.0 0.0 100.0 0.0 20 50-YEAR 100.0 0.0 0.0 0.0 0.0 5-YEAR 25-YEAR 0-YEAR 50-YEAR 15-YEAR PREDICTED LABEL -->
+<p><img src="/images/ml-paojiaoshui/image_028_1768501058657-bd4e13a9-f6fd-492e-bf35-e81e015fb0f2.png"></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://gggjjjzzz123.github.io/2025/03/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%EF%BC%9A%E4%B8%8D%E5%90%8C%E5%B9%B4%E4%BB%BD%E6%B3%A1%E6%A4%92%E6%B0%B42.0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="GGGjjjzzz123">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="GJZ's Blog">
+      <meta itemprop="description" content="GJZ的博客，用于存放各种技术文章，分享技术经验。主要内容包括项目开发、技术分享、学习笔记等。希望通过这个博客与大家交流，共同进步！">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | GJZ's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2025/03/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%EF%BC%9A%E4%B8%8D%E5%90%8C%E5%B9%B4%E4%BB%BD%E6%B3%A1%E6%A4%92%E6%B0%B42.0/" class="post-title-link" itemprop="url">机器学习：不同年份泡椒水2.0</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2026-03-20 22:18:22" itemprop="dateModified" datetime="2026-03-20T22:18:22+08:00">2026-03-20</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E9%A1%B9%E7%9B%AE%E6%96%87%E6%A1%A3/" itemprop="url" rel="index"><span itemprop="name">项目文档</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E9%A1%B9%E7%9B%AE%E6%96%87%E6%A1%A3/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">机器学习</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="一、数据预处理"><a href="#一、数据预处理" class="headerlink" title="一、数据预处理"></a>一、数据预处理</h2><ol>
+<li>删除全0特征</li>
+<li>删除常数特征（std≈0）</li>
+<li>存在滤过波（非0比例&lt;0.2删除）</li>
+<li>将0（以及可能存在的NaN）用“该列最小非零值×0.5”填充（列内LOD&#x2F;2思路）</li>
+<li>log转换+Z-score标准化</li>
+</ol>
+<p>（1）GC数据预处理</p>
+<p><a target="_blank" rel="noopener" href="https://www.yuque.com/attachments/yuque/0/2026/xlsx/50965833/1768142646836-c776f657-9552-4b73-b0d9-8ce59d17e120.xlsx">GC_processed（数据预处理）.xlsx</a></p>
+<p>（2）LC数据预处理</p>
+<p><a target="_blank" rel="noopener" href="https://www.yuque.com/attachments/yuque/0/2026/xlsx/50965833/1768142685848-6d8b9d51-260d-4680-b49a-7684bbc2aa24.xlsx">LC_processed（数据预处理）.xlsx</a></p>
+<p>（3）微生物数据预处理</p>
+<p><a target="_blank" rel="noopener" href="https://www.yuque.com/attachments/yuque/0/2026/xlsx/50965833/1768142759437-8e72d41c-f799-449e-a90d-dc7fd6d2a2ba.xlsx">MI_processed（数据预处理）.xlsx</a></p>
+<h2 id="二、Kruskal-Wallis检验-FDR校正（统计学特征筛选）"><a href="#二、Kruskal-Wallis检验-FDR校正（统计学特征筛选）" class="headerlink" title="二、Kruskal-Wallis检验 + FDR校正（统计学特征筛选）"></a>二、Kruskal-Wallis检验 + FDR校正（统计学特征筛选）</h2><p>目的：用统计学先把“和分组完全没关系&#x2F;几乎没关系2.”的特征粗筛掉，避免后面随机森林在一堆噪声里“瞎学”，也减少维度、提高结果可解释性。  </p>
+<p>操作： 对每个特征进行 Kruskal–Wallis 检验得到 p 值，并采用 Benjamini–Hochberg 方法进行 FDR 校正得到 q 值；以 q&lt;0.05 作为显著性标准，表示在筛选出的显著特征集合中预计假阳性比例控制在 5% 以内。  </p>
+<p>（1）GC统计学特征筛选</p>
+<p><a target="_blank" rel="noopener" href="https://www.yuque.com/attachments/yuque/0/2026/xlsx/50965833/1768143015362-b4a226ef-a287-4234-8e2b-5e3199e5cc77.xlsx">GC_Kruskal+FDR_Selected.xlsx</a></p>
+<p>（2）LC统计学特征筛选</p>
+<p><a target="_blank" rel="noopener" href="https://www.yuque.com/attachments/yuque/0/2026/xlsx/50965833/1768143045451-8d9a76bf-95cd-41dc-82d0-debf539492fd.xlsx">LC_Kruskal+FDR_Selected.xlsx</a></p>
+<p>（3）微生物统计学特征筛选</p>
+<p><a target="_blank" rel="noopener" href="https://www.yuque.com/attachments/yuque/0/2026/xlsx/50965833/1768143056279-af2c284b-fd46-44be-a8ad-788d629b1a55.xlsx">MI_Kruskal+FDR_Selected.xlsx</a></p>
+<h2 id="三、随机森林特征筛选"><a href="#三、随机森林特征筛选" class="headerlink" title="三、随机森林特征筛选"></a>三、随机森林特征筛选</h2><p>重要性： Gini  </p>
+<p><font style="color:#DF2A3F;">（下面进行特征的排名均是经过上面数据预处理和统计学特征筛选后所保留的特征）</font></p>
+<ol>
+<li>GC的Gini重要性排名</li>
+</ol>
+<p><a target="_blank" rel="noopener" href="https://www.yuque.com/attachments/yuque/0/2026/xlsx/50965833/1768139267481-0d73b4d5-fc47-47cf-b885-2220380b0c12.xlsx">(1)随机森林特征筛选_Gini全排名（含贡献率）.xlsx</a></p>
+<p>其中，Top15的可视化：  </p>
+<!-- 这是一张图片，ocr 内容为： -->
+<p><img src="/images/ml-paojiaoshui/image_001_1768147400007-9bef0297-d668-4393-9f59-aec57ffa9b49.png"></p>
+<ol start="2">
+<li>LC的Gini重要性排名</li>
+</ol>
+<p><a target="_blank" rel="noopener" href="https://www.yuque.com/attachments/yuque/0/2026/xlsx/50965833/1768139306668-f1de6f9d-27fd-4b9d-985f-2cb53d4b2a40.xlsx">(1)随机森林特征筛选_Gini全排名（含贡献率）.xlsx</a></p>
+<p>Top15的可视化：</p>
+<!-- 这是一张图片，ocr 内容为： -->
+<p><img src="/images/ml-paojiaoshui/image_002_1768151428097-3bded6e1-7410-4bce-9acd-c8a041345118.png"></p>
+<ol start="3">
+<li>微生物的Gini重要性排名</li>
+</ol>
+<p><a target="_blank" rel="noopener" href="https://www.yuque.com/attachments/yuque/0/2026/xlsx/50965833/1768139339518-c6417e09-60da-4ee6-8b5d-7cc3f795d002.xlsx">(1)随机森林特征筛选_Gini全排名（含贡献率）.xlsx</a></p>
+<p>由于筛选后仅4个特征，所以为Top4可视化：  </p>
+<!-- 这是一张图片，ocr 内容为： -->
+<p><img src="/images/ml-paojiaoshui/image_003_1768147473970-de7951d7-98fb-4bb2-945c-6f4f5fc639f4.png"></p>
+<h2 id="四、选取前N个特征"><a href="#四、选取前N个特征" class="headerlink" title="四、选取前N个特征"></a>四、选取前N个特征</h2><ol>
+<li><font style="color:rgb(51, 51, 51);">根据上一步的重要性排名，选出前n个特征，将n的数值作为自变量（x轴）</font></li>
+<li><font style="color:rgb(51, 51, 51);">从预处理后的数据中提取这n个特征对应的数据，作为新的数据集。</font></li>
+<li><font style="color:rgb(51, 51, 51);">使用5折交叉法，以该n个特征对应的数据在</font><strong><font style="color:rgb(51, 51, 51);">随机森林</font></strong><font style="color:rgb(51, 51, 51);">的模型上做验证评估。</font></li>
+<li><font style="color:rgb(51, 51, 51);">随着选取特征的数目增加，模型的分类效果越好。</font></li>
+<li><font style="color:rgb(51, 51, 51);">找到达到最好分类效果的转折点N，借此可知，前N个特征对模型分类的影响最大，即这N个分子成分在不同年份泡菜水之间有最为显著的差异，且经由机器学习模型（随机森林）验证。</font></li>
+</ol>
+<p><font style="color:rgb(51, 51, 51);">根据以上思路画折线图：随着选取前n个特征值的变化，选取的分子含量在随机森林模型上，5折交叉的准确率的变化。</font></p>
+<p>关于GC（共87个特征）：</p>
+<!-- 这是一张图片，ocr 内容为： -->
+<p><img src="/images/ml-paojiaoshui/image_004_1768147645222-5651c84b-0f1a-4702-9e3e-c59ce66a09cb.png"></p>
+<p>关于LC（共1155个特征）：</p>
+<!-- 这是一张图片，ocr 内容为： -->
+<p><img src="/images/ml-paojiaoshui/image_005_1768147693328-deef5fbc-6531-4747-8274-8070d424ac10.png"></p>
+<p><font style="color:#1DC0C9;">（由于当n为2时分类效果就比较好，相对于总数1155个特征来说不明显，所以下面显示Top15的局部情况来更清晰地展示）：<br></font><!-- 这是一张图片，ocr 内容为： --><br><img src="/images/ml-paojiaoshui/image_006_1768147790182-e3e35a15-5442-4c47-bb75-aeaf450ab1c3.png"></p>
+<p>关于微生物（共4个特征）：</p>
+<!-- 这是一张图片，ocr 内容为： -->
+<p><img src="/images/ml-paojiaoshui/image_007_1768148103237-a3fb7933-0ed4-487f-bd8d-1f8df16e22a3.png"></p>
+<p>效果并不好，下面采用所有的微生物特征进行分类（即，采取全部特征数据，直接进行随机森林排序）：</p>
+<!-- 这是一张图片，ocr 内容为： -->
+<p><img src="/images/ml-paojiaoshui/image_008_1768149721938-c48c680a-ed71-4fb0-986d-b9f9b2954196.png"></p>
+<p>以及其对应的随机森林重要性排序：  </p>
+<!-- 这是一张图片，ocr 内容为： -->
+<p><img src="/images/ml-paojiaoshui/image_009_1768149739660-fa7874f9-a76a-4359-9957-cdb3396af45e.png"></p>
+<h2 id="五、其他的一些讨论"><a href="#五、其他的一些讨论" class="headerlink" title="五、其他的一些讨论"></a>五、其他的一些讨论</h2><p><font style="color:#DF2A3F;">注意！！</font></p>
+<!-- 这是一张图片，ocr 内容为： -->
+<p><img src="/images/ml-paojiaoshui/image_010_1768150389927-13a70cb8-4df5-4296-bbd0-ffb582e357e0.png"></p>
+<p>对比上图可以发现，预处理删去的值确实是对分类相对没有用的，而单变量特征筛选（即Kruskal-Wallis检验 + FDR校正）似乎删去了部分对分类极其有益的特征，为此，下面进行另一条平行线的分类讨论：</p>
+<p>（一）不进行任何预处理+不进行Kruskal-Wallis检验 + FDR校正。直接对原始数据进行随机森林排名1，并且画折线图。</p>
+<p>GC：  </p>
+<!-- 这是一张图片，ocr 内容为： -->
+<p><img src="/images/ml-paojiaoshui/image_011_1768150980598-b8dbf17c-bd93-4b0d-8ced-7ac7612eaa05.png"></p>
+<!-- 这是一张图片，ocr 内容为： -->
+<p><img src="/images/ml-paojiaoshui/image_012_1768150994669-97351913-34f7-4ffa-ad74-78583423ed3a.png"></p>
+<p>LC：</p>
+<!-- 这是一张图片，ocr 内容为： -->
+<p><img src="/images/ml-paojiaoshui/image_013_1768151021902-e4f14223-9a07-4d21-ba6f-17c51baa025b.png"></p>
+<!-- 这是一张图片，ocr 内容为： -->
+<p><img src="/images/ml-paojiaoshui/image_014_1768151031172-d8a2eca5-d342-4de9-b757-7909345701d2.png"></p>
+<p>MI（微生物）（即上文中，发现效果不太好后的改进结果）：</p>
+<!-- 这是一张图片，ocr 内容为： -->
+<p><img src="/images/ml-paojiaoshui/image_001_1768149721938-c48c680a-ed71-4fb0-986d-b9f9b2954196.png"></p>
+<!-- 这是一张图片，ocr 内容为： -->
+<p><img src="/images/ml-paojiaoshui/image_009_1768149739660-fa7874f9-a76a-4359-9957-cdb3396af45e.png"></p>
+<p>（二）进行任何预处理+但不进行Kruskal-Wallis检验 + FDR校正。对原始数据进行预处理后，自己在随机森林上排名，并且画折线图。</p>
+<p>GC：</p>
+<!-- 这是一张图片，ocr 内容为： -->
+<p><img src="/images/ml-paojiaoshui/image_017_1768151319429-dd44077b-63a1-4f22-8423-24c98a83d312.png"></p>
+<!-- 这是一张图片，ocr 内容为： -->
+<p><img src="/images/ml-paojiaoshui/image_018_1768151326088-b587b207-f3d2-43d4-a716-c9015fd3ba91.png"></p>
+<p>LC：</p>
+<!-- 这是一张图片，ocr 内容为： -->
+<p><img src="/images/ml-paojiaoshui/image_019_1768151338685-a244aca0-429c-4e5a-9773-892403464a4c.png"><!-- 这是一张图片，ocr 内容为： --><br><img src="/images/ml-paojiaoshui/image_020_1768151343193-00a8549b-9421-4f87-b26f-6d755780c848.png"></p>
+<p>MI（微生物）：</p>
+<!-- 这是一张图片，ocr 内容为： -->
+<p><img src="/images/ml-paojiaoshui/image_021_1768151357718-0b30e749-370a-4fc1-828c-b1bf822551d0.png"><!-- 这是一张图片，ocr 内容为： --><br><img src="/images/ml-paojiaoshui/image_022_1768151360822-4c2b0c70-6cfc-4f5c-b59a-a3de6e70935d.png"></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://gggjjjzzz123.github.io/2025/03/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%EF%BC%9A%E6%B3%A1%E6%A4%92%E6%B0%B41.0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="GGGjjjzzz123">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="GJZ's Blog">
+      <meta itemprop="description" content="GJZ的博客，用于存放各种技术文章，分享技术经验。主要内容包括项目开发、技术分享、学习笔记等。希望通过这个博客与大家交流，共同进步！">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | GJZ's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2025/03/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%EF%BC%9A%E6%B3%A1%E6%A4%92%E6%B0%B41.0/" class="post-title-link" itemprop="url">机器学习：泡椒水1.0</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2026-03-20 22:18:22" itemprop="dateModified" datetime="2026-03-20T22:18:22+08:00">2026-03-20</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E9%A1%B9%E7%9B%AE%E6%96%87%E6%A1%A3/" itemprop="url" rel="index"><span itemprop="name">项目文档</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E9%A1%B9%E7%9B%AE%E6%96%87%E6%A1%A3/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">机器学习</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="数据"><a href="#数据" class="headerlink" title="数据"></a>数据</h2><p>五种不同年份的泡菜水（0年&#x2F;5年&#x2F;15年&#x2F;25年&#x2F;50年），每个年份有5个样品，总共25份样品。现有3类指标：（1）GC香气物质127个特征（2）LC代谢物质2298个特征（3）MI微生物10个特征</p>
+<h2 id="前期探索工作"><a href="#前期探索工作" class="headerlink" title="前期探索工作"></a>前期探索工作</h2><p>（目前只用了香气物质的特征）</p>
+<h3 id="实验一"><a href="#实验一" class="headerlink" title="实验一"></a>实验一</h3><ol>
+<li>对127个特征做z-score标准化（均值为0，方差为1）</li>
+<li>选择模型（随机森林、SVM、KNN、决策树）</li>
+<li>使用分层5折交叉验证评估模型性能：将样本按照标签比例对25个样本进行分层，并再打乱顺序后平均划分为5份，保证每组中五种样本的数量均衡（每种各一个）。每一折选取其中1份作为测试集，其余4份作为训练集，重复5次，最后将5折测试集的预测结果合并，计算整体分类准确率。</li>
+</ol>
+<h3 id="模型的选择和结果"><a href="#模型的选择和结果" class="headerlink" title="模型的选择和结果"></a>模型的选择和结果</h3><h4 id="随机森林"><a href="#随机森林" class="headerlink" title="随机森林"></a>随机森林</h4><p>参数：200棵数，固定随机性42</p>
+<p>结果如下</p>
+<!-- 这是一张图片，ocr 内容为：交叉验证:发酵时间分类混淆矩阵(SVM(LINEAR)) 5 0 0 0 5 真实类别 5 0 0 15 5 22 5 0 0 0 0 15 50 0 预测类别 -->
+<p><img src="/images/ml-paojiaoshui/image_001_1763267133421-2c117252-7dff-471f-a190-54f0dcb15f88.png"></p>
+<h4 id="KNN"><a href="#KNN" class="headerlink" title="KNN"></a>KNN</h4><p>（1）k&#x3D;3</p>
+<!-- 这是一张图片，ocr 内容为：交叉验证:发酵时间分类混淆矩阵(SVM(LINEAR)) 5 0 0 0 5 真实类别 5 0 0 15 5 22 5 0 0 0 0 15 50 0 预测类别 -->
+<p><img src="/images/ml-paojiaoshui/image_002_1763267195278-08afc48e-ff07-46bb-a7e7-d81096eb2f96.png"></p>
+<p>（2）k&#x3D;5</p>
+<!-- 这是一张图片，ocr 内容为：交叉验证:发酵时间分类混淆矩阵(SVM(LINEAR)) 5 0 0 0 5 真实类别 5 0 0 15 5 22 5 0 0 0 0 15 50 0 预测类别 -->
+<p><img src="/images/ml-paojiaoshui/image_003_1763267220411-4a1ebe6e-f255-4170-bcb6-d3c413de5862.png"></p>
+<p>（3）k&#x3D;10</p>
+<!-- 这是一张图片，ocr 内容为：交叉验证:发酵时间分类混淆矩阵(SVM(LINEAR)) 5 0 0 0 5 真实类别 0 0 15 5 25 5 0 0 0 0 15 50 0 预测类别 -->
+<p><img src="/images/ml-paojiaoshui/image_004_1763267238338-b0220e10-5fb9-4317-9efa-48fd25bf6fca.png"></p>
+<h4 id="SVM-RBF"><a href="#SVM-RBF" class="headerlink" title="SVM(RBF)"></a>SVM(RBF)</h4><!-- 这是一张图片，ocr 内容为：交叉验证:发酵时间分类混淆矩阵(SVM(LINEAR)) 5 0 0 0 5 真实类别 5 0 0 15 5 22 5 0 0 0 0 15 50 0 预测类别 -->
+<p><img src="/images/ml-paojiaoshui/image_005_1763267273023-1d09d1f5-78e7-475c-83ec-166affd823e5.png"></p>
+<h4 id="SVM-linear"><a href="#SVM-linear" class="headerlink" title="SVM(linear)"></a>SVM(linear)</h4><!-- 这是一张图片，ocr 内容为：交叉验证:发酵时间分类混淆矩阵(SVM(LINEAR)) 5 0 0 0 5 真实类别 5 0 0 15 5 22 5 0 0 0 0 15 50 0 预测类别 -->
+<p><img src="/images/ml-paojiaoshui/image_006_1763267337279-022b5b1b-e081-45c1-b4ab-413a4d4eee90.png"></p>
+<h4 id="决策树"><a href="#决策树" class="headerlink" title="决策树"></a>决策树</h4><!-- 这是一张图片，ocr 内容为：交叉验证:发酵时间分类混淆矩阵(SVM(LINEAR)) 0 5 真实类别 5 0 0 15 0 0 0 0 15 50 0 预测类别 -->
+<p><img src="/images/ml-paojiaoshui/image_007_1763267359966-76f675bd-6ea1-4cee-965b-1b8991c807a7.png"></p>
+<h3 id="实验二"><a href="#实验二" class="headerlink" title="实验二"></a>实验二</h3><h4 id="选择他们已做实验图中的两个最为突出的特征作为变量"><a href="#选择他们已做实验图中的两个最为突出的特征作为变量" class="headerlink" title="选择他们已做实验图中的两个最为突出的特征作为变量"></a>选择他们已做实验图中的两个最为突出的特征作为变量</h4><!-- 这是一张图片，ocr 内容为：X.Z..LINALOOLOXIDE_FURANOID X4.ETHYL.2.METHOXYPHENOL ETHYL ACETATE ETHYL ISOVALERATE ETHYL PALMITATE METHYL PALMITATE ETHYL2.METHYLBUTYRATE ETHYL 4.METHYLPENTANOATE X3.PENTANOL.2.METHYL. ISOAMYLOL X.6E.8.METHYL.6.NONENOIC ACID 50 CID..8.METHYL...4.METHYLPENTYL_ESTER ETHYL SALICYLATE "X6.NONENOIC ACID...METHYL...METH ETHYL CAPRYLATE NONANOIC ACID LINALOOL X2 METHOXY 3 ISO OCTANOIC ACID 0.5 1.0 0.0 -0.5 1.0 -->
+<p><img src="/images/ml-paojiaoshui/image_008_1763268217277-d6fbb247-c798-4f3e-b7b2-42616ef3bc8e.jpeg"></p>
+<h4 id="采用留一法进行训练"><a href="#采用留一法进行训练" class="headerlink" title="采用留一法进行训练"></a>采用留一法进行训练</h4><p>模型选择和输出结果如下：</p>
+<!-- 这是一张图片，ocr 内容为：支持向量机(线性)混淆矩阵 逻辑回归混淆矩阵 支持向量机(RBF)混淆矩阵 (留一法) (留一法) (留一法) 5 5 5 5 0 0 0 0 年 0年 5 5 0 0 0 0 0 0年 4 4 4 O 5年 0 5 5 0 0 0 O 0 0 5年 5年 0 0 5 0 真实标签 3 真实标签 3 真实标签 3 0 0 O 0 5 15年 0 5 0 15年 0 5 0 15年 0 2 2 2 5 25年 0 5 0 5 0 O O 0 0 0 0 0 25年 0 25年 1 1 5 0 0 0 0 O 0 0 0 0 50年 5 5 50年 50年 0 0 K近领测鼎卷矩阵 决策树测漏泽矩阵 随机森刺槐清矩阵 (留一法) (留一法) (留一法) 5 5 晖阵阵 5 0 4 0 0 0 0年 4 4 4 5 5年 5年 0 5 0 0 0 0 0 0 真实标签 3 3 真实标签 真实标签 3 15年 O O 5 5 0 0 0 0 0 5 0 5年 2 2 2 O 5 5 5 0 0 25年 O 0 0 0 0 25年 25年 0 1 1 5 0 0 0 50年 50年 50年 F0 高斯朴素照财耕签混淆矩阵 预测标签 预测标签 (留一法) 5 0 0 0年 4 5年 0 0 5 0 3 真实标签 5 15年 2 5 0 0 0 25年 1 0 O 50年 5 0   珍尔美容浴 预测标签 -->
+<p><img src="/images/ml-paojiaoshui/image_009_1763268240000-0e422305-4db9-41dd-88b4-11888bdffb21.png">  </p>
+<!-- 这是一张图片，ocr 内容为：逻辑回归 支持向量机(线性) 支持向量机(RBF) 留一法准确率:0.600 留一法准确率:0.400 留一法准确率:0.600 50年 50年 50年 0年-错误 2.0 2.0 2.0 XXX 5年-错误 年花年生命年货 SOSOS 4-ETHYL-2-METHOXYPHE.- 1.5 1.5 25年 25年 4-ETHYL-2-METHOXYPHE.. 4-ETHYL-2-METHOXYPHE 50年-正确 1.0 1.0 年份类别 年份类别 年份类别 0.5 0.5 15年 15年 15年 0.0 嫩 0.5 5年 5年 5年 . O 1.0 0.0 -1.5 -1.5 -1.5 0年 0年 0年 (Z)-LIN粉古称8 L. (Z)-L INA KOPFY IDE_(. (Z)-LINA)纯接觉IDE_(.. 留一法准确率:0.960 留一法准确率:1.000 留一法准确率:0.000 50年 50年 50年 2.0 2.0 2.0 1.5 1.5 1.5 25年 25年 25年 4-ETHY L-2-ME THOXYPHE 4-ETHYL-2-METHOXYPHE.. 4-ETHY L-2-METHOXYPHE. 0 1.0 1.0 年份类别 年份类别 年份类别 OOO 505 0.5 0.5 15年 15年 15年 8 0.0 0.0 0.5 0.5 5年 5年 5年 1.0 -1.0 1.0 -1.5 -1.5 -1.5 0年 0年 0年 2 0 (Z)-LINALOOL_OXIDE_(... (Z)-LINALOOL_OXIDE_(... (2)吉期护素贝叶斯. 留一法准确率:0.960 50年 2.0 1.5 25年 .0 年份类别 98 4-ETHYL-2-METNO 0.5 15年 -0.5 5年 1.0 -1.5 0年 (Z)-LINALOOL_OXIDE_(.. -->
+<p><img src="/images/ml-paojiaoshui/image_010_1763268247400-e92f5d87-c490-47ce-8cdc-2d587b8a0e8e.png"></p>
+<p>前期探索工作结束，下面为正式工作：</p>
+<h3 id="参考论文-解析："><a href="#参考论文-解析：" class="headerlink" title="参考论文 解析："></a>参考论文 解析：</h3><p>数据：三种不同方法发酵的54份酸笋样品，检测到148种香气成分，基于此鉴定出114种常见香气成分化合物。</p>
+<p>方法：</p>
+<ol>
+<li>采用SBSE-GC-MS技术检测到148种共有香气成分（不是机器学习技术，需要对148种成分进行特征筛选）。</li>
+<li>数据标准化：采用内部标准归一化</li>
+</ol>
+<blockquote>
+<p>（一）数据预处理</p>
+<ol>
+<li>数据规范化：先将三份数据整合，结构规范化，方便后续处理</li>
+<li>数据标准化：（1）检查缺失值（2）进行log转换和Z-score标准化（mean&#x3D;0,std&#x3D;1）</li>
+</ol>
+</blockquote>
+<ol start="3">
+<li>筛选特征：部分最小二乘判别分析（PLS-DA）+单因素方差分析统计检验（ANOVA）双重筛选（148选出27）。<ul>
+<li>PLS-DA筛选标准→VIP&gt;1</li>
+<li>ANOVA筛选标准→p&lt;0.05</li>
+</ul>
+</li>
+</ol>
+<blockquote>
+<p>（二）单变量统计检验+随机森林重要性双重筛选</p>
+<ol>
+<li>单变量统计检验：if(特征形态近似正态):ANOVA；else:Kruskal-Wallis.（标准p&lt;0.05）</li>
+<li>随机森林重要性筛选（替换PLS-DA）</li>
+</ol>
+</blockquote>
+<ol start="4">
+<li>OPLS-DA建模：用的软件SIMCA14.1，用于验证组间差异是否真实存在。<ul>
+<li>证明模型可靠，上述筛选的27个特征具有统计意义</li>
+</ul>
+</li>
+</ol>
+<!-- 这是一张图片，ocr 内容为： -->
+<p><img src="/images/ml-paojiaoshui/image_011_1764058148783-934df148-1889-4598-9eab-b4b3278e98be.png"></p>
+<!-- 这是一张图片，ocr 内容为： -->
+<p><img src="/images/ml-paojiaoshui/image_012_1764058174577-3f77f4f7-01a2-4a82-b5d2-e1555dd99b00.png"></p>
+<blockquote>
+<p>（三）筛选模型验证</p>
+</blockquote>
+<ol start="5">
+<li>27个特征重要性可视化</li>
+</ol>
+<!-- 这是一张图片，ocr 内容为： -->
+<p><img src="/images/ml-paojiaoshui/image_001_1764056446534-495369eb-80f2-4b72-b67b-042ed243663e.png"></p>
+<ol start="6">
+<li>降维：对筛选出来的27个变量做主成分分析PCA，最后保留2个主成分。<ul>
+<li>PC1贡献率81%，PC2贡献率约9%，两者累计90%</li>
+</ul>
+</li>
+</ol>
+<blockquote>
+<p>（四）PCA</p>
+</blockquote>
+<ol start="7">
+<li>模型训练：将这两个主成分作为输入，训练SVM模型。<ul>
+<li>随机70%训练，30%测试，最后分类准确率为100%</li>
+</ul>
+</li>
+</ol>
+<!-- 这是一张图片，ocr 内容为： -->
+<p><img src="/images/ml-paojiaoshui/image_014_1764058555097-b612d8c7-2949-4ae6-bd3e-734ca0b92294.png"></p>
+<blockquote>
+<p>（五）使用SVM</p>
+</blockquote>
+<p><font style="color:rgb(15, 17, 21);">论文只提到了使用了SVM算法，并未提及具体核函数、是否参数调优等细节。</font></p>
+<blockquote>
+<p>（六）模型验证</p>
+</blockquote>
+<p><font style="color:rgb(15, 17, 21);">原论文描述：“一次随机划分（70&#x2F;30）并计算准确率”，并没提供更稳健的验证数据</font></p>
+<h2 id="具体实验过程"><a href="#具体实验过程" class="headerlink" title="具体实验过程"></a>具体实验过程</h2><h3 id="概括与对比"><a href="#概括与对比" class="headerlink" title="概括与对比"></a>概括与对比</h3><p>论文：</p>
+<ul>
+<li><font style="color:rgb(15, 17, 21);">对114种成分进行PLS-DA分析，筛选出</font><strong><font style="color:rgb(15, 17, 21);">变量重要性投影（VIP）&gt; 1</font></strong><font style="color:rgb(15, 17, 21);">的化合物。</font></li>
+</ul>
+<p><font style="color:rgb(15, 17, 21);">通过</font><strong><font style="color:rgb(15, 17, 21);">单因素方差分析（ANOVA）</font></strong><font style="color:rgb(15, 17, 21);">，筛选出</font><strong><font style="color:rgb(15, 17, 21);">组间差异显著（p &lt; 0.05）</font></strong><font style="color:rgb(15, 17, 21);"> 的化合物。</font></p>
+<ul>
+<li><font style="color:rgb(15, 17, 21);">使用上述筛选出的</font><strong><font style="color:rgb(15, 17, 21);">27种关键风味物质</font></strong><font style="color:rgb(15, 17, 21);">的数据，进行</font><strong><font style="color:rgb(15, 17, 21);">主成分分析（PCA）</font></strong><font style="color:rgb(15, 17, 21);">，提取前两个主成分（PC1和PC2，累计贡献率90%）做</font><strong><font style="color:rgb(15, 17, 21);">SVM</font></strong><font style="color:rgb(15, 17, 21);">。</font></li>
+</ul>
+<p>我们：</p>
+<ul>
+<li><font style="color:rgb(15, 17, 21);">首先进行</font><strong><font style="color:rgb(15, 17, 21);">单变量统计分析</font></strong><font style="color:rgb(15, 17, 21);">，使用 Kruskal-Wallis 检验（p &lt; 0.05）并结合 </font><strong><font style="color:rgb(15, 17, 21);">FDR 校正</font></strong><font style="color:rgb(15, 17, 21);"> 以控制假阳性；然后引入</font><strong><font style="color:rgb(15, 17, 21);">随机森林算法</font></strong><font style="color:rgb(15, 17, 21);">，通过上一步提供的特征重要性进行二次筛选。</font></li>
+<li><font style="color:rgb(15, 17, 21);">将随机森林筛选出的 </font><strong><font style="color:rgb(15, 17, 21);">Top 15 关键特征</font></strong><font style="color:rgb(15, 17, 21);">作为核心数据集，进行两方面的印证分析：</font><ol>
+<li><font style="color:rgb(15, 17, 21);">直接在此</font><font style="color:rgb(15, 17, 21);"> </font><strong><font style="color:rgb(15, 17, 21);">Top 15 特征</font></strong><font style="color:rgb(15, 17, 21);">上构建随机森林模型，并通过</font><strong><font style="color:rgb(15, 17, 21);">混淆矩阵</font></strong><font style="color:rgb(15, 17, 21);">评估其分类性能。</font></li>
+<li><font style="color:rgb(15, 17, 21);">同时，将该特征集进行</font><strong><font style="color:rgb(15, 17, 21);">PCA降维</font></strong><font style="color:rgb(15, 17, 21);">，提取前两个主成分（PC1、PC2），并在二维空间中进行</font><strong><font style="color:rgb(15, 17, 21);">决策边界划分</font></strong><font style="color:rgb(15, 17, 21);">，展示分类效果。</font></li>
+</ol>
+</li>
+</ul>
+<h3 id="一、数据预处理"><a href="#一、数据预处理" class="headerlink" title="一、数据预处理"></a>一、数据预处理</h3><h4 id="（一）数据规范化"><a href="#（一）数据规范化" class="headerlink" title="（一）数据规范化"></a>（一）数据规范化</h4><ol>
+<li>先将三张表格的数据进行格式上的标准化和统一</li>
+</ol>
+<p>（1）GC.xlsx→GC_for_ML.xlsx【100+】</p>
+<p><a target="_blank" rel="noopener" href="https://www.yuque.com/attachments/yuque/0/2025/xlsx/50965833/1763959655950-f1dead41-2011-4684-a38e-d531e2ae8296.xlsx">GC_for_ML.xlsx</a></p>
+<p>（2）LC.xlsx→LC_for_ML.xlsx【2000+】</p>
+<p><a target="_blank" rel="noopener" href="https://www.yuque.com/attachments/yuque/0/2025/xlsx/50965833/1763959672692-fcadae1d-7596-410d-97f5-4b921a5ddfb7.xlsx">LC_for_ML.xlsx</a></p>
+<p>（3）MI.xlsx→MI_for_ML.xlsx（微生物）【10+】</p>
+<p><a target="_blank" rel="noopener" href="https://www.yuque.com/attachments/yuque/0/2025/xlsx/50965833/1763959691960-2cdf2976-c4c1-4943-87ad-61a7e999fb85.xlsx">MI_for_ML.xlsx</a></p>
+<p>2.选择需要降维的LC_for_ML.xlsx【2000+】，进行降维</p>
+<p><a target="_blank" rel="noopener" href="https://www.yuque.com/attachments/yuque/0/2025/xlsx/50965833/1763959672692-fcadae1d-7596-410d-97f5-4b921a5ddfb7.xlsx">LC_for_ML.xlsx</a></p>
+<h4 id="（二）数据标准化"><a href="#（二）数据标准化" class="headerlink" title="（二）数据标准化"></a>（二）数据标准化</h4><p>:::success<br>原始数据: 25个样本，2298个特征</p>
+<p>:::</p>
+<p>**<u>目的：</u>**去掉没信息的特征（全是 0、几乎很少出现的那种），避免干扰模型；把剩下的特征拉到同一个“尺度”和“分布”上，让算法不会因为不同单位、不同数量级而偏心。</p>
+<ol>
+<li>检查缺失值</li>
+</ol>
+<p>（1）删除全0特征和常数特征：模型学不到任何差异</p>
+<p>:::success<br>   删除全0特征: 0个</p>
+<p>   删除常数特征: 0个</p>
+<p>   剩余特征: 2298个</p>
+<p>:::</p>
+<p>（2）删除出现比例&lt;20%的特征（即”存在率“）：防止模型过拟合</p>
+<p>:::success<br>   删除存在率&lt;20%的特征: 3个</p>
+<p>   剩余特征: 2295个</p>
+<p>:::</p>
+<p>（3）将剩余的缺失值用最小非零值×0.5填充（代谢组学常见方法）”0“不完全是0，只是很小，在统计里叫“左删失数据”，常见做法是→用“最小非零值的一半”去填这些 0。这样不会把 0 当成一个特别极端的大差别，又保持“高值 &gt; 低值”的规律不变。</p>
+<ol start="2">
+<li>进行log转换和Z-score标准化（mean&#x3D;0,std&#x3D;1）：因为三组数据之间特征的差异很大，需要确保所有变量处在可比尺度，是数量级差异不影响后续模型。</li>
+</ol>
+<p>:::success<br>&#x3D;&#x3D;&#x3D; 预处理完成 &#x3D;&#x3D;&#x3D;</p>
+<p>最终数据: 25个样本, 2295个特征</p>
+<p>:::</p>
+<h3 id="二、特征筛选"><a href="#二、特征筛选" class="headerlink" title="二、特征筛选"></a>二、特征筛选</h3><ol>
+<li>单变量显著性筛选</li>
+</ol>
+<ul>
+<li>**<u>目的：</u>**判断这一变量在不同年份之间有没有统计意义上的差异。如果有说明可能是影响发酵过程的重要标志物；如果没有就是噪声、背景数据、无关信息。</li>
+<li><strong><u>检验策略（怎么判断）：</u></strong><ul>
+<li><strong><font style="color:rgb(15, 17, 21);">方法选择</font></strong><font style="color:rgb(15, 17, 21);">：由于代谢组学数据通常不满足正态分布假设，统一采用Kruskal-Wallis非参数检验</font></li>
+</ul>
+</li>
+</ul>
+<p><font style="color:rgb(15, 17, 21);">计算特征随年份变化的显著性概率p值，p值越小说明与年份的相关性越强</font></p>
+<pre><code>- **具体流程**：
+- 1. &lt;font style=&quot;color:rgb(15, 17, 21);&quot;&gt;将每个特征按发酵年份（N0、N5、N15、N25、N50）分组&lt;/font&gt;
+- &lt;font style=&quot;color:rgb(15, 17, 21);&quot;&gt;2. Kruskal-Wallis检验：对每个特征执行检验，得到p值&lt;/font&gt;
+- &lt;font style=&quot;color:rgb(15, 17, 21);&quot;&gt;3. 使用FDR（False Discovery Rate）方法校正p值，控制假阳性率&lt;/font&gt;
+- &lt;font style=&quot;color:rgb(15, 17, 21);&quot;&gt;4.保留q值 &lt; 0.05的显著特征&lt;/font&gt;
+</code></pre>
+<p>:::success<br>筛选结果摘要:</p>
+<p><font style="color:rgb(15, 17, 21);">处理了2295个特征</font></p>
+<p>显著特征数 (q &lt; 0.05): 1155</p>
+<p>备选特征数 (q &lt; 0.1): 1417</p>
+<p>主要筛选比例: 50.3%</p>
+<p>:::</p>
+<p>:::color1<br>前10个最显著的特征: </p>
+<p> 1-Methylpyrrolidine: p &#x3D; 3.56e-04, q &#x3D; 7.62e-03</p>
+<p>  3-Pyridinemethanol: p &#x3D; 4.85e-04, q &#x3D; 7.62e-03</p>
+<p>  3-Hydroxy-2-methylpyridine: p &#x3D; 4.85e-04, q &#x3D; 7.62e-03</p>
+<p>  Fluticasone propionate: p &#x3D; 3.37e-04, q &#x3D; 7.62e-03</p>
+<p>  3-Isoxazolecarboxamide, N,N-dicyclohexyl-5-cyclopropyl-: p &#x3D; 4.57e-04, q &#x3D; 7.62e-03</p>
+<p>  Moxisylyte (hydrochloride): p &#x3D; 3.66e-04, q &#x3D; 7.62e-03 </p>
+<p>  N-Acetyl-D-galactosaminitol: p &#x3D; 4.48e-04, q &#x3D; 7.62e-03 </p>
+<p>  Methyl_6-O-galloyl-beta-D-glucopyranoside: p &#x3D; 1.22e-04, q &#x3D; 7.62e-03 </p>
+<p>  Santinamide cation: p &#x3D; 1.72e-04, q &#x3D; 7.62e-03</p>
+<p>  Trp-Val: p &#x3D; 1.90e-04, q &#x3D; 7.62e-03</p>
+<p>:::</p>
+<ol start="2">
+<li>随机森林特征筛选</li>
+</ol>
+<p>:::success<br>样本数：25</p>
+<p>输入特征数：1155</p>
+<p>树的数量：500</p>
+<p>输出：top15特征</p>
+<p>:::</p>
+<p><strong><font style="color:rgb(15, 17, 21);">目的</font></strong><font style="color:rgb(15, 17, 21);">：在单变量筛选的基础上，进一步基于多变量交互作用评估特征重要性，选择最具判别能力的特征子集。</font></p>
+<p><strong><font style="color:rgb(15, 17, 21);">筛选流程</font></strong><font style="color:rgb(15, 17, 21);">：</font></p>
+<ol>
+<li><strong><font style="color:rgb(15, 17, 21);">模型训练</font></strong><font style="color:rgb(15, 17, 21);">：使用随机森林对单变量筛选后的特征进行训练</font></li>
+<li><strong><font style="color:rgb(15, 17, 21);">重要性计算</font></strong><font style="color:rgb(15, 17, 21);">：基于基尼不纯度减少计算每个特征的重要性得分</font></li>
+<li><strong><font style="color:rgb(15, 17, 21);">特征排序</font></strong><font style="color:rgb(15, 17, 21);">：按重要性得分从高到低排序</font></li>
+<li><strong><font style="color:rgb(15, 17, 21);">Top15选择</font></strong><font style="color:rgb(15, 17, 21);">：选择重要性排名前15的特征用于后续分析</font></li>
+</ol>
+<p><a target="_blank" rel="noopener" href="https://www.yuque.com/attachments/yuque/0/2025/xlsx/48963143/1764402200142-01a4abb1-14f2-4b61-bfb2-06126fa3a869.xlsx">RF_feature_importance_full.xlsx</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.yuque.com/attachments/yuque/0/2025/xlsx/48963143/1764402202591-9e02b536-58ec-4dfc-a006-29826ab40f59.xlsx">RF_top15_features.xlsx</a></p>
+<h3 id="三、可视化分析"><a href="#三、可视化分析" class="headerlink" title="三、可视化分析"></a>三、可视化分析</h3><p>:::success<br><strong><font style="color:rgb(15, 17, 21);">输入：</font></strong><font style="color:rgb(15, 17, 21);"> </font></p>
+<ul>
+<li><font style="color:rgb(15, 17, 21);">15个特征数据</font></li>
+</ul>
+<p>:::</p>
+<h4 id="图1：PCA散点图（带分组椭圆圈）"><a href="#图1：PCA散点图（带分组椭圆圈）" class="headerlink" title="图1：PCA散点图（带分组椭圆圈）"></a><font style="color:rgb(15, 17, 21);">图1：PCA散点图（带分组椭圆圈）</font></h4><p>:::success<br><strong><font style="color:rgb(15, 17, 21);">输出：</font></strong></p>
+<ul>
+<li><font style="color:rgb(15, 17, 21);">PC1方差解释率：57.795%</font></li>
+<li><font style="color:rgb(15, 17, 21);">PC2方差解释率：22.369%</font></li>
+<li><font style="color:rgb(15, 17, 21);">累计方差解释率：80.163%</font></li>
+</ul>
+<p><font style="color:rgb(15, 17, 21);">【前两个主成分能够解释80%以上的数据变异】</font></p>
+<p>:::</p>
+<!-- 这是一张图片，ocr 内容为： -->
+<p><img src="/images/ml-paojiaoshui/image_015_1764402505687-6d7a2763-24a8-488b-9814-97c12a11c803.png"></p>
+<h4 id="图2：PCA方差解释率折线图"><a href="#图2：PCA方差解释率折线图" class="headerlink" title="图2：PCA方差解释率折线图"></a><font style="color:rgb(15, 17, 21);">图2：PCA方差解释率折线图</font></h4><p>:::success<br><strong><font style="color:rgb(15, 17, 21);">输出：</font></strong></p>
+<p><font style="color:rgb(15, 17, 21);">● 左图：各主成分独立方差贡献</font></p>
+<p><font style="color:rgb(15, 17, 21);">● 右图：累计方差解释率</font></p>
+<p>:::</p>
+<!-- 这是一张图片，ocr 内容为： -->
+<p><img src="/images/ml-paojiaoshui/image_016_1764402620634-61c3f36b-b7fa-44ce-8dea-4d672eae28d5.png"></p>
+<h4 id="图3：随机森林分类的混淆矩阵"><a href="#图3：随机森林分类的混淆矩阵" class="headerlink" title="图3：随机森林分类的混淆矩阵"></a><font style="color:rgb(15, 17, 21);">图3：随机森林分类的混淆矩阵</font></h4><p>:::success<br><strong>输入</strong>：15个特征，5个分组<br><strong>A.验证策略</strong></p>
+<ul>
+<li>方法：分层5折交叉验证</li>
+<li>每折测试集：每个时间点类别中随机选取1个样本（共5个）</li>
+<li>每折训练集：剩余20个样本（每个类别4个）</li>
+<li>总轮数：5轮（确保每类中的每个样本恰好作为测试集1次）</li>
+</ul>
+<p><strong>输出</strong>：</p>
+<p><strong>B.验证结果</strong></p>
+<ul>
+<li><p>交叉验证准确率：100% (±0.0%)<br>Cross-validation accuracy scores:<br>Fold 1: 1.0000<br>Fold 2: 1.0000<br>Fold 3: 1.0000<br>Fold 4: 1.0000<br>Fold 5: 1.0000</p>
+<pre><code> Mean CV accuracy: 1.0000 (±0.0000)
+</code></pre>
+</li>
+<li><p>置信区间：因零方差无法计算，反映完美分离标准差为0，置信区间无法计算</p>
+</li>
+<li><p>Cohen’s Kappa系数：1.0000（几乎完全一致）</p>
+</li>
+</ul>
+<p><strong><font style="color:rgb(15, 17, 21);"> C. 验证可视化</font></strong></p>
+<p><font style="color:rgb(15, 17, 21);">混淆矩阵热图（百分比形式）</font></p>
+<p>:::</p>
+<!-- 这是一张图片，ocr 内容为： -->
+<p><img src="/images/ml-paojiaoshui/image_017_1764402692218-cc0cc2b8-73a9-4b11-ba6e-748361eaca53.png"></p>
+<h4 id="图4：基于PCA的决策边界可视化"><a href="#图4：基于PCA的决策边界可视化" class="headerlink" title="图4：基于PCA的决策边界可视化"></a><font style="color:rgb(15, 17, 21);">图4：基于PCA的决策边界可视化</font></h4><p>:::success<br><strong><font style="color:rgb(15, 17, 21);">输出：</font></strong></p>
+<ul>
+<li>PCA-based RF CV accuracy: 1.0000 (±0.0000)</li>
+<li>PCA数据范围：PC1 [-6.21, 2.92], PC2 [-2.01, 3.67]</li>
+</ul>
+<p>即使仅使用前两个PCA主成分，模型仍能达到100%准确率，说明数据在降维后仍具有极强的判别能力</p>
+<p>:::</p>
+<!-- 这是一张图片，ocr 内容为： -->
+<p><img src="/images/ml-paojiaoshui/image_018_1764402978112-c917ca06-d440-4654-8c85-01bd4b4d95ed.png"></p>
+<h2 id="GC"><a href="#GC" class="headerlink" title="GC"></a>GC</h2><h3 id="一、数据预处理-1"><a href="#一、数据预处理-1" class="headerlink" title="一、数据预处理"></a>一、数据预处理</h3><blockquote>
+<p>特征过滤（删除全0列、常数列、存在率低于20%）、缺失值修补、数值转换、标准化</p>
+</blockquote>
+<ol>
+<li>代码</li>
+</ol>
+<p><a target="_blank" rel="noopener" href="https://www.yuque.com/attachments/yuque/0/2025/py/50965833/1764923906427-31b0dbb8-4ba5-42af-8370-ae200aca546f.py">GC数据预处理.py</a></p>
+<ol start="2">
+<li>结果</li>
+</ol>
+<p><a target="_blank" rel="noopener" href="https://www.yuque.com/attachments/yuque/0/2025/xlsx/50965833/1764924439017-a201fccc-eea6-49c6-9471-0da671e01670.xlsx">GC_processed.xlsx</a></p>
+<p>:::info</p>
+<ol>
+<li><p>删除全0特征</p>
+<p>删除全0特征: 0个</p>
+</li>
+<li><p>删除常数特征</p>
+<p>删除常数特征: 0个</p>
+<p>剩余特征: 127个</p>
+</li>
+<li><p>存在率过滤 (&lt;20%)</p>
+<p>删除存在率&lt;20%的特征: 0个</p>
+<p>剩余特征: 127个</p>
+</li>
+<li><p>缺失值填充 (最小非零值×0.5)</p>
+<p>原始含0的特征数: 68，总0值数量: 795</p>
+<p>缺失值填充完成，替换了 68 个特征，共替换 795 个零值；剩余0值: 0</p>
+</li>
+<li><p>Log转换和Z-score标准化</p>
+</li>
+</ol>
+<p><font style="color:#DF2A3F;">数据预处理完后，最终数据: 25个样本, 127个特征</font></p>
+<p>:::</p>
+<h3 id="二、特征筛选——Kruskal-Wallis-FDR"><a href="#二、特征筛选——Kruskal-Wallis-FDR" class="headerlink" title="二、特征筛选——Kruskal-Wallis+FDR"></a>二、特征筛选——Kruskal-Wallis+FDR</h3><ol>
+<li>代码</li>
+</ol>
+<p><a target="_blank" rel="noopener" href="https://www.yuque.com/attachments/yuque/0/2025/py/50965833/1764942857585-9217d99b-2b18-4e1d-a474-0ed270b7b128.py">Kruskal_FDR.py</a></p>
+<ol start="2">
+<li>结果</li>
+</ol>
+<p><a target="_blank" rel="noopener" href="https://www.yuque.com/attachments/yuque/0/2025/xlsx/50965833/1764942553250-5477db61-4ded-4a66-bbd6-98bac62deb64.xlsx">特征筛选_Kruskal_FDR_全部特征统计.xlsx</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.yuque.com/attachments/yuque/0/2025/xlsx/50965833/1764942562714-24ddc7e6-8715-4b01-9c87-685f1c7897e0.xlsx">特征筛选_Kruskal_FDR_显著特征列表（q_0.05）.xlsx</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.yuque.com/attachments/yuque/0/2025/xlsx/50965833/1764942757460-c8d2d413-9cc0-4056-8afb-62a9d8ec1606.xlsx">GC_Kruskal+FDR_Selected.xlsx</a></p>
+<p>:::info<br>二、特征筛选</p>
+<p>（一）单变量特征筛选：使用Kruskal-Wallis检验 + FDR校正</p>
+<p>Kruskal-Wallis+FDR纠正筛选结果摘要:</p>
+<p>总特征数: 127</p>
+<p>显著特征数 (q &lt; 0.05): 87</p>
+<p>备选特征数 (q &lt; 0.1): 94</p>
+<p>主要筛选比例（我们取q &lt; 0.05）: 68.5%</p>
+<p>已成功导出以下文件：</p>
+<ol>
+<li>特征筛选_Kruskal_FDR_全部特征统计.xlsx</li>
+<li>特征筛选_Kruskal_FDR_显著特征列表（q_0.05）.xlsx</li>
+<li>筛选后数据矩阵：GC_Kruskal+FDR_Selected.xlsx（矩阵维度：25 个样本 × 87 个特征）<font style="color:#DF2A3F;">（后面实验用这个）</font></li>
+</ol>
+<p>:::</p>
+<h3 id="三、特征筛选——随机森林特征筛选"><a href="#三、特征筛选——随机森林特征筛选" class="headerlink" title="三、特征筛选——随机森林特征筛选"></a>三、特征筛选——随机森林特征筛选</h3><ol>
+<li>代码</li>
+</ol>
+<p><a target="_blank" rel="noopener" href="https://www.yuque.com/attachments/yuque/0/2025/py/50965833/1764996511092-a35ca1be-a6cf-44bd-84df-15cd61cd0bea.py">3随机森林特征筛选.py</a></p>
+<ol start="2">
+<li>结果</li>
+</ol>
+<p><a target="_blank" rel="noopener" href="https://www.yuque.com/attachments/yuque/0/2025/xlsx/50965833/1764943116043-2b935320-1d85-4287-bba0-45bda5333b32.xlsx">(1)随机森林特征筛选全排名.xlsx</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.yuque.com/attachments/yuque/0/2025/xlsx/50965833/1764997514940-cbce84c2-e1b3-4e19-9bba-9294ca8c87b6.xlsx">(2)用于做PCA的前10个特征.xlsx</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.yuque.com/attachments/yuque/0/2025/xlsx/50965833/1764997521699-59da6917-d532-4c3f-aa4b-001cb59b3db6.xlsx">(3)随机森林Top10特征矩阵.xlsx</a></p>
+<p>:::info<br>（二）随机森林特征筛选</p>
+<p>样本数：25</p>
+<p>输入特征数：87</p>
+<p>Top10 用于做PCA的特征及排名:</p>
+<ol>
+<li><p>5-Methylhexyl 2-methylbutanoate: 0.0239</p>
+</li>
+<li><p>4-Ethyl-2-methoxyphenol: 0.0237</p>
+</li>
+<li><p>Dihydro-beta-ionone: 0.0205</p>
+</li>
+<li><p>elaidic acid ethyl ester: 0.0204</p>
+</li>
+<li><p>Methyl acetate: 0.0204</p>
+</li>
+<li><p>Ethyl linolenate: 0.0203</p>
+</li>
+<li><p>(+)-Limonene: 0.0193</p>
+</li>
+<li><p>β-Ionone: 0.0191</p>
+</li>
+<li><p>isobutanol: 0.0185</p>
+</li>
+<li><p>2-epi-trans-β-caryophyllene: 0.0182</p>
+</li>
+</ol>
+<p>树：500</p>
+<p>top_n &#x3D; 10</p>
+<p>:::</p>
+<h3 id="四、模型与可视化"><a href="#四、模型与可视化" class="headerlink" title="四、模型与可视化"></a>四、模型与可视化</h3><ol>
+<li>代码：</li>
+</ol>
+<p><a target="_blank" rel="noopener" href="https://www.yuque.com/attachments/yuque/0/2025/py/50965833/1764993416042-cbf4c15b-d610-4f80-9a73-150dad384abc.py">模型.py</a></p>
+<ol start="2">
+<li>结果</li>
+</ol>
+<p>:::success<br><strong><font style="color:rgb(15, 17, 21);">输入：</font></strong><font style="color:rgb(15, 17, 21);"> </font></p>
+<ul>
+<li><font style="color:rgb(15, 17, 21);">15个特征数据</font></li>
+</ul>
+<p>:::</p>
+<h4 id="图1：PCA散点图（带分组椭圆圈）-1"><a href="#图1：PCA散点图（带分组椭圆圈）-1" class="headerlink" title="图1：PCA散点图（带分组椭圆圈）"></a><font style="color:rgb(15, 17, 21);">图1：PCA散点图（带分组椭圆圈）</font></h4><p>:::success<br><strong><font style="color:rgb(15, 17, 21);">输出：</font></strong></p>
+<ul>
+<li><font style="color:rgb(15, 17, 21);">PC1方差解释率：46.969%</font></li>
+<li><font style="color:rgb(15, 17, 21);">PC2方差解释率：25.806%</font></li>
+<li><font style="color:rgb(15, 17, 21);">累计方差解释率：72.775%</font></li>
+</ul>
+<p><font style="color:rgb(15, 17, 21);">【前两个主成分能够解释70%以上的数据变异】</font></p>
+<p>:::</p>
+<!-- 这是一张图片，ocr 内容为：PCA SCORE PLOT WITH GROUP ELLIPSES 0-YEAR REGION 5-YEAR REGION 15-YEAR REGION 25-YEAR REGION 50-YEAR REGION 0-YEAR 5-YEAR 15-YEAR 2 25-YEAR 50-YEAR PC2 (25.81% VARIANCE) 3 2 -1 PC1(46.97% VARIANCE) -->
+<p><img src="/images/ml-paojiaoshui/image_019_1764997326178-22b61bbe-01e2-4a6b-bb7d-8c55f8a525e4.png"></p>
+<h4 id="图2：PCA方差解释率折线图-1"><a href="#图2：PCA方差解释率折线图-1" class="headerlink" title="图2：PCA方差解释率折线图"></a><font style="color:rgb(15, 17, 21);">图2：PCA方差解释率折线图</font></h4><p>:::success<br><strong><font style="color:rgb(15, 17, 21);">输出：</font></strong></p>
+<p><font style="color:rgb(15, 17, 21);">● 左图：各主成分独立方差贡献</font></p>
+<p><font style="color:rgb(15, 17, 21);">● 右图：累计方差解释率</font></p>
+<p>:::</p>
+<!-- 这是一张图片，ocr 内容为：VARIANCE EXPLAINED BY EACH PC CUMULATIVE VARIANCE EXPLAINED 1.0 80% THRESHOLD 0.4 CUMULATIVE EXPLAINED VARIANCE 60 EXPLAINED VARIANCE RATIO 33 0.8 0.7 0.6 0.1 0.5 0.0 5 2 8 9 5 10 4 6 10 4 PRINCIPAL COMPONENT PRINCIPAL O COMPONENT -->
+<p><img src="/images/ml-paojiaoshui/image_020_1764997390979-812e2b13-0915-4908-ad5f-f273138a1b00.png"></p>
+<h4 id="图3：随机森林分类的混淆矩阵-1"><a href="#图3：随机森林分类的混淆矩阵-1" class="headerlink" title="图3：随机森林分类的混淆矩阵"></a><font style="color:rgb(15, 17, 21);">图3：随机森林分类的混淆矩阵</font></h4><p>:::success<br><strong>输入</strong>：15个特征，5个分组<br><strong>A.验证策略</strong></p>
+<ul>
+<li>方法：分层5折交叉验证</li>
+<li>每折测试集：每个时间点类别中随机选取1个样本（共5个）</li>
+<li>每折训练集：剩余20个样本（每个类别4个）</li>
+<li>总轮数：5轮（确保每类中的每个样本恰好作为测试集1次）</li>
+</ul>
+<p><strong>输出</strong>：</p>
+<p><strong>B.验证结果</strong></p>
+<ul>
+<li><p>交叉验证准确率：100% (±0.0%)<br>Cross-validation accuracy scores:<br>Fold 1: 1.0000<br>Fold 2: 1.0000<br>Fold 3: 1.0000<br>Fold 4: 1.0000<br>Fold 5: 1.0000</p>
+<pre><code> Mean CV accuracy: 1.0000 (±0.0000)
+</code></pre>
+</li>
+<li><p>置信区间：因零方差无法计算，反映完美分离标准差为0，置信区间无法计算</p>
+</li>
+<li><p>Cohen’s Kappa系数：1.0000（几乎完全一致）</p>
+</li>
+</ul>
+<p><strong><font style="color:rgb(15, 17, 21);"> C. 验证可视化</font></strong></p>
+<p><font style="color:rgb(15, 17, 21);">混淆矩阵热图（百分比形式）</font></p>
+<p>:::</p>
+<!-- 这是一张图片，ocr 内容为：CONFUSION MATRIX 100 0-YEAR 0.0 0.0 0.0 0.0 100.0 80 5-YEAR 0.0 0.0 0.0 100.0 0.0 60 TRUE LABEL PERCENTAGE 15-YEAR 0.0 0.0 0.0 100.0 0.0 40 25-YEAR 0.0 0.0 0.0 100.0 0.0 20 50-YEAR 100.0 0.0 0.0 0.0 0.0 5-YEAR 25-YEAR 0-YEAR 50-YEAR 15-YEAR PREDICTED LABEL -->
+<p><img src="/images/ml-paojiaoshui/image_021_1764997405617-231b3671-7541-42e7-ba53-3085da1c790c.png"></p>
+<h4 id="图4：基于PCA的决策边界可视化-1"><a href="#图4：基于PCA的决策边界可视化-1" class="headerlink" title="图4：基于PCA的决策边界可视化"></a><font style="color:rgb(15, 17, 21);">图4：基于PCA的决策边界可视化</font></h4><p>:::success<br><strong><font style="color:rgb(15, 17, 21);">输出：</font></strong></p>
+<ul>
+<li>PCA-based RF CV accuracy: 1.0000 (±0.0000)</li>
+<li>PCA数据范围：PC1 [-3.13, 3.21], PC2 [-1.85, 3.09]</li>
+</ul>
+<p>即使仅使用前两个PCA主成分，模型仍能达到100%准确率，说明数据在降维后仍具有极强的判别能力</p>
+<p>:::</p>
+<!-- 这是一张图片，ocr 内容为：RANDOM FOREST DECISION BOUNDARIES (PCA-BASED, CORRECT CV) 0-YEAR 5-YEAR 15-YEAR 3 25-YEAR 50-YEAR PC2(25.81% VARIANCE) 3 2 PC1(46.97% VARIANCE) -->
+<p><img src="/images/ml-paojiaoshui/image_022_1764997418607-6a582f4b-d7b1-4e82-9a7e-15bcb9130a09.png"></p>
+<h2 id="改版前："><a href="#改版前：" class="headerlink" title="改版前："></a>改版前：</h2><p>——————————————————-分割线—————————————————–</p>
+<p>（1）all_features_sorted.xlsx（含group）</p>
+<p><a target="_blank" rel="noopener" href="https://www.yuque.com/attachments/yuque/0/2025/xlsx/50965833/1763959706588-99291278-bdc3-4287-867b-03407190b10a.xlsx">all_features_sorted.xlsx</a></p>
+<p>（2）all_features_X_only.xlsx（不含group）</p>
+<p><a target="_blank" rel="noopener" href="https://www.yuque.com/attachments/yuque/0/2025/xlsx/50965833/1763959737656-d82b76cc-7b1f-4a38-b891-95ddcd821de9.xlsx">all_features_X_only.xlsx</a></p>
+<p>:::success<br>总共25个样本，2435个特征</p>
+<p>:::</p>
+<h4 id="（二）数据标准化-1"><a href="#（二）数据标准化-1" class="headerlink" title="（二）数据标准化"></a>（二）数据标准化</h4><p>**<u>目的：</u>**去掉没信息的特征（全是 0、几乎很少出现的那种），避免干扰模型；把剩下的特征拉到同一个“尺度”和“分布”上，让算法不会因为不同单位、不同数量级而偏心。</p>
+<p>论文：PLS-DA + VIP 思路，结合ANOVA判断统计显著性</p>
+<p>我们：合并数据+单变量统计+随机森重要性筛特征，结合ANOVA&#x2F;Kruskal-Wallis(p&lt;0.05)</p>
+<ol>
+<li>检查缺失值</li>
+</ol>
+<p>（1）删除全0特征和常数特征：模型学不到任何差异</p>
+<p>（2）删除出现比例&lt;20%的特征（即”存在率“）：防止模型过拟合</p>
+<p>（3）将剩余的缺失值用最小非零值×0.5填充（代谢组学常见方法）：”0“不完全是0，只是很小，在统计里叫“左删失数据”，常见做法是→用“最小非零值的一半”去填这些 0。这样不会把 0 当成一个特别极端的大差别，又保持“高值 &gt; 低值”的规律不变。</p>
+<p><a target="_blank" rel="noopener" href="https://www.yuque.com/attachments/yuque/0/2025/xlsx/50965833/1763977869903-2c644da2-b965-4618-b10e-58793414a9f0.xlsx">dataset_missing_processed.xlsx</a></p>
+<p>:::success<br>原始特征数：2435</p>
+<p>删除全零或常数特征：0个</p>
+<p>删除存在率&lt;20%特征：3个</p>
+<p>经过筛选后剩余特征数量：2432</p>
+<p>:::</p>
+<ol start="2">
+<li>进行log转换和Z-score标准化（mean&#x3D;0,std&#x3D;1）：因为三组数据之间特征的差异很大，需要确保所有变量处在可比尺度，是数量级差异不影响后续模型。</li>
+</ol>
+<p><a target="_blank" rel="noopener" href="https://www.yuque.com/attachments/yuque/0/2025/xlsx/50965833/1763979008261-814c6df0-27e3-4396-b230-0f472f7d3d28.xlsx">dataset_final_ready.xlsx</a></p>
+<p>:::success<br>这份数据作为后面所有单变量检验+随机森林建模的数据来源</p>
+<p>特征数量：2432</p>
+<p>:::</p>
+<h3 id="特征筛选"><a href="#特征筛选" class="headerlink" title="特征筛选"></a>特征筛选</h3><ol>
+<li>单变量显著性筛选</li>
+</ol>
+<ul>
+<li>**<u>目的：</u>**判断这一变量在不同年份之间有没有统计意义上的差异。如果有说明可能是影响发酵过程的重要标志物；如果没有就是噪声、背景数据、无关信息。</li>
+<li><strong><u>检验策略（怎么判断）：</u></strong><ul>
+<li>若特征数据近似正太分布且方差一致→使用ANOVA（方差分析）</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>F &#x3D; 组间差异 ÷ 组内差异</p>
+</blockquote>
+<pre><code>- 否则→使用Kruskal-Wallis（非参数检验）
+</code></pre>
+<p>上述是统计方法的选择，来判断被统计变量是不是随年份变化显著，然后计算这种变化是随机性的概率p，如果p越小，就认为这个变量与年份有关。</p>
+<ul>
+<li><strong><u>单变量显著性筛选后的特征：</u></strong></li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://www.yuque.com/attachments/yuque/0/2025/xlsx/50965833/1764054210960-3b97b4ef-d192-4106-8048-ecc115e3fee6.xlsx">univariate_results.xlsx</a></p>
+<ul>
+<li><strong><u>单变量显著性筛选后的数据：</u></strong></li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://www.yuque.com/attachments/yuque/0/2025/xlsx/50965833/1764061594760-fe7dd4b1-3292-47e4-898b-f03b990ceaba.xlsx">dataset_univar_filtered.xlsx</a></p>
+<p>:::success<br>筛选结果：</p>
+<p>特征总数：2432</p>
+<p>显著特征数（p&lt;0.05）：1480</p>
+<p>筛掉的特征数：952</p>
+<p>保留比例：60.86%</p>
+<p>:::</p>
+<ol start="2">
+<li>随机森林重要性筛选</li>
+</ol>
+<p>500棵树，随机数42</p>
+<p>筛选后的特征排序</p>
+<p><a target="_blank" rel="noopener" href="https://www.yuque.com/attachments/yuque/0/2025/xlsx/50965833/1764061766046-3bf3cb8d-e231-4e8c-b2c8-cfc67ede581c.xlsx">RF_feature_importance_full.xlsx</a></p>
+<p>排名前30的特征</p>
+<!-- 这是一张图片，ocr 内容为： -->
+<p><img src="/images/ml-paojiaoshui/image_023_1764061728548-7042b280-1347-458c-a476-31bec67abe94.png"><!-- 这是一张图片，ocr 内容为： --><br><img src="/images/ml-paojiaoshui/image_024_1764062151043-ec16e12d-a612-4a0e-ab9f-d69b1ff7341b.png"></p>
+<p><a target="_blank" rel="noopener" href="https://www.yuque.com/attachments/yuque/0/2025/xlsx/50965833/1764061781351-cfe0467b-7afb-4cfb-bd6b-bbe91b87903f.xlsx">RF_top30_features.xlsx</a></p>
+<p>保留前30特征的数据，用作PCA</p>
+<p><a target="_blank" rel="noopener" href="https://www.yuque.com/attachments/yuque/0/2025/xlsx/50965833/1764061864809-143497d6-0ead-4aad-855c-a67ad8cacd51.xlsx">dataset_RF_Selected_Top30.xlsx</a></p>
+<h3 id=""><a href="#" class="headerlink" title=""></a></h3><h3 id="-1"><a href="#-1" class="headerlink" title=""></a></h3>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
+  </nav>
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2023 – 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">未经授权不得转载</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

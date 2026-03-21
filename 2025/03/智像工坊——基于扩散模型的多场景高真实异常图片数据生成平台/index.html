@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"gggjjjzzz123.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.27.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="这个项目在干什么？ 在复杂真实道路场景下，自动驾驶系统可以“看得懂”道路上的未知或异常目标（核心任务：道路异常目标识别），并且能轻量化部署到边缘设备上。 通过以下三方面实现这一目标  图像生成：用多模态条件扩散生成高真实度的异常样本，解决异常样本少的问题。 研究开放世界&#x2F;跨域的异常分割方法，能区分“已知类”与“未知异常”并在不同天气&#x2F;光照下稳健工作。 研究轻量化并保证异常细节">
+<meta property="og:type" content="article">
+<meta property="og:title" content="智像工坊——基于扩散模型的多场景高真实异常图片数据生成平台">
+<meta property="og:url" content="https://gggjjjzzz123.github.io/2025/03/%E6%99%BA%E5%83%8F%E5%B7%A5%E5%9D%8A%E2%80%94%E2%80%94%E5%9F%BA%E4%BA%8E%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B%E7%9A%84%E5%A4%9A%E5%9C%BA%E6%99%AF%E9%AB%98%E7%9C%9F%E5%AE%9E%E5%BC%82%E5%B8%B8%E5%9B%BE%E7%89%87%E6%95%B0%E6%8D%AE%E7%94%9F%E6%88%90%E5%B9%B3%E5%8F%B0/index.html">
+<meta property="og:site_name" content="GJZ&#39;s Blog">
+<meta property="og:description" content="这个项目在干什么？ 在复杂真实道路场景下，自动驾驶系统可以“看得懂”道路上的未知或异常目标（核心任务：道路异常目标识别），并且能轻量化部署到边缘设备上。 通过以下三方面实现这一目标  图像生成：用多模态条件扩散生成高真实度的异常样本，解决异常样本少的问题。 研究开放世界&#x2F;跨域的异常分割方法，能区分“已知类”与“未知异常”并在不同天气&#x2F;光照下稳健工作。 研究轻量化并保证异常细节">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/ml-anomaly-detection/image_001_1761640431126-e222b16c-500d-4acc-bacf-5c90d5e07208.jpeg">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/ml-anomaly-detection/image_001_1761561087762-d3e71c95-e452-4fc1-981e-3f32a8e69ee4.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/ml-anomaly-detection/image_002_1773839277838-e36a77b7-0bcb-4ef2-a977-586d82829ce4.jpeg">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/ml-anomaly-detection/image_002_1773839277838-e36a77b7-0bcb-4ef2-a977-586d82829ce4.jpeg">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/ml-anomaly-detection/image_002_1763298922947-49cc5f40-849a-4ba1-ac54-a0944bb4f9a5.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/ml-anomaly-detection/image_003_1763298271380-e7fe0475-3a8a-4adf-8cb3-c5248c142d6f.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/ml-anomaly-detection/image_004_1763368313279-705eaa69-e4ea-416e-ba5a-4954f85e8b24.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/ml-anomaly-detection/image_005_1763368405771-7802775d-7c12-4222-a062-f5f38b0f6efd.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/ml-anomaly-detection/image_004_1773800435316-719c1b3c-6e99-49eb-ac4a-805ce4173b08.jpeg">
+<meta property="article:published_time" content="2025-02-28T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-03-20T14:18:22.501Z">
+<meta property="article:author" content="GGGjjjzzz123">
+<meta property="article:tag" content="机器学习">
+<meta property="article:tag" content="扩散模型">
+<meta property="article:tag" content="异常检测">
+<meta property="article:tag" content="自动驾驶">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gggjjjzzz123.github.io/images/ml-anomaly-detection/image_001_1761640431126-e222b16c-500d-4acc-bacf-5c90d5e07208.jpeg">
+
+
+<link rel="canonical" href="https://gggjjjzzz123.github.io/2025/03/%E6%99%BA%E5%83%8F%E5%B7%A5%E5%9D%8A%E2%80%94%E2%80%94%E5%9F%BA%E4%BA%8E%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B%E7%9A%84%E5%A4%9A%E5%9C%BA%E6%99%AF%E9%AB%98%E7%9C%9F%E5%AE%9E%E5%BC%82%E5%B8%B8%E5%9B%BE%E7%89%87%E6%95%B0%E6%8D%AE%E7%94%9F%E6%88%90%E5%B9%B3%E5%8F%B0/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://gggjjjzzz123.github.io/2025/03/%E6%99%BA%E5%83%8F%E5%B7%A5%E5%9D%8A%E2%80%94%E2%80%94%E5%9F%BA%E4%BA%8E%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B%E7%9A%84%E5%A4%9A%E5%9C%BA%E6%99%AF%E9%AB%98%E7%9C%9F%E5%AE%9E%E5%BC%82%E5%B8%B8%E5%9B%BE%E7%89%87%E6%95%B0%E6%8D%AE%E7%94%9F%E6%88%90%E5%B9%B3%E5%8F%B0/","path":"2025/03/智像工坊——基于扩散模型的多场景高真实异常图片数据生成平台/","title":"智像工坊——基于扩散模型的多场景高真实异常图片数据生成平台"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>智像工坊——基于扩散模型的多场景高真实异常图片数据生成平台 | GJZ's Blog</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">GJZ's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">博主是一名努力进步、热爱生活、充满生命力的人</p>
+      <img class="custom-logo-image" src="/images/android-chrome-512x512.png" alt="GJZ's Blog">
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-技术文章"><a href="/tech/" rel="section"><i class="fa fa-code fa-fw"></i>技术文章</a></li><li class="menu-item menu-item-项目文档"><a href="/projects/" rel="section"><i class="fa fa-rocket fa-fw"></i>项目文档</a></li><li class="menu-item menu-item-课程笔记"><a href="/notes/" rel="section"><i class="fa fa-book fa-fw"></i>课程笔记</a></li><li class="menu-item menu-item-杂项随笔"><a href="/misc/" rel="section"><i class="fa fa-pencil fa-fw"></i>杂项随笔</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text"></span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%99%BA%E5%83%8F%E5%B7%A5%E5%9D%8A%E2%80%94%E2%80%94%E5%9F%BA%E4%BA%8E%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B%E7%9A%84%E9%81%93%E8%B7%AF%E9%AB%98%E7%9C%9F%E5%AE%9E%E5%BC%82%E5%B8%B8%E5%9B%BE%E7%89%87%E7%94%9F%E6%88%90%E5%B9%B3%E5%8F%B0"><span class="nav-number">2.</span> <span class="nav-text">智像工坊——基于扩散模型的道路高真实异常图片生成平台</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B6%89%E5%8F%8A%E5%88%B0%E7%9A%84%E6%8A%80%E6%9C%AF%EF%BC%88%E9%9C%80%E8%A6%81%E5%AD%A6%E4%B9%A0%EF%BC%89"><span class="nav-number">2.1.</span> <span class="nav-text">涉及到的技术（需要学习）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A1%B9%E7%9B%AE%E5%AE%9E%E7%8E%B0%E9%80%BB%E8%BE%91"><span class="nav-number">2.2.</span> <span class="nav-text">项目实现逻辑</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E6%9D%BF%E5%9D%97%E2%80%94%E2%80%94%E5%9C%BA%E6%99%AF%E7%90%86%E8%A7%A3%EF%BC%88%E8%AF%AD%E4%B9%89%E3%80%81%E5%87%A0%E4%BD%95%E3%80%81%E9%A3%8E%E6%A0%BC%EF%BC%89%EF%BC%9A"><span class="nav-number">2.3.</span> <span class="nav-text">第一板块——场景理解（语义、几何、风格）：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BF%9B%E8%A1%8C%E5%85%A8%E6%99%AF%E5%88%86%E5%89%B2%EF%BC%8C%E6%8F%90%E5%8F%96%E8%AF%AD%E4%B9%89%E5%B1%82%E5%92%8C%E5%AE%9E%E4%BE%8B%E5%B1%82%EF%BC%88%E5%88%9B%E6%96%B0%E7%82%B9%EF%BC%89"><span class="nav-number">2.3.1.</span> <span class="nav-text">进行全景分割，提取语义层和实例层（创新点）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B7%B1%E5%BA%A6%E4%BF%A1%E6%81%AF%E6%8F%90%E5%8F%96"><span class="nav-number">2.3.2.</span> <span class="nav-text">深度信息提取</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8E%E5%85%A8%E6%99%AF%E5%88%86%E5%89%B2%E5%AE%9E%E4%BE%8B%E5%B1%82%E7%9A%84%E5%8F%82%E7%85%A7%E7%89%A9%E6%AF%94%E4%BE%8B%E6%8E%A8%E6%96%AD"><span class="nav-number">2.3.3.</span> <span class="nav-text">基于全景分割实例层的参照物比例推断</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%8E%AF%E5%A2%83%E4%B8%8E%E5%85%89%E7%85%A7%E4%BF%A1%E6%81%AF%E6%8F%90%E5%8F%96"><span class="nav-number">2.3.4.</span> <span class="nav-text">环境与光照信息提取</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E6%9D%BF%E5%9D%97%E2%80%94%E2%80%94%E5%A4%9A%E6%A8%A1%E6%80%81%E6%9D%A1%E4%BB%B6%E7%89%B9%E5%BE%81%E6%9E%84%E5%BB%BA"><span class="nav-number">2.4.</span> <span class="nav-text">第二板块——多模态条件特征构建</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%80%E5%85%B1%E5%8C%85%E6%8B%AC5%E4%B8%AA%E7%89%B9%E5%BE%81%EF%BC%9A"><span class="nav-number">2.4.1.</span> <span class="nav-text">一共包括5个特征：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A4%9A%E6%A8%A1%E6%80%81%E6%9D%A1%E4%BB%B6%E8%9E%8D%E5%90%88"><span class="nav-number">2.4.2.</span> <span class="nav-text">多模态条件融合</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E6%9D%BF%E5%9D%97%E2%80%94%E2%80%94%E5%9F%BA%E4%BA%8E%E6%9D%A1%E4%BB%B6%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B%E7%9A%84%E5%BC%82%E5%B8%B8%E7%9B%AE%E6%A0%87%E7%94%9F%E6%88%90"><span class="nav-number">2.5.</span> <span class="nav-text">第三板块——基于条件扩散模型的异常目标生成</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9E%84%E5%BB%BADDPM-DDIM%E5%8F%8D%E5%90%91%E5%8E%BB%E5%99%AA%E6%A1%86%E6%9E%B6"><span class="nav-number">2.5.1.</span> <span class="nav-text">构建DDPM&#x2F;DDIM反向去噪框架</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%80%9A%E8%BF%87%E5%8F%8C%E9%87%8D%E6%9D%A1%E4%BB%B6%E6%B3%A8%E5%85%A5%E6%96%B9%E6%B3%95%E5%B0%86%E8%9E%8D%E5%90%88%E5%90%8E%E7%9A%84%E5%A4%9A%E6%A8%A1%E6%80%81%E6%9D%A1%E4%BB%B6%E6%B3%A8%E5%85%A5%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B%E5%8F%82%E4%B8%8E%E5%8E%BB%E5%99%AA%E8%BF%87%E7%A8%8B"><span class="nav-number">2.5.2.</span> <span class="nav-text">通过双重条件注入方法将融合后的多模态条件注入扩散模型参与去噪过程</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E5%9B%9B%E6%9D%BF%E5%9D%97%E2%80%94%E2%80%94%E5%90%8E%E5%A4%84%E7%90%86%E4%BC%98%E5%8C%96%EF%BC%88%E7%BB%93%E6%9E%9C%E8%9E%8D%E5%90%88%E4%B8%8E%E5%B0%BA%E5%BA%A6%E8%87%AA%E9%80%82%E5%BA%94%E8%B0%83%E6%95%B4%EF%BC%89"><span class="nav-number">2.6.</span> <span class="nav-text">第四板块——后处理优化（结果融合与尺度自适应调整）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%87%A0%E4%BD%95%E5%B0%BA%E5%BA%A6%E7%B2%BE%E8%B0%83"><span class="nav-number">2.6.1.</span> <span class="nav-text">几何尺度精调</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%89%E7%85%A7%E4%B8%8E%E9%A3%8E%E6%A0%BC%E9%80%82%E9%85%8D"><span class="nav-number">2.6.2.</span> <span class="nav-text">光照与风格适配</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BE%B9%E7%BC%98%E6%97%A0%E7%BC%9D%E8%9E%8D%E5%90%88%EF%BC%88%E7%BB%93%E6%9E%84%E4%B8%80%E8%87%B4%E6%80%A7%EF%BC%89"><span class="nav-number">2.6.3.</span> <span class="nav-text">边缘无缝融合（结构一致性）</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">GGGjjjzzz123</p>
+  <div class="site-description" itemprop="description">GJZ的博客，用于存放各种技术文章，分享技术经验。主要内容包括项目开发、技术分享、学习笔记等。希望通过这个博客与大家交流，共同进步！</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">28</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">31</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/yourname" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;yourname" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://gggjjjzzz123.github.io/2025/03/%E6%99%BA%E5%83%8F%E5%B7%A5%E5%9D%8A%E2%80%94%E2%80%94%E5%9F%BA%E4%BA%8E%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B%E7%9A%84%E5%A4%9A%E5%9C%BA%E6%99%AF%E9%AB%98%E7%9C%9F%E5%AE%9E%E5%BC%82%E5%B8%B8%E5%9B%BE%E7%89%87%E6%95%B0%E6%8D%AE%E7%94%9F%E6%88%90%E5%B9%B3%E5%8F%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="GGGjjjzzz123">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="GJZ's Blog">
+      <meta itemprop="description" content="GJZ的博客，用于存放各种技术文章，分享技术经验。主要内容包括项目开发、技术分享、学习笔记等。希望通过这个博客与大家交流，共同进步！">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="智像工坊——基于扩散模型的多场景高真实异常图片数据生成平台 | GJZ's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          智像工坊——基于扩散模型的多场景高真实异常图片数据生成平台
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2026-03-20 22:18:22" itemprop="dateModified" datetime="2026-03-20T22:18:22+08:00">2026-03-20</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E9%A1%B9%E7%9B%AE%E6%96%87%E6%A1%A3/" itemprop="url" rel="index"><span itemprop="name">项目文档</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E9%A1%B9%E7%9B%AE%E6%96%87%E6%A1%A3/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">机器学习</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p><img src="/images/ml-anomaly-detection/image_001_1761640431126-e222b16c-500d-4acc-bacf-5c90d5e07208.jpeg" alt="画板"></p>
+<p>这个项目在干什么？</p>
+<p>在复杂真实道路场景下，自动驾驶系统可以“看得懂”道路上的未知或异常目标（核心任务：道路异常目标识别），并且能轻量化部署到边缘设备上。</p>
+<p>通过以下三方面实现这一目标</p>
+<ol>
+<li>图像生成：用多模态条件扩散生成高真实度的异常样本，解决异常样本少的问题。</li>
+<li>研究开放世界&#x2F;跨域的异常分割方法，能区分“已知类”与“未知异常”并在不同天气&#x2F;光照下稳健工作。</li>
+<li>研究轻量化并保证异常细节检测，以便在边缘设备上部署</li>
+</ol>
+<p>自动驾驶</p>
+<p>为什么要发展自动驾驶？因为90%以上的交通事故都是人为，人类的疏忽造成悲剧。因此想要通过自动驾驶降低交通事故的发生频率。</p>
+<p>起初人们将关注点放在了定位和路线规划，但已经抵达上线，没有进步的空间。</p>
+<p>于是，近年来将视线回归到技术最底层——感知，让其拥有真正的视觉</p>
+<p>感知的关键在于提取特征</p>
+<p>轮廓的本质是像素亮度的骤变</p>
+<!-- 这是一张图片，ocr 内容为：模块化辅助驾驶 区 输出 输入 规划模块 感知模块 执行模块 端到端辅助驾驶 端到端模块 输出 输入 -->
+<p><img src="/images/ml-anomaly-detection/image_001_1761561087762-d3e71c95-e452-4fc1-981e-3f32a8e69ee4.png"></p>
+<p>全景分割给每个像素标记两种标签，一种区分物体类别（全局），另一种区分物体实例（细节）</p>
+<p>语义分割擅长给像素分类，但不区分同类物体</p>
+<p>实例分割能区分个体，但不关注整体场景</p>
+<p>多模态辅助的条件扩散异常目标生成与自适应融合方法：<br>输入多模态信息–&gt;编码融合–&gt;条件注入到扩散模型–&gt;生成异常目标–&gt;后处理修正</p>
+<p>“实现几何-语义-感知一致”：是多模态扩散生成模型（尤其是在自动驾驶领域）中非常关键的目标</p>
+<p>所生成的异常目标需要满足“几何-语义-感知”三方面的条件</p>
+<p>视觉怎么识别空间感</p>
+<p>语义到底是什么</p>
+<p>感知的范围很大？感知的定义是什么？</p>
+<h2 id=""><a href="#" class="headerlink" title=""></a></h2><h2 id="智像工坊——基于扩散模型的道路高真实异常图片生成平台"><a href="#智像工坊——基于扩散模型的道路高真实异常图片生成平台" class="headerlink" title="智像工坊——基于扩散模型的道路高真实异常图片生成平台"></a>智像工坊——基于扩散模型的道路高真实异常图片生成平台</h2><p><u><font style="color:#DF2A3F;">该项目是基于自动驾驶场景下道路异常目标识别关键技术研究中第一个关键技术衍生的大创项目</font></u></p>
+<h3 id="涉及到的技术（需要学习）"><a href="#涉及到的技术（需要学习）" class="headerlink" title="涉及到的技术（需要学习）"></a><font style="color:#000000;">涉及到的技术（需要学习）</font></h3><pre><code> 本项目基于条件扩散模型开展多场景高真实异常图片生成研究，旨在提升生成图像的几何一致性与视觉自然感。首先利用全景分割提取道路、车辆、建筑等语义区域，解析场景结构与空间布局，为异常目标的合理放置提供位置与尺度参考。其次，融合深度、位置、参照物、光照等多源信息构建多模态条件特征，并将其注入扩散模型，实现对生成过程的可控引导，使异常目标在大小、光照及风格上与背景环境协调一致。再次，设计光照与比例自适应调整机制，对生成结果进行亮度映射与边缘平滑处理，确保目标与场景间的过度自然、融合无痕。最后，将模型封装为可视化平台，实现图像上传、异常目标设定与自动生成。
+</code></pre>
+<p>技术路线包括：<font style="background-color:#FBDE28;">场景分割与信息提取→多模态条件构建→扩散生成与优化→光照比例校正→平台集成与应用验证</font>，实现高真实、多样化的异常图像生成与应用。</p>
+<h3 id="项目实现逻辑"><a href="#项目实现逻辑" class="headerlink" title="项目实现逻辑"></a>项目实现逻辑</h3><p>原版：</p>
+<p><img src="/images/ml-anomaly-detection/image_002_1773839277838-e36a77b7-0bcb-4ef2-a977-586d82829ce4.jpeg" alt="画板"></p>
+<p><font style="background-color:#FBDE28;">改版</font>：</p>
+<p><img src="/images/ml-anomaly-detection/image_002_1773839277838-e36a77b7-0bcb-4ef2-a977-586d82829ce4.jpeg" alt="画板"></p>
+<h3 id="第一板块——场景理解（语义、几何、风格）："><a href="#第一板块——场景理解（语义、几何、风格）：" class="headerlink" title="第一板块——场景理解（语义、几何、风格）："></a>第一板块——场景理解（语义、几何、风格）：</h3><h4 id="进行全景分割，提取语义层和实例层（创新点）"><a href="#进行全景分割，提取语义层和实例层（创新点）" class="headerlink" title="进行全景分割，提取语义层和实例层（创新点）"></a><font style="background-color:#FBDE28;">进行全景分割，提取语义层和实例层（创新点）</font></h4><ul>
+<li>可通过多尺度特征金字塔+上下文注意力机制提高边界精度</li>
+<li>可通过形态学操作和边缘平滑去除断裂、阴影的干扰</li>
+<li>可通过几何约束保证候选区域“贴合道路表面”</li>
+</ul>
+<h4 id="深度信息提取"><a href="#深度信息提取" class="headerlink" title="深度信息提取"></a>深度信息提取</h4><ul>
+<li>可通过延长车道线&#x2F;道路边界线，求消失点，以消失点为参考确定地平线位置。</li>
+<li>接着可使用“图像高度归一化比例”推断放置点深度。</li>
+</ul>
+<h4 id="基于全景分割实例层的参照物比例推断"><a href="#基于全景分割实例层的参照物比例推断" class="headerlink" title="基于全景分割实例层的参照物比例推断"></a>基于全景分割实例层的参照物比例推断</h4><ul>
+<li>可通过实例的测量高度和实例的真实高度建立比例关系</li>
+</ul>
+<h4 id="环境与光照信息提取"><a href="#环境与光照信息提取" class="headerlink" title="环境与光照信息提取"></a>环境与光照信息提取</h4><h3 id="第二板块——多模态条件特征构建"><a href="#第二板块——多模态条件特征构建" class="headerlink" title="第二板块——多模态条件特征构建"></a>第二板块——多模态条件特征构建</h3><h4 id="一共包括5个特征："><a href="#一共包括5个特征：" class="headerlink" title="一共包括5个特征："></a>一共包括5个特征：</h4><ul>
+<li>原始场景图像：通过输入获取</li>
+<li>文本提示：用CLIP文本编码器对文本提示进行编码，通过用户输入获取</li>
+<li>空间几何（目标放置位置以位置深度）：通过场景理解模块中的全景分割（得到道路区域掩码）+深度信息+候选空间获得</li>
+<li>周边参照物信息：通过场景理解模块中的全景分割实例层</li>
+<li>天气&#x2F;光照环境：通过场景理解中的提取光照、色调、亮度信息获得</li>
+</ul>
+<h4 id="多模态条件融合"><a href="#多模态条件融合" class="headerlink" title="多模态条件融合"></a>多模态条件融合</h4><ul>
+<li>可采取特征拼接与跨模态注意力机制结合的方式，将不同来源信息统一至共享潜空间</li>
+</ul>
+<h3 id="第三板块——基于条件扩散模型的异常目标生成"><a href="#第三板块——基于条件扩散模型的异常目标生成" class="headerlink" title="第三板块——基于条件扩散模型的异常目标生成"></a>第三板块——基于条件扩散模型的异常目标生成</h3><h4 id="构建DDPM-DDIM反向去噪框架"><a href="#构建DDPM-DDIM反向去噪框架" class="headerlink" title="构建DDPM&#x2F;DDIM反向去噪框架"></a>构建DDPM&#x2F;DDIM反向去噪框架</h4><ul>
+<li>U-Net接收参数信息（当前带噪图+时间步编码+多模态条件向量）预测噪声图</li>
+</ul>
+<h4 id="通过双重条件注入方法将融合后的多模态条件注入扩散模型参与去噪过程"><a href="#通过双重条件注入方法将融合后的多模态条件注入扩散模型参与去噪过程" class="headerlink" title="通过双重条件注入方法将融合后的多模态条件注入扩散模型参与去噪过程"></a>通过双重条件注入方法将融合后的多模态条件注入扩散模型参与去噪过程</h4><ul>
+<li>全局条件注入：可使用自适应归一化，控制整体的风格、色调、光照、类别一致性</li>
+<li>空间条件注入：可使用放置位置热力图，控制生成区域、目标边界、形状与姿态</li>
+</ul>
+<h3 id="第四板块——后处理优化（结果融合与尺度自适应调整）"><a href="#第四板块——后处理优化（结果融合与尺度自适应调整）" class="headerlink" title="第四板块——后处理优化（结果融合与尺度自适应调整）"></a>第四板块——后处理优化（结果融合与尺度自适应调整）</h3><h4 id="几何尺度精调"><a href="#几何尺度精调" class="headerlink" title="几何尺度精调"></a>几何尺度精调</h4><ul>
+<li>可通过调整生成结果的像素高度实现 比例真实   与参照物一致   与透视一致</li>
+</ul>
+<h4 id="光照与风格适配"><a href="#光照与风格适配" class="headerlink" title="光照与风格适配"></a>光照与风格适配</h4><ul>
+<li>可使用Retinex光照模型和色彩恒常性理论实现 亮度匹配   色温校正   饱和度与对比度调整   光照方向一致化</li>
+</ul>
+<h4 id="边缘无缝融合（结构一致性）"><a href="#边缘无缝融合（结构一致性）" class="headerlink" title="边缘无缝融合（结构一致性）"></a>边缘无缝融合（结构一致性）</h4><ul>
+<li>可使用软掩码、高斯模糊、多尺度融合（Burt–Adelson）实现 高频细节连续   低频色彩平滑   无抠图感   无突兀边界</li>
+</ul>
+<p>1.<br>2. 什么是扩散模型？什么是条件扩散模型？</p>
+<p>答：扩散模型的四大核心部分：（1）前向扩散过程（2）反向去噪模型（3）U-Net主干网络（4）噪声调度器；条件扩散模型多的部分：（4）条件注入机制（（5）多模态条件构建模块   在项目中这部分也可作为单独模块）</p>
+<ol start="3">
+<li>我们做的是什么方面的道路？</li>
+<li>多场景是指什么？</li>
+<li>什么是多模态？</li>
+<li><em><strong><u>为什么选择扩散模型（为核心）？</u></strong></em></li>
+</ol>
+<p>答： 主要是从<font style="color:#DF2A3F;">“效果”</font>和<font style="color:#DF2A3F;">“可控性”</font>两个角度选的扩散模型。（1）扩散模型的生成过程是“从噪声一步步去噪”的，每一步都会在高维空间中逐渐调整细节，这类模型在纹理、光照、材质等“细节逼真度”上更有优势，也更稳定。（2） 我们不是要随便生成一张图，而是要生成“放在某条路面上的异常物体”，所以必须要可控：  扩散模型本身就有<font style="color:#DF2A3F;">成熟的</font><font style="color:#DF2A3F;">条件扩散框架</font>（比如加上掩码、条件向量等），比较容易接收我们后面构建的多种条件：语义分割图、深度信息、简单的光照信息等，所以它比纯粹的传统图像叠加或者简单风格迁移更适合作为核心生成模块。  </p>
+<ol start="7">
+<li><em><strong><u>现有异常图像数据存在“比例失真、光影不一致”等缺陷 ，为什么扩散模型能够解决这些问题？你们的方法与现有工作相比有哪些关键改进？  </u></strong></em></li>
+</ol>
+<p>答：（1） 扩散模型的生成过程是“从噪声一步步去噪”的，每一步都会在高维空间中逐渐<font style="color:#DF2A3F;">调整细节</font>，这类模型在纹理、光照、材质等“细节逼真度”上更有优势，也更稳定。所以它非常适合作为我们“高真实感异常目标”的生成基础。  </p>
+<p>（2）<font style="color:#DF2A3F;">改进：</font>我们不是只靠扩散本身，而是做了“场景约束 + 条件控制”的改进。传统的合成方法很多是简单叠加，比如把异物抠出来放在路面上，对比例和光影缺乏建模，容易出现“漂浮感”“亮度不对”。<br>在这个基础上，我们有三点具体改进：</p>
+<ul>
+<li>使用<font style="color:#DF2A3F;">全景分割 + 深度估计</font>，先理解场景结构和几何信息，用这些信息约束异常目标的位置和大小；</li>
+<li>构建包含<font style="color:#DF2A3F;">语义、几何、光照</font>在内的多模态条件，把它们输入扩散模型，让生成过程是“受控”的，而不是完全随机；</li>
+<li>最后增加<font style="color:#DF2A3F;">光照与比例自适应后处理模块</font><font style="color:#DF2A3F;">，</font>对亮度、阴影和边缘做二次优化，减少违和感。</li>
+</ul>
+<p>（<font style="color:#DF2A3F;"> 别人主要是在做“图像合成”，我们是在做“场景理解 + 条件扩散 + 后处理一体化”的高真实异常生成，这就是我们的改进方向。 </font> ）</p>
+<ol start="8">
+<li>为什么将全景分割与多模态条件注入扩散模型会让生成的一场物体语义上合理，还能自动适应不同场景的物理比例和空间位置，避免“漂浮感”和比例失真。</li>
+<li>你们如何确保能够在一年内完成一个可用的扩散模型生成平台？哪些技术是你们自己做，哪些是调用框架？  </li>
+<li>你们准备如何实现“多模态条件注入”？具体到模型结构，如何把语义分割、深度图、光照信息输入扩散模型？  </li>
+<li>请问你们的背景数据（正常道路场景）来源是什么？是否涉及版权？是否能够形成一个小规模自建数据集？  </li>
+<li>这些创新中的哪一部分是你们真正要做的？哪部分是调用现有模型？创新点是否过于依赖现有开源技术？  </li>
+<li>怎么确保语义、几何与风格一致？</li>
+<li>你们准备如何从一张图像中提取“光照方向”和“色温”这两类信息？各自对应什么算法？  </li>
+<li>你准备使用单目深度估计还是带有 LiDAR 的数据？为什么？如果是单目，你如何保证深度稳定性？  </li>
+<li>你们的创新点写得很好，但扩散模型 + 场景分割 + 条件控制是业界常见做法了。<br>我们质疑：</li>
+</ol>
+<p><strong>你们的创新到底在哪里？是否真的“新”？还是在已有方法上做简单组合？</strong></p>
+<ol start="17">
+<li>你们如何在有限算力下完成模型训练？是否使用微调（fine-tuning）而非从零训练？  </li>
+<li>为什么不用语义分割或实例分割，而必须用全景分割？这对生成异常目标有何具体优势？ </li>
+<li><!-- 这是一张图片，ocr 内容为：你们需要把: 语义分割 深度图 光照参数 场景类别标签 融合成扩散模型的条件. 请回答: 你们准备用什么方式融合这些多模态信息?拼接(CONCATENATE)?编码器?还是CROSS- ATTENTION?理由是什么? (这是老师最常问来判断项目是不是套概念) -->
+<img src="/images/ml-anomaly-detection/image_002_1763298922947-49cc5f40-849a-4ba1-ac54-a0944bb4f9a5.png"> </li>
+<li>创新点中提到的：我们旨在设计一个融合深度信息与光照感知的后处理机制，通过分析背景环境的光照和色调，自动调整生成目标的亮度、色彩和阴影，使其与场景无缝融合，大幅提升图像的真实感。</li>
+</ol>
+<p>后处理机制？自动调整？</p>
+<!-- 这是一张图片，ocr 内容为：三,项目创新点概述 (限100-200字,请用关键语句或字段列出项目主要创新之处和项目特色) (一)创新点: 我们创新地将全景分割与多模态条件注入扩散模型,让生成的异常物体 不仅在语义上合理,还能自动适应不同场景的物理比例和空间位置,有效避 免"漂浮感"和比例失真. (二)项目特色: 我们旨在设计一个融合深度信息与光照感知的后处理机制,通过分析背 景环境的光照和色调,自动调整生成目标的亮度,色彩和阴影,使其与场景 无缝融合,大幅提升图像的真实感. -->
+<p><img src="/images/ml-anomaly-detection/image_003_1763298271380-e7fe0475-3a8a-4adf-8cb3-c5248c142d6f.png"></p>
+<p>实现思路</p>
+<p> 目的：在复杂道路场景上，用“多模态条件 + 条件扩散 + 自适应融合”，自动往路面里“长出”真实、合理、不违和的异常目标，并封装成一个可用的平台。  </p>
+<!-- 这是一张图片，ocr 内容为：因为扩散模型的输出具有以下特性: 它按照条件生成了一个看似合理的异常目标 但生成的像素本质是"模型根据统计学习给出的最佳猜测" 这种输出往往存在: 1光照不完全匹配背景 尺度可能仍有细微误差(尤其是边界深度变化) 3.边缘会显得略硬或略模糊,与真实场景不够贴合 这些问题无法在模型内部100%解决. -->
+<p><img src="/images/ml-anomaly-detection/image_004_1763368313279-705eaa69-e4ea-416e-ba5a-4954f85e8b24.png"></p>
+<!-- 这是一张图片，ocr 内容为：五,为什么这种两阶段方案特别符合你项目的目标? 因为你的目标强调: 几何一致 光照一致 边缘无缝融合 高真实感 这些都是视觉融合问题,不是生成问题. 扩散模型生成只是"生成" 后处理才是"融合" 两者合起来才达到理想效果. 你原文中的这句总结就是最好的证明: "实现几何-语义-感知一致,驱动模型生成真实,合理且无缝融合的复杂道路异常目 标. 注意这里的"无缝融合"就是后处理完成的效果. -->
+<p><img src="/images/ml-anomaly-detection/image_005_1763368405771-7802775d-7c12-4222-a062-f5f38b0f6efd.png"></p>
+<p>这部分要调研验证</p>
+<p><img src="/images/ml-anomaly-detection/image_004_1773800435316-719c1b3c-6e99-49eb-ac4a-805ce4173b08.jpeg" alt="画板"></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag"># 机器学习</a>
+              <a href="/tags/%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B/" rel="tag"># 扩散模型</a>
+              <a href="/tags/%E5%BC%82%E5%B8%B8%E6%A3%80%E6%B5%8B/" rel="tag"># 异常检测</a>
+              <a href="/tags/%E8%87%AA%E5%8A%A8%E9%A9%BE%E9%A9%B6/" rel="tag"># 自动驾驶</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/03/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B8%8E%E8%9C%82%E8%9C%9C%E6%95%B0%E6%8D%AE%E7%BB%93%E5%90%88/" rel="prev" title="机器学习与蜂蜜数据结合">
+                  <i class="fa fa-angle-left"></i> 机器学习与蜂蜜数据结合
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2025/03/%E5%9C%A8VMware%E4%B8%AD%E5%AE%89%E8%A3%85Win7/" rel="next" title="在VMware中安装Win7">
+                  在VMware中安装Win7 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2023 – 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">未经授权不得转载</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

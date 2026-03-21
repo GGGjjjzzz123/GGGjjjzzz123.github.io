@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"gggjjjzzz123.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.27.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="一、数据预处理 删除全0特征 删除常数特征（std≈0） 存在滤过波（非0比例&lt;0.2删除） 将0（以及可能存在的NaN）用“该列最小非零值×0.5”填充（列内LOD&#x2F;2思路） log转换+Z-score标准化  （1）GC数据预处理 GC_processed（数据预处理）.xlsx （2）LC数据预处理 LC_processed（数据预处理）.xlsx （3）微生物数据预处理 M">
+<meta property="og:type" content="article">
+<meta property="og:title" content="机器学习：不同年份泡椒水2.0">
+<meta property="og:url" content="https://gggjjjzzz123.github.io/2025/03/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%EF%BC%9A%E4%B8%8D%E5%90%8C%E5%B9%B4%E4%BB%BD%E6%B3%A1%E6%A4%92%E6%B0%B42.0/index.html">
+<meta property="og:site_name" content="GJZ&#39;s Blog">
+<meta property="og:description" content="一、数据预处理 删除全0特征 删除常数特征（std≈0） 存在滤过波（非0比例&lt;0.2删除） 将0（以及可能存在的NaN）用“该列最小非零值×0.5”填充（列内LOD&#x2F;2思路） log转换+Z-score标准化  （1）GC数据预处理 GC_processed（数据预处理）.xlsx （2）LC数据预处理 LC_processed（数据预处理）.xlsx （3）微生物数据预处理 M">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/ml-paojiaoshui/image_001_1768147400007-9bef0297-d668-4393-9f59-aec57ffa9b49.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/ml-paojiaoshui/image_002_1768151428097-3bded6e1-7410-4bce-9acd-c8a041345118.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/ml-paojiaoshui/image_003_1768147473970-de7951d7-98fb-4bb2-945c-6f4f5fc639f4.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/ml-paojiaoshui/image_004_1768147645222-5651c84b-0f1a-4702-9e3e-c59ce66a09cb.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/ml-paojiaoshui/image_005_1768147693328-deef5fbc-6531-4747-8274-8070d424ac10.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/ml-paojiaoshui/image_006_1768147790182-e3e35a15-5442-4c47-bb75-aeaf450ab1c3.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/ml-paojiaoshui/image_007_1768148103237-a3fb7933-0ed4-487f-bd8d-1f8df16e22a3.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/ml-paojiaoshui/image_008_1768149721938-c48c680a-ed71-4fb0-986d-b9f9b2954196.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/ml-paojiaoshui/image_009_1768149739660-fa7874f9-a76a-4359-9957-cdb3396af45e.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/ml-paojiaoshui/image_010_1768150389927-13a70cb8-4df5-4296-bbd0-ffb582e357e0.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/ml-paojiaoshui/image_011_1768150980598-b8dbf17c-bd93-4b0d-8ced-7ac7612eaa05.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/ml-paojiaoshui/image_012_1768150994669-97351913-34f7-4ffa-ad74-78583423ed3a.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/ml-paojiaoshui/image_013_1768151021902-e4f14223-9a07-4d21-ba6f-17c51baa025b.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/ml-paojiaoshui/image_014_1768151031172-d8a2eca5-d342-4de9-b757-7909345701d2.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/ml-paojiaoshui/image_001_1768149721938-c48c680a-ed71-4fb0-986d-b9f9b2954196.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/ml-paojiaoshui/image_009_1768149739660-fa7874f9-a76a-4359-9957-cdb3396af45e.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/ml-paojiaoshui/image_017_1768151319429-dd44077b-63a1-4f22-8423-24c98a83d312.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/ml-paojiaoshui/image_018_1768151326088-b587b207-f3d2-43d4-a716-c9015fd3ba91.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/ml-paojiaoshui/image_019_1768151338685-a244aca0-429c-4e5a-9773-892403464a4c.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/ml-paojiaoshui/image_020_1768151343193-00a8549b-9421-4f87-b26f-6d755780c848.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/ml-paojiaoshui/image_021_1768151357718-0b30e749-370a-4fc1-828c-b1bf822551d0.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/ml-paojiaoshui/image_022_1768151360822-4c2b0c70-6cfc-4f5c-b59a-a3de6e70935d.png">
+<meta property="article:published_time" content="2025-02-28T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-03-20T14:18:22.506Z">
+<meta property="article:author" content="GGGjjjzzz123">
+<meta property="article:tag" content="机器学习">
+<meta property="article:tag" content="特征筛选">
+<meta property="article:tag" content="泡椒水分析">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gggjjjzzz123.github.io/images/ml-paojiaoshui/image_001_1768147400007-9bef0297-d668-4393-9f59-aec57ffa9b49.png">
+
+
+<link rel="canonical" href="https://gggjjjzzz123.github.io/2025/03/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%EF%BC%9A%E4%B8%8D%E5%90%8C%E5%B9%B4%E4%BB%BD%E6%B3%A1%E6%A4%92%E6%B0%B42.0/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://gggjjjzzz123.github.io/2025/03/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%EF%BC%9A%E4%B8%8D%E5%90%8C%E5%B9%B4%E4%BB%BD%E6%B3%A1%E6%A4%92%E6%B0%B42.0/","path":"2025/03/机器学习：不同年份泡椒水2.0/","title":"机器学习：不同年份泡椒水2.0"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>机器学习：不同年份泡椒水2.0 | GJZ's Blog</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">GJZ's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">博主是一名努力进步、热爱生活、充满生命力的人</p>
+      <img class="custom-logo-image" src="/images/android-chrome-512x512.png" alt="GJZ's Blog">
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-技术文章"><a href="/tech/" rel="section"><i class="fa fa-code fa-fw"></i>技术文章</a></li><li class="menu-item menu-item-项目文档"><a href="/projects/" rel="section"><i class="fa fa-rocket fa-fw"></i>项目文档</a></li><li class="menu-item menu-item-课程笔记"><a href="/notes/" rel="section"><i class="fa fa-book fa-fw"></i>课程笔记</a></li><li class="menu-item menu-item-杂项随笔"><a href="/misc/" rel="section"><i class="fa fa-pencil fa-fw"></i>杂项随笔</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E6%95%B0%E6%8D%AE%E9%A2%84%E5%A4%84%E7%90%86"><span class="nav-number">1.</span> <span class="nav-text">一、数据预处理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81Kruskal-Wallis%E6%A3%80%E9%AA%8C-FDR%E6%A0%A1%E6%AD%A3%EF%BC%88%E7%BB%9F%E8%AE%A1%E5%AD%A6%E7%89%B9%E5%BE%81%E7%AD%9B%E9%80%89%EF%BC%89"><span class="nav-number">2.</span> <span class="nav-text">二、Kruskal-Wallis检验 + FDR校正（统计学特征筛选）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97%E7%89%B9%E5%BE%81%E7%AD%9B%E9%80%89"><span class="nav-number">3.</span> <span class="nav-text">三、随机森林特征筛选</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E9%80%89%E5%8F%96%E5%89%8DN%E4%B8%AA%E7%89%B9%E5%BE%81"><span class="nav-number">4.</span> <span class="nav-text">四、选取前N个特征</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E5%85%B6%E4%BB%96%E7%9A%84%E4%B8%80%E4%BA%9B%E8%AE%A8%E8%AE%BA"><span class="nav-number">5.</span> <span class="nav-text">五、其他的一些讨论</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">GGGjjjzzz123</p>
+  <div class="site-description" itemprop="description">GJZ的博客，用于存放各种技术文章，分享技术经验。主要内容包括项目开发、技术分享、学习笔记等。希望通过这个博客与大家交流，共同进步！</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">28</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">31</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/yourname" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;yourname" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://gggjjjzzz123.github.io/2025/03/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%EF%BC%9A%E4%B8%8D%E5%90%8C%E5%B9%B4%E4%BB%BD%E6%B3%A1%E6%A4%92%E6%B0%B42.0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="GGGjjjzzz123">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="GJZ's Blog">
+      <meta itemprop="description" content="GJZ的博客，用于存放各种技术文章，分享技术经验。主要内容包括项目开发、技术分享、学习笔记等。希望通过这个博客与大家交流，共同进步！">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="机器学习：不同年份泡椒水2.0 | GJZ's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          机器学习：不同年份泡椒水2.0
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2026-03-20 22:18:22" itemprop="dateModified" datetime="2026-03-20T22:18:22+08:00">2026-03-20</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E9%A1%B9%E7%9B%AE%E6%96%87%E6%A1%A3/" itemprop="url" rel="index"><span itemprop="name">项目文档</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E9%A1%B9%E7%9B%AE%E6%96%87%E6%A1%A3/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">机器学习</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="一、数据预处理"><a href="#一、数据预处理" class="headerlink" title="一、数据预处理"></a>一、数据预处理</h2><ol>
+<li>删除全0特征</li>
+<li>删除常数特征（std≈0）</li>
+<li>存在滤过波（非0比例&lt;0.2删除）</li>
+<li>将0（以及可能存在的NaN）用“该列最小非零值×0.5”填充（列内LOD&#x2F;2思路）</li>
+<li>log转换+Z-score标准化</li>
+</ol>
+<p>（1）GC数据预处理</p>
+<p><a target="_blank" rel="noopener" href="https://www.yuque.com/attachments/yuque/0/2026/xlsx/50965833/1768142646836-c776f657-9552-4b73-b0d9-8ce59d17e120.xlsx">GC_processed（数据预处理）.xlsx</a></p>
+<p>（2）LC数据预处理</p>
+<p><a target="_blank" rel="noopener" href="https://www.yuque.com/attachments/yuque/0/2026/xlsx/50965833/1768142685848-6d8b9d51-260d-4680-b49a-7684bbc2aa24.xlsx">LC_processed（数据预处理）.xlsx</a></p>
+<p>（3）微生物数据预处理</p>
+<p><a target="_blank" rel="noopener" href="https://www.yuque.com/attachments/yuque/0/2026/xlsx/50965833/1768142759437-8e72d41c-f799-449e-a90d-dc7fd6d2a2ba.xlsx">MI_processed（数据预处理）.xlsx</a></p>
+<h2 id="二、Kruskal-Wallis检验-FDR校正（统计学特征筛选）"><a href="#二、Kruskal-Wallis检验-FDR校正（统计学特征筛选）" class="headerlink" title="二、Kruskal-Wallis检验 + FDR校正（统计学特征筛选）"></a>二、Kruskal-Wallis检验 + FDR校正（统计学特征筛选）</h2><p>目的：用统计学先把“和分组完全没关系&#x2F;几乎没关系2.”的特征粗筛掉，避免后面随机森林在一堆噪声里“瞎学”，也减少维度、提高结果可解释性。  </p>
+<p>操作： 对每个特征进行 Kruskal–Wallis 检验得到 p 值，并采用 Benjamini–Hochberg 方法进行 FDR 校正得到 q 值；以 q&lt;0.05 作为显著性标准，表示在筛选出的显著特征集合中预计假阳性比例控制在 5% 以内。  </p>
+<p>（1）GC统计学特征筛选</p>
+<p><a target="_blank" rel="noopener" href="https://www.yuque.com/attachments/yuque/0/2026/xlsx/50965833/1768143015362-b4a226ef-a287-4234-8e2b-5e3199e5cc77.xlsx">GC_Kruskal+FDR_Selected.xlsx</a></p>
+<p>（2）LC统计学特征筛选</p>
+<p><a target="_blank" rel="noopener" href="https://www.yuque.com/attachments/yuque/0/2026/xlsx/50965833/1768143045451-8d9a76bf-95cd-41dc-82d0-debf539492fd.xlsx">LC_Kruskal+FDR_Selected.xlsx</a></p>
+<p>（3）微生物统计学特征筛选</p>
+<p><a target="_blank" rel="noopener" href="https://www.yuque.com/attachments/yuque/0/2026/xlsx/50965833/1768143056279-af2c284b-fd46-44be-a8ad-788d629b1a55.xlsx">MI_Kruskal+FDR_Selected.xlsx</a></p>
+<h2 id="三、随机森林特征筛选"><a href="#三、随机森林特征筛选" class="headerlink" title="三、随机森林特征筛选"></a>三、随机森林特征筛选</h2><p>重要性： Gini  </p>
+<p><font style="color:#DF2A3F;">（下面进行特征的排名均是经过上面数据预处理和统计学特征筛选后所保留的特征）</font></p>
+<ol>
+<li>GC的Gini重要性排名</li>
+</ol>
+<p><a target="_blank" rel="noopener" href="https://www.yuque.com/attachments/yuque/0/2026/xlsx/50965833/1768139267481-0d73b4d5-fc47-47cf-b885-2220380b0c12.xlsx">(1)随机森林特征筛选_Gini全排名（含贡献率）.xlsx</a></p>
+<p>其中，Top15的可视化：  </p>
+<!-- 这是一张图片，ocr 内容为： -->
+<p><img src="/images/ml-paojiaoshui/image_001_1768147400007-9bef0297-d668-4393-9f59-aec57ffa9b49.png"></p>
+<ol start="2">
+<li>LC的Gini重要性排名</li>
+</ol>
+<p><a target="_blank" rel="noopener" href="https://www.yuque.com/attachments/yuque/0/2026/xlsx/50965833/1768139306668-f1de6f9d-27fd-4b9d-985f-2cb53d4b2a40.xlsx">(1)随机森林特征筛选_Gini全排名（含贡献率）.xlsx</a></p>
+<p>Top15的可视化：</p>
+<!-- 这是一张图片，ocr 内容为： -->
+<p><img src="/images/ml-paojiaoshui/image_002_1768151428097-3bded6e1-7410-4bce-9acd-c8a041345118.png"></p>
+<ol start="3">
+<li>微生物的Gini重要性排名</li>
+</ol>
+<p><a target="_blank" rel="noopener" href="https://www.yuque.com/attachments/yuque/0/2026/xlsx/50965833/1768139339518-c6417e09-60da-4ee6-8b5d-7cc3f795d002.xlsx">(1)随机森林特征筛选_Gini全排名（含贡献率）.xlsx</a></p>
+<p>由于筛选后仅4个特征，所以为Top4可视化：  </p>
+<!-- 这是一张图片，ocr 内容为： -->
+<p><img src="/images/ml-paojiaoshui/image_003_1768147473970-de7951d7-98fb-4bb2-945c-6f4f5fc639f4.png"></p>
+<h2 id="四、选取前N个特征"><a href="#四、选取前N个特征" class="headerlink" title="四、选取前N个特征"></a>四、选取前N个特征</h2><ol>
+<li><font style="color:rgb(51, 51, 51);">根据上一步的重要性排名，选出前n个特征，将n的数值作为自变量（x轴）</font></li>
+<li><font style="color:rgb(51, 51, 51);">从预处理后的数据中提取这n个特征对应的数据，作为新的数据集。</font></li>
+<li><font style="color:rgb(51, 51, 51);">使用5折交叉法，以该n个特征对应的数据在</font><strong><font style="color:rgb(51, 51, 51);">随机森林</font></strong><font style="color:rgb(51, 51, 51);">的模型上做验证评估。</font></li>
+<li><font style="color:rgb(51, 51, 51);">随着选取特征的数目增加，模型的分类效果越好。</font></li>
+<li><font style="color:rgb(51, 51, 51);">找到达到最好分类效果的转折点N，借此可知，前N个特征对模型分类的影响最大，即这N个分子成分在不同年份泡菜水之间有最为显著的差异，且经由机器学习模型（随机森林）验证。</font></li>
+</ol>
+<p><font style="color:rgb(51, 51, 51);">根据以上思路画折线图：随着选取前n个特征值的变化，选取的分子含量在随机森林模型上，5折交叉的准确率的变化。</font></p>
+<p>关于GC（共87个特征）：</p>
+<!-- 这是一张图片，ocr 内容为： -->
+<p><img src="/images/ml-paojiaoshui/image_004_1768147645222-5651c84b-0f1a-4702-9e3e-c59ce66a09cb.png"></p>
+<p>关于LC（共1155个特征）：</p>
+<!-- 这是一张图片，ocr 内容为： -->
+<p><img src="/images/ml-paojiaoshui/image_005_1768147693328-deef5fbc-6531-4747-8274-8070d424ac10.png"></p>
+<p><font style="color:#1DC0C9;">（由于当n为2时分类效果就比较好，相对于总数1155个特征来说不明显，所以下面显示Top15的局部情况来更清晰地展示）：<br></font><!-- 这是一张图片，ocr 内容为： --><br><img src="/images/ml-paojiaoshui/image_006_1768147790182-e3e35a15-5442-4c47-bb75-aeaf450ab1c3.png"></p>
+<p>关于微生物（共4个特征）：</p>
+<!-- 这是一张图片，ocr 内容为： -->
+<p><img src="/images/ml-paojiaoshui/image_007_1768148103237-a3fb7933-0ed4-487f-bd8d-1f8df16e22a3.png"></p>
+<p>效果并不好，下面采用所有的微生物特征进行分类（即，采取全部特征数据，直接进行随机森林排序）：</p>
+<!-- 这是一张图片，ocr 内容为： -->
+<p><img src="/images/ml-paojiaoshui/image_008_1768149721938-c48c680a-ed71-4fb0-986d-b9f9b2954196.png"></p>
+<p>以及其对应的随机森林重要性排序：  </p>
+<!-- 这是一张图片，ocr 内容为： -->
+<p><img src="/images/ml-paojiaoshui/image_009_1768149739660-fa7874f9-a76a-4359-9957-cdb3396af45e.png"></p>
+<h2 id="五、其他的一些讨论"><a href="#五、其他的一些讨论" class="headerlink" title="五、其他的一些讨论"></a>五、其他的一些讨论</h2><p><font style="color:#DF2A3F;">注意！！</font></p>
+<!-- 这是一张图片，ocr 内容为： -->
+<p><img src="/images/ml-paojiaoshui/image_010_1768150389927-13a70cb8-4df5-4296-bbd0-ffb582e357e0.png"></p>
+<p>对比上图可以发现，预处理删去的值确实是对分类相对没有用的，而单变量特征筛选（即Kruskal-Wallis检验 + FDR校正）似乎删去了部分对分类极其有益的特征，为此，下面进行另一条平行线的分类讨论：</p>
+<p>（一）不进行任何预处理+不进行Kruskal-Wallis检验 + FDR校正。直接对原始数据进行随机森林排名1，并且画折线图。</p>
+<p>GC：  </p>
+<!-- 这是一张图片，ocr 内容为： -->
+<p><img src="/images/ml-paojiaoshui/image_011_1768150980598-b8dbf17c-bd93-4b0d-8ced-7ac7612eaa05.png"></p>
+<!-- 这是一张图片，ocr 内容为： -->
+<p><img src="/images/ml-paojiaoshui/image_012_1768150994669-97351913-34f7-4ffa-ad74-78583423ed3a.png"></p>
+<p>LC：</p>
+<!-- 这是一张图片，ocr 内容为： -->
+<p><img src="/images/ml-paojiaoshui/image_013_1768151021902-e4f14223-9a07-4d21-ba6f-17c51baa025b.png"></p>
+<!-- 这是一张图片，ocr 内容为： -->
+<p><img src="/images/ml-paojiaoshui/image_014_1768151031172-d8a2eca5-d342-4de9-b757-7909345701d2.png"></p>
+<p>MI（微生物）（即上文中，发现效果不太好后的改进结果）：</p>
+<!-- 这是一张图片，ocr 内容为： -->
+<p><img src="/images/ml-paojiaoshui/image_001_1768149721938-c48c680a-ed71-4fb0-986d-b9f9b2954196.png"></p>
+<!-- 这是一张图片，ocr 内容为： -->
+<p><img src="/images/ml-paojiaoshui/image_009_1768149739660-fa7874f9-a76a-4359-9957-cdb3396af45e.png"></p>
+<p>（二）进行任何预处理+但不进行Kruskal-Wallis检验 + FDR校正。对原始数据进行预处理后，自己在随机森林上排名，并且画折线图。</p>
+<p>GC：</p>
+<!-- 这是一张图片，ocr 内容为： -->
+<p><img src="/images/ml-paojiaoshui/image_017_1768151319429-dd44077b-63a1-4f22-8423-24c98a83d312.png"></p>
+<!-- 这是一张图片，ocr 内容为： -->
+<p><img src="/images/ml-paojiaoshui/image_018_1768151326088-b587b207-f3d2-43d4-a716-c9015fd3ba91.png"></p>
+<p>LC：</p>
+<!-- 这是一张图片，ocr 内容为： -->
+<p><img src="/images/ml-paojiaoshui/image_019_1768151338685-a244aca0-429c-4e5a-9773-892403464a4c.png"><!-- 这是一张图片，ocr 内容为： --><br><img src="/images/ml-paojiaoshui/image_020_1768151343193-00a8549b-9421-4f87-b26f-6d755780c848.png"></p>
+<p>MI（微生物）：</p>
+<!-- 这是一张图片，ocr 内容为： -->
+<p><img src="/images/ml-paojiaoshui/image_021_1768151357718-0b30e749-370a-4fc1-828c-b1bf822551d0.png"><!-- 这是一张图片，ocr 内容为： --><br><img src="/images/ml-paojiaoshui/image_022_1768151360822-4c2b0c70-6cfc-4f5c-b59a-a3de6e70935d.png"></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag"># 机器学习</a>
+              <a href="/tags/%E7%89%B9%E5%BE%81%E7%AD%9B%E9%80%89/" rel="tag"># 特征筛选</a>
+              <a href="/tags/%E6%B3%A1%E6%A4%92%E6%B0%B4%E5%88%86%E6%9E%90/" rel="tag"># 泡椒水分析</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/03/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%EF%BC%9A%E6%B3%A1%E6%A4%92%E6%B0%B41.0/" rel="prev" title="机器学习：泡椒水1.0">
+                  <i class="fa fa-angle-left"></i> 机器学习：泡椒水1.0
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2025/03/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%EF%BC%9A%E4%B8%8D%E5%90%8C%E5%B9%B4%E4%BB%BD%E6%B3%A1%E6%A4%92%E6%B0%B4%EF%BC%88%E6%97%A7%E5%8F%82%E6%95%B0%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97%E7%89%B9%E5%BE%81%E7%AD%9B%E9%80%89%EF%BC%893.0/" rel="next" title="机器学习：不同年份泡椒水（旧参数随机森林特征筛选）3.0">
+                  机器学习：不同年份泡椒水（旧参数随机森林特征筛选）3.0 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2023 – 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">未经授权不得转载</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

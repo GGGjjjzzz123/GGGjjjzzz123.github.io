@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"gggjjjzzz123.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.27.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="安装butterfly主题用VScode打开项目文件夹，新建终端 1npm i hexo-theme-butterfly   安装成功后可在【C:&#x2F;Hexo-Blog&#x2F;blog-demo&#x2F;node_modules】文件夹下找到hexo-theme-butterfly文件夹  应用butterfly主题 在配置文件_config.yml中，把主题改为butterfly">
+<meta property="og:type" content="article">
+<meta property="og:title" content="butterfly主题">
+<meta property="og:url" content="https://gggjjjzzz123.github.io/2025/04/butterfly%E4%B8%BB%E9%A2%98/index.html">
+<meta property="og:site_name" content="GJZ&#39;s Blog">
+<meta property="og:description" content="安装butterfly主题用VScode打开项目文件夹，新建终端 1npm i hexo-theme-butterfly   安装成功后可在【C:&#x2F;Hexo-Blog&#x2F;blog-demo&#x2F;node_modules】文件夹下找到hexo-theme-butterfly文件夹  应用butterfly主题 在配置文件_config.yml中，把主题改为butterfly">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/butterfly-theme/image_001_1745224270084-fbc06dc9-ad9d-49a6-acde-60da7c5fc1e6.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/butterfly-theme/image_002_1745224290568-81dde2cc-4a0b-4744-9b77-f7fb3fbaf9dc.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/butterfly-theme/image_003_1745224314881-8dc51c92-6313-4ae0-a597-60a96a32e1a5.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/butterfly-theme/image_004_1745237697398-9bc4f64e-de2e-4d37-95ad-e000d13310cd.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/butterfly-theme/image_005_1745237605639-32b773ba-85a8-480c-8f52-27a031a5c288.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/butterfly-theme/image_006_1745237751129-61882863-95b2-40d2-bba7-f871b8ee59f4.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/butterfly-theme/image_007_1745239353907-4fbb32b4-ecfb-43a5-9cb6-671da807669d.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/butterfly-theme/image_008_1745239371524-18503c83-2dd6-46ae-a409-ad38769e0802.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/butterfly-theme/image_009_1745239971156-231f1784-0eaa-4e7b-8cdd-f8eb0bf372f2.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/butterfly-theme/image_010_1745240001269-5660d176-29e4-4232-95fd-1c0eb6f4b6b7.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/butterfly-theme/image_011_1745239572183-8c9ab60a-a7ad-433b-ae40-4e233afe9577.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/butterfly-theme/image_012_1745239602199-e0e21f0a-4e84-4b28-813f-6e617a5ceae2.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/butterfly-theme/image_013_1745239775022-c5aada5d-89cb-41c2-907e-05a55a4c1975.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/butterfly-theme/image_014_1745240254037-17dafdf3-47ac-4fd8-b4d3-c0a51694753e.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/butterfly-theme/image_015_1745240336753-eb78d738-8bb3-42f8-bab1-520876c25567.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/butterfly-theme/image_016_1745240385840-75e94d8b-fd6f-4278-8d15-0954c760fa00.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/butterfly-theme/image_017_1745240435819-14c76e06-6702-492a-bbf2-9867a1e165a1.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/butterfly-theme/image_018_1745240480734-1117ee57-998c-4c93-810e-95b3c05ea1a3.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/butterfly-theme/image_019_1745240626768-f8bfad5c-3663-4628-b290-1e4e056c111e.webp">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/butterfly-theme/image_020_1745243395307-a780d1f2-ad8f-4b0d-9d8d-18cfaf8fe7b0.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/butterfly-theme/image_021_1745243139279-7af50e09-1fbc-4783-86da-6b4f829ab087.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/butterfly-theme/image_022_1745243426555-b5bf83fd-725c-42a7-81ee-bd628cb4d149.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/butterfly-theme/image_023_1745243363399-3b4bc0d7-b047-491c-8bd0-dd7807c9c206.png">
+<meta property="article:published_time" content="2025-04-20T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-03-20T14:18:22.488Z">
+<meta property="article:author" content="GGGjjjzzz123">
+<meta property="article:tag" content="Hexo">
+<meta property="article:tag" content="主题">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gggjjjzzz123.github.io/images/butterfly-theme/image_001_1745224270084-fbc06dc9-ad9d-49a6-acde-60da7c5fc1e6.png">
+
+
+<link rel="canonical" href="https://gggjjjzzz123.github.io/2025/04/butterfly%E4%B8%BB%E9%A2%98/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://gggjjjzzz123.github.io/2025/04/butterfly%E4%B8%BB%E9%A2%98/","path":"2025/04/butterfly主题/","title":"butterfly主题"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>butterfly主题 | GJZ's Blog</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">GJZ's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">博主是一名努力进步、热爱生活、充满生命力的人</p>
+      <img class="custom-logo-image" src="/images/android-chrome-512x512.png" alt="GJZ's Blog">
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-技术文章"><a href="/tech/" rel="section"><i class="fa fa-code fa-fw"></i>技术文章</a></li><li class="menu-item menu-item-项目文档"><a href="/projects/" rel="section"><i class="fa fa-rocket fa-fw"></i>项目文档</a></li><li class="menu-item menu-item-课程笔记"><a href="/notes/" rel="section"><i class="fa fa-book fa-fw"></i>课程笔记</a></li><li class="menu-item menu-item-杂项随笔"><a href="/misc/" rel="section"><i class="fa fa-pencil fa-fw"></i>杂项随笔</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85butterfly%E4%B8%BB%E9%A2%98"><span class="nav-number">1.</span> <span class="nav-text">安装butterfly主题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BA%94%E7%94%A8butterfly%E4%B8%BB%E9%A2%98"><span class="nav-number">2.</span> <span class="nav-text">应用butterfly主题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9C%A8VScode%E7%BB%88%E7%AB%AF%E5%90%AF%E5%8A%A8%E9%A1%B9%E7%9B%AE"><span class="nav-number">3.</span> <span class="nav-text">在VScode终端启动项目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E7%A1%80%E7%94%A8%E6%B3%95"><span class="nav-number">4.</span> <span class="nav-text">基础用法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Front-Matter%EF%BC%88%E5%A4%B4%E9%83%A8%E4%BF%A1%E6%81%AF%EF%BC%89"><span class="nav-number">4.1.</span> <span class="nav-text">Front Matter（头部信息）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%87%E7%AD%BE%E9%A1%B5"><span class="nav-number">4.2.</span> <span class="nav-text">标签页</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%8B%E6%83%85%E9%93%BE%E6%8E%A5%E9%A1%B5"><span class="nav-number">4.3.</span> <span class="nav-text">友情链接页</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%BE%E5%BA%93%E3%80%81%E5%AD%90%E9%A1%B5%E9%9D%A2%E7%AD%89"><span class="nav-number">4.4.</span> <span class="nav-text">图库、子页面等</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#404%E9%A1%B5%E9%9D%A2"><span class="nav-number">4.5.</span> <span class="nav-text">404页面</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#butterfly%E4%B8%BB%E9%A2%98%E7%9A%84%E5%9F%BA%E7%A1%80%E9%85%8D%E7%BD%AE"><span class="nav-number">5.</span> <span class="nav-text">butterfly主题的基础配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9%E8%8F%9C%E5%8D%95%E6%A0%8F%E9%80%89%E9%A1%B9%E9%85%8D%E7%BD%AE"><span class="nav-number">5.1.</span> <span class="nav-text">修改菜单栏选项配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E5%9D%97%E7%9A%84%E8%AE%BE%E7%BD%AE%EF%BC%88Code-Blocks-Settings%EF%BC%89"><span class="nav-number">5.2.</span> <span class="nav-text">代码块的设置（Code Blocks Settings）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%AA%E4%BA%BA%E7%A4%BE%E4%BA%A4%E5%8D%A1%E7%89%87%E7%9A%84%E4%BF%A1%E6%81%AF%EF%BC%88Social-media-links%EF%BC%89"><span class="nav-number">5.3.</span> <span class="nav-text">个人社交卡片的信息（Social media links）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E5%9B%BE%E7%89%87"><span class="nav-number">5.4.</span> <span class="nav-text">设置图片</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%84%E7%A7%8D%E8%AE%BE%E7%BD%AE"><span class="nav-number">5.5.</span> <span class="nav-text">各种设置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%90%9C%E7%B4%A2%E5%8A%9F%E8%83%BD%EF%BC%88%E4%BB%A5%E6%9C%AC%E5%9C%B0%E6%90%9C%E7%B4%A2%E4%B8%BA%E4%BE%8B%EF%BC%89"><span class="nav-number">5.6.</span> <span class="nav-text">搜索功能（以本地搜索为例）</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">GGGjjjzzz123</p>
+  <div class="site-description" itemprop="description">GJZ的博客，用于存放各种技术文章，分享技术经验。主要内容包括项目开发、技术分享、学习笔记等。希望通过这个博客与大家交流，共同进步！</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">28</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">31</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/yourname" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;yourname" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://gggjjjzzz123.github.io/2025/04/butterfly%E4%B8%BB%E9%A2%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="GGGjjjzzz123">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="GJZ's Blog">
+      <meta itemprop="description" content="GJZ的博客，用于存放各种技术文章，分享技术经验。主要内容包括项目开发、技术分享、学习笔记等。希望通过这个博客与大家交流，共同进步！">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="butterfly主题 | GJZ's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          butterfly主题
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2026-03-20 22:18:22" itemprop="dateModified" datetime="2026-03-20T22:18:22+08:00">2026-03-20</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/" itemprop="url" rel="index"><span itemprop="name">技术文章</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="安装butterfly主题"><a href="#安装butterfly主题" class="headerlink" title="安装butterfly主题"></a>安装butterfly主题</h2><p>用VScode打开项目文件夹，新建终端</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i hexo<span class="literal">-theme-butterfly</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><font style="color:rgb(31, 31, 31);">安装成功后可在【C:&#x2F;Hexo-Blog&#x2F;blog-demo&#x2F;node_modules】文件夹下找到hexo-theme-butterfly文件夹</font></p>
+</blockquote>
+<h2 id="应用butterfly主题"><a href="#应用butterfly主题" class="headerlink" title="应用butterfly主题"></a><font style="color:rgb(31, 31, 31);">应用butterfly主题</font></h2><ol>
+<li><font style="color:rgb(31, 31, 31);">在配置文件</font><font style="color:rgb(244, 116, 102);">_config.yml中</font>，把主题改为butterfly</li>
+</ol>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">theme:</span> <span class="string">butterfly</span></span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>接着安装两个渲染器插件，使butterfly主题正常运行</li>
+</ol>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo<span class="literal">-renderer-pug</span> hexo<span class="literal">-renderer-stylus</span> <span class="literal">--save</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="在VScode终端启动项目"><a href="#在VScode终端启动项目" class="headerlink" title="在VScode终端启动项目"></a>在VScode终端启动项目</h2><p>:::color2<br>目的： 本地预览，快速调试样式、排查错误 ， 不需要每次都上传 GitHub 就看效果 。</p>
+<p>:::</p>
+<ol>
+<li>修改执行策略，使得项目能够在VScode终端运行</li>
+</ol>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">get-ExecutionPolicy</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>显示RemoteSigned，表示当前系统允许运行本地的脚本</p>
+<p>显示Restricted，状态是禁止的</p>
+</blockquote>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Set-ExecutionPolicy</span> RemoteSigned</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p> 将 PowerShell 的执行策略设置为 <code>RemoteSigned</code></p>
+</blockquote>
+<p>:::color2<br>如果这步出现报错的情况：</p>
+<p>权限问题，以管理员的身份重新打开VScode</p>
+<p>:::</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Get-ExecutionPolicy</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p> 再次查看当前的执行策略，确认修改是否生效。  </p>
+</blockquote>
+<ol start="2">
+<li>清理并启动本地项目</li>
+</ol>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo cl; hexo s</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>访问 <a target="_blank" rel="noopener" href="http://localhost:4000/">http://localhost:4000/</a> 即可在本地查看网站已经换上主题</p>
+</blockquote>
+<p>:::info<br>理解</p>
+<p>在安装了butterfly的毛坯房后，进行个性化的装修、装饰</p>
+<p>:::</p>
+<h2 id="基础用法"><a href="#基础用法" class="headerlink" title="基础用法"></a>基础用法</h2><h3 id="Front-Matter（头部信息）"><a href="#Front-Matter（头部信息）" class="headerlink" title="Front Matter（头部信息）"></a>Front Matter（头部信息）</h3><blockquote>
+<p>模板中的示例文章使用markdown语法写的，删除示例文章后，文件中没有内容，网站页面显示会出现错误</p>
+</blockquote>
+<p> 头部信息（Front-matter）是每篇文章或页面文件最上方用 <code>YAML</code> 格式编写的一段内容，用于定义该文章的元数据。它被三个短横线 <code>---</code> 包裹，Hexo 会根据这些信息来生成对应的页面结构、链接、标签等。  </p>
+<ol>
+<li>新建md文件</li>
+</ol>
+<blockquote>
+<p>在文件中输入Front Matter（头部信息），hexo就是依靠头部信息判定这是一篇文章</p>
+</blockquote>
+<ul>
+<li>手动输入</li>
+</ul>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="literal">---</span></span><br><span class="line">title: 第一篇文章</span><br><span class="line">date: <span class="number">2025</span><span class="literal">-4-23</span> <span class="number">21</span>:<span class="number">00</span>:<span class="number">00</span></span><br><span class="line">update: <span class="number">2025</span><span class="literal">-4-23</span> <span class="number">21</span>:<span class="number">00</span>:<span class="number">00</span></span><br><span class="line"><span class="literal">---</span></span><br><span class="line"><span class="comment">## 第一篇文章</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>写在“—”内的信息为头部信息</p>
+</blockquote>
+<ul>
+<li>自动创建</li>
+</ul>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new <span class="string">&quot;文章的名字&quot;</span></span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>Front Matter（头部信息）的其他功能关键字</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th><font style="color:rgb(31, 31, 31);">写法</font></th>
+<th><font style="color:rgb(31, 31, 31);">解释</font></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><font style="color:rgb(31, 31, 31);">title</font></td>
+<td><font style="color:rgb(31, 31, 31);">【必需】文章标题</font></td>
+</tr>
+<tr>
+<td><font style="color:rgb(31, 31, 31);">date</font></td>
+<td><font style="color:rgb(31, 31, 31);">【必需】文章创建日期</font></td>
+</tr>
+<tr>
+<td><font style="color:rgb(31, 31, 31);">updated</font></td>
+<td><font style="color:rgb(31, 31, 31);">【可选】文章更新日期</font></td>
+</tr>
+<tr>
+<td><font style="color:rgb(31, 31, 31);">tags</font></td>
+<td><font style="color:rgb(31, 31, 31);">【可选】文章标籤</font></td>
+</tr>
+<tr>
+<td><font style="color:rgb(31, 31, 31);">categories</font></td>
+<td><font style="color:rgb(31, 31, 31);">【可选】文章分类</font></td>
+</tr>
+<tr>
+<td><font style="color:rgb(31, 31, 31);">keywords</font></td>
+<td><font style="color:rgb(31, 31, 31);">【可选】文章关键字</font></td>
+</tr>
+<tr>
+<td><font style="color:rgb(31, 31, 31);">description</font></td>
+<td><font style="color:rgb(31, 31, 31);">【可选】文章描述</font></td>
+</tr>
+<tr>
+<td><font style="color:rgb(31, 31, 31);">top_img</font></td>
+<td><font style="color:rgb(31, 31, 31);">【可选】文章顶部图片</font></td>
+</tr>
+<tr>
+<td><font style="color:rgb(31, 31, 31);">cover</font></td>
+<td><font style="color:rgb(31, 31, 31);">【可选】文章缩略图(如果没有设置top_img,文章页顶部将显示缩略图，可设为false&#x2F;图片地址&#x2F;留空)</font></td>
+</tr>
+<tr>
+<td><font style="color:rgb(31, 31, 31);">comments</font></td>
+<td><font style="color:rgb(31, 31, 31);">【可选】显示文章评论模块(默认 true)</font></td>
+</tr>
+<tr>
+<td><font style="color:rgb(31, 31, 31);">toc</font></td>
+<td><font style="color:rgb(31, 31, 31);">【可选】显示文章TOC(默认为设置中toc的enable配置)</font></td>
+</tr>
+<tr>
+<td><font style="color:rgb(31, 31, 31);">toc_number</font></td>
+<td><font style="color:rgb(31, 31, 31);">【可选】显示toc_number(默认为设置中toc的number配置)</font></td>
+</tr>
+<tr>
+<td><font style="color:rgb(31, 31, 31);">toc_style_simple</font></td>
+<td><font style="color:rgb(31, 31, 31);">【可选】显示 toc 简洁模式</font></td>
+</tr>
+<tr>
+<td><font style="color:rgb(31, 31, 31);">copyright</font></td>
+<td><font style="color:rgb(31, 31, 31);">【可选】显示文章版权模块(默认为设置中post_copyright的enable配置)</font></td>
+</tr>
+<tr>
+<td><font style="color:rgb(31, 31, 31);">copyright_author</font></td>
+<td><font style="color:rgb(31, 31, 31);">【可选】文章版权模块的文章作者</font></td>
+</tr>
+<tr>
+<td><font style="color:rgb(31, 31, 31);">copyright_author_href</font></td>
+<td><font style="color:rgb(31, 31, 31);">【可选】文章版权模块的文章作者链接</font></td>
+</tr>
+<tr>
+<td><font style="color:rgb(31, 31, 31);">copyright_url</font></td>
+<td><font style="color:rgb(31, 31, 31);">【可选】文章版权模块的文章连结链接</font></td>
+</tr>
+<tr>
+<td><font style="color:rgb(31, 31, 31);">copyright_info</font></td>
+<td><font style="color:rgb(31, 31, 31);">【可选】文章版权模块的版权声明文字</font></td>
+</tr>
+<tr>
+<td><font style="color:rgb(31, 31, 31);">mathjax</font></td>
+<td><font style="color:rgb(31, 31, 31);">【可选】显示mathjax(当设置mathjax的per_page: false时，才需要配置，默认 false)</font></td>
+</tr>
+<tr>
+<td><font style="color:rgb(31, 31, 31);">katex</font></td>
+<td><font style="color:rgb(31, 31, 31);">【可选】显示katex(当设置katex的per_page: false时，才需要配置，默认 false)</font></td>
+</tr>
+<tr>
+<td><font style="color:rgb(31, 31, 31);">aplayer</font></td>
+<td><font style="color:rgb(31, 31, 31);">【可选】在需要的页面加载aplayer的js和css,请参考文章下面的音乐 配置</font></td>
+</tr>
+<tr>
+<td><font style="color:rgb(31, 31, 31);">highlight_shrink</font></td>
+<td><font style="color:rgb(31, 31, 31);">【可选】配置代码框是否展开(true&#x2F;false)(默认为设置中highlight_shrink的配置)</font></td>
+</tr>
+<tr>
+<td><font style="color:rgb(31, 31, 31);">aside</font></td>
+<td><font style="color:rgb(31, 31, 31);">【可选】显示侧边栏 (默认 true)</font></td>
+</tr>
+</tbody></table>
+<ol start="3">
+<li><font style="color:rgb(31, 31, 31);">例子：</font></li>
+</ol>
+<!-- 这是一张图片，ocr 内容为：2025.4.21.MD POSTS SOURCE 1 TITLE:第一篇文章 2 DATE: 2025-4-21 16:00:00 3 4 UPDATE: 2025-4-21 16:00:00 随笔 CATEGORIES: 5 6 第一篇文章 7 -->
+<p><img src="/images/butterfly-theme/image_001_1745224270084-fbc06dc9-ad9d-49a6-acde-60da7c5fc1e6.png"><!-- 这是一张图片，ocr 内容为：第一篇文章 曲CREATED 2025-04-21 随笔 第一篇文章 --><br><img src="/images/butterfly-theme/image_002_1745224290568-81dde2cc-4a0b-4744-9b77-f7fb3fbaf9dc.png"><!-- 这是一张图片，ocr 内容为：随笔 随笔 O CATEGORY -  2025 JOHN DOE 曲2025-04-21 CATEGORIES TAGS ARTICLES 0 2 第一篇文章 FOLLOW ME --><br><img src="/images/butterfly-theme/image_003_1745224314881-8dc51c92-6313-4ae0-a597-60a96a32e1a5.png"></p>
+<h3 id="标签页"><a href="#标签页" class="headerlink" title="标签页"></a>标签页</h3><ol>
+<li>建立tags文件夹</li>
+</ol>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new page tags</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><font style="color:rgb(31, 31, 31);">在</font><code>&lt;font style=&quot;color:rgb(244, 116, 102);&quot;&gt;source&lt;/font&gt;</code><font style="color:rgb(31, 31, 31);">会生成一个含有</font><code>&lt;font style=&quot;color:rgb(244, 116, 102);&quot;&gt;index.md&lt;/font&gt;</code><font style="color:rgb(31, 31, 31);">文件的</font><code>&lt;font style=&quot;color:rgb(244, 116, 102);&quot;&gt;tags&lt;/font&gt;</code><font style="color:rgb(31, 31, 31);">文件夹</font></p>
+</blockquote>
+<ol start="2">
+<li>在 <font style="color:rgb(244, 116, 102);">source\tags\index.md</font> 中添加 type: “tags”</li>
+</ol>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="literal">---</span></span><br><span class="line">title: tags</span><br><span class="line">date: <span class="number">2022</span><span class="literal">-10-28</span> <span class="number">12</span>:<span class="number">00</span>:<span class="number">00</span></span><br><span class="line"><span class="built_in">type</span>: <span class="string">&quot;tags&quot;</span></span><br><span class="line"><span class="literal">---</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>添加一条类型信息来说明这个页面是一个标签页，butterfly主题会根据这个类型在页面上渲染出特定的信息</p>
+</blockquote>
+<h3 id="友情链接页"><a href="#友情链接页" class="headerlink" title="友情链接页"></a>友情链接页</h3><ol>
+<li>建立一个友情链接link文件夹</li>
+</ol>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new page link</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>在<code>&lt;font style=&quot;color:rgb(244, 116, 102);&quot;&gt;source\&lt;/font&gt;</code><font style="color:rgb(31, 31, 31);">会生成一个含有</font><code>&lt;font style=&quot;color:rgb(244, 116, 102);&quot;&gt;index.md&lt;/font&gt;</code><font style="color:rgb(31, 31, 31);">文件的</font><code>&lt;font style=&quot;color:rgb(244, 116, 102);&quot;&gt;link&lt;/font&gt;</code><font style="color:rgb(31, 31, 31);">文件夹</font></p>
+</blockquote>
+<ol start="2">
+<li><font style="color:rgb(31, 31, 31);">修改</font><code>&lt;font style=&quot;color:rgb(244, 116, 102);&quot;&gt;source\link\index.md&lt;/font&gt;</code><font style="color:rgb(31, 31, 31);">，添加</font><code>&lt;font style=&quot;color:rgb(244, 116, 102);&quot;&gt;type: &quot;link&quot;&lt;/font&gt;</code></li>
+</ol>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="literal">---</span></span><br><span class="line">title: link</span><br><span class="line">date: <span class="number">2022</span><span class="literal">-10-28</span> <span class="number">12</span>:<span class="number">00</span>:<span class="number">00</span></span><br><span class="line"><span class="built_in">type</span>: <span class="string">&quot;link&quot;</span></span><br><span class="line"><span class="literal">---</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>步骤和原理和标签页一样</p>
+</blockquote>
+<ol start="3">
+<li>在source下创建一个_data文件夹（友链配置文件），在_data文件夹下再创建一个link.yml文件</li>
+</ol>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet">-</span> <span class="attr">class_name:</span> <span class="number">1</span><span class="string">.技术支持</span></span><br><span class="line">  <span class="attr">class_desc:</span> <span class="string">本网站的搭建由以下开源作者提供技术支持</span></span><br><span class="line">  <span class="attr">link_list:</span> </span><br><span class="line">    <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Hexo</span> </span><br><span class="line">      <span class="attr">link:</span> <span class="string">https://hexo.io/zh-cn/</span></span><br><span class="line">      <span class="attr">avatar:</span> <span class="string">https://d33wubrfki0l68.cloudfront.net/6657ba50e702d84afb32fe846bed54fba1a77add/827ae/logo.svg</span></span><br><span class="line">      <span class="attr">descr:</span> <span class="string">快速、简单且强大的网志框架</span></span><br><span class="line">      <span class="attr">siteshot:</span> <span class="string">https://source.fomal.cc/siteshot/hexo.io.jpg</span></span><br><span class="line">      </span><br><span class="line"><span class="bullet">-</span> <span class="attr">class_name:</span> <span class="number">2</span><span class="string">.友情链接</span></span><br><span class="line">  <span class="attr">class_desc:</span> <span class="string">一些好朋友~~</span></span><br><span class="line">  <span class="attr">link_list:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Fomalhaut🥝</span></span><br><span class="line">      <span class="attr">link:</span> <span class="string">https://fomal.cc/</span></span><br><span class="line">      <span class="attr">avatar:</span> <span class="string">/assets/head.jpg</span></span><br><span class="line">      <span class="attr">descr:</span> <span class="string">Future</span> <span class="string">is</span> <span class="string">now</span> <span class="string">🍭🍭🍭</span></span><br><span class="line">      <span class="attr">siteshot:</span> <span class="string">https://source.fomal.cc/siteshot/www.fomal.cn.jpg</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="图库、子页面等"><a href="#图库、子页面等" class="headerlink" title="图库、子页面等"></a>图库、子页面等</h3><p>创建其他的页面只需要</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new page  xxx</span><br></pre></td></tr></table></figure>
+
+<p>再在相应的文件中修改头部信息，添加对应页面类型的标签</p>
+<h3 id="404页面"><a href="#404页面" class="headerlink" title="404页面"></a>404页面</h3><p>在_config.butterfly.yml修改error_404部分代码</p>
+<!-- 这是一张图片，ocr 内容为：# A SIMPLE 404 PAGE 110 111 404: ERROR ENABLE: TRUE 112 FOUND' 113 SUBTITLE: PAGE NOT BACKGROUND: /IMG/ERROR-PAGE.PNG 114 115 -->
+<p><img src="/images/butterfly-theme/image_004_1745237697398-9bc4f64e-de2e-4d37-95ad-e000d13310cd.png"></p>
+<!-- 这是一张图片，ocr 内容为：CANNOT GET ET/404.HTML -->
+<p><img src="/images/butterfly-theme/image_005_1745237605639-32b773ba-85a8-480c-8f52-27a031a5c288.png"><!-- 这是一张图片，ocr 内容为：HEXO 404 404 PAGE NOT FOUND --><br><img src="/images/butterfly-theme/image_006_1745237751129-61882863-95b2-40d2-bba7-f871b8ee59f4.png"></p>
+<h2 id="butterfly主题的基础配置"><a href="#butterfly主题的基础配置" class="headerlink" title="butterfly主题的基础配置"></a>butterfly主题的基础配置</h2><p>:::color2<br>在_config.butterfly.yml（主题配置文件）文件中进行修改</p>
+<p>:::</p>
+<h3 id="修改菜单栏选项配置"><a href="#修改菜单栏选项配置" class="headerlink" title="修改菜单栏选项配置"></a>修改菜单栏选项配置</h3><ol>
+<li>ctrl+&#x2F;：释放注释</li>
+<li>将菜单栏选项进行重命名</li>
+</ol>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">menu:</span></span><br><span class="line">  <span class="string">首页:</span> <span class="string">/</span> <span class="string">||</span> <span class="string">fas</span> <span class="string">fa-home</span></span><br><span class="line">  <span class="string">列表||fas</span> <span class="attr">fa-list:</span></span><br><span class="line">    <span class="string">音乐:</span> <span class="string">/music/</span> <span class="string">||</span> <span class="string">fas</span> <span class="string">fa-music</span></span><br><span class="line">    <span class="string">电影:</span> <span class="string">/movies/</span> <span class="string">||</span> <span class="string">fas</span> <span class="string">fa-video</span></span><br><span class="line">  <span class="string">友链:</span> <span class="string">/link/</span> <span class="string">||</span> <span class="string">fas</span> <span class="string">fa-link</span></span><br><span class="line">  <span class="string">标签:</span> <span class="string">/tags/</span> <span class="string">||</span> <span class="string">fas</span> <span class="string">fa-tags</span></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>在source文件夹（Hexo默认的根目录）下创建不存在的文件夹，再在文件下创建index.md文件（代表文件夹的主页），在各个index.md文件下配置相关的内容（头部信息）</li>
+</ol>
+<!-- 这是一张图片，ocr 内容为：SOURCE DATA POSTS LINK INDEX.MD MOVIES INDEX.MD MUSIC INDEX.MD TAGS INDEX.MD -->
+<p><img src="/images/butterfly-theme/image_007_1745239353907-4fbb32b4-ecfb-43a5-9cb6-671da807669d.png"><!-- 这是一张图片，ocr 内容为：INDEX.MD MUSIC SOURCE 1 TITLE:音乐 2 DATE: 2025-04-21 16:54:27 3 4 --><br><img src="/images/butterfly-theme/image_008_1745239371524-18503c83-2dd6-46ae-a409-ad38769e0802.png"></p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">title:</span> <span class="string">音乐</span></span><br><span class="line"><span class="attr">date:</span> <span class="number">2025-04-21 16:54:27</span></span><br><span class="line"><span class="meta">---</span></span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>效果展示</li>
+</ol>
+<!-- 这是一张图片，ocr 内容为：友链 首页 三列表 标签 音乐 电影 -->
+<p><img src="/images/butterfly-theme/image_009_1745239971156-231f1784-0eaa-4e7b-8cdd-f8eb0bf372f2.png"></p>
+<blockquote>
+<p>上面设置的友链部分内容</p>
+</blockquote>
+<!-- 这是一张图片，ocr 内容为：1.技术支持 本网站的搭建由以下开源作者提供技术支持 HEXO H 快速,简单且强大的网... 2.友情链接 一些好朋友~~ FOMALHAUT FUTURE IS NOW -->
+<p><img src="/images/butterfly-theme/image_010_1745240001269-5660d176-29e4-4232-95fd-1c0eb6f4b6b7.png"></p>
+<h3 id="代码块的设置（Code-Blocks-Settings）"><a href="#代码块的设置（Code-Blocks-Settings）" class="headerlink" title="代码块的设置（Code Blocks Settings）"></a>代码块的设置（Code Blocks Settings）</h3><ol>
+<li>代码格式</li>
+</ol>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">code_blocks:</span></span><br><span class="line">  <span class="comment"># Code block theme: darker / pale night / light / ocean / false</span></span><br><span class="line">  <span class="attr">theme:</span> <span class="string">light</span></span><br></pre></td></tr></table></figure>
+
+<!-- 这是一张图片，ocr 内容为：编辑 复制 YAML CODE_BLOCKS: # CODE BLOCK THEME: DARKER / PALE NIGHT / LIGHT / OCEAN / FALSE THEME: LIGHT 代码块的配色主题. 可选值: DARKER:暗黑风 PALENIGHT:柔和暗色风 LIGHT:亮色风(你现在用的) 蓝色系 OCEAN 不使用主题样式(你会失去美化) FALSE -->
+<p><img src="/images/butterfly-theme/image_011_1745239572183-8c9ab60a-a7ad-433b-ae40-4e233afe9577.png"></p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">macStyle:</span> <span class="literal">false</span></span><br></pre></td></tr></table></figure>
+
+<!-- 这是一张图片，ocr 内容为：白复制 编辑 YAML MACSTYLE: FALSE 红黄绿). 是否开启MAC风格的代码块样式(左上角显示三个小圆点 会模拟MACOS终端的样式. TRUE -->
+<p><img src="/images/butterfly-theme/image_012_1745239602199-e0e21f0a-4e84-4b28-813f-6e617a5ceae2.png"></p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">height_limit:</span> <span class="literal">false</span></span><br></pre></td></tr></table></figure>
+
+<!-- 这是一张图片，ocr 内容为：限制代码块最大高度,超出部分会滚动. 举例:HEIGHT_LIMIT:300表示最多显示300PX高,超过就滚动. 表示不限制,显示全部内容. FALSE -->
+<p><img src="/images/butterfly-theme/image_013_1745239775022-c5aada5d-89cb-41c2-907e-05a55a4c1975.png"></p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">word_wrap:</span> <span class="literal">false</span></span><br></pre></td></tr></table></figure>
+
+<!-- 这是一张图片，ocr 内容为：是否自动换行. 当代码太长时自动换行显示(适合移动端) TRUE FALSE:长代码横向滚动 -->
+<p><img src="/images/butterfly-theme/image_014_1745240254037-17dafdf3-47ac-4fd8-b4d3-c0a51694753e.png"></p>
+<ol start="2">
+<li>代码工具栏部分</li>
+</ol>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">copy:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<!-- 这是一张图片，ocr 内容为：是否显示"复制代码"按钮 TRUE:每个代码块右上角会出现"复制"图标 用户一键点击即可复制代码,非常实用! -->
+<p><img src="/images/butterfly-theme/image_015_1745240336753-eb78d738-8bb3-42f8-bab1-520876c25567.png"></p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">language:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<!-- 这是一张图片，ocr 内容为：是否显示代码块的语言标识(如 JAVASCRIPT PYTHON 显示语言 TRUE 不显示 FALSE -->
+<p><img src="/images/butterfly-theme/image_016_1745240385840-75e94d8b-fd6f-4278-8d15-0954c760fa00.png"></p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">shrink:</span> <span class="literal">false</span></span><br></pre></td></tr></table></figure>
+
+<!-- 这是一张图片，ocr 内容为：是否收起/折叠代码块 可选值: 默认折叠,用户需要点击"展开" TRUE 默认展开 FALSE 展开代码块并隐藏"展开/收起"按钮 NONE -->
+<p><img src="/images/butterfly-theme/image_017_1745240435819-14c76e06-6702-492a-bbf2-9867a1e165a1.png"></p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">fullpage:</span> <span class="literal">false</span></span><br></pre></td></tr></table></figure>
+
+<!-- 这是一张图片，ocr 内容为：是否开启"全屏查看代码"按钮(点击后代码块会放大全屏显示) 开启全屏按钮 TRUE FALSE:关闭该按钮 -->
+<p><img src="/images/butterfly-theme/image_018_1745240480734-1117ee57-998c-4c93-810e-95b3c05ea1a3.png"></p>
+<ol start="3">
+<li>效果展示</li>
+</ol>
+<!-- 这是一张图片，ocr 内容为：IBS CREATE TABLE "TOPIC"( "ID"SERIAL NOT NULL PRIMARY KEY, "FORUM ID INTEGER NOT NULL, "SUBJECT"VARCHAR(255)NOT NULL 4 5 ALTER TABLE"TOPIC" 9 ADD CONSTRAINT FORUM_ID FOREIGN KEY ("FORUM ID") Z ("ID"); 8 REFERENCEST FORUM" 9 10--INITIALS 11 INSERT INTO "TOPIC"("FORUM ID","SUBJECT") 12 VALUES(2,D''ARTAGNIAN'); -->
+<p><img src="/images/butterfly-theme/image_019_1745240626768-f8bfad5c-3663-4628-b290-1e4e056c111e.webp"></p>
+<h3 id="个人社交卡片的信息（Social-media-links）"><a href="#个人社交卡片的信息（Social-media-links）" class="headerlink" title="个人社交卡片的信息（Social media links）"></a>个人社交卡片的信息（Social media links）</h3><p>添上想展示的个人信息即可</p>
+<h3 id="设置图片"><a href="#设置图片" class="headerlink" title="设置图片"></a>设置图片</h3><p>自行设置</p>
+<h3 id="各种设置"><a href="#各种设置" class="headerlink" title="各种设置"></a>各种设置</h3><p>自行了解</p>
+<h3 id="搜索功能（以本地搜索为例）"><a href="#搜索功能（以本地搜索为例）" class="headerlink" title="搜索功能（以本地搜索为例）"></a>搜索功能（以本地搜索为例）</h3><ol>
+<li>需要安装依赖</li>
+</ol>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo<span class="literal">-generator-search</span> <span class="literal">--save</span></span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>在网站配置文件中添加以下内容</li>
+</ol>
+<blockquote>
+<p>注意不是主题配置文件</p>
+</blockquote>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">search:</span></span><br><span class="line">  <span class="attr">path:</span> <span class="string">search.xml</span></span><br><span class="line">  <span class="attr">field:</span> <span class="string">post</span></span><br><span class="line">  <span class="attr">content:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>修改主题配置文件中的本地搜索</li>
+</ol>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Local Search</span></span><br><span class="line"><span class="attr">local_search:</span></span><br><span class="line">  <span class="comment"># Preload the search data when the page loads.</span></span><br><span class="line">  <span class="attr">preload:</span> <span class="literal">true</span></span><br><span class="line">  <span class="comment"># Show top n results per article, show all results by setting to -1</span></span><br><span class="line">  <span class="attr">top_n_per_article:</span> <span class="number">1</span></span><br><span class="line">  <span class="comment"># Unescape html strings to the readable one.</span></span><br><span class="line">  <span class="attr">unescape:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">CDN:</span></span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>在主题配置配置文件中选择启用本地搜索，并设置占位文本</li>
+</ol>
+<!-- 这是一张图片，ocr 内容为：465 # SEARCH 466 467 # 468 469 SEARCH: LOCAL_SEARCH / DOCSEARCH  # CHOOSE: ALGOLIA_SEARCH / 470 471 I LEAVE IT EMPTY IF YOU DON'T NEED SEARCH LOCAL SEARCH 472 USE: 输入关键词 473 PLACEHOLDER: -->
+<p><img src="/images/butterfly-theme/image_020_1745243395307-a780d1f2-ad8f-4b0d-9d8d-18cfaf8fe7b0.png"></p>
+<ol start="5">
+<li>效果展示</li>
+</ol>
+<!-- 这是一张图片，ocr 内容为：Q SEARCH 首页 列表 SEARCH 输入矣键词 8. -->
+<p><img src="/images/butterfly-theme/image_021_1745243139279-7af50e09-1fbc-4783-86da-6b4f829ab087.png"></p>
+<p>:::color2<br>出现默认是英文的情况：</p>
+<p>网站配置文件默认语言是en，在网站配置文件修改为zn-CN即可</p>
+<!-- 这是一张图片，ocr 内容为：SITE 5 # TITLE: HEXO 6 7 SUBTITLE: 8 DESCRIPTION: 9 KEYWORDS:  AUTHOR: JOHN DOE 10  LANGUAGE: ZH-CN 11 TIMEZONE: 12 13 -->
+<p><img src="/images/butterfly-theme/image_022_1745243426555-b5bf83fd-725c-42a7-81ee-bd628cb4d149.png"></p>
+<p>在这里还可以修改网站的名字、作者名字、描述等</p>
+<p>:::</p>
+<!-- 这是一张图片，ocr 内容为：搜索 首页 -->
+<p><img src="/images/butterfly-theme/image_023_1745243363399-3b4bc0d7-b047-491c-8bd0-dd7807c9c206.png"></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Hexo/" rel="tag"># Hexo</a>
+              <a href="/tags/%E4%B8%BB%E9%A2%98/" rel="tag"># 主题</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/03/Hexo+GitHub%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" rel="prev" title="Hexo+GitHub搭建个人博客">
+                  <i class="fa fa-angle-left"></i> Hexo+GitHub搭建个人博客
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2026/03/hello-world/" rel="next" title="Hello World">
+                  Hello World <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2023 – 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">未经授权不得转载</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

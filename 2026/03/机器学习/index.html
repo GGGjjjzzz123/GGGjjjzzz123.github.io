@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"gggjjjzzz123.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.27.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="Numpy矩阵运算 numpy为我们提供了一个特殊的数组对象，它可以对数组中的数据进行非常高效的运算 python是一个很慢的语言，但是numpy之所以能这么快是应为，它底层是用C语言实现的目标代码 numpy的核心：对于任何要运算的数据，需要预先将他们表示成numpy数组的形式——向量化、并行化 numpy中所有的运算都是围绕着数组进行的，因此在计算前我们需要将计算的数据表示成数组的形式 使用步">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GJZ&#39;s Blog">
+<meta property="og:url" content="https://gggjjjzzz123.github.io/2026/03/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/index.html">
+<meta property="og:site_name" content="GJZ&#39;s Blog">
+<meta property="og:description" content="Numpy矩阵运算 numpy为我们提供了一个特殊的数组对象，它可以对数组中的数据进行非常高效的运算 python是一个很慢的语言，但是numpy之所以能这么快是应为，它底层是用C语言实现的目标代码 numpy的核心：对于任何要运算的数据，需要预先将他们表示成numpy数组的形式——向量化、并行化 numpy中所有的运算都是围绕着数组进行的，因此在计算前我们需要将计算的数据表示成数组的形式 使用步">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-ml/image_001_1748847429838-a089a2af-c252-421f-94b4-321110098913.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-ml/image_002_1748845263955-77fe0384-f80f-4e24-999f-3cbc36393fea.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-ml/image_003_1748845287811-852de419-6e78-46e9-bcb9-ece638ed4f58.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-ml/image_004_1748847593984-f8611f1b-307e-4ea4-9f59-00a016df82c8.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-ml/image_005_1748847734509-8826dcbf-09b3-4207-9604-0dd0017488d7.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-ml/image_006_1748847811394-78c34e29-e288-4be0-8a60-3d07a2c89ab3.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-ml/image_007_1748847916660-e94898e0-0b36-46e8-a836-2b7a5449ce23.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-ml/image_008_1748851613715-226c99e3-dd29-42d7-b1e9-6eadd62feafd.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-ml/image_009_1748938836823-ae424ba5-b6c1-49f5-87d3-02b342a93d62.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-ml/image_010_1748939558036-557a3b54-4e0e-443a-8c43-228a106e2558.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-ml/image_011_1748938930374-9ebbc3ce-a0f3-455b-a02c-a1e55a2d2906.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-ml/image_012_1748938989632-d0e8ef08-c397-452e-8268-8c5ceb379fc0.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-ml/image_013_1748938916197-db4fa7a3-3531-4146-9dfb-4bae1cbdc3bf.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-ml/image_014_1748946230633-b76010a6-3d2b-4d1f-a377-853b6c1067cd.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-ml/image_015_1748946293995-9ef4a131-ca85-4372-9d8c-b578b29865f5.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-ml/image_016_1748967065189-858812bc-d490-4d6c-9d03-64772de84c56.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-ml/image_017_1748967224924-065432fe-993b-46a9-b992-0119e9e0114c.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-ml/image_018_1748967318038-68ff1834-3552-4fc3-b249-a5c23cd1d5c2.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-ml/image_019_1748967363417-7a555db9-e5da-432c-8068-c2bb76f3c63a.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-ml/image_016_1748967065189-858812bc-d490-4d6c-9d03-64772de84c56.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-ml/image_021_1748967562212-61e82d08-bc8a-4ae8-aecd-9c2394e36be5.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-ml/image_022_1748967600397-c9a2c7b4-aaed-4481-b4e2-af3b068f5442.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-ml/image_023_1748967721373-3dbdee6b-5a35-412e-b0e3-cf7724470035.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-ml/image_024_1749981827406-201f6df6-18e5-4a5d-bdc1-c8f576093081.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-ml/image_025_1749981903360-8c35f193-6d68-4d3a-a736-47bd02252a33.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-ml/image_026_1749983161077-18de0351-4d45-4f14-b5e3-fc636a9553f2.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-ml/image_027_1749983240093-d300c5dd-272d-4dad-ab14-1e94efb188b2.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-ml/image_028_1749983706658-c7a4ec86-d4a2-4de0-98a1-d56749cf05b8.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-ml/image_029_1749985951317-e04a98ae-386c-493b-8316-5c061b052351.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-ml/image_030_1749985277855-953888dd-db70-444e-a16f-7d02d0ed515d.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-ml/image_031_1749985406542-2acd5a49-29da-427d-8dc8-5f9e39044c68.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-ml/image_032_1749986025580-82d3bb7b-ef84-4998-83cf-e785fbf2a7f8.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-ml/image_033_1750163140665-a541dba0-b940-4ee0-97a7-bf8cb6b0c1c5.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-ml/image_034_1750154944281-9ffe0316-5c6a-4858-a1d0-1686aa1e76e4.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-ml/image_035_1749994875047-99c9ad0d-6e3e-44ca-a40d-20cee71d159e.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-ml/image_036_1750157025438-bdd1a033-a68e-48df-9f56-d7d86f24a6a9.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-ml/image_037_1750157049315-ca1af18e-0f60-4cd0-a4dd-30ae2fdac879.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-ml/image_038_1750157644072-f540cc4f-0ecd-439f-81a4-c4569501e466.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-ml/image_039_1750160245716-68d9ed20-7929-4b1f-a59d-6619dac6b61d.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-ml/image_040_1750160282455-9b659d1a-f8ff-4047-b64f-11906ef1613f.png">
+<meta property="og:image" content="https://gggjjjzzz123.github.io/images/courses-ml/image_041_1750160598026-f84df183-ab67-45cb-ba06-02f01ea5340b.png">
+<meta property="article:published_time" content="2026-03-21T10:56:44.161Z">
+<meta property="article:modified_time" content="2026-03-21T13:24:23.728Z">
+<meta property="article:author" content="GGGjjjzzz123">
+<meta property="article:tag" content="分享, 技术, 博客, 开发, 学习">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gggjjjzzz123.github.io/images/courses-ml/image_001_1748847429838-a089a2af-c252-421f-94b4-321110098913.png">
+
+
+<link rel="canonical" href="https://gggjjjzzz123.github.io/2026/03/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://gggjjjzzz123.github.io/2026/03/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/","path":"2026/03/机器学习/","title":""}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title> | GJZ's Blog</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">GJZ's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">博主是一名努力进步、热爱生活、充满生命力的人</p>
+      <img class="custom-logo-image" src="/images/android-chrome-512x512.png" alt="GJZ's Blog">
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-技术文章"><a href="/tech/" rel="section"><i class="fa fa-code fa-fw"></i>技术文章</a></li><li class="menu-item menu-item-项目文档"><a href="/projects/" rel="section"><i class="fa fa-rocket fa-fw"></i>项目文档</a></li><li class="menu-item menu-item-课程笔记"><a href="/notes/" rel="section"><i class="fa fa-book fa-fw"></i>课程笔记</a></li><li class="menu-item menu-item-杂项随笔"><a href="/misc/" rel="section"><i class="fa fa-pencil fa-fw"></i>杂项随笔</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%A8%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6pytorch%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E5%A4%9A%E5%B1%82%E5%85%A8%E8%BF%9E%E6%8E%A5%E7%9A%84%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C"><span class="nav-number">1.</span> <span class="nav-text">用深度学习框架pytorch搭建一个多层全连接的神经网络</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%89%8D%E6%9C%9F%E5%87%86%E5%A4%87"><span class="nav-number">1.1.</span> <span class="nav-text">前期准备</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B7%E4%BD%93%E6%AD%A5%E9%AA%A4"><span class="nav-number">1.2.</span> <span class="nav-text">具体步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E5%AE%89%E8%A3%85pytorch"><span class="nav-number">1.2.1.</span> <span class="nav-text">一、安装pytorch</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E7%90%86%E8%A7%A3%EF%BC%9A%E4%BD%BF%E7%94%A8pytorch%E6%90%AD%E5%BB%BA%E3%80%81%E8%AE%AD%E7%BB%83%E3%80%81%E4%BF%9D%E5%AD%98%E3%80%81%E8%B0%83%E7%94%A8%E3%80%81%E6%B5%8B%E8%AF%95%E6%A8%A1%E5%9E%8B%EF%BC%88%E6%B3%A8%E9%87%8D%E8%BF%87%E7%A8%8B%EF%BC%89"><span class="nav-number">1.2.2.</span> <span class="nav-text">二、理解：使用pytorch搭建、训练、保存、调用、测试模型（注重过程）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E9%9B%86%E6%88%90%E7%AC%AC%E4%B8%89%E6%96%B9%E6%A8%A1%E5%9E%8B%EF%BC%88%E4%BE%8B%E5%A6%82%E5%81%9A%E4%B8%80%E4%B8%AA%E8%81%8A%E5%A4%A9%E6%9C%BA%E5%99%A8%E4%BA%BA%EF%BC%89"><span class="nav-number">1.2.3.</span> <span class="nav-text">三、集成第三方模型（例如做一个聊天机器人）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E5%AE%9E%E6%88%98%EF%BC%9A%E7%94%A8pytorch%E6%90%AD%E5%BB%BA%E5%85%A8%E8%BF%9E%E6%8E%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%EF%BC%8C%E5%AF%B9Fashion-MINIST%E6%95%B0%E6%8D%AE%E9%9B%86%E4%B8%AD%E7%9A%84%E6%97%B6%E5%B0%9A%E7%89%A9%E5%93%81%E8%BF%9B%E8%A1%8C%E5%88%86%E7%B1%BB%EF%BC%88%E6%B3%A8%E9%87%8D%E4%BB%A3%E7%A0%81%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%92%8C%E6%90%AD%E5%BB%BA%E7%BD%91%E7%BB%9C%E7%9A%84%E6%95%B4%E4%B8%AA%E8%BF%87%E7%A8%8B%EF%BC%89"><span class="nav-number">1.2.4.</span> <span class="nav-text">三、实战：用pytorch搭建全连接神经网络，对Fashion-MINIST数据集中的时尚物品进行分类（注重代码的实现和搭建网络的整个过程）</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8EYOLO%E7%9A%84%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E5%AE%9E%E9%AA%8C"><span class="nav-number">2.</span> <span class="nav-text">基于YOLO的目标检测实验</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E4%BD%BF%E7%94%A8yolov5%E7%AE%97%E6%B3%95%E8%BF%9B%E8%A1%8C%E5%9B%BE%E7%89%87%E3%80%81%E8%A7%86%E9%A2%91%E5%92%8C%E6%91%84%E5%83%8F%E5%A4%B4%E5%AE%9E%E6%97%B6%E5%86%85%E5%AE%B9%E6%A3%80%E6%B5%8B"><span class="nav-number">2.1.</span> <span class="nav-text">一、使用yolov5算法进行图片、视频和摄像头实时内容检测</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%85%8D%E7%BD%AEyolov5%E7%9A%84%E8%BF%90%E8%A1%8C%E7%8E%AF%E5%A2%83"><span class="nav-number">2.1.1.</span> <span class="nav-text">配置yolov5的运行环境</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BF%90%E8%A1%8Cyolov5%E7%AE%97%E6%B3%95"><span class="nav-number">2.1.2.</span> <span class="nav-text">运行yolov5算法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%AD%E7%BB%83%E8%87%AA%E5%B7%B1%E7%9A%84%E6%95%B0%E6%8D%AE%E9%9B%86"><span class="nav-number">2.2.</span> <span class="nav-text">训练自己的数据集</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BB%99%E8%87%AA%E5%B7%B1%E7%9A%84%E6%95%B0%E6%8D%AE%E9%9B%86%E6%89%93%E6%A0%87%E7%AD%BE"><span class="nav-number">2.2.1.</span> <span class="nav-text">给自己的数据集打标签</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">GGGjjjzzz123</p>
+  <div class="site-description" itemprop="description">GJZ的博客，用于存放各种技术文章，分享技术经验。主要内容包括项目开发、技术分享、学习笔记等。希望通过这个博客与大家交流，共同进步！</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">28</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">31</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/yourname" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;yourname" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://gggjjjzzz123.github.io/2026/03/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="GGGjjjzzz123">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="GJZ's Blog">
+      <meta itemprop="description" content="GJZ的博客，用于存放各种技术文章，分享技术经验。主要内容包括项目开发、技术分享、学习笔记等。希望通过这个博客与大家交流，共同进步！">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | GJZ's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2026-03-21 21:24:23" itemprop="dateModified" datetime="2026-03-21T21:24:23+08:00">2026-03-21</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>Numpy矩阵运算</p>
+<p>numpy为我们提供了一个特殊的数组对象，它可以对数组中的数据进行非常高效的运算</p>
+<p>python是一个很慢的语言，但是numpy之所以能这么快是应为，它底层是用C语言实现的目标代码</p>
+<p>numpy的核心：对于任何要运算的数据，需要预先将他们表示成numpy数组的形式——向量化、并行化</p>
+<p>numpy中所有的运算都是围绕着数组进行的，因此在计算前我们需要将计算的数据表示成数组的形式</p>
+<p>使用步骤：</p>
+<ol>
+<li>导入numpy这个库并起个别名np</li>
+<li>使用np.array([1,2,3,4,5])创建一个数组，括号中是初始化的数据</li>
+</ol>
+<blockquote>
+<p>也可以用np.zeros((3,2))创建一个全零的数组，括号里传入的参数是数组的尺寸</p>
+<p>np.ones((2,4))创建一个全一的数组</p>
+<p>np.arange(3,7)创建一个递减的数列等间距分布的数</p>
+<p>np.linspace(0,1,5)创建一个介于某个区间</p>
+<p>np.random.rand(2,4)创建一个随机数组</p>
+</blockquote>
+<ol start="3">
+<li>a.shape 可以用来获得数组的尺寸</li>
+<li>a.dtype 在Numpy中数组默认的元素类型为float64，可以在创建np数组时指定元素类型。对于现有的数组可以通过a.astype(int)来转换数据类型。</li>
+</ol>
+<p>矩阵的基本运算</p>
+<ol>
+<li>两个尺寸相同的数组可以直接进行四则运算，将数组同位置的元素进行加减乘除。</li>
+<li>两个尺寸不同的数组也可以进行运算，运算之前需要广播，使得两个矩阵的尺寸相同。</li>
+</ol>
+<ul>
+<li>np.dot(a,b) 将两个向量进行点乘运算</li>
+<li>a @ b 矩阵的乘法（等同于np.matmul()函数）</li>
+<li>np.array(a) 对所有数依次求平方根</li>
+<li>np.sin(a) np.cos(a) 进行三角函数运算</li>
+<li>np.log(a) 进行对数运算</li>
+<li>np.power(a,2) 进行指数运算</li>
+<li>a*5 单独与一个数进行运算，分别计算各个元素与这个数的乘积 —&gt; 广播</li>
+<li>a.min() 返回数组中最小的元素  a.argmin() 返回数组中最小元素所在的索引</li>
+<li>a.max() 返回数组中最大的元素  a.argmax() 返回数组中最大元素所在的索引</li>
+<li>a.sum() 返回所有元素的总和</li>
+<li>a.mean()和np.median(a) 会返回数据的平均值</li>
+<li>a.var() 返回数据的方差</li>
+<li>a.std() 返回数据的标准差</li>
+<li>a.sum(axis&#x3D;0) 将每一行中对应的数据相加 （axis代表第一个维度，即行）</li>
+<li>a.sum(axis&#x3D;1) 将每一列中对应的数据相加 （axis代表第二个维度，即列）</li>
+<li>a[x,y] a[a&lt;3] a[(a&gt;3)&amp;(a%2&#x3D;&#x3D;0)] a[0,0:2] a<a href="z%E4%B8%BA%E8%B7%A8%E5%BA%A6">x,y,z</a>返回指定的元素</li>
+</ul>
+<p>numpy的典型应用——图片处理</p>
+<p>对于彩色的图片可以用三维数组来表示(一二维分别表示行列，第三维存储了像素点的红绿蓝分量)</p>
+<p>使用pillow这个库在python中读取图片文件</p>
+<p>from PIL import Image</p>
+<p>im &#x3D; Image.open(‘doge.jpg’)</p>
+<p>im.show()</p>
+<p>通过np.array(im)将图片转换成一个numpy数组</p>
+<p>im &#x3D; np.array(im)</p>
+<p>im.shape</p>
+<ul>
+<li>im[100,100] 可以通过下标来访问某个像素点的颜色</li>
+<li>im_r &#x3D; im[:,:,0] 提取出所有像素点的红色分量</li>
+<li>im_blend &#x3D; im1<em>0.4 + im2</em>0.6 将两张图片按比例混在一起</li>
+</ul>
+<p>注意：为了展示图片要把数组转换成整数</p>
+<ul>
+<li>可以利用跨度对图片进行采样</li>
+<li>跨度为-1，翻转图片</li>
+</ul>
+<h2 id="用深度学习框架pytorch搭建一个多层全连接的神经网络"><a href="#用深度学习框架pytorch搭建一个多层全连接的神经网络" class="headerlink" title="用深度学习框架pytorch搭建一个多层全连接的神经网络"></a>用深度学习框架pytorch搭建一个多层全连接的神经网络</h2><p>内容：</p>
+<ol>
+<li>学习机器学习框架（pytorch）,使用框架搭建模型并训练，保存和调用训练好的模型</li>
+<li>集成第三方模型，做一个聊天机器人</li>
+<li>实战：使用pytorch搭建一个多层全连接的神经网络, 对Fashion-MINIST数据集中的时尚物品进行分类</li>
+</ol>
+<p>什么是机器学习框架？</p>
+<p>是为了简化机器学习模型开发、训练部署而设计的软件工具或库，无需从零开始编写底层代码。</p>
+<p>为什么要用机器学习框架？</p>
+<p>避免重复造轮子，框架中已经实现一些经典算法，提高效率</p>
+<h3 id="前期准备"><a href="#前期准备" class="headerlink" title="前期准备"></a>前期准备</h3><p><strong>jupyter：</strong>专门在浏览器端可以以代码区块的形式对python进行编程、运行和数据展示的一个工具</p>
+<p><strong>Anaconda：</strong>包含python相关包和一些实用工具的集合，例如，我们可以使用anaconda进行Python环境的管理，使得在运行不同的程序时候使用不同的环境，极大避免了一些环境的依赖冲突</p>
+<p><strong>Miniconda：</strong>是一款轻量级的 Python 环境管理工具，是 Anaconda 的简化版本。它专注于提供核心的包管理和环境隔离功能，适合需要灵活控制依赖项的用户。(本人安装的是Miniconda)</p>
+<p><strong>conda：</strong>是Anaconda中的包管理工具</p>
+<p><strong>pytorch：</strong><font style="color:rgb(0,0,0);">是一个开源的深度学习框架，像NumPy 一样，PyTorch 也提供了多维数组（张量）和大量的数学运算。</font></p>
+<p>pytorch下载官网：</p>
+<p><a target="_blank" rel="noopener" href="https://pytorch.org/">PyTorch</a></p>
+<p><font style="color:#DF2A3F;">说明：以下所有安装过程均使用的是包管理工具conda，使用的是anaconda环境中运行的jupyter notebook</font></p>
+<h3 id="具体步骤"><a href="#具体步骤" class="headerlink" title="具体步骤"></a>具体步骤</h3><h4 id="一、安装pytorch"><a href="#一、安装pytorch" class="headerlink" title="一、安装pytorch"></a>一、安装pytorch</h4><p>（作为练习最好新创建一个环境“pytorch”，激活环境）</p>
+<ol>
+<li>打开官网下载pytorch，选择适合的版本，若现有版本中没有合适的，则查看以往版本，选好后复制对应的命令语句（我选的版本是：如下图）</li>
+</ol>
+<p>注意：一个环境中最好只是用一种包管理工具（如果这里使用的是conda那么后续的包安装要保证尽量都要使用conda，pip同理）</p>
+<!-- 这是一张图片，ocr 内容为：PYTORCH PREVIEW(NIGHTLY) STABLE(2.7.0) BUILD WINDOWS LINUX YOUR OS MAC LIBTORCH PACKAGE SOURCE PIP PYTHON LANGUAGE C++/JAVA CUDA CUDA COMPUTE CUDA CPU ROCM 6.3 11.8 12.8 12.6 PLATFORM RUN THIS PIP3 INSTALL TORCH TORCHVISION TORCHAUDIO COMMAND: -->
+<p><img src="/images/courses-ml/image_001_1748847429838-a089a2af-c252-421f-94b4-321110098913.png"></p>
+<!-- 这是一张图片，ocr 内容为：PREVIOUS VERSIONS OF PYTORCH -->
+<p><img src="/images/courses-ml/image_002_1748845263955-77fe0384-f80f-4e24-999f-3cbc36393fea.png"></p>
+<!-- 这是一张图片，ocr 内容为：V2.5.0 CONDA OSX # CONDA CONDA INSTALL PYTORCH-2.5.0 TORCHVISION--0.20.0 TORCHAUDIO--2.5.0 LINUX AND WINDOWS CUDA 11.8 CONDA INSTALL PYTORCH三三2.5.0 TORCHVISION三-0.20.0 TORCHAUDIO三-2.5.0 # CUDA 12.1 CONDA INSTALL PYTORCL :PYTORCH-三2.5.0 TORCHVISION::0.20.0 TORCHAUDIO:-2.5.0 P # CUDA 12.4 DA INSTALL PYTORCH-2.5.0 TORCHVISION--0.20.0 TORCHAUDIO-三2.5.0 P CONDA INSTAL # CPU ONLY CONDA INSTALL TORCHVISION--0.20.0 TORCHAUDIO:2.5.0 PYTORCH2.5.0 -->
+<p><img src="/images/courses-ml/image_003_1748845287811-852de419-6e78-46e9-bcb9-ece638ed4f58.png"></p>
+<ol start="2">
+<li>打开Anaconda Prompt终端，创建一个名为“pytorch”的环境</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda create -n pytorch python=<span class="number">3.6</span>	<span class="comment"># python版本可根据需要指定</span></span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>激活pytorch环境</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">activate pytorch</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>将复制的pytorch安装指令复制到该环境下，进行安装（如果安装失败，可尝试使用镜像）</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda install pytorch==<span class="number">2.5</span><span class="number">.1</span> torchvision==<span class="number">0.20</span><span class="number">.1</span> torchaudio==<span class="number">2.5</span><span class="number">.1</span> cpuonly -c pytorch</span><br></pre></td></tr></table></figure>
+
+<ol start="5">
+<li>可通conda list&#x2F;pip list查看安装列表</li>
+</ol>
+<!-- 这是一张图片，ocr 内容为：(PYTORCH) C:\USERS\高佳卓>PIP LIST VERSION PACKAGE 2016.2.28 CERTIFI DATACLASSES 0.8 1.19.5 NUMPY PILLOW 8.4.0 20.0.2 PIP 36.4.0 SETUPTOOLS 1.10.2 TORCH 0.10.2 TORCHAUDIO TORCHVISION 0.11.3 4.1.1 TYPING-EXTENSIONS 0.34.2 WHEEL 0.2 WINCERTSTORE -->
+<p><img src="/images/courses-ml/image_004_1748847593984-f8611f1b-307e-4ea4-9f59-00a016df82c8.png"></p>
+<ol start="6">
+<li>查看是否安装成功</li>
+</ol>
+<ul>
+<li>python环境</li>
+</ul>
+<p>输入python进入python环境</p>
+<!-- 这是一张图片，ocr 内容为：(PYTORCH) C:\USERS\高佳卓>PYTHON 3 2021, 18:25:24) [MSC V.1916 64 BIT (AMD64)] ON WIN32 PYTHON 3.6.15 (DEFAULT,DEC SE"FOR TYPE "HELP", "COPYRIGHT", "CREDITS" OR "LICENSE" F MORE INFORMATION. -->
+<p><img src="/images/courses-ml/image_005_1748847734509-8826dcbf-09b3-4207-9604-0dd0017488d7.png"></p>
+<p>加载torch，若没有出现任何报错的信息，则表示安装成功</p>
+<!-- 这是一张图片，ocr 内容为：(PYTORCH)C:\USERS\高佳卓>PYTHON 3 2021, 18:25:24) [M [MSC IC V.1916 64 BIT (AMD64)] ON WIN32 PYTHON 3.6.15 (DEFAULT,DEC FOR "HELP", "COPYRIGHT", "CREDITS" OR "LICENSE" INFORMATION. TYPE MORE VVV IMPORT TORCH VVV -->
+<p><img src="/images/courses-ml/image_006_1748847811394-78c34e29-e288-4be0-8a60-3d07a2c89ab3.png"></p>
+<p>查看pytorch是否可以用本机电脑的GPU</p>
+<!-- 这是一张图片，ocr 内容为：(PYTORCH)C:\USERS\高佳卓>PYTHON 3 2021, 18:25:24) [MSC V.1916 64 BIT (AMD64)] ON WIN32 PYTHON 3.6.15 (DEFAULT,DEC OR "LICENSE" FOR MORE INFORMATION. TYPE "HELP","COPYRIGHT", "CREDITS" OR "L >>> IMPORT TORCH >>> TORCH.CUDA.IS_AVAILABLE() FALSE -->
+<p><img src="/images/courses-ml/image_007_1748847916660-e94898e0-0b36-46e8-a836-2b7a5449ce23.png"></p>
+<ul>
+<li>也可在pycharm（或者其他的IDE）界面进行验证（前提是：使用的是环境是刚刚所安装的环境yolov5）</li>
+</ul>
+<!-- 这是一张图片，ocr 内容为：AI 版本控制 当前文件 ALSTUDIO JQXX </> WORKSPACE.XML TEST.PY 项目文件 PYTORCH.PY X D:\PYTHONPRO\ALSTUDIO JQXX 为项目选择的PYTHON解释器无效 配置PYTHON解 解释器 品 IDEA PRINT(TORCH.__VERSION_ IRIS.CSV PYTORCH.PY TEST_01.PY 扩展 运行 X PYTORCH D:LAPPINSTALL/ANACONDALENVS\YOLOVS(PYTHON.EXE D:(PYTHONPROLAISTUDIO-JQXX(PYTORCH.PY 1.10.2+CPU 进程已结束,退出代码为0 UTF-8 2:9 4个空格 CRLF PYTORCH.PY ALSTUDIO JQXX VOLOV5 -->
+<p><img src="/images/courses-ml/image_008_1748851613715-226c99e3-dd29-42d7-b1e9-6eadd62feafd.png"></p>
+<ul>
+<li>也可在jupyter notebook中验证</li>
+</ul>
+<p>若无法启动则需检查是否安装ljupyter</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">conda <span class="built_in">list</span> jupyter</span><br><span class="line"><span class="comment"># 如果没有看到jupyter           x.x.x，则需执行下一步进行安装</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda install jupyter</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">jupyter notebook</span><br><span class="line"><span class="comment"># ctrl+c退出jupyter</span></span><br></pre></td></tr></table></figure>
+
+<p>复制下面第一条连接在浏览器打开</p>
+<!-- 这是一张图片，ocr 内容为：FILE IN A BROWSER: S THE SERVER, OPEN THIS FI TO ACCESS FILE://C://USERS/8E9%AB898名E4名BD名B38E588D%93/APPDATA/ROAMING/JUPYT ER/RUNTIME/JPSERVER-19424-OPEN.HTML OR COPY AND PASTE ONE OF THESE URLS: HTTP://LOCALHOST:888/TREE?TOKEN三FA72DFC445F4A57FA02882D47AFD359AA AFDB130D6D5B996 HTTP://127.0.0.1:888/TREE?TOKEN三FA72DFC445F4A57FA02882D47AFD359AA AFDB130D6D5B996 -->
+<p><img src="/images/courses-ml/image_009_1748938836823-ae424ba5-b6c1-49f5-87d3-02b342a93d62.png"></p>
+<p>打开后，点右上角的“new”，选择正在运行的环境</p>
+<!-- 这是一张图片，ocr 内容为：JUPYTER FILE VIEW SETTINGS HELP FILES RUNNING DOWNLOAD DUPLICATE RENAME TUPLOAD C MOVE TO TRASH OPEN NEW PYTHON [CONDA ENY:ANACONDA-PYTORCH] PYTHON [CONDA ENY.ANACONDA-YOLOV5]* MODIFIED NAME TERMINAL CONTACTS 4 MONTHS AGO CONSOLE 15 HOURS AGO DATASET E NEW FILE DOCUMENTS 2 MONTHS AGO NEW FOLDER DOWNLOADS YESTERDAY 4 MONTHS AGO FAVORITES LINKS -->
+<p><img src="/images/courses-ml/image_010_1748939558036-557a3b54-4e0e-443a-8c43-228a106e2558.png"></p>
+<p>在代码块中输入以下内容，按shift+enter运行，进行验证</p>
+<p>左边[*]表示正在运行</p>
+<!-- 这是一张图片，ocr 内容为：#验证PYTORCH是否安装成功 IMPORT TORCH PRINT(TORCH._VERSION -->
+<p><img src="/images/courses-ml/image_011_1748938930374-9ebbc3ce-a0f3-455b-a02c-a1e55a2d2906.png"></p>
+<p>显示出pytorch的版本号即代表安装成功</p>
+<!-- 这是一张图片，ocr 内容为：[ 1] : 验证PYTORCH是否安装成功 IMPORT TORCH PRINT(TORCH._VERSION_) 2.5.1 -->
+<p><img src="/images/courses-ml/image_012_1748938989632-d0e8ef08-c397-452e-8268-8c5ceb379fc0.png"></p>
+<p>注意选择正在运行的环境（安装pytorch的环境）作为内核</p>
+<!-- 这是一张图片，ocr 内容为：SELECT KERNEL SELECT KERNEL FOR:"UNTITLED4.IPYNB" PYTHON [CONDA ENV:ANACONDA-YOLOV5] SELECT ALWAYS START THE PREFERRED KERNEL NO KERNEL -->
+<p><img src="/images/courses-ml/image_013_1748938916197-db4fa7a3-3531-4146-9dfb-4bae1cbdc3bf.png"></p>
+<p><font style="color:#DF2A3F;">注意：如果前面安装过的包版本不匹配，或者使用了pip和conda两种包工具，则会导致安装jupyter notebook时出现版本不相容的问题，很麻烦！！！</font></p>
+<h4 id="二、理解：使用pytorch搭建、训练、保存、调用、测试模型（注重过程）"><a href="#二、理解：使用pytorch搭建、训练、保存、调用、测试模型（注重过程）" class="headerlink" title="二、理解：使用pytorch搭建、训练、保存、调用、测试模型（注重过程）"></a>二、理解：使用pytorch搭建、训练、保存、调用、测试模型（注重过程）</h4><p>（下面简单示例只训练一次，所有数据均为自定义，只是为了便于先理解整个过程）</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> torch.nn <span class="keyword">as</span> nn</span><br><span class="line"><span class="keyword">import</span> torch.optim <span class="keyword">as</span> optim</span><br><span class="line"><span class="keyword">from</span> sklearn.preprocessing <span class="keyword">import</span> StandardScaler</span><br><span class="line"><span class="keyword">import</span> joblib</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 准备数据（自定义的少量数据）</span></span><br><span class="line">X = np.array([[<span class="number">85.0</span>, <span class="number">88.0</span>], [<span class="number">90.0</span>, <span class="number">92.0</span>], [<span class="number">78.0</span>, <span class="number">80.0</span>], [<span class="number">65.0</span>, <span class="number">60.0</span>], [<span class="number">88.0</span>, <span class="number">85.0</span>]])</span><br><span class="line">y = np.array([[<span class="number">1.0</span>], [<span class="number">1.0</span>], [<span class="number">1.0</span>], [<span class="number">0.0</span>], [<span class="number">1.0</span>]])</span><br><span class="line"></span><br><span class="line"><span class="comment"># 数据标准化</span></span><br><span class="line">scaler = StandardScaler()</span><br><span class="line">X_scaled = scaler.fit_transform(X)</span><br><span class="line">joblib.dump(scaler, <span class="string">&#x27;scaler.joblib&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 转换为PyTorch张量</span></span><br><span class="line">X_train = torch.tensor(X_scaled, dtype=torch.float32)</span><br><span class="line">y_train = torch.tensor(y, dtype=torch.float32)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 定义模型</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">SimpleModel</span>(nn.Module):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="built_in">super</span>(SimpleModel, <span class="variable language_">self</span>).__init__()</span><br><span class="line">        <span class="variable language_">self</span>.fc1 = nn.Linear(<span class="number">2</span>, <span class="number">5</span>)</span><br><span class="line">        <span class="variable language_">self</span>.fc2 = nn.Linear(<span class="number">5</span>, <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, x</span>):</span><br><span class="line">        x = torch.relu(<span class="variable language_">self</span>.fc1(x))</span><br><span class="line">        x = torch.sigmoid(<span class="variable language_">self</span>.fc2(x))</span><br><span class="line">        <span class="keyword">return</span> x</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建模型实例</span></span><br><span class="line">model = SimpleModel()</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;模型结构:\n&quot;</span>, model)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义损失函数和优化器</span></span><br><span class="line">criterion = nn.BCELoss()</span><br><span class="line">optimizer = optim.SGD(model.parameters(), lr=<span class="number">0.01</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 训练模型（添加进度输出）</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;开始训练...&quot;</span>)</span><br><span class="line"><span class="keyword">for</span> epoch <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">100</span>):</span><br><span class="line">    optimizer.zero_grad()</span><br><span class="line">    outputs = model(X_train)</span><br><span class="line">    loss = criterion(outputs, y_train)</span><br><span class="line">    loss.backward()</span><br><span class="line">    optimizer.step()</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> epoch % <span class="number">20</span> == <span class="number">0</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&#x27;Epoch <span class="subst">&#123;epoch&#125;</span>, Loss: <span class="subst">&#123;loss.item():<span class="number">.4</span>f&#125;</span>&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 保存模型</span></span><br><span class="line">torch.save(model.state_dict(), <span class="string">&#x27;my_model.pth&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;模型已保存到 my_model.pth&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 测试预测（添加明确输出）</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;\n测试预测:&quot;</span>)</span><br><span class="line">test_cases = [(<span class="number">85</span>, <span class="number">90</span>), (<span class="number">90</span>, <span class="number">92</span>), (<span class="number">60</span>, <span class="number">65</span>)]	<span class="comment"># 自定义测试数据</span></span><br><span class="line"><span class="keyword">for</span> s1, s2 <span class="keyword">in</span> test_cases:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;输入: (<span class="subst">&#123;s1&#125;</span>, <span class="subst">&#123;s2&#125;</span>) -&gt; 预测结果: <span class="subst">&#123;predict(s1, s2)&#125;</span>&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<h4 id="三、集成第三方模型（例如做一个聊天机器人）"><a href="#三、集成第三方模型（例如做一个聊天机器人）" class="headerlink" title="三、集成第三方模型（例如做一个聊天机器人）"></a>三、集成第三方模型（例如做一个聊天机器人）</h4><ol>
+<li>获取API，可以找免费的API或者每天有免费限额的API，下面用的是kimi。登录KIMI的开放平台<a target="_blank" rel="noopener" href="https://platform.moonshot.cn/docs/intro#%E6%96%87%E6%9C%AC%E7%94%9F%E6%88%90%E6%A8%A1%E5%9E%8B">https://platform.moonshot.cn/docs/intro#%E6%96%87%E6%9C%AC%E7%94%9F%E6%88%90%E6%A8%A1%E5%9E%8B</a>，点击右上角的用户中心注册账号生成API。下面代码实现的功能是实现多轮对话，也可以实现单论对话或者流式大语言模型</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> openai <span class="keyword">import</span> OpenAI</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line">API_KEY = <span class="string">&quot;&quot;</span>  <span class="comment"># 替换成你自己的Kimi API Key</span></span><br><span class="line">API_URL = <span class="string">&quot;https://api.moonshot.cn/v1/chat/completions&quot;</span></span><br><span class="line">MODEL = <span class="string">&quot;moonshot-v1-8k&quot;</span>  <span class="comment"># Kimi推荐的模型名</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义聊天机器人功能，调用Kimi API</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">chat_with_kimi</span>(<span class="params">messages</span>):</span><br><span class="line">    headers = &#123;</span><br><span class="line">        <span class="string">&quot;Authorization&quot;</span>: <span class="string">f&quot;Bearer <span class="subst">&#123;API_KEY&#125;</span>&quot;</span>,</span><br><span class="line">        <span class="string">&quot;Content-Type&quot;</span>: <span class="string">&quot;application/json&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">    data = &#123;</span><br><span class="line">        <span class="string">&quot;model&quot;</span>: MODEL,</span><br><span class="line">        <span class="string">&quot;messages&quot;</span>: messages,</span><br><span class="line">        <span class="string">&quot;temperature&quot;</span>: <span class="number">0.7</span></span><br><span class="line">    &#125;</span><br><span class="line">    response = requests.post(API_URL, headers=headers, json=data)</span><br><span class="line">    response.raise_for_status()</span><br><span class="line">    result = response.json()</span><br><span class="line">    <span class="keyword">return</span> result[<span class="string">&quot;choices&quot;</span>][<span class="number">0</span>][<span class="string">&quot;message&quot;</span>][<span class="string">&quot;content&quot;</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 初始化对话历史</span></span><br><span class="line">messages = [</span><br><span class="line">    &#123;<span class="string">&quot;role&quot;</span>: <span class="string">&quot;system&quot;</span>, <span class="string">&quot;content&quot;</span>: <span class="string">&quot;You are a helpful assistant.&quot;</span>&#125;</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Kimi AI: Hello! How can I help you today?&quot;</span>)</span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    user_input = <span class="built_in">input</span>(<span class="string">&quot;You: &quot;</span>)</span><br><span class="line">    <span class="keyword">if</span> user_input.lower() <span class="keyword">in</span> [<span class="string">&quot;exit&quot;</span>, <span class="string">&quot;quit&quot;</span>]:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;Kimi AI: Goodbye!&quot;</span>)</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">    messages.append(&#123;<span class="string">&quot;role&quot;</span>: <span class="string">&quot;user&quot;</span>, <span class="string">&quot;content&quot;</span>: user_input&#125;)</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        reply = chat_with_kimi(messages)</span><br><span class="line">        messages.append(&#123;<span class="string">&quot;role&quot;</span>: <span class="string">&quot;assistant&quot;</span>, <span class="string">&quot;content&quot;</span>: reply&#125;)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;Kimi AI: <span class="subst">&#123;reply&#125;</span>&quot;</span>)</span><br><span class="line">    <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;调用Kimi API出错: <span class="subst">&#123;e&#125;</span>&quot;</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<!-- 这是一张图片，ocr 内容为：KIMI AI: HELLO! HOW CAN I HELP YOU TODAY? YOU:NOTHING EASE FEEL FREE TO ASK, AND I'LL BE HAPPY TO HELP. YOU:帮我写作业 需要帮助的作业是什么,我们可以一起解决它. YOU: 怎么使用PYTORCH搭建神经网络 KIMIAI:使用PYTORCH搭建神经网络是一个涉及几个步骤的过程,以下是构建一个简单的神经网络的基本步骤. . 本*安装PYTORCH**; 确保你已经安装了PYTORCH.ORG/)获取安装指令. .本事导入必要的库*: PYTHON IMPORT TORCH IMPORT TORCH.NN AS NN IMPORT TORCH.NN.FUNCTIONAL AS F **定义神经网络结构**: 创建一个新的类,继承自'NN.MODULE',并定义网络层. PYTHON CLASS NEURALNET(NN.MODULE): F INIT_(SELF, INPUT_SIZE, HIDDEN_SIZE, NUM_CLASSES): DEF INIT SUPER(NEURALNET, SELF)._INIT_() #第一层全连接层 1_SIZE) SELF.FC1 A NN.LINEAR(INPUT_SIZE,HIDDEN_ST #第二层全连接层 SELF.FC2 NN.LINEAR(HIDDEN_SIZE,HIDDEN_SIZE) #输出层 SELF.FC3 3 NN.LINEAR(HIDDEN_SIZE, NUM CLASSES) DEF FORWARD(SELF,X): X : F.RELU(SELF.FC1(X)) #激活函数 X F.RELU(SELF.FC2(X)) X - SELF.FC3(X) RETURN X -->
+<p><img src="/images/courses-ml/image_014_1748946230633-b76010a6-3d2b-4d1f-a377-853b6c1067cd.png"></p>
+<!-- 这是一张图片，ocr 内容为：10000 PRINT(F'ACCURACY [100 TOTAL] TEST THE THE OF 1MAGES: CORRECT ON HETWORK 这是一个在本的视到的连锁进进行,任可以轻机构几他的任务和数路生进行通标.记在在来的现目中,对密布发进行更多的数码预论列,同格调比,正国代,到于过网络冷入部 YOU: EXIT KIMI AI: GOODBYE! -->
+<p><img src="/images/courses-ml/image_015_1748946293995-9ef4a131-ca85-4372-9d8c-b578b29865f5.png"></p>
+<h4 id="三、实战：用pytorch搭建全连接神经网络，对Fashion-MINIST数据集中的时尚物品进行分类（注重代码的实现和搭建网络的整个过程）"><a href="#三、实战：用pytorch搭建全连接神经网络，对Fashion-MINIST数据集中的时尚物品进行分类（注重代码的实现和搭建网络的整个过程）" class="headerlink" title="三、实战：用pytorch搭建全连接神经网络，对Fashion-MINIST数据集中的时尚物品进行分类（注重代码的实现和搭建网络的整个过程）"></a>三、实战：用pytorch搭建全连接神经网络，对Fashion-MINIST数据集中的时尚物品进行分类（注重代码的实现和搭建网络的整个过程）</h4><p>（1）无去拟合的模型</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch  <span class="comment"># 导入pytorch</span></span><br><span class="line"><span class="keyword">from</span> torch <span class="keyword">import</span> nn, optim  <span class="comment"># 导入神经网络与优化器对应的类</span></span><br><span class="line"><span class="keyword">import</span> torch.nn.functional <span class="keyword">as</span> F </span><br><span class="line"><span class="keyword">from</span> torchvision <span class="keyword">import</span> datasets, transforms <span class="comment">## 导入数据集与数据预处理的方法</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 下载数据集</span></span><br><span class="line"><span class="comment"># 数据预处理：标准化图像数据，使得灰度数据在-1到+1之间</span></span><br><span class="line">transform = transforms.Compose([transforms.ToTensor(),transforms.Normalize((<span class="number">0.5</span>,), (<span class="number">0.5</span>,))])</span><br><span class="line"></span><br><span class="line"><span class="comment"># 下载Fashion-MNIST训练集数据，并构建训练集数据载入器trainloader,每次从训练集中载入64张图片，每次载入都打乱顺序</span></span><br><span class="line">trainset = datasets.FashionMNIST(<span class="string">&#x27;dataset/&#x27;</span>, download=<span class="literal">True</span>, train=<span class="literal">True</span>, transform=transform)</span><br><span class="line">trainloader = torch.utils.data.DataLoader(trainset, batch_size=<span class="number">64</span>, shuffle=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 下载Fashion-MNIST测试集数据，并构建测试集数据载入器trainloader,每次从测试集中载入64张图片，每次载入都打乱顺序</span></span><br><span class="line">testset = datasets.FashionMNIST(<span class="string">&#x27;dataset/&#x27;</span>, download=<span class="literal">True</span>, train=<span class="literal">False</span>, transform=transform)</span><br><span class="line">testloader = torch.utils.data.DataLoader(testset, batch_size=<span class="number">64</span>, shuffle=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 显示图片</span></span><br><span class="line">image, label = <span class="built_in">next</span>(<span class="built_in">iter</span>(trainloader))</span><br><span class="line"></span><br><span class="line"><span class="comment"># image图片中有64张图片，我们查看索引为2的图片</span></span><br><span class="line">imagedemo = image[<span class="number">3</span>]</span><br><span class="line">imagedemolabel = label[<span class="number">3</span>]</span><br><span class="line"></span><br><span class="line">imagedemo = imagedemo.reshape((<span class="number">28</span>,<span class="number">28</span>))</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">%matplotlib inline</span><br><span class="line">plt.imshow(imagedemo)</span><br><span class="line"></span><br><span class="line">labellist = [<span class="string">&#x27;T恤&#x27;</span>,<span class="string">&#x27;裤子&#x27;</span>,<span class="string">&#x27;套衫&#x27;</span>,<span class="string">&#x27;裙子&#x27;</span>,<span class="string">&#x27;外套&#x27;</span>,<span class="string">&#x27;凉鞋&#x27;</span>,<span class="string">&#x27;汗衫&#x27;</span>,<span class="string">&#x27;运动鞋&#x27;</span>,<span class="string">&#x27;包包&#x27;</span>,<span class="string">&#x27;靴子&#x27;</span>]</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&#x27;这张图片对应的标签是 <span class="subst">&#123;labellist[imagedemolabel]&#125;</span>&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>输出结果</p>
+<!-- 这是一张图片，ocr 内容为：这张图片对应的标签是裤子 15 20 25 25 15 20 0 10 -->
+<p><img src="/images/courses-ml/image_016_1748967065189-858812bc-d490-4d6c-9d03-64772de84c56.png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> torch <span class="keyword">import</span> nn, optim</span><br><span class="line"><span class="keyword">import</span> torch.nn.functional <span class="keyword">as</span> F</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Classifier</span>(nn.Module):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="built_in">super</span>().__init__()</span><br><span class="line">        <span class="variable language_">self</span>.fc1 = nn.Linear(<span class="number">784</span>, <span class="number">256</span>)	<span class="comment"># 第一个隐藏层</span></span><br><span class="line">        <span class="variable language_">self</span>.fc2 = nn.Linear(<span class="number">256</span>, <span class="number">128</span>)	<span class="comment"># 第二个隐藏层</span></span><br><span class="line">        <span class="variable language_">self</span>.fc3 = nn.Linear(<span class="number">128</span>, <span class="number">64</span>)	<span class="comment"># 第三个隐藏层</span></span><br><span class="line">        <span class="variable language_">self</span>.fc4 = nn.Linear(<span class="number">64</span>, <span class="number">10</span>)	<span class="comment"># 输出层</span></span><br><span class="line">        </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, x</span>):</span><br><span class="line">        <span class="comment"># make sure input tensor is flattened</span></span><br><span class="line">        x = x.view(x.shape[<span class="number">0</span>], -<span class="number">1</span>)</span><br><span class="line">        </span><br><span class="line">        x = F.relu(<span class="variable language_">self</span>.fc1(x))</span><br><span class="line">        x = F.relu(<span class="variable language_">self</span>.fc2(x))</span><br><span class="line">        x = F.relu(<span class="variable language_">self</span>.fc3(x))</span><br><span class="line">        x = F.log_softmax(<span class="variable language_">self</span>.fc4(x), dim=<span class="number">1</span>)</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> x</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 对上面定义的Classifier类进行实例化</span></span><br><span class="line">model = Classifier()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义损失函数为负对数损失函数</span></span><br><span class="line">criterion = nn.NLLLoss()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 优化方法为Adam梯度下降方法，学习率为0.003</span></span><br><span class="line">optimizer = optim.Adam(model.parameters(), lr=<span class="number">0.003</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 对训练集的全部数据学习15遍，这个数字越大，训练时间越长</span></span><br><span class="line">epochs = <span class="number">15</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 将每次训练的训练误差和测试误差存储在这两个列表里，后面绘制误差变化折线图用</span></span><br><span class="line">train_losses, test_losses = [], []</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;开始训练&#x27;</span>)</span><br><span class="line"><span class="keyword">for</span> e <span class="keyword">in</span> <span class="built_in">range</span>(epochs):</span><br><span class="line">    running_loss = <span class="number">0</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 对训练集中的所有图片都过一遍</span></span><br><span class="line">    <span class="keyword">for</span> images, labels <span class="keyword">in</span> trainloader:</span><br><span class="line">        <span class="comment"># 将优化器中的求导结果都设为0，否则会在每次反向传播之后叠加之前的</span></span><br><span class="line">        optimizer.zero_grad()</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 对64张图片进行推断，计算损失函数，反向传播优化权重，将损失求和</span></span><br><span class="line">        log_ps = model(images)</span><br><span class="line">        loss = criterion(log_ps, labels)</span><br><span class="line">        loss.backward()</span><br><span class="line">        optimizer.step()</span><br><span class="line">        running_loss += loss.item()</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 每次学完一遍数据集，都进行以下测试操作</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        test_loss = <span class="number">0</span></span><br><span class="line">        accuracy = <span class="number">0</span></span><br><span class="line">        <span class="comment"># 测试的时候不需要开自动求导和反向传播</span></span><br><span class="line">        <span class="keyword">with</span> torch.no_grad():</span><br><span class="line">            <span class="comment"># 关闭Dropout</span></span><br><span class="line">            model.<span class="built_in">eval</span>()</span><br><span class="line">            </span><br><span class="line">            <span class="comment"># 对测试集中的所有图片都过一遍</span></span><br><span class="line">            <span class="keyword">for</span> images, labels <span class="keyword">in</span> testloader:</span><br><span class="line">                <span class="comment"># 对传入的测试集图片进行正向推断、计算损失，accuracy为测试集一万张图片中模型预测正确率</span></span><br><span class="line">                log_ps = model(images)</span><br><span class="line">                test_loss += criterion(log_ps, labels)</span><br><span class="line">                ps = torch.exp(log_ps)</span><br><span class="line">                top_p, top_class = ps.topk(<span class="number">1</span>, dim=<span class="number">1</span>)</span><br><span class="line">                equals = top_class == labels.view(*top_class.shape)</span><br><span class="line">                </span><br><span class="line">                <span class="comment"># 等号右边为每一批64张测试图片中预测正确的占比</span></span><br><span class="line">                accuracy += torch.mean(equals.<span class="built_in">type</span>(torch.FloatTensor))</span><br><span class="line">        <span class="comment"># 恢复Dropout</span></span><br><span class="line">        model.train()</span><br><span class="line">        <span class="comment"># 将训练误差和测试误差存在两个列表里，后面绘制误差变化折线图用</span></span><br><span class="line">        train_losses.append(running_loss/<span class="built_in">len</span>(trainloader))</span><br><span class="line">        test_losses.append(test_loss/<span class="built_in">len</span>(testloader))</span><br><span class="line"></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;训练集学习次数: &#123;&#125;/&#123;&#125;.. &quot;</span>.<span class="built_in">format</span>(e+<span class="number">1</span>, epochs),</span><br><span class="line">              <span class="string">&quot;训练误差: &#123;:.3f&#125;.. &quot;</span>.<span class="built_in">format</span>(running_loss/<span class="built_in">len</span>(trainloader)),</span><br><span class="line">              <span class="string">&quot;测试误差: &#123;:.3f&#125;.. &quot;</span>.<span class="built_in">format</span>(test_loss/<span class="built_in">len</span>(testloader)),</span><br><span class="line">              <span class="string">&quot;模型分类准确率: &#123;:.3f&#125;&quot;</span>.<span class="built_in">format</span>(accuracy/<span class="built_in">len</span>(testloader)))</span><br></pre></td></tr></table></figure>
+
+<p>输出的训练过程</p>
+<!-- 这是一张图片，ocr 内容为：开始训练 训练误差:0.516..测试误差:0.455..模型分类准确率:0.836 训练集学习次数:1/15.. 训练误差:0.391.. 测试误差:0.451.. 模型分类准确率:0.839 训练集学习次数:2/15.. 训练集学习次数:3/15.. 模型分类准确率:0.844 训练误差:0.356.. 测试误差:0.433.. 训练集学习次数:4/15.. 训练误差:0.333.. 测试误差:0.391.. 1....859率:0.859 训练集学习次数:5/15.. 测试误差:0.397.. 模型分类准确率:0.857 训练误差:0.317.. 训练误差:0.302.. 训练集学习次数:6/15.. 测试误差:0.356..模型分类准确率:0.876 训练集学习次数:7/15.. 训练误差:0.294.. 模型分类准确率:0.873 测试误差:0.373.. 测试误差:0.373.. 模型分类准确率:0.871 训练集学习次数:8/15.. 训练误差:0.282.. 训练集学习次数:9/15.. 测试误差:0.356.. 训练误差:0.275.. 模型分类准确率:0.872 训练集学习次数:10/15.. 模型分类准确率:0.876 测试误差:0.361.. 训练误差:0.266.. 训练集学习次数:11/15.. 训练误差:0.258.. 模型分类准确率:0.877 测试误差:0.367.. 训练集学习次数:12/15.. 模型分类准确率:0.870 训练误差:0.252.. 测试误差:0.392.. 训练集学习次数:13/15.. 训练误差:0.245.. 测试误差:0.383.. 模型分类准确率:0.875 训练集学习次数:14/15..训练误差:0.241.. 模型分类准确率:0.874 测试误差:0.389...模型 训练集学习次数:15/15.. 训练误差:0.237.. 测试误差:0.433.. 模型分类准确率:0.861 -->
+<p><img src="/images/courses-ml/image_017_1748967224924-065432fe-993b-46a9-b992-0119e9e0114c.png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">dataiter = <span class="built_in">iter</span>(testloader)</span><br><span class="line">images, labels = <span class="built_in">next</span>(dataiter)</span><br><span class="line">img = images[<span class="number">0</span>]</span><br><span class="line">img = img.reshape((<span class="number">28</span>,<span class="number">28</span>)).numpy()</span><br><span class="line">plt.imshow(img)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将测试图片转为一维的列向量</span></span><br><span class="line">img = torch.from_numpy(img)</span><br><span class="line">img = img.view(<span class="number">1</span>, <span class="number">784</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 进行正向推断，预测图片所在的类别</span></span><br><span class="line"><span class="keyword">with</span> torch.no_grad():</span><br><span class="line">    output = model.forward(img)</span><br><span class="line">ps = torch.exp(output)</span><br><span class="line"></span><br><span class="line">top_p, top_class = ps.topk(<span class="number">1</span>, dim=<span class="number">1</span>)</span><br><span class="line">labellist = [<span class="string">&#x27;T恤&#x27;</span>,<span class="string">&#x27;裤子&#x27;</span>,<span class="string">&#x27;套衫&#x27;</span>,<span class="string">&#x27;裙子&#x27;</span>,<span class="string">&#x27;外套&#x27;</span>,<span class="string">&#x27;凉鞋&#x27;</span>,<span class="string">&#x27;汗衫&#x27;</span>,<span class="string">&#x27;运动鞋&#x27;</span>,<span class="string">&#x27;包包&#x27;</span>,<span class="string">&#x27;靴子&#x27;</span>]</span><br><span class="line">prediction = labellist[top_class]</span><br><span class="line">probability = <span class="built_in">float</span>(top_p)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&#x27;神经网络猜测图片里是 <span class="subst">&#123;prediction&#125;</span>，概率为<span class="subst">&#123;probability*<span class="number">100</span>&#125;</span>%&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>输出结果</p>
+<!-- 这是一张图片，ocr 内容为：神经网络猜测图片里是靴子,概率为99.9966213989258% 10 20 25- 15 10 25 O 5 20 -->
+<p><img src="/images/courses-ml/image_018_1748967318038-68ff1834-3552-4fc3-b249-a5c23cd1d5c2.png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">%matplotlib inline</span><br><span class="line"></span><br><span class="line">plt.plot(train_losses, label=<span class="string">&#x27;Training loss&#x27;</span>)</span><br><span class="line">plt.plot(test_losses, label=<span class="string">&#x27;Validation loss&#x27;</span>)</span><br><span class="line">plt.legend()</span><br></pre></td></tr></table></figure>
+
+<p>输出结果</p>
+<!-- 这是一张图片，ocr 内容为：[69]: <MATPLOTLIB.LEGEND.LEGEND AT OX24B729B2230> TRAINING LOSS 0.50 VALIDATION LOSS 0.45 0.40 0.35 0.30 0.25 0.20 8 12 14 9 10 -->
+<p><img src="/images/courses-ml/image_019_1748967363417-7a555db9-e5da-432c-8068-c2bb76f3c63a.png"></p>
+<p>（2）采用Dropout方法防止过拟合</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch  <span class="comment"># 导入pytorch</span></span><br><span class="line"><span class="keyword">from</span> torch <span class="keyword">import</span> nn, optim  <span class="comment"># 导入神经网络与优化器对应的类</span></span><br><span class="line"><span class="keyword">import</span> torch.nn.functional <span class="keyword">as</span> F </span><br><span class="line"><span class="keyword">from</span> torchvision <span class="keyword">import</span> datasets, transforms <span class="comment">## 导入数据集与数据预处理的方法</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 下载数据集</span></span><br><span class="line"><span class="comment"># 数据预处理：标准化图像数据，使得灰度数据在-1到+1之间</span></span><br><span class="line">transform = transforms.Compose([transforms.ToTensor(),transforms.Normalize((<span class="number">0.5</span>,), (<span class="number">0.5</span>,))])</span><br><span class="line"></span><br><span class="line"><span class="comment"># 下载Fashion-MNIST训练集数据，并构建训练集数据载入器trainloader,每次从训练集中载入64张图片，每次载入都打乱顺序</span></span><br><span class="line">trainset = datasets.FashionMNIST(<span class="string">&#x27;dataset/&#x27;</span>, download=<span class="literal">True</span>, train=<span class="literal">True</span>, transform=transform)</span><br><span class="line">trainloader = torch.utils.data.DataLoader(trainset, batch_size=<span class="number">64</span>, shuffle=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 下载Fashion-MNIST测试集数据，并构建测试集数据载入器trainloader,每次从测试集中载入64张图片，每次载入都打乱顺序</span></span><br><span class="line">testset = datasets.FashionMNIST(<span class="string">&#x27;dataset/&#x27;</span>, download=<span class="literal">True</span>, train=<span class="literal">False</span>, transform=transform)</span><br><span class="line">testloader = torch.utils.data.DataLoader(testset, batch_size=<span class="number">64</span>, shuffle=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 显示图片</span></span><br><span class="line">image, label = <span class="built_in">next</span>(<span class="built_in">iter</span>(trainloader))</span><br><span class="line"></span><br><span class="line"><span class="comment"># image图片中有64张图片，我们查看索引为2的图片</span></span><br><span class="line">imagedemo = image[<span class="number">3</span>]</span><br><span class="line">imagedemolabel = label[<span class="number">3</span>]</span><br><span class="line"></span><br><span class="line">imagedemo = imagedemo.reshape((<span class="number">28</span>,<span class="number">28</span>))</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">%matplotlib inline</span><br><span class="line">plt.imshow(imagedemo)</span><br><span class="line"></span><br><span class="line">labellist = [<span class="string">&#x27;T恤&#x27;</span>,<span class="string">&#x27;裤子&#x27;</span>,<span class="string">&#x27;套衫&#x27;</span>,<span class="string">&#x27;裙子&#x27;</span>,<span class="string">&#x27;外套&#x27;</span>,<span class="string">&#x27;凉鞋&#x27;</span>,<span class="string">&#x27;汗衫&#x27;</span>,<span class="string">&#x27;运动鞋&#x27;</span>,<span class="string">&#x27;包包&#x27;</span>,<span class="string">&#x27;靴子&#x27;</span>]</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&#x27;这张图片对应的标签是 <span class="subst">&#123;labellist[imagedemolabel]&#125;</span>&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>输出结果</p>
+<!-- 这是一张图片，ocr 内容为：这张图片对应的标签是裤子 15 20 25 25 15 20 0 10 -->
+<p><img src="/images/courses-ml/image_016_1748967065189-858812bc-d490-4d6c-9d03-64772de84c56.png"></p>
+<p>（前几步没有区别）</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Classifier</span>(nn.Module):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="built_in">super</span>().__init__()</span><br><span class="line">        <span class="variable language_">self</span>.fc1 = nn.Linear(<span class="number">784</span>, <span class="number">256</span>)</span><br><span class="line">        <span class="variable language_">self</span>.fc2 = nn.Linear(<span class="number">256</span>, <span class="number">128</span>)</span><br><span class="line">        <span class="variable language_">self</span>.fc3 = nn.Linear(<span class="number">128</span>, <span class="number">64</span>)</span><br><span class="line">        <span class="variable language_">self</span>.fc4 = nn.Linear(<span class="number">64</span>, <span class="number">10</span>)</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 构造Dropout方法，在每次训练过程中都随机“掐死”百分之二十的神经元，防止过拟合。</span></span><br><span class="line">        <span class="variable language_">self</span>.dropout = nn.Dropout(p=<span class="number">0.2</span>)</span><br><span class="line">        </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, x</span>):</span><br><span class="line">        <span class="comment"># 确保输入的tensor是展开的单列数据，把每张图片的通道、长度、宽度三个维度都压缩为一列</span></span><br><span class="line">        x = x.view(x.shape[<span class="number">0</span>], -<span class="number">1</span>)</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 在训练过程中对隐含层神经元的正向推断使用Dropout方法</span></span><br><span class="line">        x = <span class="variable language_">self</span>.dropout(F.relu(<span class="variable language_">self</span>.fc1(x)))</span><br><span class="line">        x = <span class="variable language_">self</span>.dropout(F.relu(<span class="variable language_">self</span>.fc2(x)))</span><br><span class="line">        x = <span class="variable language_">self</span>.dropout(F.relu(<span class="variable language_">self</span>.fc3(x)))</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 在输出单元不需要使用Dropout方法</span></span><br><span class="line">        x = F.log_softmax(<span class="variable language_">self</span>.fc4(x), dim=<span class="number">1</span>)</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> x</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 对上面定义的Classifier类进行实例化</span></span><br><span class="line">model = Classifier()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义损失函数为负对数损失函数</span></span><br><span class="line">criterion = nn.NLLLoss()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 优化方法为Adam梯度下降方法，学习率为0.003</span></span><br><span class="line">optimizer = optim.Adam(model.parameters(), lr=<span class="number">0.001</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 对训练集的全部数据学习15遍，这个数字越大，训练时间越长</span></span><br><span class="line">epochs = <span class="number">15</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 将每次训练的训练误差和测试误差存储在这两个列表里，后面绘制误差变化折线图用</span></span><br><span class="line">train_losses, test_losses = [], []</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;开始训练&#x27;</span>)</span><br><span class="line"><span class="keyword">for</span> e <span class="keyword">in</span> <span class="built_in">range</span>(epochs):</span><br><span class="line">    running_loss = <span class="number">0</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 对训练集中的所有图片都过一遍</span></span><br><span class="line">    <span class="keyword">for</span> images, labels <span class="keyword">in</span> trainloader:</span><br><span class="line">        <span class="comment"># 将优化器中的求导结果都设为0，否则会在每次反向传播之后叠加之前的</span></span><br><span class="line">        optimizer.zero_grad()</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 对64张图片进行推断，计算损失函数，反向传播优化权重，将损失求和</span></span><br><span class="line">        log_ps = model(images)</span><br><span class="line">        loss = criterion(log_ps, labels)</span><br><span class="line">        loss.backward()</span><br><span class="line">        optimizer.step()</span><br><span class="line">        running_loss += loss.item()</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 每次学完一遍数据集，都进行以下测试操作</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        test_loss = <span class="number">0</span></span><br><span class="line">        accuracy = <span class="number">0</span></span><br><span class="line">        <span class="comment"># 测试的时候不需要开自动求导和反向传播</span></span><br><span class="line">        <span class="keyword">with</span> torch.no_grad():</span><br><span class="line">            <span class="comment"># 关闭Dropout</span></span><br><span class="line">            model.<span class="built_in">eval</span>()</span><br><span class="line">            </span><br><span class="line">            <span class="comment"># 对测试集中的所有图片都过一遍</span></span><br><span class="line">            <span class="keyword">for</span> images, labels <span class="keyword">in</span> testloader:</span><br><span class="line">                <span class="comment"># 对传入的测试集图片进行正向推断、计算损失，accuracy为测试集一万张图片中模型预测正确率</span></span><br><span class="line">                log_ps = model(images)</span><br><span class="line">                test_loss += criterion(log_ps, labels)</span><br><span class="line">                ps = torch.exp(log_ps)</span><br><span class="line">                top_p, top_class = ps.topk(<span class="number">1</span>, dim=<span class="number">1</span>)</span><br><span class="line">                equals = top_class == labels.view(*top_class.shape)</span><br><span class="line">                </span><br><span class="line">                <span class="comment"># 等号右边为每一批64张测试图片中预测正确的占比</span></span><br><span class="line">                accuracy += torch.mean(equals.<span class="built_in">type</span>(torch.FloatTensor))</span><br><span class="line">        <span class="comment"># 恢复Dropout</span></span><br><span class="line">        model.train()</span><br><span class="line">        <span class="comment"># 将训练误差和测试误差存在两个列表里，后面绘制误差变化折线图用</span></span><br><span class="line">        train_losses.append(running_loss/<span class="built_in">len</span>(trainloader))</span><br><span class="line">        test_losses.append(test_loss/<span class="built_in">len</span>(testloader))</span><br><span class="line"></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;训练集学习次数: &#123;&#125;/&#123;&#125;.. &quot;</span>.<span class="built_in">format</span>(e+<span class="number">1</span>, epochs),</span><br><span class="line">              <span class="string">&quot;训练误差: &#123;:.3f&#125;.. &quot;</span>.<span class="built_in">format</span>(running_loss/<span class="built_in">len</span>(trainloader)),</span><br><span class="line">              <span class="string">&quot;测试误差: &#123;:.3f&#125;.. &quot;</span>.<span class="built_in">format</span>(test_loss/<span class="built_in">len</span>(testloader)),</span><br><span class="line">              <span class="string">&quot;模型分类准确率: &#123;:.3f&#125;&quot;</span>.<span class="built_in">format</span>(accuracy/<span class="built_in">len</span>(testloader)))</span><br><span class="line">torch.save(model.state_dict(), <span class="string">&#x27;model.pth&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>输出结果</p>
+<!-- 这是一张图片，ocr 内容为：开始训练 训练误差:0.520..测试误差:0.434.. 训练集学习次数:1/15.. 模型分类准确率:0.835 测试误差:0.385.. 训练误差:0.373.. 训练集学习次数:2/15.. 模型分类准确率:0.861 测试误差:0.380.. 模型分类准确率:0.860 训练集学习次数:3/15.. 训练误差:0.339.. 训练误差:0.313.. 测试误差:0.358.. 训练集学习次数:4/15.. 模型分类准确率:0.870 训练误差:0.293.. 测试误差:0.363.. 训练集学习次数:5/15.. 模型分类准确率:0.870 测试误差:0.350.. 训练误差:0.278.. 训练集学习次数:6/15.. 模型分类准确率:0.875 训练误差:0.264.. 训练集学习次数:7/15.. 测试误差:0.348.. 模型分类准确率:0.876 训练误差:0.251.. 测试误差:0.361.. 训练集学习次数:8/15.. 模型分类准确率:0.871 训练集学习次数:9/15.. 模型分类准确率:0.873 测试误差:0.367.. 训练误差:0.240.. 训练误差:0.230.. 模型分类准确率:0.879 训练集学习次数:10/15.. 测试误差:0.349.. 训练误差:0.217.. 模型分类准确率:0.884 训练集学习次数:11/15.. 测试误差:0.334.. 训练集学习次数:12/15.. 模型分类准确率:0.876 训练误差:0.209.. 测试误差:0.371.. 训练误差:0.200.. 训练集学习次数:13/15.. 测试误差:0.337.. 模型分类准确率:0.885 训练集学习次数:14/15.. 测试误差:0.353.. 模型分类准确率:0.883 训练误差:0.192.. 训练集学习次数:15/15.. 训练误差:0.183.. 测试误差:0.376.. 模型分类准确率:0.882 -->
+<p><img src="/images/courses-ml/image_021_1748967562212-61e82d08-bc8a-4ae8-aecd-9c2394e36be5.png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">model = Classifier()  <span class="comment"># 重新创建模型</span></span><br><span class="line">model.load_state_dict(torch.load(<span class="string">&#x27;model.pth&#x27;</span>, weights_only=<span class="literal">True</span>))</span><br><span class="line">model.<span class="built_in">eval</span>()</span><br><span class="line">dataiter = <span class="built_in">iter</span>(testloader)</span><br><span class="line">images, labels = <span class="built_in">next</span>(dataiter)</span><br><span class="line">img = images[<span class="number">0</span>]</span><br><span class="line">img = img.reshape((<span class="number">28</span>,<span class="number">28</span>)).numpy()</span><br><span class="line">plt.imshow(img)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将测试图片转为一维的列向量</span></span><br><span class="line">img = torch.from_numpy(img)</span><br><span class="line">img = img.view(<span class="number">1</span>, <span class="number">784</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 进行正向推断，预测图片所在的类别</span></span><br><span class="line"><span class="keyword">with</span> torch.no_grad():</span><br><span class="line">    output = model.forward(img)</span><br><span class="line">ps = torch.exp(output)</span><br><span class="line"></span><br><span class="line">top_p, top_class = ps.topk(<span class="number">1</span>, dim=<span class="number">1</span>)</span><br><span class="line">labellist = [<span class="string">&#x27;T恤&#x27;</span>,<span class="string">&#x27;裤子&#x27;</span>,<span class="string">&#x27;套衫&#x27;</span>,<span class="string">&#x27;裙子&#x27;</span>,<span class="string">&#x27;外套&#x27;</span>,<span class="string">&#x27;凉鞋&#x27;</span>,<span class="string">&#x27;汗衫&#x27;</span>,<span class="string">&#x27;运动鞋&#x27;</span>,<span class="string">&#x27;包包&#x27;</span>,<span class="string">&#x27;靴子&#x27;</span>]</span><br><span class="line">prediction = labellist[top_class]</span><br><span class="line">probability = <span class="built_in">float</span>(top_p)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&#x27;神经网络猜测图片里是 <span class="subst">&#123;prediction&#125;</span>，概率为<span class="subst">&#123;probability*<span class="number">100</span>&#125;</span>%&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>输出结果</p>
+<!-- 这是一张图片，ocr 内容为：靴子,概率为999.99984502792358% 神经网络猜测图片里是 10 15 20 25 O 25 15 20 5 10 -->
+<p><img src="/images/courses-ml/image_022_1748967600397-c9a2c7b4-aaed-4481-b4e2-af3b068f5442.png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">%matplotlib inline</span><br><span class="line"></span><br><span class="line">plt.plot(train_losses, label=<span class="string">&#x27;Training loss&#x27;</span>)</span><br><span class="line">plt.plot(test_losses, label=<span class="string">&#x27;Validation loss&#x27;</span>)</span><br><span class="line">plt.legend()</span><br></pre></td></tr></table></figure>
+
+<p>输出结果（无过拟合）</p>
+<!-- 这是一张图片，ocr 内容为：0.65 TRAINING LOSS VALIDATION LOSS 0.60 0.55 0.50 0.45 0.40 14 2 12 10 -->
+<p><img src="/images/courses-ml/image_023_1748967721373-3dbdee6b-5a35-412e-b0e3-cf7724470035.png"></p>
+<h2 id="基于YOLO的目标检测实验"><a href="#基于YOLO的目标检测实验" class="headerlink" title="基于YOLO的目标检测实验"></a>基于YOLO的目标检测实验</h2><h3 id="一、使用yolov5算法进行图片、视频和摄像头实时内容检测"><a href="#一、使用yolov5算法进行图片、视频和摄像头实时内容检测" class="headerlink" title="一、使用yolov5算法进行图片、视频和摄像头实时内容检测"></a>一、使用yolov5算法进行图片、视频和摄像头实时内容检测</h3><h4 id="配置yolov5的运行环境"><a href="#配置yolov5的运行环境" class="headerlink" title="配置yolov5的运行环境"></a>配置yolov5的运行环境</h4><ol>
+<li>下载yolov5算法</li>
+</ol>
+<p><font style="color:rgb(86, 87, 114);">官方下载地址：<a target="_blank" rel="noopener" href="https://github.com/ultralytics/yolov5">https://github.com/ultralytics/yolov5</a></font></p>
+<p><font style="color:rgb(86, 87, 114);">备用下载地址：<a target="_blank" rel="noopener" href="https://gitee.com/monkeycc/yolov5">https://gitee.com/monkeycc/yolov5</a></font></p>
+<p><font style="color:rgb(86, 87, 114);">权重文件下载： <a target="_blank" rel="noopener" href="https://github.com/ultralytics/yolov5/releases/tag/v6.0">https://github.com/ultralytics/yolov5/releases/tag/v6.0</a></font></p>
+<ol start="2">
+<li>新创建一个yolov5的虚拟环境（此环境使用pip作为包管理工具！！！！）</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda create -n yolo python = 3.9</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>官网安装pytorch（pip!!!）</li>
+</ol>
+<!-- 这是一张图片，ocr 内容为：NOTE: LATEST PYTORCH REQUIRES PYTHON 3.9 OR LATER. PREVIEW(NIGHTLY) STABLE ( PYTORCH BUILD E(2.7.1) WINDOWS LINUX MAC YOUR OS LIB TORCH PIP PACKAGE SOURCE C++/JAVA PYTHON LANGUAGE CUDA CUDA CUDA ROCM-6.3 CPU COMPUTE PLATFORM 11.8 12.8 12.6 RUN THIS PIP3 INSTALL TORCH TORCHVISION TORCHAUDIO COMMAND: -->
+<p><img src="/images/courses-ml/image_024_1749981827406-201f6df6-18e5-4a5d-bdc1-c8f576093081.png"></p>
+<ul>
+<li>检验是否安装成功pytorch</li>
+</ul>
+<!-- 这是一张图片，ocr 内容为：(YOLO) C:\USERS\高佳卓>PYTHON PYTHON 3.9.23 GE I (MAIN, JUN 4 4 2025,17:49:16) [MSC V.1929 64 PACKAGED BY CONDA-FORGE BIT (AMD64)] ON WIN32 TYPE "HELP","COPYRIGHT", "CREDITS" OR "LICENSE" FOR MORE INFORMATION. >>> IMPORT TORCH >>> TORCH.__VERSION__ 2.7.1+CPU' -->
+<p><img src="/images/courses-ml/image_025_1749981903360-8c35f193-6d68-4d3a-a736-47bd02252a33.png"></p>
+<ul>
+<li>检验torchvision的版本号是否符合</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip show torchvision</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>打开requirements.txt文件，将安装torch和torchvision的语句注释掉，将所做的修改进行保存</li>
+</ul>
+<!-- 这是一张图片，ocr 内容为：FLOPS COMPUTATION THOP>0.1.1 # E HTTPS://PYTORCH.ORG/GET-STARTED/LOCALLY (RECOMMENDED) #TORCH>1.8.0 # SEE #T #TORCHVISION>0.9.0 -->
+<p><img src="/images/courses-ml/image_026_1749983161077-18de0351-4d45-4f14-b5e3-fc636a9553f2.png"></p>
+<ol start="4">
+<li>安装yolov5的配置环境，然后进入yolov5文件的终端启用yolo环境</li>
+</ol>
+<!-- 这是一张图片，ocr 内容为：MICROSOFT WINDOWS [版本 10.0.26100.4351] (C) MICROSOFT CORPORATION.保留所有权利. D:\课程\专业课实验\机器学习\YOLOV5\YOLOV5-MASTER>ACTIVATE YOLO -->
+<p><img src="/images/courses-ml/image_027_1749983240093-d300c5dd-272d-4dad-ab14-1e94efb188b2.png"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install -r requirements.txt</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>安装成功</li>
+</ul>
+<!-- 这是一张图片，ocr 内容为：SUCCESSFULLY INSTALLED PYYAML-6.0.2 CERTIFI-2025.6.15 CHARSET_NORMALIZER-3.4.2 COLORAMA-0.4 .6 CONTOURPY-1.3.0 CYCLER-0.12.1 FO 1 FONTTOOLS-4.58.4 GITDB-4.0.12 GITPYTHON-3.1.44 IDNA-3.10 I MPORTLIB-RESOURCES-6.5.2 KIWISOLVER-1.4.7 MA MATPLOTLIB-3.9.4 OPENCV-PYTHON-4.11.0.86 PACKAGIN .0 PY-CPUINFO-9.0.0 PYPARSING-3.2.3 PYTHON-DA G-25.0 PANDAS-2.3.0 PROTOBUF-3.20.1 PSUTIL-7.0.0 TEUTIL-2.9.0.POST0 PYTZ-2025.2 REQUESTS-2.32.4 SCIPY-1.13.1 SEABORN-0.13.2 SIX-1.17.0 SMMAP 3.155 ULTRALYTICS 1.POST2209072238 TQDM-4.67.1 TZDATA-2025.2 ULTRALYTICS-8.3.155 ULT -5.0.2 THOP-0.1.1. THOP-2.0.14 URLLIB3-2.4.0 ZIPP-3.23.0 -->
+<p><img src="/images/courses-ml/image_028_1749983706658-c7a4ec86-d4a2-4de0-98a1-d56749cf05b8.png"></p>
+<h4 id="运行yolov5算法"><a href="#运行yolov5算法" class="headerlink" title="运行yolov5算法"></a>运行yolov5算法</h4><p>在终端输入：<br><font style="color:rgb(86, 87, 114);">（1） 检测摄像头内容：在cmd命令窗口输 python detect.py -–source 0 (0表示前置摄像头，1表示后置摄像头)</font></p>
+<p><font style="color:rgb(86, 87, 114);">（2） 检测图片：将需要检测的图片放yolov5根目录，比如文件名为img.jpg，则输入命令 python detect.py -–source img.jpg</font></p>
+<p><font style="color:rgb(86, 87, 114);">（3） 检测视频：随便找个视频，或者用手机录个短视频，放入根目录中，假设文件名问vid.mp4,则输入命令 python detect.py -–source vid.mp4</font></p>
+<p><font style="color:rgb(86, 87, 114);">（4） 调用手机摄像头： 手机上下载IP摄像头 ，然后打开ip摄像头查看地址，然后输入以下命令</font></p>
+<p><font style="color:rgb(86, 87, 114);">python detect.py –source <a target="_blank" rel="noopener" href="http://admin:admin@192.168.101.6:8081/">http://admin:admin@192.168.101.6:8081</a></font></p>
+<p><strong><font style="color:#DF2A3F;">所有检测结果都保存在runs文件夹的detect文件中，所检测的照片和视频都放在根目录下</font></strong></p>
+<!-- 这是一张图片，ocr 内容为：在 DETECT YOLOV5-MASTER RUNS 口口即应应化排,三 N 查看 排序 类型 名称 修改日期 文件夹 2025/6/15 18:51 EXP 文件夹 2025/6/15 18:58 EXP 2 文件夹 2025/6/1519:01 EXP3 文件夹 2025/6/15 19:11 EXP4 -->
+<p><img src="/images/courses-ml/image_029_1749985951317-e04a98ae-386c-493b-8316-5c061b052351.png"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python detect.py --source 0</span><br></pre></td></tr></table></figure>
+
+<!-- 这是一张图片，ocr 内容为：X TALL DEPENDENCIES AND CH C:|WINDOWS|SYSTEM32|CMD.E> X 0:480X640  5 CHAIRS,80.1MS X 0:480X640 5 CHAIRS,78.9MS 0:480X640 5 CHAIRS,78.7MS 0:480X640 6 CHAIRS,62.7MS 0:480X640 5 CHAIRS,46.6MS 0:480X640 5 0 5 CHAIRS,48.9MS 0:480X6405 5 CHAIRS,48.3MS 0:480X640 5 CHAIRS,46.8MS 0:480X640 5 5 CHAIRS,48.0MS 0:480X640  5 CHAIRS,47.8MS 0:480X640  5 CHAIRS,47.5MS 0:480X640  5 CHAIRS,49.3MS 50 0:480X640 4 CHAIRS,86.5MS IAV 0:480X640  5 CHAIRS,63.5MS CHAIR 0.401AIR 0.35 0:480X640 4 CHAIRS,65.5MS 0:480X640 4 CHAIRS,70.8MS 0:480X6404 CHAIRS,63.3MS 0:480X6404 CHAIRS,78.6MS LET 0:480X6404  CHAIRS,95.7MS CHAIR 0.45 CHAIR 0.51 0:480X6404 CHAIRS,63.1MS 40 4 CHAIRS,66.0MS 0:480X640L 0:480X640 4 CHAIRS,64.7MS 0:480X640 4 CHAIRS,111.3MS 0:480X640 4 CHAIRS,125.9MS 0:480X6404 CHAIRS,112.3MS 0:480X640 4 CHAIRS,65.6MS 0:480X640 4 CHAIRS,80.8MS 0:480X640L 04 CHAIRS,62.7MS TAME:://DETECT/EXP/ZIO 0:480X640 4 CHAIRS,63.7MS OT'],SOURCEDATA/IMAGES -->
+<p><img src="/images/courses-ml/image_030_1749985277855-953888dd-db70-444e-a16f-7d02d0ed515d.png"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python detect.py --source img.jpg</span><br></pre></td></tr></table></figure>
+
+<!-- 这是一张图片，ocr 内容为：0.85 BUS MABRID IN MINIBUS 100% ELEETRIEO SI ES PLAN 0.85 PERSON 0.90 PERSON 0.87 PERSON ELECT ICAMEMTE MEMDY PERSON 0.53 CERO EMISIONES -->
+<p><img src="/images/courses-ml/image_031_1749985406542-2acd5a49-29da-427d-8dc8-5f9e39044c68.png"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python detect.py --source vid.mp4</span><br></pre></td></tr></table></figure>
+
+<!-- 这是一张图片，ocr 内容为：C:/WINDOWS|SYSTEM32\CMD.E> VIDEO 1/1 (44/196) D:1LLYOLOV5\YOLOV5-MASTER\VID.MP4: 384X640 3 439.0MS PERSONS 384X640  2 5\YOLOV5-MASTER\VID.MP4: 384 VIDEO 1/1 (45/196) D:LLLYOLOV5LY 444.7MS PERSONS, VIDEO 1/1 (46/196) D:/LLLYOLOV5LYOL \YOLOV5-MASTER\VID.MP4: 384X640 3 PERSONS, 1 TV, 600.9MS VIDEO 1/1 (47/196) D:LLLYOLOV5)YOLOV5-MASTER)VID.MP4; 384X64X640 2 PERSONS, 451.3MS RUNS VIDEO 1/1 (48/19 (48/196) D:/LLYOLOV5/YOLOV5-MASTER\VID.MP4: 384X640 (NO DETECTIONS),473.3MS (49/196) D:/LLYOLOV5\YOLOV5-MASTER\VID.MP4: 384X640 (NO DETECTIONS). 350.3MS VIDEO 1/1 (4 VIDEO 1/1 (50/196) D:LLLYOLOV5LYOLOV5-MA X POTPLAYER MP4 I VID.MP4 (51/196) D:LLLYOLOV5LYOLOV5-MA VIDEO 1/1 VIDEO 1/1 (52/196) D:|LLYOLOV5\YOLOV5-MEY PERSON_0.77 PERSON 0.78 VIDEO 1/1 (53/196) D:LLLYOLOV5LYOLOV5-MA VIDEO 1/1 (54/196) D:LLYOLOV5LYOLOV5-MA VIDEO 1/1 (55/196) D:LLLYOLOV5LYOLOV5-ME PERSON 0.35 VIDEO 1/1(56/196) D:LLLYOLOV5LYOLOV5-MA VIDEO 1/1 (57/196) D:LLLYOLOV5\YOLOV5-MA PERSON 0.72 VIDEO 1/1 (58/196) D:LLYOLOV5LYOLOV5-MA PERSON 0.31L VIDEO 1/1 (59/196) D:LLLYOLOV5LYOLOV5-MA BOOK 0.37:0.32 BIRD 0.63 VIDEO 1/1 (60/196) D:LLLYOLOV5LYOLOV5-MA VIDEO 1/1 (61/196) D:LLLYOLOV5LYOLOV5-MA PERSON 0.23 VIDEO 1/1 (62/196) D:LLYOLOV5LYOLOV5-MA 329.8MS VIDEO 1/1 (63/196) D:LLYOLOV5LYOLOV5-MA VIDEO 1/1(64/196) D:LLLYOLOV5LYOLOV5-MA VIDEO 1/1 (65/196) D:LLYOLOV5LYOLOV5-MA 2023/02125 55.3G 5MS VIDEO 1/1 (66/196) D:LLLYOLOV5LYOLOV5-MA 311.3MS PRE-PROCESS, 414.8MS INFERER SPEED: 2.2MS DETECT\EXP4 RESULTS S SAVED TO RUNS 603D 00:00:02 00:00:00 \机器学习\YOLOV5\YOLOV5-MASTER> (YOLO)D:\课程\专业课实验\机 -->
+<p><img src="/images/courses-ml/image_032_1749986025580-82d3bb7b-ef84-4998-83cf-e785fbf2a7f8.png"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python detect.py --source http://admin:admin@192.168.43.1:8081</span><br></pre></td></tr></table></figure>
+
+<!-- 这是一张图片，ocr 内容为：X C:|WINDOWS|SYSTEM32|CMD.E> 0: 480X640 1 BOTTLE, 1 TV, 1 LAPTOP, 2 MOUSES, 1 KEYBOARD, 267.4MS TV, 1 LAPTOP, 2 MOUSES, 1 KEYBOARD, 0:480X640 1 BOTTLE, 0:480X640 1 BOTTLE,1 TV, 1 LAPTOP,2 MOUSES,1 KEYL HTTP_\ADMIN_ADMIN_192.168.43.1.8081 SES,1 KEYBOARD, 0: 480X640 1 BOTTLE, 1 TV, 1 LAPTOP, 2 MOUSES, 1 1 KEYBOARD, 2025-06-17 20:21:32TY 0.84 1 KEYBOARD, 0: 480X640 1 BOTTLE, 1 TV, 1 LAPTOP, 2 MOUSES, 1 电量:59% ES, 1 KEYBOARD, 0: 480X640 1 BOTTLE, 1 TV, 1 LAPTOP, 2 MOUSES, 1 K 后置镜头86.0 0: 480X640 1 BOTTLE, 1 TV, 1 LAPTOP, 2 MOUSES, 1 KEYBOARD, 0: 480X640 1 BOTTLE, 1 TV, 1 LAPTOP, 2 MOUSES, 1 KEYBOARD, LAPTOP 0.75 0: 480X640 1 BOTTLE, 1 TV, 1 LAPTOP, 2 MOUSES, 1 KEYBOARD, BOTTLE 0.89 0: 480X640 1 BOTTLE, 1 TV, 1 LAPTOP, 2 MOUSES, 1 KEYBOARD, RD 57 0: 480X640 1 BOTTLE, 1 TV, 1 LAPTOP, 2 MOUSES, 1 KEYBOARD, TEYGOS MOUSE 0.81 0: 480X640 1 BOTTLE, 1 TV, 1 LAPTOP, 2 MOUSES, 1 KEYBOARD, 0: 480X640 1 BOTTLE, 1 TV, 1 LAPTOP, 2 MOUSES, 1 KEYBOARD, 0:480X640 PERSON,1 BOTTLE, 1 TV, 1 LAPTOP, 2 MOUSES, 0.83 MOUSE 子 40 1 PERSON, 1 BOTTLE, 1 TV, 1 LAPTOP, 2 MOUSES, 0:480X640 0 1 PERSON,1 BOTT 0:480X640 L BOTTLE,1 TV,1 LAPTOP, MOUSES, E, 1 TV, 1 LAPTOP, 2 MOUSES, 0:480X640 1 BOTTLE, 1 KEYBOARDS L BOTTLE, 1 TV, 1 LAPTOP, 2 ME 2 MOUSES, 2 0:480X640 1 PERSON, 0: 480X640 1 PERSON, 1 BOTTLE, 1 TV, 1 LAPTOP, MOUSES,1 2 L BOTTLE, 1 TV, 1 LAPTOP, 0:480X640 10 1 PERSON, MOUSES, 1 148 PERSON ,BOTTLE, 1 TV, 1 LAPTOP, 2 0:480X640 MOUSES,1 PERSON 1 BOTTLE, 1 TV, 1 LAPTOP, 0:480X640 1 PERSON, 2 MOUSES, 1 ID0.28 KEYBOAL BOTTLE, 1 TV, 1 LAPTOP, 0:480X640 1 PERSON,1  2 MOUSES, 1 2 0:480X640 1 P , BOTTLE, 1 TV, 1 LAPTOP, 2 ME PERSON, MOUSES, 2 MOUSES, 2 0:480X640 1 P L PERSON,1 BOTTLE,1 TV,1 LAPTOP, 2 MOUSES, 2 0:480X640 1 PE PERSON,1 BOT BOTTLE,1 TV, 1 LAPTOP, MOUSES, 2 SON,1 BOTTLE,1 TV,1 LAPTOP,2 0:480X640 1 PERSON, 0: 480X640 1 PERSON, 1 BOTTLE, 1 TV, 1 LAPTOP, 2 M MOUSES, 0: 480X640 1 PERSON, 1 BOTTLE, 1 TV, 1 LAPTOP, P,2 MOUSES, -->
+<p><img src="/images/courses-ml/image_033_1750163140665-a541dba0-b940-4ee0-97a7-bf8cb6b0c1c5.png"></p>
+<p><font style="color:#DF2A3F;">注意：这里需要将手机和电脑都连接到手机热点（保证两个设备都在同一局域网中）</font></p>
+<h3 id="训练自己的数据集"><a href="#训练自己的数据集" class="headerlink" title="训练自己的数据集"></a>训练自己的数据集</h3><h4 id="给自己的数据集打标签"><a href="#给自己的数据集打标签" class="headerlink" title="给自己的数据集打标签"></a>给自己的数据集打标签</h4><p>常见的数据集格式：COCO格式、YOLO格式、VOC格式</p>
+<p>YOLO格式：</p>
+<ul>
+<li>标签格式后缀名是.txt结尾</li>
+<li>YOLO数据集由两个文件夹构成：</li>
+</ul>
+<blockquote>
+<p>apple&#x2F;</p>
+<p>├── dataset.yaml</p>
+<p>├── images&#x2F;</p>
+<p>│   ├── train&#x2F;  ← 图像</p>
+<p>│   └── val&#x2F;    ← 图像</p>
+<p>└── labels&#x2F;</p>
+<pre><code>├── train/  ← 标签（.txt）
+
+└── val/    ← 标签（.txt）
+</code></pre>
+</blockquote>
+<!-- 这是一张图片，ocr 内容为：文件夹 2025/6/15 22:07 IMAGES 文件夹 2025/6/17 17:48 LABELS 2025/6/17 17:43 DATASET.YAML YAMLFILE -->
+<p><img src="/images/courses-ml/image_034_1750154944281-9ffe0316-5c6a-4858-a1d0-1686aa1e76e4.png"></p>
+<blockquote>
+<p>images：存放的是训练与测试的所有图片</p>
+<p>labels：存放的是每张图片对应的标签</p>
+</blockquote>
+<!-- 这是一张图片，ocr 内容为：打开这个.TXT标签内部打开的格式如下所示: 0.6241134751773049 0.8773049645390071 0.07943262411347518 0.0.08085106382978723 0.8248226950354609 0.8702127659574468 0.0.06950354609929078 0.060992907801418424 第一个数字代表每个目标对象的类别编号 后面两个数字代表目标对象在图像中的中心位置(X,Y) 最后两个数字代表目标对象的宽度和高度(W,H) -->
+<p><img src="/images/courses-ml/image_035_1749994875047-99c9ad0d-6e3e-44ca-a40d-20cee71d159e.png"></p>
+<ol>
+<li>在项目文件的虚拟环境yolo环境下安装打标签工具labelimg</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install labelimg</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>启动打标签软件labelimg</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">labelimg</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>数据集呈现</p>
+<p>images</p>
+<!-- 这是一张图片，ocr 内容为：02.JPG 06,JPG 03.JPG 04.JPG 05.JPG 01.JPG -->
+<p><img src="/images/courses-ml/image_036_1750157025438-bdd1a033-a68e-48df-9f56-d7d86f24a6a9.png"></p>
+<p>labels</p>
+<!-- 这是一张图片，ocr 内容为：类型 修改日期 名称 TXT FILE 2025/6/15  22:38 01.TXT 02.TXT TXT FILE 2025/6/15 22:38 2025/6/15 22:38 03.TXT TXT FILE 2025/6/15 22:39 04.TXT TXT FILE 2025/6/15  22:39 05.TXT TXT FILE 06.TXT 2025/6/15 22:39 TXT FILE 2025/6/15 22:40 TXT FILE CLASSES.TXT -->
+<p><img src="/images/courses-ml/image_037_1750157049315-ca1af18e-0f60-4cd0-a4dd-30ae2fdac879.png"></p>
+<p>dataset.yaml</p>
+<!-- 这是一张图片，ocr 内容为：APPLE PATH: IMAGES\TRAIN TRAIN: VAL: IMAGES/VAL NC: ['APPLE'] NAMES: -->
+<p><img src="/images/courses-ml/image_038_1750157644072-f540cc4f-0ecd-439f-81a4-c4569501e466.png"></p>
+</blockquote>
+<ol start="3">
+<li>训练数据集</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python train.py --batch-size 2 --epochs 100 --data apple/dataset.yaml --weights weights/yolov5s.pt --name my_yolo_exp</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>训练完成的结果在runs&#x2F;train&#x2F;my_yolo_exp文件中</li>
+</ul>
+<!-- 这是一张图片，ocr 内容为：LABELS.JPG F1 LABELS CORRELOGR CONFUSION MATRI WEIGHTS _CURVE.PNG HYP.YAML AM.JPG X.PNG S PR CURVE.PNG RESULTS.PNG CURVE.PNG R_CURVE.PNG OPT.YAML RESULTS.CSV TRAIN BATCHO.JP TRAIN BATCH2.JP TRAIN BATCH1.JP VAL BATCHO PRE VAL BATCHO LABE IS.JPG DJPG G G G -->
+<p><img src="/images/courses-ml/image_039_1750160245716-68d9ed20-7929-4b1f-a59d-6619dac6b61d.png"></p>
+<ul>
+<li>weights文件中的best.pt中存放的是训练得到的数据</li>
+</ul>
+<!-- 这是一张图片，ocr 内容为：PT文件 14,104 2025/6/17 18:05 BEST.PT 14,104 PT文件 2025/6/1718:05 LAST.PT -->
+<p><img src="/images/courses-ml/image_040_1750160282455-9b659d1a-f8ff-4047-b64f-11906ef1613f.png"></p>
+<ol start="4">
+<li>测试数据，测试的图片在apple&#x2F;images&#x2F;val中</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python detect.py --source ./apple/images/val --weights runs/train/my_yolo_exp/weights/best.pt --conf-thres 0.05</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>如果测试结果未显示框，可能是因为训练数据集中的数据太少，模型参数训练不到位，可以通过调整置信度来使显示框出现（上面代码将置信度调整为0.05）</li>
+<li>检测结果如下（在runs&#x2F;detect&#x2F;exp文件中）：</li>
+</ul>
+<!-- 这是一张图片，ocr 内容为：GBELS G:99 APPLE 0.0816 APPLE 0.08 APPDPPLE 8.14 APPLE 0.05 APPLE 0.07 APPLE 0.8 APPLE 0.0907 10JPG 07.JPG 08.JPG 09.JPG -->
+<p><img src="/images/courses-ml/image_041_1750160598026-f84df183-ab67-45cb-ba06-02f01ea5340b.png"></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2026/03/Python/" rel="prev" title="">
+                  <i class="fa fa-angle-left"></i> 
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2026/03/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FOS/" rel="next" title="">
+                   <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2023 – 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">未经授权不得转载</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>
